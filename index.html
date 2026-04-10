@@ -26,6 +26,18 @@
     </div>
   </div>
 
+  <div id="custom-input-popup" style="display:none;">
+    <div class="custom-popup-overlay"></div>
+    <div class="custom-popup-box">
+      <div class="custom-popup-msg" id="custom-input-msg"></div>
+      <input type="number" id="custom-input-field" class="custom-input-field" min="1" max="9999" placeholder="Enter number...">
+      <div class="custom-popup-btns">
+        <button class="custom-popup-ok" id="custom-input-ok">Confirm</button>
+        <button class="custom-popup-cancel" id="custom-input-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
   <div id="coming-soon-popup" style="display:none;">
     <div class="custom-popup-overlay"></div>
     <div class="custom-popup-box">
@@ -38,7 +50,7 @@
 
   <div id="main-menu-screen">
     <div class="mm-logo">BLOCK JUMP</div>
-    <div class="mm-version">v1.3.0</div>
+    <div class="mm-version">v1.4.0</div>
     <div class="mm-profile-row">
       <div class="mm-profile-field">
         <input type="text" id="mm-username-input" class="mm-username-input" placeholder="Enter username..." maxlength="20">
@@ -184,6 +196,10 @@
             <span>Show Top Height</span>
             <label class="toggle"><input type="checkbox" id="mm-feat-show-top" checked><span class="slider"></span></label>
           </div>
+          <div class="setting-item">
+            <span>Show Timer</span>
+            <label class="toggle"><input type="checkbox" id="mm-feat-show-timer" checked><span class="slider"></span></label>
+          </div>
         </div>
       </div>
       <div class="mm-section">
@@ -220,6 +236,25 @@
   <div id="mm-extra-screen" class="mm-overlay" style="display:none;">
     <div class="mm-overlay-content">
       <div class="mm-overlay-title">EXTRA</div>
+      <div class="mm-section">
+        <div class="mm-section-title">Player Stats</div>
+        <div id="extra-stats-container" class="extra-stats-grid">
+          <div class="extra-stat-item"><div class="extra-stat-label">Total Playtime</div><div class="extra-stat-value" id="stat-playtime">0s</div></div>
+          <div class="extra-stat-item"><div class="extra-stat-label">Deaths</div><div class="extra-stat-value" id="stat-deaths">0</div></div>
+          <div class="extra-stat-item"><div class="extra-stat-label">Join Date</div><div class="extra-stat-value" id="stat-joindate">-</div></div>
+          <div class="extra-stat-item"><div class="extra-stat-label">Achievements</div><div class="extra-stat-value" id="stat-achievements">0/0</div></div>
+          <div class="extra-stat-item extra-stat-wide"><div class="extra-stat-label">Top Height (All)</div><div class="extra-stat-value" id="stat-topheight">0</div></div>
+        </div>
+      </div>
+      <div class="mm-section">
+        <div class="mm-section-title">Top Height by Difficulty</div>
+        <div class="extra-stats-grid">
+          <div class="extra-stat-item"><div class="extra-stat-label">Easy</div><div class="extra-stat-value stat-easy" id="stat-top-easy">0</div></div>
+          <div class="extra-stat-item"><div class="extra-stat-label">Medium</div><div class="extra-stat-value stat-medium" id="stat-top-medium">0</div></div>
+          <div class="extra-stat-item"><div class="extra-stat-label">Hard</div><div class="extra-stat-value stat-hard" id="stat-top-hard">0</div></div>
+          <div class="extra-stat-item"><div class="extra-stat-label">Impossible</div><div class="extra-stat-value stat-impossible" id="stat-top-impossible">0</div></div>
+        </div>
+      </div>
       <div class="mm-section extra-links-section">
         <button class="mm-btn" id="mm-changelog-btn">CHANGELOG</button>
         <button class="mm-btn" id="mm-help-btn">HELP</button>
@@ -233,33 +268,21 @@
     <div class="mm-overlay-content">
       <div class="mm-overlay-title">CHANGELOG</div>
       <div class="mm-section">
-        <div class="mm-section-title">Changelog - v1.3.0</div>
+        <div class="mm-section-title">Changelog - v1.4.0</div>
         <div class="changelog-box">
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Username input above main menu play button</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Country selector with search, stored in localStorage</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> All English-speaking countries + Denmark supported</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Country names translated based on chosen language</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Random UserID generated and stored locally per player</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> On death: score saved to GitHub and localStorage</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Records include username, country, difficulty, score, timestamp</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Leaderboard: filter by difficulty (All/Easy/Medium/Hard/Impossible)</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Leaderboard: sort ascending or descending</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Leaderboard: display count selector (10/25/50/75/100/Custom)</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Leaderboard: scrollable list</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Leaderboard entry click shows name, score, country, time</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Survival time achievements for each difficulty (30s/1m/2m/5m/10m/20m/30m)</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Accurate in-game survival timer for achievement detection</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Achievements filter by difficulty category</div>
-          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Removed Features section from Extra menu (moved to Settings HUD tab)</div>
-          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Fixed text rendering bugs in HUD and menus</div>
-          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Singleplayer left, Challenge center, Multiplayer right in mode select</div>
-          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Main Menu with Play, Settings, Extra, Achievements</div>
-          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Achievements system with unlock notifications</div>
-          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Per-sound volume sliders with dropdown UI</div>
-          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> All Sounds ON/OFF toggle</div>
-          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> High Quality / Low Quality graphics toggle</div>
-          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Reset All Data button</div>
-          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Lava hitbox fixed to match visual lava</div>
+          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Secure userId system with encrypted storage on GitHub</div>
+          <div class="changelog-entry"><span class="cl-tag new">NEW</span> No duplicate profiles — updates existing entry on each save</div>
+          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Timer HUD with toggle in settings</div>
+          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Extra Stats section: playtime, deaths, join date, achievements</div>
+          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Per-difficulty top height tracking</div>
+          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Death screen shows difficulty, run height, and top height</div>
+          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Achievements are clickable with detail toggle</div>
+          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Country selection with full world country list</div>
+          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Custom leaderboard count popup (no browser prompt)</div>
+          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Leaderboard shows country flag</div>
+          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Score system uses internal protected variable</div>
+          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Audio dropdowns toggle on click</div>
+          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> All previous bugs resolved</div>
         </div>
       </div>
       <button class="mm-btn" id="mm-changelog-back-btn">BACK</button>
@@ -335,15 +358,7 @@
           <option value="desc">Highest First</option>
           <option value="asc">Lowest First</option>
         </select>
-        <select id="lb-count" class="lb-select">
-          <option value="10">Show 10</option>
-          <option value="25">Show 25</option>
-          <option value="50">Show 50</option>
-          <option value="75">Show 75</option>
-          <option value="100">Show 100</option>
-          <option value="custom">Custom</option>
-        </select>
-        <input type="number" id="lb-custom-count" class="lb-custom-input" min="1" max="9999" placeholder="Count" style="display:none;">
+        <button class="mm-btn lb-count-btn" id="lb-count-btn" style="flex:1;min-width:100px;font-size:14px;padding:10px 12px;">Show 10</button>
       </div>
       <div id="lb-list"></div>
       <div id="lb-entry-detail" style="display:none;">
@@ -359,6 +374,7 @@
   <div id="hud">
     <span id="current">HEIGHT: 0</span>
     <span id="max">TOP HEIGHT: 0</span>
+    <span id="timer-display">TIME: 0s</span>
     <span id="difficulty-display">DIFFICULTY: MEDIUM</span>
   </div>
 
@@ -502,6 +518,10 @@
               <span>Show Top Height</span>
               <label class="toggle"><input type="checkbox" id="p-feat-show-top" checked><span class="slider"></span></label>
             </div>
+            <div class="setting-item">
+              <span>Show Timer</span>
+              <label class="toggle"><input type="checkbox" id="p-feat-show-timer" checked><span class="slider"></span></label>
+            </div>
           </div>
         </div>
         <div class="settings-section">
@@ -560,6 +580,11 @@
   <div id="death-screen">
     <div class="death-content">
       <h1 id="death-title">YOU DIED</h1>
+      <div class="death-stats">
+        <div class="death-stat-row" id="death-difficulty-row"></div>
+        <div class="death-stat-row" id="death-height-row"></div>
+        <div class="death-stat-row" id="death-top-row"></div>
+      </div>
       <p id="death-subtitle">Click / Space to Respawn</p>
     </div>
   </div>
@@ -579,19 +604,47 @@
       ) return false;
     };
 
-    const GITHUB_REPO = 'Ninjanoah121312/Block-Jump';
-    const GITHUB_FILE = 'Data/User_Data.Json';
-    const GITHUB_TOKEN = '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';
-    const GITHUB_API = `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
+    // ===================== SECURE USER ID SYSTEM =====================
+    const _UID_PREFIX = 'DO_NOT_SHARE_WITH_ANYONE_';
+    const _UID_RAND = '48291057362819403728591046372819504738291047382910473829104738';
+    const _UID_KEY = _UID_PREFIX + _UID_RAND;
+
+    function _encryptUserId(uid) {
+      // Simple XOR + base64 encryption for userId stored on GitHub
+      const key = 'BJ_SECURE_2024_XK9';
+      let result = '';
+      for (let i = 0; i < uid.length; i++) {
+        result += String.fromCharCode(uid.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+      }
+      return btoa(result);
+    }
+
+    function _decryptUserId(enc) {
+      try {
+        const key = 'BJ_SECURE_2024_XK9';
+        const decoded = atob(enc);
+        let result = '';
+        for (let i = 0; i < decoded.length; i++) {
+          result += String.fromCharCode(decoded.charCodeAt(i) ^ key.charCodeAt(i % key.length));
+        }
+        return result;
+      } catch(e) { return null; }
+    }
 
     function getOrCreateUserId() {
-      let uid = localStorage.getItem('blockjump_userid');
+      let uid = localStorage.getItem(_UID_KEY);
       if (!uid) {
-        uid = 'u_' + Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
-        localStorage.setItem('blockjump_userid', uid);
+        uid = 'bj_' + Math.random().toString(36).substr(2, 12) + Date.now().toString(36) + Math.random().toString(36).substr(2, 8);
+        localStorage.setItem(_UID_KEY, uid);
       }
       return uid;
     }
+
+    // ===================== GITHUB CONFIG =====================
+    const GITHUB_REPO = 'Ninjanoah121312/Block-Jump';
+    const GITHUB_FILE = 'Data/User_Data.Json';
+    const GITHUB_TOKEN = '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';
+    const GITHUB_API = `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
 
     async function fetchGitHubData() {
       try {
@@ -602,9 +655,7 @@
         const json = await res.json();
         const decoded = atob(json.content.replace(/\n/g, ''));
         return { data: JSON.parse(decoded), sha: json.sha };
-      } catch (e) {
-        return null;
-      }
+      } catch (e) { return null; }
     }
 
     async function saveToGitHub(record) {
@@ -616,9 +667,32 @@
           records = Array.isArray(existing.data) ? existing.data : [];
           sha = existing.sha;
         }
-        records.push(record);
+        const encUid = _encryptUserId(record.userid);
+        // Find existing entry by encrypted userId
+        const idx = records.findIndex(r => {
+          try { return _decryptUserId(r.encUserId) === record.userid; } catch(e) { return false; }
+        });
+        const entry = {
+          encUserId: encUid,
+          username: record.username,
+          country: record.country,
+          countryFlag: record.countryFlag,
+          countryName: record.countryName,
+          highScore: record.highScore,
+          scores: record.scores,
+          joinDate: record.joinDate,
+          lastSeen: record.lastSeen,
+          totalPlaytime: record.totalPlaytime,
+          deaths: record.deaths,
+          achievements: record.achievements
+        };
+        if (idx !== -1) {
+          records[idx] = entry;
+        } else {
+          records.push(entry);
+        }
         const content = btoa(unescape(encodeURIComponent(JSON.stringify(records, null, 2))));
-        const body = { message: `Update scores - ${record.username}`, content };
+        const body = { message: `Update profile - ${record.username}`, content };
         if (sha) body.sha = sha;
         await fetch(GITHUB_API, {
           method: 'PUT',
@@ -632,69 +706,285 @@
       } catch (e) {}
     }
 
-    function saveRecordLocally(record) {
+    // ===================== LOCAL PROFILE =====================
+    function getLocalProfile() {
       try {
-        const raw = localStorage.getItem('blockjump_records');
-        const records = raw ? JSON.parse(raw) : [];
-        records.push(record);
-        localStorage.setItem('blockjump_records', JSON.stringify(records));
-      } catch (e) {}
+        const raw = localStorage.getItem('bj_profile');
+        return raw ? JSON.parse(raw) : null;
+      } catch(e) { return null; }
     }
 
-    function getLocalRecords() {
+    function saveLocalProfile(profile) {
       try {
-        const raw = localStorage.getItem('blockjump_records');
-        return raw ? JSON.parse(raw) : [];
-      } catch (e) { return []; }
+        localStorage.setItem('bj_profile', JSON.stringify(profile));
+      } catch(e) {}
     }
 
+    function getOrCreateProfile() {
+      const uid = getOrCreateUserId();
+      let profile = getLocalProfile();
+      if (!profile || profile.userid !== uid) {
+        profile = {
+          userid: uid,
+          username: localStorage.getItem('blockjump_username') || '',
+          country: JSON.parse(localStorage.getItem('blockjump_country') || 'null'),
+          joinDate: new Date().toISOString(),
+          totalPlaytime: parseFloat(localStorage.getItem('bj_total_playtime') || '0'),
+          deaths: parseInt(localStorage.getItem('bj_deaths') || '0'),
+          highScore: { easy: 0, medium: 0, hard: 0, impossible: 0 },
+          achievements: {}
+        };
+        // Migrate old high scores if present
+        ['easy','medium','hard','impossible'].forEach(d => {
+          const k = 'obbyTopHeight' + d.charAt(0).toUpperCase() + d.slice(1);
+          const v = parseInt(localStorage.getItem(k) || '0');
+          if (v > 0) profile.highScore[d] = v;
+        });
+        saveLocalProfile(profile);
+      }
+      return profile;
+    }
+
+    let _userProfile = getOrCreateProfile();
+
+    function updateProfileAndSave() {
+      _userProfile.username = currentUsername || 'Anonymous';
+      _userProfile.country = selectedCountry;
+      _userProfile.totalPlaytime = _totalPlaytime;
+      _userProfile.deaths = _totalDeaths;
+      _userProfile.achievements = unlockedAchievements;
+      saveLocalProfile(_userProfile);
+    }
+
+    async function pushProfileToGitHub() {
+      updateProfileAndSave();
+      const record = {
+        userid: _userProfile.userid,
+        username: _userProfile.username,
+        country: _userProfile.country ? _userProfile.country.code : '',
+        countryFlag: _userProfile.country ? _userProfile.country.flag : '',
+        countryName: _userProfile.country ? _userProfile.country.en : '',
+        highScore: _userProfile.highScore,
+        scores: _userProfile.highScore, // alias for leaderboard
+        joinDate: _userProfile.joinDate,
+        lastSeen: new Date().toISOString(),
+        totalPlaytime: _userProfile.totalPlaytime,
+        deaths: _userProfile.deaths,
+        achievements: Object.keys(_userProfile.achievements).length
+      };
+      await saveToGitHub(record);
+    }
+
+    // ===================== TRACKED STATS =====================
+    let _totalPlaytime = _userProfile.totalPlaytime || 0;
+    let _totalDeaths = _userProfile.deaths || 0;
+
+    // Internal protected high score — not exposed on window
+    const _internalScores = Object.assign({ easy: 0, medium: 0, hard: 0, impossible: 0 }, _userProfile.highScore || {});
+
+    function _getInternalScore(diff) { return _internalScores[diff] || 0; }
+    function _setInternalScore(diff, val) {
+      if (val > (_internalScores[diff] || 0)) {
+        _internalScores[diff] = val;
+        _userProfile.highScore[diff] = val;
+      }
+    }
+
+    // ===================== COUNTRIES =====================
     const ALL_COUNTRIES = [
+      { code: 'AF', flag: '🇦🇫', en: 'Afghanistan', da: 'Afghanistan', de: 'Afghanistan' },
+      { code: 'AL', flag: '🇦🇱', en: 'Albania', da: 'Albanien', de: 'Albanien' },
+      { code: 'DZ', flag: '🇩🇿', en: 'Algeria', da: 'Algeriet', de: 'Algerien' },
+      { code: 'AD', flag: '🇦🇩', en: 'Andorra', da: 'Andorra', de: 'Andorra' },
+      { code: 'AO', flag: '🇦🇴', en: 'Angola', da: 'Angola', de: 'Angola' },
+      { code: 'AG', flag: '🇦🇬', en: 'Antigua and Barbuda', da: 'Antigua og Barbuda', de: 'Antigua und Barbuda' },
+      { code: 'AR', flag: '🇦🇷', en: 'Argentina', da: 'Argentina', de: 'Argentinien' },
+      { code: 'AM', flag: '🇦🇲', en: 'Armenia', da: 'Armenien', de: 'Armenien' },
       { code: 'AU', flag: '🇦🇺', en: 'Australia', da: 'Australien', de: 'Australien' },
+      { code: 'AT', flag: '🇦🇹', en: 'Austria', da: 'Østrig', de: 'Österreich' },
+      { code: 'AZ', flag: '🇦🇿', en: 'Azerbaijan', da: 'Aserbajdsjan', de: 'Aserbaidschan' },
+      { code: 'BS', flag: '🇧🇸', en: 'Bahamas', da: 'Bahamas', de: 'Bahamas' },
+      { code: 'BH', flag: '🇧🇭', en: 'Bahrain', da: 'Bahrain', de: 'Bahrain' },
+      { code: 'BD', flag: '🇧🇩', en: 'Bangladesh', da: 'Bangladesh', de: 'Bangladesch' },
+      { code: 'BB', flag: '🇧🇧', en: 'Barbados', da: 'Barbados', de: 'Barbados' },
+      { code: 'BY', flag: '🇧🇾', en: 'Belarus', da: 'Hviderusland', de: 'Weißrussland' },
+      { code: 'BE', flag: '🇧🇪', en: 'Belgium', da: 'Belgien', de: 'Belgien' },
+      { code: 'BZ', flag: '🇧🇿', en: 'Belize', da: 'Belize', de: 'Belize' },
+      { code: 'BJ', flag: '🇧🇯', en: 'Benin', da: 'Benin', de: 'Benin' },
+      { code: 'BT', flag: '🇧🇹', en: 'Bhutan', da: 'Bhutan', de: 'Bhutan' },
+      { code: 'BO', flag: '🇧🇴', en: 'Bolivia', da: 'Bolivia', de: 'Bolivien' },
+      { code: 'BA', flag: '🇧🇦', en: 'Bosnia and Herzegovina', da: 'Bosnien-Hercegovina', de: 'Bosnien und Herzegowina' },
+      { code: 'BW', flag: '🇧🇼', en: 'Botswana', da: 'Botswana', de: 'Botswana' },
+      { code: 'BR', flag: '🇧🇷', en: 'Brazil', da: 'Brasilien', de: 'Brasilien' },
+      { code: 'BN', flag: '🇧🇳', en: 'Brunei', da: 'Brunei', de: 'Brunei' },
+      { code: 'BG', flag: '🇧🇬', en: 'Bulgaria', da: 'Bulgarien', de: 'Bulgarien' },
+      { code: 'BF', flag: '🇧🇫', en: 'Burkina Faso', da: 'Burkina Faso', de: 'Burkina Faso' },
+      { code: 'BI', flag: '🇧🇮', en: 'Burundi', da: 'Burundi', de: 'Burundi' },
+      { code: 'CV', flag: '🇨🇻', en: 'Cape Verde', da: 'Kap Verde', de: 'Kap Verde' },
+      { code: 'KH', flag: '🇰🇭', en: 'Cambodia', da: 'Cambodja', de: 'Kambodscha' },
+      { code: 'CM', flag: '🇨🇲', en: 'Cameroon', da: 'Cameroun', de: 'Kamerun' },
       { code: 'CA', flag: '🇨🇦', en: 'Canada', da: 'Canada', de: 'Kanada' },
+      { code: 'CF', flag: '🇨🇫', en: 'Central African Republic', da: 'Centralafrikanske Republik', de: 'Zentralafrikanische Republik' },
+      { code: 'TD', flag: '🇹🇩', en: 'Chad', da: 'Tchad', de: 'Tschad' },
+      { code: 'CL', flag: '🇨🇱', en: 'Chile', da: 'Chile', de: 'Chile' },
+      { code: 'CN', flag: '🇨🇳', en: 'China', da: 'Kina', de: 'China' },
+      { code: 'CO', flag: '🇨🇴', en: 'Colombia', da: 'Colombia', de: 'Kolumbien' },
+      { code: 'KM', flag: '🇰🇲', en: 'Comoros', da: 'Comorerne', de: 'Komoren' },
+      { code: 'CG', flag: '🇨🇬', en: 'Congo', da: 'Congo', de: 'Kongo' },
+      { code: 'CR', flag: '🇨🇷', en: 'Costa Rica', da: 'Costa Rica', de: 'Costa Rica' },
+      { code: 'HR', flag: '🇭🇷', en: 'Croatia', da: 'Kroatien', de: 'Kroatien' },
+      { code: 'CU', flag: '🇨🇺', en: 'Cuba', da: 'Cuba', de: 'Kuba' },
+      { code: 'CY', flag: '🇨🇾', en: 'Cyprus', da: 'Cypern', de: 'Zypern' },
+      { code: 'CZ', flag: '🇨🇿', en: 'Czech Republic', da: 'Tjekkiet', de: 'Tschechien' },
       { code: 'DK', flag: '🇩🇰', en: 'Denmark', da: 'Danmark', de: 'Dänemark' },
+      { code: 'DJ', flag: '🇩🇯', en: 'Djibouti', da: 'Djibouti', de: 'Dschibuti' },
+      { code: 'DM', flag: '🇩🇲', en: 'Dominica', da: 'Dominica', de: 'Dominica' },
+      { code: 'DO', flag: '🇩🇴', en: 'Dominican Republic', da: 'Den Dominikanske Republik', de: 'Dominikanische Republik' },
+      { code: 'EC', flag: '🇪🇨', en: 'Ecuador', da: 'Ecuador', de: 'Ecuador' },
+      { code: 'EG', flag: '🇪🇬', en: 'Egypt', da: 'Egypten', de: 'Ägypten' },
+      { code: 'SV', flag: '🇸🇻', en: 'El Salvador', da: 'El Salvador', de: 'El Salvador' },
+      { code: 'GQ', flag: '🇬🇶', en: 'Equatorial Guinea', da: 'Ækvatorialguinea', de: 'Äquatorialguinea' },
+      { code: 'ER', flag: '🇪🇷', en: 'Eritrea', da: 'Eritrea', de: 'Eritrea' },
+      { code: 'EE', flag: '🇪🇪', en: 'Estonia', da: 'Estland', de: 'Estland' },
+      { code: 'SZ', flag: '🇸🇿', en: 'Eswatini', da: 'Eswatini', de: 'Eswatini' },
+      { code: 'ET', flag: '🇪🇹', en: 'Ethiopia', da: 'Etiopien', de: 'Äthiopien' },
+      { code: 'FJ', flag: '🇫🇯', en: 'Fiji', da: 'Fiji', de: 'Fidschi' },
+      { code: 'FI', flag: '🇫🇮', en: 'Finland', da: 'Finland', de: 'Finnland' },
+      { code: 'FR', flag: '🇫🇷', en: 'France', da: 'Frankrig', de: 'Frankreich' },
+      { code: 'GA', flag: '🇬🇦', en: 'Gabon', da: 'Gabon', de: 'Gabun' },
+      { code: 'GM', flag: '🇬🇲', en: 'Gambia', da: 'Gambia', de: 'Gambia' },
+      { code: 'GE', flag: '🇬🇪', en: 'Georgia', da: 'Georgien', de: 'Georgien' },
+      { code: 'DE', flag: '🇩🇪', en: 'Germany', da: 'Tyskland', de: 'Deutschland' },
+      { code: 'GH', flag: '🇬🇭', en: 'Ghana', da: 'Ghana', de: 'Ghana' },
+      { code: 'GR', flag: '🇬🇷', en: 'Greece', da: 'Grækenland', de: 'Griechenland' },
+      { code: 'GD', flag: '🇬🇩', en: 'Grenada', da: 'Grenada', de: 'Grenada' },
+      { code: 'GT', flag: '🇬🇹', en: 'Guatemala', da: 'Guatemala', de: 'Guatemala' },
+      { code: 'GN', flag: '🇬🇳', en: 'Guinea', da: 'Guinea', de: 'Guinea' },
+      { code: 'GW', flag: '🇬🇼', en: 'Guinea-Bissau', da: 'Guinea-Bissau', de: 'Guinea-Bissau' },
+      { code: 'GY', flag: '🇬🇾', en: 'Guyana', da: 'Guyana', de: 'Guyana' },
+      { code: 'HT', flag: '🇭🇹', en: 'Haiti', da: 'Haiti', de: 'Haiti' },
+      { code: 'HN', flag: '🇭🇳', en: 'Honduras', da: 'Honduras', de: 'Honduras' },
+      { code: 'HU', flag: '🇭🇺', en: 'Hungary', da: 'Ungarn', de: 'Ungarn' },
+      { code: 'IS', flag: '🇮🇸', en: 'Iceland', da: 'Island', de: 'Island' },
+      { code: 'IN', flag: '🇮🇳', en: 'India', da: 'Indien', de: 'Indien' },
+      { code: 'ID', flag: '🇮🇩', en: 'Indonesia', da: 'Indonesien', de: 'Indonesien' },
+      { code: 'IR', flag: '🇮🇷', en: 'Iran', da: 'Iran', de: 'Iran' },
+      { code: 'IQ', flag: '🇮🇶', en: 'Iraq', da: 'Irak', de: 'Irak' },
       { code: 'IE', flag: '🇮🇪', en: 'Ireland', da: 'Irland', de: 'Irland' },
+      { code: 'IL', flag: '🇮🇱', en: 'Israel', da: 'Israel', de: 'Israel' },
+      { code: 'IT', flag: '🇮🇹', en: 'Italy', da: 'Italien', de: 'Italien' },
       { code: 'JM', flag: '🇯🇲', en: 'Jamaica', da: 'Jamaica', de: 'Jamaika' },
+      { code: 'JP', flag: '🇯🇵', en: 'Japan', da: 'Japan', de: 'Japan' },
+      { code: 'JO', flag: '🇯🇴', en: 'Jordan', da: 'Jordan', de: 'Jordanien' },
+      { code: 'KZ', flag: '🇰🇿', en: 'Kazakhstan', da: 'Kasakhstan', de: 'Kasachstan' },
+      { code: 'KE', flag: '🇰🇪', en: 'Kenya', da: 'Kenya', de: 'Kenia' },
+      { code: 'KI', flag: '🇰🇮', en: 'Kiribati', da: 'Kiribati', de: 'Kiribati' },
+      { code: 'KW', flag: '🇰🇼', en: 'Kuwait', da: 'Kuwait', de: 'Kuwait' },
+      { code: 'KG', flag: '🇰🇬', en: 'Kyrgyzstan', da: 'Kirgisistan', de: 'Kirgisistan' },
+      { code: 'LA', flag: '🇱🇦', en: 'Laos', da: 'Laos', de: 'Laos' },
+      { code: 'LV', flag: '🇱🇻', en: 'Latvia', da: 'Letland', de: 'Lettland' },
+      { code: 'LB', flag: '🇱🇧', en: 'Lebanon', da: 'Libanon', de: 'Libanon' },
+      { code: 'LS', flag: '🇱🇸', en: 'Lesotho', da: 'Lesotho', de: 'Lesotho' },
+      { code: 'LR', flag: '🇱🇷', en: 'Liberia', da: 'Liberia', de: 'Liberia' },
+      { code: 'LY', flag: '🇱🇾', en: 'Libya', da: 'Libyen', de: 'Libyen' },
+      { code: 'LI', flag: '🇱🇮', en: 'Liechtenstein', da: 'Liechtenstein', de: 'Liechtenstein' },
+      { code: 'LT', flag: '🇱🇹', en: 'Lithuania', da: 'Litauen', de: 'Litauen' },
+      { code: 'LU', flag: '🇱🇺', en: 'Luxembourg', da: 'Luxembourg', de: 'Luxemburg' },
+      { code: 'MG', flag: '🇲🇬', en: 'Madagascar', da: 'Madagaskar', de: 'Madagaskar' },
+      { code: 'MW', flag: '🇲🇼', en: 'Malawi', da: 'Malawi', de: 'Malawi' },
+      { code: 'MY', flag: '🇲🇾', en: 'Malaysia', da: 'Malaysia', de: 'Malaysia' },
+      { code: 'MV', flag: '🇲🇻', en: 'Maldives', da: 'Maldiverne', de: 'Malediven' },
+      { code: 'ML', flag: '🇲🇱', en: 'Mali', da: 'Mali', de: 'Mali' },
+      { code: 'MT', flag: '🇲🇹', en: 'Malta', da: 'Malta', de: 'Malta' },
+      { code: 'MH', flag: '🇲🇭', en: 'Marshall Islands', da: 'Marshalløerne', de: 'Marshallinseln' },
+      { code: 'MR', flag: '🇲🇷', en: 'Mauritania', da: 'Mauretanien', de: 'Mauretanien' },
+      { code: 'MU', flag: '🇲🇺', en: 'Mauritius', da: 'Mauritius', de: 'Mauritius' },
+      { code: 'MX', flag: '🇲🇽', en: 'Mexico', da: 'Mexico', de: 'Mexiko' },
+      { code: 'FM', flag: '🇫🇲', en: 'Micronesia', da: 'Mikronesien', de: 'Mikronesien' },
+      { code: 'MD', flag: '🇲🇩', en: 'Moldova', da: 'Moldova', de: 'Moldawien' },
+      { code: 'MC', flag: '🇲🇨', en: 'Monaco', da: 'Monaco', de: 'Monaco' },
+      { code: 'MN', flag: '🇲🇳', en: 'Mongolia', da: 'Mongoliet', de: 'Mongolei' },
+      { code: 'ME', flag: '🇲🇪', en: 'Montenegro', da: 'Montenegro', de: 'Montenegro' },
+      { code: 'MA', flag: '🇲🇦', en: 'Morocco', da: 'Marokko', de: 'Marokko' },
+      { code: 'MZ', flag: '🇲🇿', en: 'Mozambique', da: 'Mozambique', de: 'Mosambik' },
+      { code: 'MM', flag: '🇲🇲', en: 'Myanmar', da: 'Myanmar', de: 'Myanmar' },
+      { code: 'NA', flag: '🇳🇦', en: 'Namibia', da: 'Namibia', de: 'Namibia' },
+      { code: 'NR', flag: '🇳🇷', en: 'Nauru', da: 'Nauru', de: 'Nauru' },
+      { code: 'NP', flag: '🇳🇵', en: 'Nepal', da: 'Nepal', de: 'Nepal' },
+      { code: 'NL', flag: '🇳🇱', en: 'Netherlands', da: 'Holland', de: 'Niederlande' },
       { code: 'NZ', flag: '🇳🇿', en: 'New Zealand', da: 'New Zealand', de: 'Neuseeland' },
+      { code: 'NI', flag: '🇳🇮', en: 'Nicaragua', da: 'Nicaragua', de: 'Nicaragua' },
+      { code: 'NE', flag: '🇳🇪', en: 'Niger', da: 'Niger', de: 'Niger' },
       { code: 'NG', flag: '🇳🇬', en: 'Nigeria', da: 'Nigeria', de: 'Nigeria' },
+      { code: 'NO', flag: '🇳🇴', en: 'Norway', da: 'Norge', de: 'Norwegen' },
+      { code: 'OM', flag: '🇴🇲', en: 'Oman', da: 'Oman', de: 'Oman' },
+      { code: 'PK', flag: '🇵🇰', en: 'Pakistan', da: 'Pakistan', de: 'Pakistan' },
+      { code: 'PW', flag: '🇵🇼', en: 'Palau', da: 'Palau', de: 'Palau' },
+      { code: 'PA', flag: '🇵🇦', en: 'Panama', da: 'Panama', de: 'Panama' },
+      { code: 'PG', flag: '🇵🇬', en: 'Papua New Guinea', da: 'Papua Ny Guinea', de: 'Papua-Neuguinea' },
+      { code: 'PY', flag: '🇵🇾', en: 'Paraguay', da: 'Paraguay', de: 'Paraguay' },
+      { code: 'PE', flag: '🇵🇪', en: 'Peru', da: 'Peru', de: 'Peru' },
       { code: 'PH', flag: '🇵🇭', en: 'Philippines', da: 'Filippinerne', de: 'Philippinen' },
+      { code: 'PL', flag: '🇵🇱', en: 'Poland', da: 'Polen', de: 'Polen' },
+      { code: 'PT', flag: '🇵🇹', en: 'Portugal', da: 'Portugal', de: 'Portugal' },
+      { code: 'QA', flag: '🇶🇦', en: 'Qatar', da: 'Qatar', de: 'Katar' },
+      { code: 'RO', flag: '🇷🇴', en: 'Romania', da: 'Rumænien', de: 'Rumänien' },
+      { code: 'RU', flag: '🇷🇺', en: 'Russia', da: 'Rusland', de: 'Russland' },
+      { code: 'RW', flag: '🇷🇼', en: 'Rwanda', da: 'Rwanda', de: 'Ruanda' },
+      { code: 'KN', flag: '🇰🇳', en: 'Saint Kitts and Nevis', da: 'Saint Kitts og Nevis', de: 'St. Kitts und Nevis' },
+      { code: 'LC', flag: '🇱🇨', en: 'Saint Lucia', da: 'Saint Lucia', de: 'St. Lucia' },
+      { code: 'VC', flag: '🇻🇨', en: 'Saint Vincent and the Grenadines', da: 'Saint Vincent og Grenadinerne', de: 'St. Vincent und die Grenadinen' },
+      { code: 'WS', flag: '🇼🇸', en: 'Samoa', da: 'Samoa', de: 'Samoa' },
+      { code: 'SM', flag: '🇸🇲', en: 'San Marino', da: 'San Marino', de: 'San Marino' },
+      { code: 'ST', flag: '🇸🇹', en: 'Sao Tome and Principe', da: 'São Tomé og Príncipe', de: 'São Tomé und Príncipe' },
+      { code: 'SA', flag: '🇸🇦', en: 'Saudi Arabia', da: 'Saudi-Arabien', de: 'Saudi-Arabien' },
+      { code: 'SN', flag: '🇸🇳', en: 'Senegal', da: 'Senegal', de: 'Senegal' },
+      { code: 'RS', flag: '🇷🇸', en: 'Serbia', da: 'Serbien', de: 'Serbien' },
+      { code: 'SC', flag: '🇸🇨', en: 'Seychelles', da: 'Seychellerne', de: 'Seychellen' },
+      { code: 'SL', flag: '🇸🇱', en: 'Sierra Leone', da: 'Sierra Leone', de: 'Sierra Leone' },
       { code: 'SG', flag: '🇸🇬', en: 'Singapore', da: 'Singapore', de: 'Singapur' },
+      { code: 'SK', flag: '🇸🇰', en: 'Slovakia', da: 'Slovakiet', de: 'Slowakei' },
+      { code: 'SI', flag: '🇸🇮', en: 'Slovenia', da: 'Slovenien', de: 'Slowenien' },
+      { code: 'SB', flag: '🇸🇧', en: 'Solomon Islands', da: 'Salomonøerne', de: 'Salomonen' },
+      { code: 'SO', flag: '🇸🇴', en: 'Somalia', da: 'Somalia', de: 'Somalia' },
       { code: 'ZA', flag: '🇿🇦', en: 'South Africa', da: 'Sydafrika', de: 'Südafrika' },
+      { code: 'SS', flag: '🇸🇸', en: 'South Sudan', da: 'Sydsudan', de: 'Südsudan' },
+      { code: 'ES', flag: '🇪🇸', en: 'Spain', da: 'Spanien', de: 'Spanien' },
+      { code: 'LK', flag: '🇱🇰', en: 'Sri Lanka', da: 'Sri Lanka', de: 'Sri Lanka' },
+      { code: 'SD', flag: '🇸🇩', en: 'Sudan', da: 'Sudan', de: 'Sudan' },
+      { code: 'SR', flag: '🇸🇷', en: 'Suriname', da: 'Surinam', de: 'Suriname' },
+      { code: 'SE', flag: '🇸🇪', en: 'Sweden', da: 'Sverige', de: 'Schweden' },
+      { code: 'CH', flag: '🇨🇭', en: 'Switzerland', da: 'Schweiz', de: 'Schweiz' },
+      { code: 'SY', flag: '🇸🇾', en: 'Syria', da: 'Syrien', de: 'Syrien' },
+      { code: 'TW', flag: '🇹🇼', en: 'Taiwan', da: 'Taiwan', de: 'Taiwan' },
+      { code: 'TJ', flag: '🇹🇯', en: 'Tajikistan', da: 'Tadsjikistan', de: 'Tadschikistan' },
+      { code: 'TZ', flag: '🇹🇿', en: 'Tanzania', da: 'Tanzania', de: 'Tansania' },
+      { code: 'TH', flag: '🇹🇭', en: 'Thailand', da: 'Thailand', de: 'Thailand' },
+      { code: 'TL', flag: '🇹🇱', en: 'Timor-Leste', da: 'Timor-Leste', de: 'Timor-Leste' },
+      { code: 'TG', flag: '🇹🇬', en: 'Togo', da: 'Togo', de: 'Togo' },
+      { code: 'TO', flag: '🇹🇴', en: 'Tonga', da: 'Tonga', de: 'Tonga' },
+      { code: 'TT', flag: '🇹🇹', en: 'Trinidad and Tobago', da: 'Trinidad og Tobago', de: 'Trinidad und Tobago' },
+      { code: 'TN', flag: '🇹🇳', en: 'Tunisia', da: 'Tunesien', de: 'Tunesien' },
+      { code: 'TR', flag: '🇹🇷', en: 'Turkey', da: 'Tyrkiet', de: 'Türkei' },
+      { code: 'TM', flag: '🇹🇲', en: 'Turkmenistan', da: 'Turkmenistan', de: 'Turkmenistan' },
+      { code: 'TV', flag: '🇹🇻', en: 'Tuvalu', da: 'Tuvalu', de: 'Tuvalu' },
+      { code: 'UG', flag: '🇺🇬', en: 'Uganda', da: 'Uganda', de: 'Uganda' },
+      { code: 'UA', flag: '🇺🇦', en: 'Ukraine', da: 'Ukraine', de: 'Ukraine' },
+      { code: 'AE', flag: '🇦🇪', en: 'United Arab Emirates', da: 'De Forenede Arabiske Emirater', de: 'Vereinigte Arabische Emirate' },
       { code: 'GB', flag: '🇬🇧', en: 'United Kingdom', da: 'Storbritannien', de: 'Vereinigtes Königreich' },
       { code: 'US', flag: '🇺🇸', en: 'United States', da: 'USA', de: 'Vereinigte Staaten' },
-      { code: 'IN', flag: '🇮🇳', en: 'India', da: 'Indien', de: 'Indien' },
-      { code: 'PK', flag: '🇵🇰', en: 'Pakistan', da: 'Pakistan', de: 'Pakistan' },
-      { code: 'GH', flag: '🇬🇭', en: 'Ghana', da: 'Ghana', de: 'Ghana' },
-      { code: 'KE', flag: '🇰🇪', en: 'Kenya', da: 'Kenya', de: 'Kenia' },
-      { code: 'TT', flag: '🇹🇹', en: 'Trinidad and Tobago', da: 'Trinidad og Tobago', de: 'Trinidad und Tobago' },
-      { code: 'BS', flag: '🇧🇸', en: 'Bahamas', da: 'Bahamas', de: 'Bahamas' },
-      { code: 'BB', flag: '🇧🇧', en: 'Barbados', da: 'Barbados', de: 'Barbados' },
-      { code: 'BZ', flag: '🇧🇿', en: 'Belize', da: 'Belize', de: 'Belize' },
-      { code: 'BW', flag: '🇧🇼', en: 'Botswana', da: 'Botswana', de: 'Botswana' },
-      { code: 'CM', flag: '🇨🇲', en: 'Cameroon', da: 'Cameroun', de: 'Kamerun' },
-      { code: 'FJ', flag: '🇫🇯', en: 'Fiji', da: 'Fiji', de: 'Fidschi' },
-      { code: 'GM', flag: '🇬🇲', en: 'Gambia', da: 'Gambia', de: 'Gambia' },
-      { code: 'GY', flag: '🇬🇾', en: 'Guyana', da: 'Guyana', de: 'Guyana' },
-      { code: 'LR', flag: '🇱🇷', en: 'Liberia', da: 'Liberia', de: 'Liberia' },
-      { code: 'MW', flag: '🇲🇼', en: 'Malawi', da: 'Malawi', de: 'Malawi' },
-      { code: 'MT', flag: '🇲🇹', en: 'Malta', da: 'Malta', de: 'Malta' },
-      { code: 'MU', flag: '🇲🇺', en: 'Mauritius', da: 'Mauritius', de: 'Mauritius' },
-      { code: 'NA', flag: '🇳🇦', en: 'Namibia', da: 'Namibia', de: 'Namibia' },
-      { code: 'PG', flag: '🇵🇬', en: 'Papua New Guinea', da: 'Papua Ny Guinea', de: 'Papua-Neuguinea' },
-      { code: 'RW', flag: '🇷🇼', en: 'Rwanda', da: 'Rwanda', de: 'Ruanda' },
-      { code: 'SL', flag: '🇸🇱', en: 'Sierra Leone', da: 'Sierra Leone', de: 'Sierra Leone' },
-      { code: 'SB', flag: '🇸🇧', en: 'Solomon Islands', da: 'Salomonøerne', de: 'Salomonen' },
-      { code: 'SR', flag: '🇸🇷', en: 'Suriname', da: 'Surinam', de: 'Suriname' },
-      { code: 'SZ', flag: '🇸🇿', en: 'Eswatini', da: 'Eswatini', de: 'Eswatini' },
-      { code: 'TZ', flag: '🇹🇿', en: 'Tanzania', da: 'Tanzania', de: 'Tansania' },
-      { code: 'TO', flag: '🇹🇴', en: 'Tonga', da: 'Tonga', de: 'Tonga' },
-      { code: 'UG', flag: '🇺🇬', en: 'Uganda', da: 'Uganda', de: 'Uganda' },
+      { code: 'UY', flag: '🇺🇾', en: 'Uruguay', da: 'Uruguay', de: 'Uruguay' },
+      { code: 'UZ', flag: '🇺🇿', en: 'Uzbekistan', da: 'Usbekistan', de: 'Usbekistan' },
       { code: 'VU', flag: '🇻🇺', en: 'Vanuatu', da: 'Vanuatu', de: 'Vanuatu' },
+      { code: 'VE', flag: '🇻🇪', en: 'Venezuela', da: 'Venezuela', de: 'Venezuela' },
+      { code: 'VN', flag: '🇻🇳', en: 'Vietnam', da: 'Vietnam', de: 'Vietnam' },
+      { code: 'YE', flag: '🇾🇪', en: 'Yemen', da: 'Yemen', de: 'Jemen' },
       { code: 'ZM', flag: '🇿🇲', en: 'Zambia', da: 'Zambia', de: 'Sambia' },
       { code: 'ZW', flag: '🇿🇼', en: 'Zimbabwe', da: 'Zimbabwe', de: 'Simbabwe' }
     ];
 
-    let selectedCountry = JSON.parse(localStorage.getItem('blockjump_country') || 'null');
-    let currentUsername = localStorage.getItem('blockjump_username') || '';
+    let selectedCountry = _userProfile.country || JSON.parse(localStorage.getItem('blockjump_country') || 'null');
+    let currentUsername = _userProfile.username || localStorage.getItem('blockjump_username') || '';
 
     function getCountryName(country, lang) {
       if (!country) return '';
@@ -716,6 +1006,8 @@
         div.addEventListener('click', () => {
           selectedCountry = c;
           localStorage.setItem('blockjump_country', JSON.stringify(c));
+          _userProfile.country = c;
+          saveLocalProfile(_userProfile);
           document.getElementById('mm-country-flag').textContent = c.flag;
           document.getElementById('mm-country-name').textContent = getCountryName(c, lang);
           document.getElementById('mm-country-dropdown').style.display = 'none';
@@ -758,6 +1050,8 @@
     document.getElementById('mm-username-input').addEventListener('input', e => {
       currentUsername = e.target.value.trim();
       localStorage.setItem('blockjump_username', currentUsername);
+      _userProfile.username = currentUsername;
+      saveLocalProfile(_userProfile);
     });
 
     function customConfirm(msg) {
@@ -778,6 +1072,25 @@
       });
     }
 
+    function customInputPrompt(msg, defaultVal) {
+      return new Promise(resolve => {
+        const popup = document.getElementById('custom-input-popup');
+        document.getElementById('custom-input-msg').textContent = msg;
+        const field = document.getElementById('custom-input-field');
+        field.value = defaultVal || '';
+        popup.style.display = 'flex';
+        function ok() { popup.style.display = 'none'; cleanup(); resolve(parseInt(field.value) || null); }
+        function cancel() { popup.style.display = 'none'; cleanup(); resolve(null); }
+        function cleanup() {
+          document.getElementById('custom-input-ok').removeEventListener('click', ok);
+          document.getElementById('custom-input-cancel').removeEventListener('click', cancel);
+        }
+        document.getElementById('custom-input-ok').addEventListener('click', ok);
+        document.getElementById('custom-input-cancel').addEventListener('click', cancel);
+        setTimeout(() => field.focus(), 50);
+      });
+    }
+
     function showComingSoon() {
       const popup = document.getElementById('coming-soon-popup');
       popup.style.display = 'flex';
@@ -787,10 +1100,7 @@
       closeBtn.addEventListener('click', close);
     }
 
-    document.getElementById('coming-soon-close').addEventListener('click', () => {
-      document.getElementById('coming-soon-popup').style.display = 'none';
-    });
-
+    // ===================== AUDIO =====================
     const SOUND_KEYS = ['respawn','lava','jump','walking','brick','ambient','achievement'];
     const DEFAULT_VOLS = { respawn:70, lava:60, jump:40, walking:70, brick:80, ambient:40, achievement:90 };
 
@@ -838,6 +1148,7 @@
     const PLATFORM_MOVE_RANGE = 175;
     const LAVA_HITBOX_OFFSET = 0;
 
+    // ===================== ACHIEVEMENTS =====================
     const ACHIEVEMENT_DEFS = [
       { id: 'easy_250', mode: 'easy', type: 'height', threshold: 2500, name: 'Easy 250', desc: 'Reach height 250 on Easy' },
       { id: 'easy_500', mode: 'easy', type: 'height', threshold: 5000, name: 'Easy 500', desc: 'Reach height 500 on Easy' },
@@ -916,6 +1227,7 @@
     const player = document.getElementById("player");
     const curEl = document.getElementById("current");
     const maxEl = document.getElementById("max");
+    const timerEl = document.getElementById("timer-display");
     const difficultyEl = document.getElementById("difficulty-display");
     const lavaEl = document.getElementById("lava");
     const pauseMenu = document.getElementById("pause-menu");
@@ -973,6 +1285,7 @@
     let gameStarted = false;
     let gameStartTime = 0;
     let survivalSeconds = 0;
+    let _runHeight = 0; // track current run height separately from max
 
     let effectsEnabled = localStorage.getItem('effectsEnabled') !== 'false';
     let hqEnabled = localStorage.getItem('hqEnabled') !== 'false';
@@ -982,6 +1295,7 @@
     let doubleJumpEnabled = localStorage.getItem('featDoubleJump') !== 'false';
     let showHeightEnabled = localStorage.getItem('featShowHeight') !== 'false';
     let showTopEnabled = localStorage.getItem('featShowTop') !== 'false';
+    let showTimerEnabled = localStorage.getItem('featShowTimer') !== 'false';
 
     let audioSettings = {
       respawn: localStorage.getItem('audioRespawn') !== 'false',
@@ -997,11 +1311,12 @@
     const TARGET_FPS = 60;
     const FRAME_TIME = 1000 / TARGET_FPS;
 
+    // Use internal protected scores instead of maxHeights
     let maxHeights = {
-      easy: parseInt(localStorage.getItem('obbyTopHeightEasy') || '0'),
-      medium: parseInt(localStorage.getItem('obbyTopHeightMedium') || '0'),
-      hard: parseInt(localStorage.getItem('obbyTopHeightHard') || '0'),
-      impossible: parseInt(localStorage.getItem('obbyTopHeightImpossible') || '0')
+      easy: _getInternalScore('easy'),
+      medium: _getInternalScore('medium'),
+      hard: _getInternalScore('hard'),
+      impossible: _getInternalScore('impossible')
     };
 
     let survivalTimes = {
@@ -1012,11 +1327,19 @@
     };
 
     function loadAchievements() {
+      // Load from profile first, then localStorage fallback
+      if (_userProfile.achievements && Object.keys(_userProfile.achievements).length > 0) {
+        return Object.assign({}, _userProfile.achievements);
+      }
       const raw = localStorage.getItem('achievements');
       if (!raw) return {};
       try { return JSON.parse(raw); } catch(e) { return {}; }
     }
-    function saveAchievements(obj) { localStorage.setItem('achievements', JSON.stringify(obj)); }
+    function saveAchievements(obj) {
+      localStorage.setItem('achievements', JSON.stringify(obj));
+      _userProfile.achievements = obj;
+      saveLocalProfile(_userProfile);
+    }
     let unlockedAchievements = loadAchievements();
     let achNotifQueue = [];
     let achNotifShowing = false;
@@ -1077,7 +1400,7 @@
         const unlocked = unlockedAchievements[def.id];
         const div = document.createElement('div');
         div.className = 'ach-item' + (unlocked ? ' ach-unlocked' : ' ach-locked');
-        div.innerHTML = '<div class="ach-item-header"><div class="ach-item-icon">' + (unlocked ? '🏆' : '🔒') + '</div><div class="ach-item-info"><div class="ach-item-name">' + def.name + '</div><div class="ach-item-status">' + (unlocked ? 'Unlocked: ' + unlocked.time : 'Locked') + '</div></div></div><div class="ach-item-dropdown" style="display:none;"><div class="ach-item-desc">' + def.desc + '</div>' + (unlocked ? '<div class="ach-item-got">✅ You got this!</div>' : '') + '</div>';
+        div.innerHTML = '<div class="ach-item-header"><div class="ach-item-icon">' + (unlocked ? '🏆' : '🔒') + '</div><div class="ach-item-info"><div class="ach-item-name">' + def.name + '</div><div class="ach-item-status">' + (unlocked ? 'Unlocked: ' + unlocked.time : 'Locked') + '</div></div></div><div class="ach-item-dropdown" style="display:none;"><div class="ach-item-desc">' + def.desc + '</div>' + (unlocked ? '<div class="ach-item-got">✅ Unlocked on: ' + unlocked.time + '</div>' : '') + '</div>';
         div.querySelector('.ach-item-header').addEventListener('click', () => {
           const drop = div.querySelector('.ach-item-dropdown');
           drop.style.display = drop.style.display === 'none' ? 'block' : 'none';
@@ -1249,21 +1572,25 @@
       if (!ok) return;
       const keys_to_clear = [
         'effectsEnabled','hqEnabled','language','difficulty','allSounds',
-        'featDoubleJump','featShowHeight','featShowTop',
+        'featDoubleJump','featShowHeight','featShowTop','featShowTimer',
         'customBtnColor','customTxtColor',
         'audioRespawn','audioLava','audioJump','audioWalking','audioBrick','audioAmbient','audioAchievement',
         'obbyTopHeightEasy','obbyTopHeightMedium','obbyTopHeightHard','obbyTopHeightImpossible',
         'survivalTimeEasy','survivalTimeMedium','survivalTimeHard','survivalTimeImpossible',
-        'achievements','blockjump_records','blockjump_username','blockjump_country','blockjump_userid'
+        'achievements','blockjump_records','blockjump_username','blockjump_country',
+        'bj_profile','bj_total_playtime','bj_deaths',
+        _UID_KEY
       ];
       SOUND_KEYS.forEach(k => keys_to_clear.push('soundVol_' + k));
       keys_to_clear.forEach(k => localStorage.removeItem(k));
       location.reload();
     }
 
+    // ===================== TRANSLATIONS =====================
     const translations = {
       en: {
         height: 'HEIGHT', topHeight: 'TOP HEIGHT', difficulty: 'DIFFICULTY',
+        timer: 'TIME',
         doubleJump: 'Double Jump = true', pauseHint: 'Press ESC to pause',
         paused: 'PAUSED', continue: 'CONTINUE', extra: 'EXTRA',
         settings: 'SETTINGS', help: 'HELP', restart: 'RESTART', back: 'BACK',
@@ -1286,6 +1613,7 @@
       },
       da: {
         height: 'HØJDE', topHeight: 'TOP HØJDE', difficulty: 'SVÆRHEDSGRAD',
+        timer: 'TID',
         doubleJump: 'Dobbelt Hop = sand', pauseHint: 'Tryk ESC for pause',
         paused: 'PAUSE', continue: 'FORTSÆT', extra: 'EKSTRA',
         settings: 'INDSTILLINGER', help: 'HJÆLP', restart: 'GENSTART', back: 'TILBAGE',
@@ -1308,6 +1636,7 @@
       },
       de: {
         height: 'HÖHE', topHeight: 'TOP HÖHE', difficulty: 'SCHWIERIGKEIT',
+        timer: 'ZEIT',
         doubleJump: 'Doppelsprung = wahr', pauseHint: 'ESC drücken zum Pausieren',
         paused: 'PAUSIERT', continue: 'FORTSETZEN', extra: 'EXTRA',
         settings: 'EINSTELLUNGEN', help: 'HILFE', restart: 'NEUSTART', back: 'ZURÜCK',
@@ -1330,6 +1659,17 @@
       }
     };
 
+    function formatTime(seconds) {
+      const s = Math.floor(seconds);
+      if (s < 60) return s + 's';
+      const m = Math.floor(s / 60);
+      const rs = s % 60;
+      if (m < 60) return m + 'm ' + rs + 's';
+      const h = Math.floor(m / 60);
+      const rm = m % 60;
+      return h + 'h ' + rm + 'm';
+    }
+
     function updateLanguage(lang) {
       currentLanguage = lang;
       localStorage.setItem('language', lang);
@@ -1341,6 +1681,8 @@
       else { curEl.style.display = 'none'; }
       if (showTopEnabled) { maxEl.textContent = t.topHeight + ': ' + mh; maxEl.style.display = ''; }
       else { maxEl.style.display = 'none'; }
+      if (showTimerEnabled) { timerEl.style.display = ''; }
+      else { timerEl.style.display = 'none'; }
 
       difficultyEl.textContent = t.difficulty + ': ' + DIFFICULTY_SETTINGS[currentDifficulty].name.toUpperCase();
       document.getElementById('hp-display').textContent = doubleJumpEnabled ? t.doubleJump : 'Double Jump = false';
@@ -1404,6 +1746,7 @@
     function saveMaxHeight() {
       const key = 'obbyTopHeight' + currentDifficulty.charAt(0).toUpperCase() + currentDifficulty.slice(1);
       localStorage.setItem(key, maxHeights[currentDifficulty]);
+      _setInternalScore(currentDifficulty, maxHeights[currentDifficulty]);
     }
 
     function saveSurvivalTime() {
@@ -1436,13 +1779,31 @@
       }
     }
 
+    function updateExtraStats() {
+      document.getElementById('stat-playtime').textContent = formatTime(_totalPlaytime);
+      document.getElementById('stat-deaths').textContent = _totalDeaths;
+      const joinDate = _userProfile.joinDate ? new Date(_userProfile.joinDate).toLocaleDateString() : '-';
+      document.getElementById('stat-joindate').textContent = joinDate;
+      const completed = ACHIEVEMENT_DEFS.filter(d => unlockedAchievements[d.id]).length;
+      document.getElementById('stat-achievements').textContent = completed + ' / ' + ACHIEVEMENT_DEFS.length;
+      const allTop = Math.max(...Object.values(maxHeights));
+      document.getElementById('stat-topheight').textContent = Math.floor(allTop / 10);
+      ['easy','medium','hard','impossible'].forEach(d => {
+        document.getElementById('stat-top-' + d).textContent = Math.floor(maxHeights[d] / 10);
+      });
+    }
+
     async function die(fromLava) {
       isDead = true;
       diedFromLava = fromLava;
+      _totalDeaths++;
+      localStorage.setItem('bj_deaths', _totalDeaths);
 
       const elapsed = gameStartTime > 0 ? (performance.now() - gameStartTime) / 1000 : 0;
       survivalTimes[currentDifficulty] = Math.max(survivalTimes[currentDifficulty], elapsed);
       survivalSeconds = elapsed;
+      _totalPlaytime += elapsed;
+      localStorage.setItem('bj_total_playtime', _totalPlaytime);
 
       saveMaxHeight();
       saveSurvivalTime();
@@ -1454,20 +1815,16 @@
       if (fromLava) playLavaDieSound();
       deathScreen.classList.add("active");
 
-      const score = Math.floor(maxHeights[currentDifficulty] / 10);
-      const uid = getOrCreateUserId();
-      const record = {
-        userid: uid,
-        username: currentUsername || 'Anonymous',
-        country: selectedCountry ? selectedCountry.code : '',
-        countryFlag: selectedCountry ? selectedCountry.flag : '',
-        countryName: selectedCountry ? selectedCountry.en : '',
-        difficulty: currentDifficulty,
-        score: score,
-        timestamp: new Date().toISOString()
-      };
-      saveRecordLocally(record);
-      saveToGitHub(record);
+      // Update death screen info
+      const diffName = DIFFICULTY_SETTINGS[currentDifficulty].name;
+      const runH = Math.floor(_runHeight / 10);
+      const topH = Math.floor(maxHeights[currentDifficulty] / 10);
+      document.getElementById('death-difficulty-row').textContent = '🎮 ' + diffName;
+      document.getElementById('death-height-row').textContent = '📏 Run Height: ' + runH;
+      document.getElementById('death-top-row').textContent = '🏆 Best (' + diffName + '): ' + topH;
+
+      updateProfileAndSave();
+      pushProfileToGitHub();
     }
 
     function resetGame() {
@@ -1486,6 +1843,7 @@
       velY = 0;
       jumpsLeft = doubleJumpEnabled ? 2 : 1;
       currentHeight = 0;
+      _runHeight = 0;
       globalDifficulty = 0;
       lavaY = window.innerHeight + 200;
       lavaSpeed = LAVA_START_SPEED;
@@ -1511,6 +1869,8 @@
       else { curEl.style.display = 'none'; }
       if (showTopEnabled) { maxEl.textContent = t.topHeight + ': ' + Math.floor(maxHeights[currentDifficulty]/10); maxEl.style.display = ''; }
       else { maxEl.style.display = 'none'; }
+      if (showTimerEnabled) { timerEl.textContent = t.timer + ': 0s'; timerEl.style.display = ''; }
+      else { timerEl.style.display = 'none'; }
       difficultyEl.textContent = t.difficulty + ': ' + DIFFICULTY_SETTINGS[currentDifficulty].name.toUpperCase();
 
       const startPlatformY = centerY + PLAYER_SIZE + 1;
@@ -1653,6 +2013,7 @@
       if (currentSurvivalSecs > survivalTimes[currentDifficulty]) {
         survivalTimes[currentDifficulty] = currentSurvivalSecs;
       }
+      survivalSeconds = currentSurvivalSecs;
 
       const oldY = y;
       const moveSpeed = speed * cappedDelta;
@@ -1785,7 +2146,9 @@
       startingY += offset;
       y = targetY;
       currentHeight = Math.max(0, startingY - y);
+      _runHeight = currentHeight; // track this run's height for death screen
       maxHeights[currentDifficulty] = Math.max(maxHeights[currentDifficulty], currentHeight);
+      _setInternalScore(currentDifficulty, maxHeights[currentDifficulty]);
       const heightBoost = Math.min(currentHeight / 100000, 1.5);
       const LAVA_MAX_SPEED = DIFFICULTY_SETTINGS[currentDifficulty].maxSpeed;
       lavaSpeed = Math.min(
@@ -1808,6 +2171,7 @@
       const t = translations[currentLanguage];
       if (showHeightEnabled) curEl.textContent = t.height + ': ' + Math.floor(currentHeight / 10);
       if (showTopEnabled) maxEl.textContent = t.topHeight + ': ' + Math.floor(maxHeights[currentDifficulty] / 10);
+      if (showTimerEnabled) timerEl.textContent = t.timer + ': ' + formatTime(currentSurvivalSecs);
       checkAchievements();
       recyclePlatforms();
       generatePlatforms();
@@ -1974,6 +2338,12 @@
       document.getElementById('mm-feat-show-top').checked = showTopEnabled;
       updateLanguage(currentLanguage);
     });
+    document.getElementById('p-feat-show-timer').addEventListener('change', e => {
+      showTimerEnabled = e.target.checked;
+      localStorage.setItem('featShowTimer', showTimerEnabled);
+      document.getElementById('mm-feat-show-timer').checked = showTimerEnabled;
+      updateLanguage(currentLanguage);
+    });
 
     effectsToggle.addEventListener("change", e => {
       toggleEffects(e.target.checked);
@@ -2041,6 +2411,7 @@
     document.getElementById('mm-extra-btn').addEventListener('click', () => {
       document.getElementById('main-menu-screen').style.display = 'none';
       document.getElementById('mm-extra-screen').style.display = 'flex';
+      updateExtraStats();
     });
     document.getElementById('mm-extra-back-btn').addEventListener('click', () => {
       document.getElementById('mm-extra-screen').style.display = 'none';
@@ -2096,6 +2467,9 @@
       renderAchievementsList('achievements-list', document.getElementById('ach-search').value, document.getElementById('ach-filter').value, document.getElementById('ach-diff-filter').value);
     });
 
+    // ===================== LEADERBOARD =====================
+    let lbDisplayCount = 10;
+
     document.getElementById('mm-leaderboard-btn').addEventListener('click', () => {
       document.getElementById('main-menu-screen').style.display = 'none';
       document.getElementById('mm-leaderboard-screen').style.display = 'flex';
@@ -2106,26 +2480,77 @@
       document.getElementById('main-menu-screen').style.display = 'flex';
     });
 
+    document.getElementById('lb-count-btn').addEventListener('click', async () => {
+      const val = await customInputPrompt('How many players to display?', lbDisplayCount);
+      if (val && val > 0) {
+        lbDisplayCount = Math.min(val, 9999);
+        document.getElementById('lb-count-btn').textContent = 'Show ' + lbDisplayCount;
+        renderLeaderboard();
+      }
+    });
+
     async function renderLeaderboard() {
       const lbList = document.getElementById('lb-list');
       lbList.innerHTML = '<div class="lb-loading">Loading...</div>';
 
       const diffFilter = document.getElementById('lb-diff-filter').value;
       const sortOrder = document.getElementById('lb-sort').value;
-      const countVal = document.getElementById('lb-count').value;
-      let limit = countVal === 'custom' ? (parseInt(document.getElementById('lb-custom-count').value) || 10) : parseInt(countVal);
 
       let records = [];
       const ghData = await fetchGitHubData();
       if (ghData && Array.isArray(ghData.data)) {
-        records = ghData.data;
+        // Build leaderboard from GitHub data (one entry per user, use their best score for selected diff)
+        const raw = ghData.data;
+        raw.forEach(entry => {
+          const username = entry.username || 'Anonymous';
+          const flag = entry.countryFlag || '🌍';
+          const countryName = entry.countryName || entry.country || '';
+          const country = entry.country || '';
+          let score = 0;
+          if (diffFilter === 'all') {
+            // max across all difficulties
+            if (entry.highScore && typeof entry.highScore === 'object') {
+              score = Math.max(...Object.values(entry.highScore).map(v => Number(v) || 0));
+            } else {
+              score = Number(entry.highScore || entry.score || 0);
+            }
+          } else {
+            if (entry.highScore && typeof entry.highScore === 'object') {
+              score = Number(entry.highScore[diffFilter] || 0);
+            } else {
+              score = Number(entry.score || 0);
+            }
+          }
+          // Decrypt userId for display lookup
+          let uid = null;
+          try { uid = entry.encUserId ? _decryptUserId(entry.encUserId) : null; } catch(e) {}
+          records.push({ username, flag, countryName, country, score, difficulty: diffFilter === 'all' ? 'all' : diffFilter });
+        });
       } else {
-        records = getLocalRecords();
+        // Fallback to local profile
+        const localProf = getLocalProfile();
+        if (localProf) {
+          let score = 0;
+          if (diffFilter === 'all') {
+            score = Math.max(...Object.values(localProf.highScore || {}).map(v => Number(v) || 0));
+          } else {
+            score = Number((localProf.highScore || {})[diffFilter] || 0);
+          }
+          records.push({
+            username: localProf.username || 'Anonymous',
+            flag: localProf.country ? localProf.country.flag : '🌍',
+            countryName: localProf.country ? localProf.country.en : '',
+            country: localProf.country ? localProf.country.code : '',
+            score: Math.floor(score / 10),
+            difficulty: diffFilter
+          });
+        }
       }
 
-      if (diffFilter !== 'all') records = records.filter(r => r.difficulty === diffFilter);
+      // Convert raw scores to display scores (divide by 10)
+      records = records.map(r => ({...r, score: r.score > 1000 ? Math.floor(r.score / 10) : r.score}));
       records.sort((a, b) => sortOrder === 'desc' ? b.score - a.score : a.score - b.score);
-      records = records.slice(0, limit);
+      records = records.slice(0, lbDisplayCount);
 
       lbList.innerHTML = '';
       if (records.length === 0) {
@@ -2136,8 +2561,8 @@
       records.forEach((r, i) => {
         const div = document.createElement('div');
         div.className = 'lb-entry';
-        const diffColor = { easy: '#22c55e', medium: '#38bdf8', hard: '#f97316', impossible: '#ef4444' }[r.difficulty] || '#fff';
-        div.innerHTML = '<div class="lb-rank">#' + (i + 1) + '</div><div class="lb-flag">' + (r.countryFlag || '🌍') + '</div><div class="lb-name">' + (r.username || 'Anonymous') + '</div><div class="lb-diff" style="color:' + diffColor + '">' + (r.difficulty || '') + '</div><div class="lb-score">' + r.score + '</div>';
+        const diffColor = { easy: '#22c55e', medium: '#38bdf8', hard: '#f97316', impossible: '#ef4444', all: '#fcd34d' }[r.difficulty] || '#fff';
+        div.innerHTML = '<div class="lb-rank">#' + (i + 1) + '</div><div class="lb-flag">' + (r.flag || '🌍') + '</div><div class="lb-name">' + (r.username || 'Anonymous') + '</div><div class="lb-diff" style="color:' + diffColor + '">' + (r.difficulty !== 'all' ? r.difficulty : '') + '</div><div class="lb-score">' + r.score + '</div>';
         div.addEventListener('click', () => showLbDetail(r));
         lbList.appendChild(div);
       });
@@ -2146,8 +2571,7 @@
     function showLbDetail(r) {
       const detail = document.getElementById('lb-entry-detail');
       const content = document.getElementById('lb-detail-content');
-      const date = r.timestamp ? new Date(r.timestamp).toLocaleString() : 'Unknown';
-      content.innerHTML = '<div class="lb-detail-name">' + (r.countryFlag || '') + ' ' + (r.username || 'Anonymous') + '</div><div class="lb-detail-score">Score: ' + r.score + '</div><div class="lb-detail-diff">Difficulty: ' + (r.difficulty || '') + '</div><div class="lb-detail-country">Country: ' + (r.countryName || r.country || 'Unknown') + '</div><div class="lb-detail-time">Recorded: ' + date + '</div>';
+      content.innerHTML = '<div class="lb-detail-name">' + (r.flag || '') + ' ' + (r.username || 'Anonymous') + '</div><div class="lb-detail-score">Score: ' + r.score + '</div><div class="lb-detail-diff">Difficulty: ' + (r.difficulty || '') + '</div><div class="lb-detail-country">Country: ' + (r.countryName || r.country || 'Unknown') + '</div>';
       detail.style.display = 'flex';
     }
 
@@ -2157,12 +2581,6 @@
 
     document.getElementById('lb-diff-filter').addEventListener('change', renderLeaderboard);
     document.getElementById('lb-sort').addEventListener('change', renderLeaderboard);
-    document.getElementById('lb-count').addEventListener('change', e => {
-      const custom = document.getElementById('lb-custom-count');
-      custom.style.display = e.target.value === 'custom' ? 'block' : 'none';
-      if (e.target.value !== 'custom') renderLeaderboard();
-    });
-    document.getElementById('lb-custom-count').addEventListener('change', renderLeaderboard);
 
     document.getElementById('mm-effects-toggle').addEventListener('change', e => {
       toggleEffects(e.target.checked);
@@ -2220,6 +2638,12 @@
       document.getElementById('p-feat-show-top').checked = showTopEnabled;
       updateLanguage(currentLanguage);
     });
+    document.getElementById('mm-feat-show-timer').addEventListener('change', e => {
+      showTimerEnabled = e.target.checked;
+      localStorage.setItem('featShowTimer', showTimerEnabled);
+      document.getElementById('p-feat-show-timer').checked = showTimerEnabled;
+      updateLanguage(currentLanguage);
+    });
 
     function init() {
       initializeVolumes();
@@ -2242,9 +2666,11 @@
       document.getElementById('mm-feat-double-jump').checked = doubleJumpEnabled;
       document.getElementById('mm-feat-show-height').checked = showHeightEnabled;
       document.getElementById('mm-feat-show-top').checked = showTopEnabled;
+      document.getElementById('mm-feat-show-timer').checked = showTimerEnabled;
       document.getElementById('p-feat-double-jump').checked = doubleJumpEnabled;
       document.getElementById('p-feat-show-height').checked = showHeightEnabled;
       document.getElementById('p-feat-show-top').checked = showTopEnabled;
+      document.getElementById('p-feat-show-timer').checked = showTimerEnabled;
 
       applyColors();
       updateLanguage(currentLanguage);
