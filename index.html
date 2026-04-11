@@ -56,7 +56,7 @@
 
   <div id="main-menu-screen">
     <div class="mm-logo">BLOCK JUMP</div>
-    <div class="mm-version">v1.5.0</div>
+    <div class="mm-version">v1.2.0</div>
     <div class="mm-profile-row">
       <div class="mm-profile-field">
         <input type="text" id="mm-username-input" class="mm-username-input" placeholder="Enter username..." maxlength="20">
@@ -105,131 +105,39 @@
       <div class="settings-panel" id="spanel-graphics">
         <div class="mm-section">
           <div class="mm-section-title">Graphics</div>
-          <div class="setting-item">
-            <span>Visual Effects</span>
-            <label class="toggle"><input type="checkbox" id="mm-effects-toggle" checked><span class="slider"></span></label>
-          </div>
-          <div class="setting-item">
-            <span>High Quality</span>
-            <label class="toggle"><input type="checkbox" id="mm-hq-toggle" checked><span class="slider"></span></label>
-          </div>
+          <div class="setting-item"><span>Visual Effects</span><label class="toggle"><input type="checkbox" id="mm-effects-toggle" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>High Quality</span><label class="toggle"><input type="checkbox" id="mm-hq-toggle" checked><span class="slider"></span></label></div>
         </div>
       </div>
       <div class="settings-panel" id="spanel-audio" style="display:none;">
         <div class="mm-section">
           <div class="mm-section-title">Audio</div>
-          <div class="setting-item">
-            <span>All Sounds</span>
-            <label class="toggle"><input type="checkbox" id="mm-all-sounds" checked><span class="slider"></span></label>
-          </div>
-          <div class="audio-sound-row" id="asr-respawn">
-            <div class="audio-sound-header">
-              <span>Respawn Sound</span>
-              <label class="toggle"><input type="checkbox" id="mm-audio-respawn" checked><span class="slider"></span></label>
-            </div>
-            <div class="audio-sound-dropdown" id="adrop-respawn" style="display:none;">
-              <input type="range" class="volume-slider" id="vol-respawn" min="0" max="100" value="70">
-            </div>
-          </div>
-          <div class="audio-sound-row" id="asr-lava">
-            <div class="audio-sound-header">
-              <span>Lava Death Sound</span>
-              <label class="toggle"><input type="checkbox" id="mm-audio-lava" checked><span class="slider"></span></label>
-            </div>
-            <div class="audio-sound-dropdown" id="adrop-lava" style="display:none;">
-              <input type="range" class="volume-slider" id="vol-lava" min="0" max="100" value="60">
-            </div>
-          </div>
-          <div class="audio-sound-row" id="asr-jump">
-            <div class="audio-sound-header">
-              <span>Jump Sound</span>
-              <label class="toggle"><input type="checkbox" id="mm-audio-jump" checked><span class="slider"></span></label>
-            </div>
-            <div class="audio-sound-dropdown" id="adrop-jump" style="display:none;">
-              <input type="range" class="volume-slider" id="vol-jump" min="0" max="100" value="40">
-            </div>
-          </div>
-          <div class="audio-sound-row" id="asr-walking">
-            <div class="audio-sound-header">
-              <span>Walking Sound</span>
-              <label class="toggle"><input type="checkbox" id="mm-audio-walking" checked><span class="slider"></span></label>
-            </div>
-            <div class="audio-sound-dropdown" id="adrop-walking" style="display:none;">
-              <input type="range" class="volume-slider" id="vol-walking" min="0" max="100" value="70">
-            </div>
-          </div>
-          <div class="audio-sound-row" id="asr-brick">
-            <div class="audio-sound-header">
-              <span>Kill Brick Sound</span>
-              <label class="toggle"><input type="checkbox" id="mm-audio-brick" checked><span class="slider"></span></label>
-            </div>
-            <div class="audio-sound-dropdown" id="adrop-brick" style="display:none;">
-              <input type="range" class="volume-slider" id="vol-brick" min="0" max="100" value="80">
-            </div>
-          </div>
-          <div class="audio-sound-row" id="asr-ambient">
-            <div class="audio-sound-header">
-              <span>Lava Ambient Sound</span>
-              <label class="toggle"><input type="checkbox" id="mm-audio-ambient" checked><span class="slider"></span></label>
-            </div>
-            <div class="audio-sound-dropdown" id="adrop-ambient" style="display:none;">
-              <input type="range" class="volume-slider" id="vol-ambient" min="0" max="100" value="40">
-            </div>
-          </div>
-          <div class="audio-sound-row" id="asr-achievement">
-            <div class="audio-sound-header">
-              <span>Achievement Sound</span>
-              <label class="toggle"><input type="checkbox" id="mm-audio-achievement" checked><span class="slider"></span></label>
-            </div>
-            <div class="audio-sound-dropdown" id="adrop-achievement" style="display:none;">
-              <input type="range" class="volume-slider" id="vol-achievement" min="0" max="100" value="90">
-            </div>
-          </div>
+          <div class="setting-item"><span>All Sounds</span><label class="toggle"><input type="checkbox" id="mm-all-sounds" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-row" id="asr-respawn"><div class="audio-sound-header"><span>Respawn Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-respawn" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="adrop-respawn" style="display:none;"><input type="range" class="volume-slider" id="vol-respawn" min="0" max="100" value="70"></div></div>
+          <div class="audio-sound-row" id="asr-lava"><div class="audio-sound-header"><span>Lava Death Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-lava" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="adrop-lava" style="display:none;"><input type="range" class="volume-slider" id="vol-lava" min="0" max="100" value="60"></div></div>
+          <div class="audio-sound-row" id="asr-jump"><div class="audio-sound-header"><span>Jump Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-jump" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="adrop-jump" style="display:none;"><input type="range" class="volume-slider" id="vol-jump" min="0" max="100" value="40"></div></div>
+          <div class="audio-sound-row" id="asr-walking"><div class="audio-sound-header"><span>Walking Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-walking" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="adrop-walking" style="display:none;"><input type="range" class="volume-slider" id="vol-walking" min="0" max="100" value="70"></div></div>
+          <div class="audio-sound-row" id="asr-brick"><div class="audio-sound-header"><span>Kill Brick Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-brick" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="adrop-brick" style="display:none;"><input type="range" class="volume-slider" id="vol-brick" min="0" max="100" value="80"></div></div>
+          <div class="audio-sound-row" id="asr-ambient"><div class="audio-sound-header"><span>Lava Ambient Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-ambient" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="adrop-ambient" style="display:none;"><input type="range" class="volume-slider" id="vol-ambient" min="0" max="100" value="40"></div></div>
+          <div class="audio-sound-row" id="asr-achievement"><div class="audio-sound-header"><span>Achievement Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-achievement" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="adrop-achievement" style="display:none;"><input type="range" class="volume-slider" id="vol-achievement" min="0" max="100" value="90"></div></div>
         </div>
       </div>
       <div class="settings-panel" id="spanel-hud" style="display:none;">
         <div class="mm-section">
           <div class="mm-section-title">HUD</div>
-          <div class="setting-item">
-            <span>Double Jump</span>
-            <label class="toggle"><input type="checkbox" id="mm-feat-double-jump" checked><span class="slider"></span></label>
-          </div>
-          <div class="setting-item">
-            <span>Show Height</span>
-            <label class="toggle"><input type="checkbox" id="mm-feat-show-height" checked><span class="slider"></span></label>
-          </div>
-          <div class="setting-item">
-            <span>Show Top Height</span>
-            <label class="toggle"><input type="checkbox" id="mm-feat-show-top" checked><span class="slider"></span></label>
-          </div>
-          <div class="setting-item">
-            <span>Show Timer</span>
-            <label class="toggle"><input type="checkbox" id="mm-feat-show-timer" checked><span class="slider"></span></label>
-          </div>
+          <div class="setting-item"><span>Double Jump</span><label class="toggle"><input type="checkbox" id="mm-feat-double-jump" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>Show Height</span><label class="toggle"><input type="checkbox" id="mm-feat-show-height" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>Show Top Height</span><label class="toggle"><input type="checkbox" id="mm-feat-show-top" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>Show Timer</span><label class="toggle"><input type="checkbox" id="mm-feat-show-timer" checked><span class="slider"></span></label></div>
         </div>
       </div>
       <div class="mm-section">
         <div class="mm-section-title">Language</div>
-        <div class="setting-item">
-          <span>Language</span>
-          <select id="mm-language-select" class="language-dropdown">
-            <option value="en">🇬🇧 English</option>
-            <option value="da">🇩🇰 Dansk</option>
-            <option value="de">🇩🇪 Deutsch</option>
-          </select>
-        </div>
+        <div class="setting-item"><span>Language</span><select id="mm-language-select" class="language-dropdown"><option value="en">🇬🇧 English</option><option value="da">🇩🇰 Dansk</option><option value="de">🇩🇪 Deutsch</option></select></div>
       </div>
       <div class="mm-section">
         <div class="mm-section-title">Difficulty</div>
-        <div class="setting-item">
-          <span>Game Difficulty</span>
-          <select id="mm-difficulty-select" class="difficulty-dropdown">
-            <option value="easy">Easy</option>
-            <option value="medium" selected>Medium</option>
-            <option value="hard">Hard</option>
-            <option value="impossible">Impossible</option>
-          </select>
-        </div>
+        <div class="setting-item"><span>Game Difficulty</span><select id="mm-difficulty-select" class="difficulty-dropdown"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option><option value="impossible">Impossible</option></select></div>
       </div>
       <div class="mm-section">
         <div class="mm-section-title">Data</div>
@@ -291,7 +199,7 @@
     <div class="mm-overlay-content">
       <div class="mm-overlay-title">CHANGELOG</div>
       <div class="mm-section">
-        <div class="mm-section-title">Changelog - v1.5.0</div>
+        <div class="mm-section-title">Changelog - v1.2.0</div>
         <div class="changelog-box">
           <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Lava no longer freezes when tab is hidden — timer abuse prevented</div>
           <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Death screen only shows the time achieved in that run</div>
@@ -346,19 +254,8 @@
         <div id="ach-count-display"></div>
         <div id="ach-controls">
           <input type="text" id="ach-search" placeholder="Search achievements...">
-          <select id="ach-filter">
-            <option value="all">Show All</option>
-            <option value="completed">Completed</option>
-            <option value="uncompleted">Uncompleted</option>
-          </select>
-          <select id="ach-diff-filter">
-            <option value="all">All Difficulties</option>
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-            <option value="impossible">Impossible</option>
-            <option value="general">General</option>
-          </select>
+          <select id="ach-filter"><option value="all">Show All</option><option value="completed">Completed</option><option value="uncompleted">Uncompleted</option></select>
+          <select id="ach-diff-filter"><option value="all">All Difficulties</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option><option value="impossible">Impossible</option><option value="general">General</option></select>
         </div>
       </div>
       <div id="achievements-list"></div>
@@ -370,17 +267,8 @@
     <div class="mm-overlay-content">
       <div class="mm-overlay-title">LEADERBOARD</div>
       <div class="lb-controls">
-        <select id="lb-diff-filter" class="lb-select">
-          <option value="all">All Difficulties</option>
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-          <option value="impossible">Impossible</option>
-        </select>
-        <select id="lb-sort" class="lb-select">
-          <option value="desc">Highest First</option>
-          <option value="asc">Lowest First</option>
-        </select>
+        <select id="lb-diff-filter" class="lb-select"><option value="all">All Difficulties</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option><option value="impossible">Impossible</option></select>
+        <select id="lb-sort" class="lb-select"><option value="desc">Highest First</option><option value="asc">Lowest First</option></select>
         <button class="mm-btn lb-count-btn" id="lb-count-btn" style="flex:1;min-width:100px;font-size:14px;padding:10px 12px;">Show 10</button>
       </div>
       <div id="lb-list"></div>
@@ -404,7 +292,6 @@
 
   <div id="hp-display">Double Jump = true</div>
   <div id="pause-hint">Press ESC to pause</div>
-
   <div id="lava"></div>
   <div id="player"></div>
 
@@ -419,14 +306,12 @@
   <div id="pause-menu">
     <div class="menu-content">
       <h2 id="pause-title">PAUSED</h2>
-
       <div class="menu-buttons" id="main-menu">
         <button class="menu-btn" id="continue-btn">CONTINUE</button>
         <button class="menu-btn" id="extra-btn">EXTRA</button>
         <button class="menu-btn restart" id="restart-btn">RESTART</button>
         <button class="menu-btn danger-btn" id="pause-main-menu-btn">MAIN MENU</button>
       </div>
-
       <div class="help-section" id="extra-menu">
         <h3>EXTRA</h3>
         <button class="menu-btn secondary" id="settings-btn">SETTINGS</button>
@@ -434,7 +319,6 @@
         <button class="menu-btn secondary" id="achievements-btn">ACHIEVEMENTS</button>
         <button class="menu-btn" id="extra-back-btn">BACK</button>
       </div>
-
       <div class="help-section" id="settings-menu">
         <h3>SETTINGS</h3>
         <div class="settings-nav-btns">
@@ -445,131 +329,39 @@
         <div class="settings-panel" id="pspanel-graphics">
           <div class="settings-section">
             <h4 id="settings-graphics-title">Graphics</h4>
-            <div class="setting-item">
-              <span id="settings-visual-effects">Visual Effects</span>
-              <label class="toggle"><input type="checkbox" id="effects-toggle" checked><span class="slider"></span></label>
-            </div>
-            <div class="setting-item">
-              <span>High Quality</span>
-              <label class="toggle"><input type="checkbox" id="hq-toggle" checked><span class="slider"></span></label>
-            </div>
+            <div class="setting-item"><span id="settings-visual-effects">Visual Effects</span><label class="toggle"><input type="checkbox" id="effects-toggle" checked><span class="slider"></span></label></div>
+            <div class="setting-item"><span>High Quality</span><label class="toggle"><input type="checkbox" id="hq-toggle" checked><span class="slider"></span></label></div>
           </div>
         </div>
         <div class="settings-panel" id="pspanel-audio" style="display:none;">
           <div class="settings-section">
             <h4 id="settings-audio-title">Audio</h4>
-            <div class="setting-item">
-              <span>All Sounds</span>
-              <label class="toggle"><input type="checkbox" id="all-sounds-toggle" checked><span class="slider"></span></label>
-            </div>
-            <div class="audio-sound-row" id="pasr-respawn">
-              <div class="audio-sound-header">
-                <span id="audio-respawn-label">Respawn Sound</span>
-                <label class="toggle"><input type="checkbox" id="audio-respawn" checked><span class="slider"></span></label>
-              </div>
-              <div class="audio-sound-dropdown" id="padrop-respawn" style="display:none;">
-                <input type="range" class="volume-slider" id="pvol-respawn" min="0" max="100" value="70">
-              </div>
-            </div>
-            <div class="audio-sound-row" id="pasr-lava">
-              <div class="audio-sound-header">
-                <span id="audio-lava-label">Lava Death Sound</span>
-                <label class="toggle"><input type="checkbox" id="audio-lava" checked><span class="slider"></span></label>
-              </div>
-              <div class="audio-sound-dropdown" id="padrop-lava" style="display:none;">
-                <input type="range" class="volume-slider" id="pvol-lava" min="0" max="100" value="60">
-              </div>
-            </div>
-            <div class="audio-sound-row" id="pasr-jump">
-              <div class="audio-sound-header">
-                <span id="audio-jump-label">Jump Sound</span>
-                <label class="toggle"><input type="checkbox" id="audio-jump" checked><span class="slider"></span></label>
-              </div>
-              <div class="audio-sound-dropdown" id="padrop-jump" style="display:none;">
-                <input type="range" class="volume-slider" id="pvol-jump" min="0" max="100" value="40">
-              </div>
-            </div>
-            <div class="audio-sound-row" id="pasr-walking">
-              <div class="audio-sound-header">
-                <span id="audio-walking-label">Walking Sound</span>
-                <label class="toggle"><input type="checkbox" id="audio-walking" checked><span class="slider"></span></label>
-              </div>
-              <div class="audio-sound-dropdown" id="padrop-walking" style="display:none;">
-                <input type="range" class="volume-slider" id="pvol-walking" min="0" max="100" value="70">
-              </div>
-            </div>
-            <div class="audio-sound-row" id="pasr-brick">
-              <div class="audio-sound-header">
-                <span id="audio-brick-label">Kill Brick Sound</span>
-                <label class="toggle"><input type="checkbox" id="audio-brick" checked><span class="slider"></span></label>
-              </div>
-              <div class="audio-sound-dropdown" id="padrop-brick" style="display:none;">
-                <input type="range" class="volume-slider" id="pvol-brick" min="0" max="100" value="80">
-              </div>
-            </div>
-            <div class="audio-sound-row" id="pasr-ambient">
-              <div class="audio-sound-header">
-                <span id="audio-ambient-label">Lava Ambient Sound</span>
-                <label class="toggle"><input type="checkbox" id="audio-ambient" checked><span class="slider"></span></label>
-              </div>
-              <div class="audio-sound-dropdown" id="padrop-ambient" style="display:none;">
-                <input type="range" class="volume-slider" id="pvol-ambient" min="0" max="100" value="40">
-              </div>
-            </div>
-            <div class="audio-sound-row" id="pasr-achievement">
-              <div class="audio-sound-header">
-                <span>Achievement Sound</span>
-                <label class="toggle"><input type="checkbox" id="audio-achievement" checked><span class="slider"></span></label>
-              </div>
-              <div class="audio-sound-dropdown" id="padrop-achievement" style="display:none;">
-                <input type="range" class="volume-slider" id="pvol-achievement" min="0" max="100" value="90">
-              </div>
-            </div>
+            <div class="setting-item"><span>All Sounds</span><label class="toggle"><input type="checkbox" id="all-sounds-toggle" checked><span class="slider"></span></label></div>
+            <div class="audio-sound-row" id="pasr-respawn"><div class="audio-sound-header"><span id="audio-respawn-label">Respawn Sound</span><label class="toggle"><input type="checkbox" id="audio-respawn" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="padrop-respawn" style="display:none;"><input type="range" class="volume-slider" id="pvol-respawn" min="0" max="100" value="70"></div></div>
+            <div class="audio-sound-row" id="pasr-lava"><div class="audio-sound-header"><span id="audio-lava-label">Lava Death Sound</span><label class="toggle"><input type="checkbox" id="audio-lava" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="padrop-lava" style="display:none;"><input type="range" class="volume-slider" id="pvol-lava" min="0" max="100" value="60"></div></div>
+            <div class="audio-sound-row" id="pasr-jump"><div class="audio-sound-header"><span id="audio-jump-label">Jump Sound</span><label class="toggle"><input type="checkbox" id="audio-jump" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="padrop-jump" style="display:none;"><input type="range" class="volume-slider" id="pvol-jump" min="0" max="100" value="40"></div></div>
+            <div class="audio-sound-row" id="pasr-walking"><div class="audio-sound-header"><span id="audio-walking-label">Walking Sound</span><label class="toggle"><input type="checkbox" id="audio-walking" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="padrop-walking" style="display:none;"><input type="range" class="volume-slider" id="pvol-walking" min="0" max="100" value="70"></div></div>
+            <div class="audio-sound-row" id="pasr-brick"><div class="audio-sound-header"><span id="audio-brick-label">Kill Brick Sound</span><label class="toggle"><input type="checkbox" id="audio-brick" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="padrop-brick" style="display:none;"><input type="range" class="volume-slider" id="pvol-brick" min="0" max="100" value="80"></div></div>
+            <div class="audio-sound-row" id="pasr-ambient"><div class="audio-sound-header"><span id="audio-ambient-label">Lava Ambient Sound</span><label class="toggle"><input type="checkbox" id="audio-ambient" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="padrop-ambient" style="display:none;"><input type="range" class="volume-slider" id="pvol-ambient" min="0" max="100" value="40"></div></div>
+            <div class="audio-sound-row" id="pasr-achievement"><div class="audio-sound-header"><span>Achievement Sound</span><label class="toggle"><input type="checkbox" id="audio-achievement" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="padrop-achievement" style="display:none;"><input type="range" class="volume-slider" id="pvol-achievement" min="0" max="100" value="90"></div></div>
           </div>
         </div>
         <div class="settings-panel" id="pspanel-hud" style="display:none;">
           <div class="settings-section">
             <h4>HUD</h4>
-            <div class="setting-item">
-              <span>Double Jump</span>
-              <label class="toggle"><input type="checkbox" id="p-feat-double-jump" checked><span class="slider"></span></label>
-            </div>
-            <div class="setting-item">
-              <span>Show Height</span>
-              <label class="toggle"><input type="checkbox" id="p-feat-show-height" checked><span class="slider"></span></label>
-            </div>
-            <div class="setting-item">
-              <span>Show Top Height</span>
-              <label class="toggle"><input type="checkbox" id="p-feat-show-top" checked><span class="slider"></span></label>
-            </div>
-            <div class="setting-item">
-              <span>Show Timer</span>
-              <label class="toggle"><input type="checkbox" id="p-feat-show-timer" checked><span class="slider"></span></label>
-            </div>
+            <div class="setting-item"><span>Double Jump</span><label class="toggle"><input type="checkbox" id="p-feat-double-jump" checked><span class="slider"></span></label></div>
+            <div class="setting-item"><span>Show Height</span><label class="toggle"><input type="checkbox" id="p-feat-show-height" checked><span class="slider"></span></label></div>
+            <div class="setting-item"><span>Show Top Height</span><label class="toggle"><input type="checkbox" id="p-feat-show-top" checked><span class="slider"></span></label></div>
+            <div class="setting-item"><span>Show Timer</span><label class="toggle"><input type="checkbox" id="p-feat-show-timer" checked><span class="slider"></span></label></div>
           </div>
         </div>
         <div class="settings-section">
           <h4 id="settings-difficulty-title">Difficulty</h4>
-          <div class="setting-item">
-            <span id="settings-game-difficulty">Game Difficulty</span>
-            <select id="difficulty-select" class="difficulty-dropdown">
-              <option value="easy">Easy</option>
-              <option value="medium" selected>Medium</option>
-              <option value="hard">Hard</option>
-              <option value="impossible">Impossible</option>
-            </select>
-          </div>
+          <div class="setting-item"><span id="settings-game-difficulty">Game Difficulty</span><select id="difficulty-select" class="difficulty-dropdown"><option value="easy">Easy</option><option value="medium" selected>Medium</option><option value="hard">Hard</option><option value="impossible">Impossible</option></select></div>
         </div>
         <div class="settings-section">
           <h4 id="settings-language-title">Language</h4>
-          <div class="setting-item">
-            <span id="settings-language-label">Language</span>
-            <select id="language-select" class="language-dropdown">
-              <option value="en">🇬🇧 English</option>
-              <option value="da">🇩🇰 Dansk</option>
-              <option value="de">🇩🇪 Deutsch</option>
-            </select>
-          </div>
+          <div class="setting-item"><span id="settings-language-label">Language</span><select id="language-select" class="language-dropdown"><option value="en">🇬🇧 English</option><option value="da">🇩🇰 Dansk</option><option value="de">🇩🇪 Deutsch</option></select></div>
         </div>
         <div class="settings-section">
           <h4>Data</h4>
@@ -577,7 +369,6 @@
         </div>
         <button class="menu-btn" id="settings-back-btn">BACK</button>
       </div>
-
       <div class="help-section" id="help-menu">
         <h3>HELP</h3>
         <div class="help-list">
@@ -592,7 +383,6 @@
         </div>
         <button class="menu-btn" id="help-back-btn">BACK</button>
       </div>
-
       <div class="help-section" id="achievements-pause-menu">
         <h3>ACHIEVEMENTS</h3>
         <div id="achievements-pause-list"></div>
@@ -616,17 +406,9 @@
 
   <script>
     document.addEventListener('contextmenu', e => e.preventDefault());
-    function ctrlShiftKey(e, keyCode) {
-      return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0);
-    }
+    function ctrlShiftKey(e, keyCode) { return e.ctrlKey && e.shiftKey && e.keyCode === keyCode.charCodeAt(0); }
     document.onkeydown = (e) => {
-      if (
-        event.keyCode === 123 ||
-        ctrlShiftKey(e, 'I') ||
-        ctrlShiftKey(e, 'J') ||
-        ctrlShiftKey(e, 'C') ||
-        (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))
-      ) return false;
+      if (event.keyCode === 123 || ctrlShiftKey(e,'I') || ctrlShiftKey(e,'J') || ctrlShiftKey(e,'C') || (e.ctrlKey && e.keyCode === 'U'.charCodeAt(0))) return false;
     };
 
     const _UID_PREFIX = 'DO_NOT_SHARE_WITH_ANYONE_';
@@ -636,9 +418,7 @@
     function _encryptUserId(uid) {
       const key = 'BJ_SECURE_2024_XK9';
       let result = '';
-      for (let i = 0; i < uid.length; i++) {
-        result += String.fromCharCode(uid.charCodeAt(i) ^ key.charCodeAt(i % key.length));
-      }
+      for (let i = 0; i < uid.length; i++) result += String.fromCharCode(uid.charCodeAt(i) ^ key.charCodeAt(i % key.length));
       return btoa(result);
     }
 
@@ -647,9 +427,7 @@
         const key = 'BJ_SECURE_2024_XK9';
         const decoded = atob(enc);
         let result = '';
-        for (let i = 0; i < decoded.length; i++) {
-          result += String.fromCharCode(decoded.charCodeAt(i) ^ key.charCodeAt(i % key.length));
-        }
+        for (let i = 0; i < decoded.length; i++) result += String.fromCharCode(decoded.charCodeAt(i) ^ key.charCodeAt(i % key.length));
         return result;
       } catch(e) { return null; }
     }
@@ -657,7 +435,7 @@
     function getOrCreateUserId() {
       let uid = localStorage.getItem(_UID_KEY);
       if (!uid) {
-        uid = 'bj_' + Math.random().toString(36).substr(2, 12) + Date.now().toString(36) + Math.random().toString(36).substr(2, 8);
+        uid = 'bj_' + Math.random().toString(36).substr(2,12) + Date.now().toString(36) + Math.random().toString(36).substr(2,8);
         localStorage.setItem(_UID_KEY, uid);
       }
       return uid;
@@ -668,26 +446,52 @@
     const GITHUB_TOKEN = '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';
     const GITHUB_API = `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
 
+    function b64EncodeUnicode(str) {
+      const bytes = new TextEncoder().encode(str);
+      let binary = '';
+      for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+      return btoa(binary);
+    }
+
+    function b64DecodeUnicode(b64) {
+      const binary = atob(b64);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+      return new TextDecoder().decode(bytes);
+    }
+
     async function fetchGitHubData() {
       try {
         const res = await fetch(GITHUB_API, {
           headers: {
-            Authorization: `Bearer ${GITHUB_TOKEN}`,
-            Accept: 'application/vnd.github.v3+json'
+            'Authorization': `Bearer ${GITHUB_TOKEN}`,
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28'
           }
         });
-        if (!res.ok) return null;
+        if (!res.ok) {
+          console.warn('GitHub fetch failed:', res.status, await res.text());
+          return null;
+        }
         const json = await res.json();
-        const rawContent = json.content.replace(/\n/g, '').replace(/\s/g, '');
-        const decoded = decodeURIComponent(escape(atob(rawContent)));
+        const rawB64 = json.content.replace(/\n/g, '');
+        let decoded;
+        try {
+          decoded = b64DecodeUnicode(rawB64);
+        } catch(e) {
+          console.warn('Base64 decode failed:', e);
+          return { data: [], sha: json.sha };
+        }
         let parsed;
         try {
           parsed = JSON.parse(decoded);
         } catch(e) {
+          console.warn('JSON parse failed, raw:', decoded.substring(0, 200));
           parsed = [];
         }
         return { data: Array.isArray(parsed) ? parsed : [], sha: json.sha };
       } catch(e) {
+        console.warn('fetchGitHubData error:', e);
         return null;
       }
     }
@@ -700,6 +504,10 @@
         if (existing) {
           records = Array.isArray(existing.data) ? existing.data : [];
           sha = existing.sha;
+        }
+        if (!sha) {
+          console.warn('No SHA obtained — cannot write to GitHub');
+          return false;
         }
         const encUid = _encryptUserId(record.userid);
         const idx = records.findIndex(r => r.encUserId === encUid);
@@ -714,14 +522,10 @@
           ex.deaths = record.deaths;
           ex.achievements = record.achievements;
           ex.joinDate = ex.joinDate || record.joinDate;
-          if (!ex.highScore || typeof ex.highScore !== 'object') ex.highScore = { easy: 0, medium: 0, hard: 0, impossible: 0 };
-          for (const diff in record.highScore) {
-            ex.highScore[diff] = Math.max(ex.highScore[diff] || 0, record.highScore[diff] || 0);
-          }
-          if (!ex.survivalTimes || typeof ex.survivalTimes !== 'object') ex.survivalTimes = { easy: 0, medium: 0, hard: 0, impossible: 0 };
-          for (const diff in record.survivalTimes) {
-            ex.survivalTimes[diff] = Math.max(ex.survivalTimes[diff] || 0, record.survivalTimes[diff] || 0);
-          }
+          if (!ex.highScore || typeof ex.highScore !== 'object') ex.highScore = { easy:0, medium:0, hard:0, impossible:0 };
+          for (const diff in record.highScore) ex.highScore[diff] = Math.max(ex.highScore[diff] || 0, record.highScore[diff] || 0);
+          if (!ex.survivalTimes || typeof ex.survivalTimes !== 'object') ex.survivalTimes = { easy:0, medium:0, hard:0, impossible:0 };
+          for (const diff in record.survivalTimes) ex.survivalTimes[diff] = Math.max(ex.survivalTimes[diff] || 0, record.survivalTimes[diff] || 0);
           records[idx] = ex;
         } else {
           records.push({
@@ -730,8 +534,8 @@
             country: record.country,
             countryFlag: record.countryFlag,
             countryName: record.countryName,
-            highScore: { easy: 0, medium: 0, hard: 0, impossible: 0, ...record.highScore },
-            survivalTimes: { easy: 0, medium: 0, hard: 0, impossible: 0, ...record.survivalTimes },
+            highScore: Object.assign({ easy:0, medium:0, hard:0, impossible:0 }, record.highScore),
+            survivalTimes: Object.assign({ easy:0, medium:0, hard:0, impossible:0 }, record.survivalTimes),
             joinDate: record.joinDate,
             lastSeen: record.lastSeen,
             totalPlaytime: record.totalPlaytime,
@@ -740,35 +544,39 @@
           });
         }
         const jsonStr = JSON.stringify(records, null, 2);
-        const content = btoa(unescape(encodeURIComponent(jsonStr)));
-        const body = { message: `Update profile - ${record.username}`, content };
-        if (sha) body.sha = sha;
+        const content = b64EncodeUnicode(jsonStr);
+        const body = {
+          message: `Update profile - ${record.username}`,
+          content: content,
+          sha: sha
+        };
         const putRes = await fetch(GITHUB_API, {
           method: 'PUT',
           headers: {
-            Authorization: `Bearer ${GITHUB_TOKEN}`,
-            Accept: 'application/vnd.github.v3+json',
+            'Authorization': `Bearer ${GITHUB_TOKEN}`,
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28',
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(body)
         });
-        return putRes.ok;
+        if (!putRes.ok) {
+          const errText = await putRes.text();
+          console.warn('GitHub PUT failed:', putRes.status, errText);
+          return false;
+        }
+        return true;
       } catch(e) {
+        console.warn('saveToGitHub error:', e);
         return false;
       }
     }
 
     function getLocalProfile() {
-      try {
-        const raw = localStorage.getItem('bj_profile');
-        return raw ? JSON.parse(raw) : null;
-      } catch(e) { return null; }
+      try { const raw = localStorage.getItem('bj_profile'); return raw ? JSON.parse(raw) : null; } catch(e) { return null; }
     }
-
     function saveLocalProfile(profile) {
-      try {
-        localStorage.setItem('bj_profile', JSON.stringify(profile));
-      } catch(e) {}
+      try { localStorage.setItem('bj_profile', JSON.stringify(profile)); } catch(e) {}
     }
 
     function getOrCreateProfile() {
@@ -782,8 +590,8 @@
           joinDate: new Date().toISOString(),
           totalPlaytime: parseFloat(localStorage.getItem('bj_total_playtime') || '0'),
           deaths: parseInt(localStorage.getItem('bj_deaths') || '0'),
-          highScore: { easy: 0, medium: 0, hard: 0, impossible: 0 },
-          survivalTimes: { easy: 0, medium: 0, hard: 0, impossible: 0 },
+          highScore: { easy:0, medium:0, hard:0, impossible:0 },
+          survivalTimes: { easy:0, medium:0, hard:0, impossible:0 },
           achievements: {}
         };
         ['easy','medium','hard','impossible'].forEach(d => {
@@ -839,13 +647,13 @@
         deaths: _totalDeaths,
         achievements: Object.keys(unlockedAchievements).length
       };
-      await saveToGitHub(record);
+      const ok = await saveToGitHub(record);
+      if (!ok) console.warn('GitHub push failed — data saved locally only.');
     }
 
     let _totalPlaytime = _userProfile.totalPlaytime || 0;
     let _totalDeaths = _userProfile.deaths || 0;
-
-    const _internalScores = Object.assign({ easy: 0, medium: 0, hard: 0, impossible: 0 }, _userProfile.highScore || {});
+    const _internalScores = Object.assign({ easy:0, medium:0, hard:0, impossible:0 }, _userProfile.highScore || {});
 
     function _getInternalScore(diff) { return _internalScores[diff] || 0; }
     function _setInternalScore(diff, val) {
@@ -856,195 +664,7 @@
     }
 
     const ALL_COUNTRIES = [
-      { code: 'AF', flag: '🇦🇫', en: 'Afghanistan', da: 'Afghanistan', de: 'Afghanistan' },
-      { code: 'AL', flag: '🇦🇱', en: 'Albania', da: 'Albanien', de: 'Albanien' },
-      { code: 'DZ', flag: '🇩🇿', en: 'Algeria', da: 'Algeriet', de: 'Algerien' },
-      { code: 'AD', flag: '🇦🇩', en: 'Andorra', da: 'Andorra', de: 'Andorra' },
-      { code: 'AO', flag: '🇦🇴', en: 'Angola', da: 'Angola', de: 'Angola' },
-      { code: 'AG', flag: '🇦🇬', en: 'Antigua and Barbuda', da: 'Antigua og Barbuda', de: 'Antigua und Barbuda' },
-      { code: 'AR', flag: '🇦🇷', en: 'Argentina', da: 'Argentina', de: 'Argentinien' },
-      { code: 'AM', flag: '🇦🇲', en: 'Armenia', da: 'Armenien', de: 'Armenien' },
-      { code: 'AU', flag: '🇦🇺', en: 'Australia', da: 'Australien', de: 'Australien' },
-      { code: 'AT', flag: '🇦🇹', en: 'Austria', da: 'Østrig', de: 'Österreich' },
-      { code: 'AZ', flag: '🇦🇿', en: 'Azerbaijan', da: 'Aserbajdsjan', de: 'Aserbaidschan' },
-      { code: 'BS', flag: '🇧🇸', en: 'Bahamas', da: 'Bahamas', de: 'Bahamas' },
-      { code: 'BH', flag: '🇧🇭', en: 'Bahrain', da: 'Bahrain', de: 'Bahrain' },
-      { code: 'BD', flag: '🇧🇩', en: 'Bangladesh', da: 'Bangladesh', de: 'Bangladesch' },
-      { code: 'BB', flag: '🇧🇧', en: 'Barbados', da: 'Barbados', de: 'Barbados' },
-      { code: 'BY', flag: '🇧🇾', en: 'Belarus', da: 'Hviderusland', de: 'Weißrussland' },
-      { code: 'BE', flag: '🇧🇪', en: 'Belgium', da: 'Belgien', de: 'Belgien' },
-      { code: 'BZ', flag: '🇧🇿', en: 'Belize', da: 'Belize', de: 'Belize' },
-      { code: 'BJ', flag: '🇧🇯', en: 'Benin', da: 'Benin', de: 'Benin' },
-      { code: 'BT', flag: '🇧🇹', en: 'Bhutan', da: 'Bhutan', de: 'Bhutan' },
-      { code: 'BO', flag: '🇧🇴', en: 'Bolivia', da: 'Bolivia', de: 'Bolivien' },
-      { code: 'BA', flag: '🇧🇦', en: 'Bosnia and Herzegovina', da: 'Bosnien-Hercegovina', de: 'Bosnien und Herzegowina' },
-      { code: 'BW', flag: '🇧🇼', en: 'Botswana', da: 'Botswana', de: 'Botswana' },
-      { code: 'BR', flag: '🇧🇷', en: 'Brazil', da: 'Brasilien', de: 'Brasilien' },
-      { code: 'BN', flag: '🇧🇳', en: 'Brunei', da: 'Brunei', de: 'Brunei' },
-      { code: 'BG', flag: '🇧🇬', en: 'Bulgaria', da: 'Bulgarien', de: 'Bulgarien' },
-      { code: 'BF', flag: '🇧🇫', en: 'Burkina Faso', da: 'Burkina Faso', de: 'Burkina Faso' },
-      { code: 'BI', flag: '🇧🇮', en: 'Burundi', da: 'Burundi', de: 'Burundi' },
-      { code: 'CV', flag: '🇨🇻', en: 'Cape Verde', da: 'Kap Verde', de: 'Kap Verde' },
-      { code: 'KH', flag: '🇰🇭', en: 'Cambodia', da: 'Cambodja', de: 'Kambodscha' },
-      { code: 'CM', flag: '🇨🇲', en: 'Cameroon', da: 'Cameroun', de: 'Kamerun' },
-      { code: 'CA', flag: '🇨🇦', en: 'Canada', da: 'Canada', de: 'Kanada' },
-      { code: 'CF', flag: '🇨🇫', en: 'Central African Republic', da: 'Centralafrikanske Republik', de: 'Zentralafrikanische Republik' },
-      { code: 'TD', flag: '🇹🇩', en: 'Chad', da: 'Tchad', de: 'Tschad' },
-      { code: 'CL', flag: '🇨🇱', en: 'Chile', da: 'Chile', de: 'Chile' },
-      { code: 'CN', flag: '🇨🇳', en: 'China', da: 'Kina', de: 'China' },
-      { code: 'CO', flag: '🇨🇴', en: 'Colombia', da: 'Colombia', de: 'Kolumbien' },
-      { code: 'KM', flag: '🇰🇲', en: 'Comoros', da: 'Comorerne', de: 'Komoren' },
-      { code: 'CG', flag: '🇨🇬', en: 'Congo', da: 'Congo', de: 'Kongo' },
-      { code: 'CR', flag: '🇨🇷', en: 'Costa Rica', da: 'Costa Rica', de: 'Costa Rica' },
-      { code: 'HR', flag: '🇭🇷', en: 'Croatia', da: 'Kroatien', de: 'Kroatien' },
-      { code: 'CU', flag: '🇨🇺', en: 'Cuba', da: 'Cuba', de: 'Kuba' },
-      { code: 'CY', flag: '🇨🇾', en: 'Cyprus', da: 'Cypern', de: 'Zypern' },
-      { code: 'CZ', flag: '🇨🇿', en: 'Czech Republic', da: 'Tjekkiet', de: 'Tschechien' },
-      { code: 'DK', flag: '🇩🇰', en: 'Denmark', da: 'Danmark', de: 'Dänemark' },
-      { code: 'DJ', flag: '🇩🇯', en: 'Djibouti', da: 'Djibouti', de: 'Dschibuti' },
-      { code: 'DM', flag: '🇩🇲', en: 'Dominica', da: 'Dominica', de: 'Dominica' },
-      { code: 'DO', flag: '🇩🇴', en: 'Dominican Republic', da: 'Den Dominikanske Republik', de: 'Dominikanische Republik' },
-      { code: 'EC', flag: '🇪🇨', en: 'Ecuador', da: 'Ecuador', de: 'Ecuador' },
-      { code: 'EG', flag: '🇪🇬', en: 'Egypt', da: 'Egypten', de: 'Ägypten' },
-      { code: 'SV', flag: '🇸🇻', en: 'El Salvador', da: 'El Salvador', de: 'El Salvador' },
-      { code: 'GQ', flag: '🇬🇶', en: 'Equatorial Guinea', da: 'Ækvatorialguinea', de: 'Äquatorialguinea' },
-      { code: 'ER', flag: '🇪🇷', en: 'Eritrea', da: 'Eritrea', de: 'Eritrea' },
-      { code: 'EE', flag: '🇪🇪', en: 'Estonia', da: 'Estland', de: 'Estland' },
-      { code: 'SZ', flag: '🇸🇿', en: 'Eswatini', da: 'Eswatini', de: 'Eswatini' },
-      { code: 'ET', flag: '🇪🇹', en: 'Ethiopia', da: 'Etiopien', de: 'Äthiopien' },
-      { code: 'FJ', flag: '🇫🇯', en: 'Fiji', da: 'Fiji', de: 'Fidschi' },
-      { code: 'FI', flag: '🇫🇮', en: 'Finland', da: 'Finland', de: 'Finnland' },
-      { code: 'FR', flag: '🇫🇷', en: 'France', da: 'Frankrig', de: 'Frankreich' },
-      { code: 'GA', flag: '🇬🇦', en: 'Gabon', da: 'Gabon', de: 'Gabun' },
-      { code: 'GM', flag: '🇬🇲', en: 'Gambia', da: 'Gambia', de: 'Gambia' },
-      { code: 'GE', flag: '🇬🇪', en: 'Georgia', da: 'Georgien', de: 'Georgien' },
-      { code: 'DE', flag: '🇩🇪', en: 'Germany', da: 'Tyskland', de: 'Deutschland' },
-      { code: 'GH', flag: '🇬🇭', en: 'Ghana', da: 'Ghana', de: 'Ghana' },
-      { code: 'GR', flag: '🇬🇷', en: 'Greece', da: 'Grækenland', de: 'Griechenland' },
-      { code: 'GD', flag: '🇬🇩', en: 'Grenada', da: 'Grenada', de: 'Grenada' },
-      { code: 'GT', flag: '🇬🇹', en: 'Guatemala', da: 'Guatemala', de: 'Guatemala' },
-      { code: 'GN', flag: '🇬🇳', en: 'Guinea', da: 'Guinea', de: 'Guinea' },
-      { code: 'GW', flag: '🇬🇼', en: 'Guinea-Bissau', da: 'Guinea-Bissau', de: 'Guinea-Bissau' },
-      { code: 'GY', flag: '🇬🇾', en: 'Guyana', da: 'Guyana', de: 'Guyana' },
-      { code: 'HT', flag: '🇭🇹', en: 'Haiti', da: 'Haiti', de: 'Haiti' },
-      { code: 'HN', flag: '🇭🇳', en: 'Honduras', da: 'Honduras', de: 'Honduras' },
-      { code: 'HU', flag: '🇭🇺', en: 'Hungary', da: 'Ungarn', de: 'Ungarn' },
-      { code: 'IS', flag: '🇮🇸', en: 'Iceland', da: 'Island', de: 'Island' },
-      { code: 'IN', flag: '🇮🇳', en: 'India', da: 'Indien', de: 'Indien' },
-      { code: 'ID', flag: '🇮🇩', en: 'Indonesia', da: 'Indonesien', de: 'Indonesien' },
-      { code: 'IR', flag: '🇮🇷', en: 'Iran', da: 'Iran', de: 'Iran' },
-      { code: 'IQ', flag: '🇮🇶', en: 'Iraq', da: 'Irak', de: 'Irak' },
-      { code: 'IE', flag: '🇮🇪', en: 'Ireland', da: 'Irland', de: 'Irland' },
-      { code: 'IL', flag: '🇮🇱', en: 'Israel', da: 'Israel', de: 'Israel' },
-      { code: 'IT', flag: '🇮🇹', en: 'Italy', da: 'Italien', de: 'Italien' },
-      { code: 'JM', flag: '🇯🇲', en: 'Jamaica', da: 'Jamaica', de: 'Jamaika' },
-      { code: 'JP', flag: '🇯🇵', en: 'Japan', da: 'Japan', de: 'Japan' },
-      { code: 'JO', flag: '🇯🇴', en: 'Jordan', da: 'Jordan', de: 'Jordanien' },
-      { code: 'KZ', flag: '🇰🇿', en: 'Kazakhstan', da: 'Kasakhstan', de: 'Kasachstan' },
-      { code: 'KE', flag: '🇰🇪', en: 'Kenya', da: 'Kenya', de: 'Kenia' },
-      { code: 'KI', flag: '🇰🇮', en: 'Kiribati', da: 'Kiribati', de: 'Kiribati' },
-      { code: 'KW', flag: '🇰🇼', en: 'Kuwait', da: 'Kuwait', de: 'Kuwait' },
-      { code: 'KG', flag: '🇰🇬', en: 'Kyrgyzstan', da: 'Kirgisistan', de: 'Kirgisistan' },
-      { code: 'LA', flag: '🇱🇦', en: 'Laos', da: 'Laos', de: 'Laos' },
-      { code: 'LV', flag: '🇱🇻', en: 'Latvia', da: 'Letland', de: 'Lettland' },
-      { code: 'LB', flag: '🇱🇧', en: 'Lebanon', da: 'Libanon', de: 'Libanon' },
-      { code: 'LS', flag: '🇱🇸', en: 'Lesotho', da: 'Lesotho', de: 'Lesotho' },
-      { code: 'LR', flag: '🇱🇷', en: 'Liberia', da: 'Liberia', de: 'Liberia' },
-      { code: 'LY', flag: '🇱🇾', en: 'Libya', da: 'Libyen', de: 'Libyen' },
-      { code: 'LI', flag: '🇱🇮', en: 'Liechtenstein', da: 'Liechtenstein', de: 'Liechtenstein' },
-      { code: 'LT', flag: '🇱🇹', en: 'Lithuania', da: 'Litauen', de: 'Litauen' },
-      { code: 'LU', flag: '🇱🇺', en: 'Luxembourg', da: 'Luxembourg', de: 'Luxemburg' },
-      { code: 'MG', flag: '🇲🇬', en: 'Madagascar', da: 'Madagaskar', de: 'Madagaskar' },
-      { code: 'MW', flag: '🇲🇼', en: 'Malawi', da: 'Malawi', de: 'Malawi' },
-      { code: 'MY', flag: '🇲🇾', en: 'Malaysia', da: 'Malaysia', de: 'Malaysia' },
-      { code: 'MV', flag: '🇲🇻', en: 'Maldives', da: 'Maldiverne', de: 'Malediven' },
-      { code: 'ML', flag: '🇲🇱', en: 'Mali', da: 'Mali', de: 'Mali' },
-      { code: 'MT', flag: '🇲🇹', en: 'Malta', da: 'Malta', de: 'Malta' },
-      { code: 'MH', flag: '🇲🇭', en: 'Marshall Islands', da: 'Marshalløerne', de: 'Marshallinseln' },
-      { code: 'MR', flag: '🇲🇷', en: 'Mauritania', da: 'Mauretanien', de: 'Mauretanien' },
-      { code: 'MU', flag: '🇲🇺', en: 'Mauritius', da: 'Mauritius', de: 'Mauritius' },
-      { code: 'MX', flag: '🇲🇽', en: 'Mexico', da: 'Mexico', de: 'Mexiko' },
-      { code: 'FM', flag: '🇫🇲', en: 'Micronesia', da: 'Mikronesien', de: 'Mikronesien' },
-      { code: 'MD', flag: '🇲🇩', en: 'Moldova', da: 'Moldova', de: 'Moldawien' },
-      { code: 'MC', flag: '🇲🇨', en: 'Monaco', da: 'Monaco', de: 'Monaco' },
-      { code: 'MN', flag: '🇲🇳', en: 'Mongolia', da: 'Mongoliet', de: 'Mongolei' },
-      { code: 'ME', flag: '🇲🇪', en: 'Montenegro', da: 'Montenegro', de: 'Montenegro' },
-      { code: 'MA', flag: '🇲🇦', en: 'Morocco', da: 'Marokko', de: 'Marokko' },
-      { code: 'MZ', flag: '🇲🇿', en: 'Mozambique', da: 'Mozambique', de: 'Mosambik' },
-      { code: 'MM', flag: '🇲🇲', en: 'Myanmar', da: 'Myanmar', de: 'Myanmar' },
-      { code: 'NA', flag: '🇳🇦', en: 'Namibia', da: 'Namibia', de: 'Namibia' },
-      { code: 'NR', flag: '🇳🇷', en: 'Nauru', da: 'Nauru', de: 'Nauru' },
-      { code: 'NP', flag: '🇳🇵', en: 'Nepal', da: 'Nepal', de: 'Nepal' },
-      { code: 'NL', flag: '🇳🇱', en: 'Netherlands', da: 'Holland', de: 'Niederlande' },
-      { code: 'NZ', flag: '🇳🇿', en: 'New Zealand', da: 'New Zealand', de: 'Neuseeland' },
-      { code: 'NI', flag: '🇳🇮', en: 'Nicaragua', da: 'Nicaragua', de: 'Nicaragua' },
-      { code: 'NE', flag: '🇳🇪', en: 'Niger', da: 'Niger', de: 'Niger' },
-      { code: 'NG', flag: '🇳🇬', en: 'Nigeria', da: 'Nigeria', de: 'Nigeria' },
-      { code: 'NO', flag: '🇳🇴', en: 'Norway', da: 'Norge', de: 'Norwegen' },
-      { code: 'OM', flag: '🇴🇲', en: 'Oman', da: 'Oman', de: 'Oman' },
-      { code: 'PK', flag: '🇵🇰', en: 'Pakistan', da: 'Pakistan', de: 'Pakistan' },
-      { code: 'PW', flag: '🇵🇼', en: 'Palau', da: 'Palau', de: 'Palau' },
-      { code: 'PA', flag: '🇵🇦', en: 'Panama', da: 'Panama', de: 'Panama' },
-      { code: 'PG', flag: '🇵🇬', en: 'Papua New Guinea', da: 'Papua Ny Guinea', de: 'Papua-Neuguinea' },
-      { code: 'PY', flag: '🇵🇾', en: 'Paraguay', da: 'Paraguay', de: 'Paraguay' },
-      { code: 'PE', flag: '🇵🇪', en: 'Peru', da: 'Peru', de: 'Peru' },
-      { code: 'PH', flag: '🇵🇭', en: 'Philippines', da: 'Filippinerne', de: 'Philippinen' },
-      { code: 'PL', flag: '🇵🇱', en: 'Poland', da: 'Polen', de: 'Polen' },
-      { code: 'PT', flag: '🇵🇹', en: 'Portugal', da: 'Portugal', de: 'Portugal' },
-      { code: 'QA', flag: '🇶🇦', en: 'Qatar', da: 'Qatar', de: 'Katar' },
-      { code: 'RO', flag: '🇷🇴', en: 'Romania', da: 'Rumænien', de: 'Rumänien' },
-      { code: 'RU', flag: '🇷🇺', en: 'Russia', da: 'Rusland', de: 'Russland' },
-      { code: 'RW', flag: '🇷🇼', en: 'Rwanda', da: 'Rwanda', de: 'Ruanda' },
-      { code: 'KN', flag: '🇰🇳', en: 'Saint Kitts and Nevis', da: 'Saint Kitts og Nevis', de: 'St. Kitts und Nevis' },
-      { code: 'LC', flag: '🇱🇨', en: 'Saint Lucia', da: 'Saint Lucia', de: 'St. Lucia' },
-      { code: 'VC', flag: '🇻🇨', en: 'Saint Vincent and the Grenadines', da: 'Saint Vincent og Grenadinerne', de: 'St. Vincent und die Grenadinen' },
-      { code: 'WS', flag: '🇼🇸', en: 'Samoa', da: 'Samoa', de: 'Samoa' },
-      { code: 'SM', flag: '🇸🇲', en: 'San Marino', da: 'San Marino', de: 'San Marino' },
-      { code: 'ST', flag: '🇸🇹', en: 'Sao Tome and Principe', da: 'São Tomé og Príncipe', de: 'São Tomé und Príncipe' },
-      { code: 'SA', flag: '🇸🇦', en: 'Saudi Arabia', da: 'Saudi-Arabien', de: 'Saudi-Arabien' },
-      { code: 'SN', flag: '🇸🇳', en: 'Senegal', da: 'Senegal', de: 'Senegal' },
-      { code: 'RS', flag: '🇷🇸', en: 'Serbia', da: 'Serbien', de: 'Serbien' },
-      { code: 'SC', flag: '🇸🇨', en: 'Seychelles', da: 'Seychellerne', de: 'Seychellen' },
-      { code: 'SL', flag: '🇸🇱', en: 'Sierra Leone', da: 'Sierra Leone', de: 'Sierra Leone' },
-      { code: 'SG', flag: '🇸🇬', en: 'Singapore', da: 'Singapore', de: 'Singapur' },
-      { code: 'SK', flag: '🇸🇰', en: 'Slovakia', da: 'Slovakiet', de: 'Slowakei' },
-      { code: 'SI', flag: '🇸🇮', en: 'Slovenia', da: 'Slovenien', de: 'Slowenien' },
-      { code: 'SB', flag: '🇸🇧', en: 'Solomon Islands', da: 'Salomonøerne', de: 'Salomonen' },
-      { code: 'SO', flag: '🇸🇴', en: 'Somalia', da: 'Somalia', de: 'Somalia' },
-      { code: 'ZA', flag: '🇿🇦', en: 'South Africa', da: 'Sydafrika', de: 'Südafrika' },
-      { code: 'SS', flag: '🇸🇸', en: 'South Sudan', da: 'Sydsudan', de: 'Südsudan' },
-      { code: 'ES', flag: '🇪🇸', en: 'Spain', da: 'Spanien', de: 'Spanien' },
-      { code: 'LK', flag: '🇱🇰', en: 'Sri Lanka', da: 'Sri Lanka', de: 'Sri Lanka' },
-      { code: 'SD', flag: '🇸🇩', en: 'Sudan', da: 'Sudan', de: 'Sudan' },
-      { code: 'SR', flag: '🇸🇷', en: 'Suriname', da: 'Surinam', de: 'Suriname' },
-      { code: 'SE', flag: '🇸🇪', en: 'Sweden', da: 'Sverige', de: 'Schweden' },
-      { code: 'CH', flag: '🇨🇭', en: 'Switzerland', da: 'Schweiz', de: 'Schweiz' },
-      { code: 'SY', flag: '🇸🇾', en: 'Syria', da: 'Syrien', de: 'Syrien' },
-      { code: 'TW', flag: '🇹🇼', en: 'Taiwan', da: 'Taiwan', de: 'Taiwan' },
-      { code: 'TJ', flag: '🇹🇯', en: 'Tajikistan', da: 'Tadsjikistan', de: 'Tadschikistan' },
-      { code: 'TZ', flag: '🇹🇿', en: 'Tanzania', da: 'Tanzania', de: 'Tansania' },
-      { code: 'TH', flag: '🇹🇭', en: 'Thailand', da: 'Thailand', de: 'Thailand' },
-      { code: 'TL', flag: '🇹🇱', en: 'Timor-Leste', da: 'Timor-Leste', de: 'Timor-Leste' },
-      { code: 'TG', flag: '🇹🇬', en: 'Togo', da: 'Togo', de: 'Togo' },
-      { code: 'TO', flag: '🇹🇴', en: 'Tonga', da: 'Tonga', de: 'Tonga' },
-      { code: 'TT', flag: '🇹🇹', en: 'Trinidad and Tobago', da: 'Trinidad og Tobago', de: 'Trinidad und Tobago' },
-      { code: 'TN', flag: '🇹🇳', en: 'Tunisia', da: 'Tunesien', de: 'Tunesien' },
-      { code: 'TR', flag: '🇹🇷', en: 'Turkey', da: 'Tyrkiet', de: 'Türkei' },
-      { code: 'TM', flag: '🇹🇲', en: 'Turkmenistan', da: 'Turkmenistan', de: 'Turkmenistan' },
-      { code: 'TV', flag: '🇹🇻', en: 'Tuvalu', da: 'Tuvalu', de: 'Tuvalu' },
-      { code: 'UG', flag: '🇺🇬', en: 'Uganda', da: 'Uganda', de: 'Uganda' },
-      { code: 'UA', flag: '🇺🇦', en: 'Ukraine', da: 'Ukraine', de: 'Ukraine' },
-      { code: 'AE', flag: '🇦🇪', en: 'United Arab Emirates', da: 'De Forenede Arabiske Emirater', de: 'Vereinigte Arabische Emirate' },
-      { code: 'GB', flag: '🇬🇧', en: 'United Kingdom', da: 'Storbritannien', de: 'Vereinigtes Königreich' },
-      { code: 'US', flag: '🇺🇸', en: 'United States', da: 'USA', de: 'Vereinigte Staaten' },
-      { code: 'UY', flag: '🇺🇾', en: 'Uruguay', da: 'Uruguay', de: 'Uruguay' },
-      { code: 'UZ', flag: '🇺🇿', en: 'Uzbekistan', da: 'Usbekistan', de: 'Usbekistan' },
-      { code: 'VU', flag: '🇻🇺', en: 'Vanuatu', da: 'Vanuatu', de: 'Vanuatu' },
-      { code: 'VE', flag: '🇻🇪', en: 'Venezuela', da: 'Venezuela', de: 'Venezuela' },
-      { code: 'VN', flag: '🇻🇳', en: 'Vietnam', da: 'Vietnam', de: 'Vietnam' },
-      { code: 'YE', flag: '🇾🇪', en: 'Yemen', da: 'Yemen', de: 'Jemen' },
-      { code: 'ZM', flag: '🇿🇲', en: 'Zambia', da: 'Zambia', de: 'Sambia' },
-      { code: 'ZW', flag: '🇿🇼', en: 'Zimbabwe', da: 'Zimbabwe', de: 'Simbabwe' }
+      {code:'AF',flag:'🇦🇫',en:'Afghanistan',da:'Afghanistan',de:'Afghanistan'},{code:'AL',flag:'🇦🇱',en:'Albania',da:'Albanien',de:'Albanien'},{code:'DZ',flag:'🇩🇿',en:'Algeria',da:'Algeriet',de:'Algerien'},{code:'AD',flag:'🇦🇩',en:'Andorra',da:'Andorra',de:'Andorra'},{code:'AO',flag:'🇦🇴',en:'Angola',da:'Angola',de:'Angola'},{code:'AG',flag:'🇦🇬',en:'Antigua and Barbuda',da:'Antigua og Barbuda',de:'Antigua und Barbuda'},{code:'AR',flag:'🇦🇷',en:'Argentina',da:'Argentina',de:'Argentinien'},{code:'AM',flag:'🇦🇲',en:'Armenia',da:'Armenien',de:'Armenien'},{code:'AU',flag:'🇦🇺',en:'Australia',da:'Australien',de:'Australien'},{code:'AT',flag:'🇦🇹',en:'Austria',da:'Østrig',de:'Österreich'},{code:'AZ',flag:'🇦🇿',en:'Azerbaijan',da:'Aserbajdsjan',de:'Aserbaidschan'},{code:'BS',flag:'🇧🇸',en:'Bahamas',da:'Bahamas',de:'Bahamas'},{code:'BH',flag:'🇧🇭',en:'Bahrain',da:'Bahrain',de:'Bahrain'},{code:'BD',flag:'🇧🇩',en:'Bangladesh',da:'Bangladesh',de:'Bangladesch'},{code:'BB',flag:'🇧🇧',en:'Barbados',da:'Barbados',de:'Barbados'},{code:'BY',flag:'🇧🇾',en:'Belarus',da:'Hviderusland',de:'Weißrussland'},{code:'BE',flag:'🇧🇪',en:'Belgium',da:'Belgien',de:'Belgien'},{code:'BZ',flag:'🇧🇿',en:'Belize',da:'Belize',de:'Belize'},{code:'BJ',flag:'🇧🇯',en:'Benin',da:'Benin',de:'Benin'},{code:'BT',flag:'🇧🇹',en:'Bhutan',da:'Bhutan',de:'Bhutan'},{code:'BO',flag:'🇧🇴',en:'Bolivia',da:'Bolivia',de:'Bolivien'},{code:'BA',flag:'🇧🇦',en:'Bosnia and Herzegovina',da:'Bosnien-Hercegovina',de:'Bosnien und Herzegowina'},{code:'BW',flag:'🇧🇼',en:'Botswana',da:'Botswana',de:'Botswana'},{code:'BR',flag:'🇧🇷',en:'Brazil',da:'Brasilien',de:'Brasilien'},{code:'BN',flag:'🇧🇳',en:'Brunei',da:'Brunei',de:'Brunei'},{code:'BG',flag:'🇧🇬',en:'Bulgaria',da:'Bulgarien',de:'Bulgarien'},{code:'BF',flag:'🇧🇫',en:'Burkina Faso',da:'Burkina Faso',de:'Burkina Faso'},{code:'BI',flag:'🇧🇮',en:'Burundi',da:'Burundi',de:'Burundi'},{code:'CV',flag:'🇨🇻',en:'Cape Verde',da:'Kap Verde',de:'Kap Verde'},{code:'KH',flag:'🇰🇭',en:'Cambodia',da:'Cambodja',de:'Kambodscha'},{code:'CM',flag:'🇨🇲',en:'Cameroon',da:'Cameroun',de:'Kamerun'},{code:'CA',flag:'🇨🇦',en:'Canada',da:'Canada',de:'Kanada'},{code:'CF',flag:'🇨🇫',en:'Central African Republic',da:'Centralafrikanske Republik',de:'Zentralafrikanische Republik'},{code:'TD',flag:'🇹🇩',en:'Chad',da:'Tchad',de:'Tschad'},{code:'CL',flag:'🇨🇱',en:'Chile',da:'Chile',de:'Chile'},{code:'CN',flag:'🇨🇳',en:'China',da:'Kina',de:'China'},{code:'CO',flag:'🇨🇴',en:'Colombia',da:'Colombia',de:'Kolumbien'},{code:'KM',flag:'🇰🇲',en:'Comoros',da:'Comorerne',de:'Komoren'},{code:'CG',flag:'🇨🇬',en:'Congo',da:'Congo',de:'Kongo'},{code:'CR',flag:'🇨🇷',en:'Costa Rica',da:'Costa Rica',de:'Costa Rica'},{code:'HR',flag:'🇭🇷',en:'Croatia',da:'Kroatien',de:'Kroatien'},{code:'CU',flag:'🇨🇺',en:'Cuba',da:'Cuba',de:'Kuba'},{code:'CY',flag:'🇨🇾',en:'Cyprus',da:'Cypern',de:'Zypern'},{code:'CZ',flag:'🇨🇿',en:'Czech Republic',da:'Tjekkiet',de:'Tschechien'},{code:'DK',flag:'🇩🇰',en:'Denmark',da:'Danmark',de:'Dänemark'},{code:'DJ',flag:'🇩🇯',en:'Djibouti',da:'Djibouti',de:'Dschibuti'},{code:'DM',flag:'🇩🇲',en:'Dominica',da:'Dominica',de:'Dominica'},{code:'DO',flag:'🇩🇴',en:'Dominican Republic',da:'Den Dominikanske Republik',de:'Dominikanische Republik'},{code:'EC',flag:'🇪🇨',en:'Ecuador',da:'Ecuador',de:'Ecuador'},{code:'EG',flag:'🇪🇬',en:'Egypt',da:'Egypten',de:'Ägypten'},{code:'SV',flag:'🇸🇻',en:'El Salvador',da:'El Salvador',de:'El Salvador'},{code:'GQ',flag:'🇬🇶',en:'Equatorial Guinea',da:'Ækvatorialguinea',de:'Äquatorialguinea'},{code:'ER',flag:'🇪🇷',en:'Eritrea',da:'Eritrea',de:'Eritrea'},{code:'EE',flag:'🇪🇪',en:'Estonia',da:'Estland',de:'Estland'},{code:'SZ',flag:'🇸🇿',en:'Eswatini',da:'Eswatini',de:'Eswatini'},{code:'ET',flag:'🇪🇹',en:'Ethiopia',da:'Etiopien',de:'Äthiopien'},{code:'FJ',flag:'🇫🇯',en:'Fiji',da:'Fiji',de:'Fidschi'},{code:'FI',flag:'🇫🇮',en:'Finland',da:'Finland',de:'Finnland'},{code:'FR',flag:'🇫🇷',en:'France',da:'Frankrig',de:'Frankreich'},{code:'GA',flag:'🇬🇦',en:'Gabon',da:'Gabon',de:'Gabun'},{code:'GM',flag:'🇬🇲',en:'Gambia',da:'Gambia',de:'Gambia'},{code:'GE',flag:'🇬🇪',en:'Georgia',da:'Georgien',de:'Georgien'},{code:'DE',flag:'🇩🇪',en:'Germany',da:'Tyskland',de:'Deutschland'},{code:'GH',flag:'🇬🇭',en:'Ghana',da:'Ghana',de:'Ghana'},{code:'GR',flag:'🇬🇷',en:'Greece',da:'Grækenland',de:'Griechenland'},{code:'GD',flag:'🇬🇩',en:'Grenada',da:'Grenada',de:'Grenada'},{code:'GT',flag:'🇬🇹',en:'Guatemala',da:'Guatemala',de:'Guatemala'},{code:'GN',flag:'🇬🇳',en:'Guinea',da:'Guinea',de:'Guinea'},{code:'GW',flag:'🇬🇼',en:'Guinea-Bissau',da:'Guinea-Bissau',de:'Guinea-Bissau'},{code:'GY',flag:'🇬🇾',en:'Guyana',da:'Guyana',de:'Guyana'},{code:'HT',flag:'🇭🇹',en:'Haiti',da:'Haiti',de:'Haiti'},{code:'HN',flag:'🇭🇳',en:'Honduras',da:'Honduras',de:'Honduras'},{code:'HU',flag:'🇭🇺',en:'Hungary',da:'Ungarn',de:'Ungarn'},{code:'IS',flag:'🇮🇸',en:'Iceland',da:'Island',de:'Island'},{code:'IN',flag:'🇮🇳',en:'India',da:'Indien',de:'Indien'},{code:'ID',flag:'🇮🇩',en:'Indonesia',da:'Indonesien',de:'Indonesien'},{code:'IR',flag:'🇮🇷',en:'Iran',da:'Iran',de:'Iran'},{code:'IQ',flag:'🇮🇶',en:'Iraq',da:'Irak',de:'Irak'},{code:'IE',flag:'🇮🇪',en:'Ireland',da:'Irland',de:'Irland'},{code:'IL',flag:'🇮🇱',en:'Israel',da:'Israel',de:'Israel'},{code:'IT',flag:'🇮🇹',en:'Italy',da:'Italien',de:'Italien'},{code:'JM',flag:'🇯🇲',en:'Jamaica',da:'Jamaica',de:'Jamaika'},{code:'JP',flag:'🇯🇵',en:'Japan',da:'Japan',de:'Japan'},{code:'JO',flag:'🇯🇴',en:'Jordan',da:'Jordan',de:'Jordanien'},{code:'KZ',flag:'🇰🇿',en:'Kazakhstan',da:'Kasakhstan',de:'Kasachstan'},{code:'KE',flag:'🇰🇪',en:'Kenya',da:'Kenya',de:'Kenia'},{code:'KI',flag:'🇰🇮',en:'Kiribati',da:'Kiribati',de:'Kiribati'},{code:'KW',flag:'🇰🇼',en:'Kuwait',da:'Kuwait',de:'Kuwait'},{code:'KG',flag:'🇰🇬',en:'Kyrgyzstan',da:'Kirgisistan',de:'Kirgisistan'},{code:'LA',flag:'🇱🇦',en:'Laos',da:'Laos',de:'Laos'},{code:'LV',flag:'🇱🇻',en:'Latvia',da:'Letland',de:'Lettland'},{code:'LB',flag:'🇱🇧',en:'Lebanon',da:'Libanon',de:'Libanon'},{code:'LS',flag:'🇱🇸',en:'Lesotho',da:'Lesotho',de:'Lesotho'},{code:'LR',flag:'🇱🇷',en:'Liberia',da:'Liberia',de:'Liberia'},{code:'LY',flag:'🇱🇾',en:'Libya',da:'Libyen',de:'Libyen'},{code:'LI',flag:'🇱🇮',en:'Liechtenstein',da:'Liechtenstein',de:'Liechtenstein'},{code:'LT',flag:'🇱🇹',en:'Lithuania',da:'Litauen',de:'Litauen'},{code:'LU',flag:'🇱🇺',en:'Luxembourg',da:'Luxembourg',de:'Luxemburg'},{code:'MG',flag:'🇲🇬',en:'Madagascar',da:'Madagaskar',de:'Madagaskar'},{code:'MW',flag:'🇲🇼',en:'Malawi',da:'Malawi',de:'Malawi'},{code:'MY',flag:'🇲🇾',en:'Malaysia',da:'Malaysia',de:'Malaysia'},{code:'MV',flag:'🇲🇻',en:'Maldives',da:'Maldiverne',de:'Malediven'},{code:'ML',flag:'🇲🇱',en:'Mali',da:'Mali',de:'Mali'},{code:'MT',flag:'🇲🇹',en:'Malta',da:'Malta',de:'Malta'},{code:'MH',flag:'🇲🇭',en:'Marshall Islands',da:'Marshalløerne',de:'Marshallinseln'},{code:'MR',flag:'🇲🇷',en:'Mauritania',da:'Mauretanien',de:'Mauretanien'},{code:'MU',flag:'🇲🇺',en:'Mauritius',da:'Mauritius',de:'Mauritius'},{code:'MX',flag:'🇲🇽',en:'Mexico',da:'Mexico',de:'Mexiko'},{code:'FM',flag:'🇫🇲',en:'Micronesia',da:'Mikronesien',de:'Mikronesien'},{code:'MD',flag:'🇲🇩',en:'Moldova',da:'Moldova',de:'Moldawien'},{code:'MC',flag:'🇲🇨',en:'Monaco',da:'Monaco',de:'Monaco'},{code:'MN',flag:'🇲🇳',en:'Mongolia',da:'Mongoliet',de:'Mongolei'},{code:'ME',flag:'🇲🇪',en:'Montenegro',da:'Montenegro',de:'Montenegro'},{code:'MA',flag:'🇲🇦',en:'Morocco',da:'Marokko',de:'Marokko'},{code:'MZ',flag:'🇲🇿',en:'Mozambique',da:'Mozambique',de:'Mosambik'},{code:'MM',flag:'🇲🇲',en:'Myanmar',da:'Myanmar',de:'Myanmar'},{code:'NA',flag:'🇳🇦',en:'Namibia',da:'Namibia',de:'Namibia'},{code:'NR',flag:'🇳🇷',en:'Nauru',da:'Nauru',de:'Nauru'},{code:'NP',flag:'🇳🇵',en:'Nepal',da:'Nepal',de:'Nepal'},{code:'NL',flag:'🇳🇱',en:'Netherlands',da:'Holland',de:'Niederlande'},{code:'NZ',flag:'🇳🇿',en:'New Zealand',da:'New Zealand',de:'Neuseeland'},{code:'NI',flag:'🇳🇮',en:'Nicaragua',da:'Nicaragua',de:'Nicaragua'},{code:'NE',flag:'🇳🇪',en:'Niger',da:'Niger',de:'Niger'},{code:'NG',flag:'🇳🇬',en:'Nigeria',da:'Nigeria',de:'Nigeria'},{code:'NO',flag:'🇳🇴',en:'Norway',da:'Norge',de:'Norwegen'},{code:'OM',flag:'🇴🇲',en:'Oman',da:'Oman',de:'Oman'},{code:'PK',flag:'🇵🇰',en:'Pakistan',da:'Pakistan',de:'Pakistan'},{code:'PW',flag:'🇵🇼',en:'Palau',da:'Palau',de:'Palau'},{code:'PA',flag:'🇵🇦',en:'Panama',da:'Panama',de:'Panama'},{code:'PG',flag:'🇵🇬',en:'Papua New Guinea',da:'Papua Ny Guinea',de:'Papua-Neuguinea'},{code:'PY',flag:'🇵🇾',en:'Paraguay',da:'Paraguay',de:'Paraguay'},{code:'PE',flag:'🇵🇪',en:'Peru',da:'Peru',de:'Peru'},{code:'PH',flag:'🇵🇭',en:'Philippines',da:'Filippinerne',de:'Philippinen'},{code:'PL',flag:'🇵🇱',en:'Poland',da:'Polen',de:'Polen'},{code:'PT',flag:'🇵🇹',en:'Portugal',da:'Portugal',de:'Portugal'},{code:'QA',flag:'🇶🇦',en:'Qatar',da:'Qatar',de:'Katar'},{code:'RO',flag:'🇷🇴',en:'Romania',da:'Rumænien',de:'Rumänien'},{code:'RU',flag:'🇷🇺',en:'Russia',da:'Rusland',de:'Russland'},{code:'RW',flag:'🇷🇼',en:'Rwanda',da:'Rwanda',de:'Ruanda'},{code:'KN',flag:'🇰🇳',en:'Saint Kitts and Nevis',da:'Saint Kitts og Nevis',de:'St. Kitts und Nevis'},{code:'LC',flag:'🇱🇨',en:'Saint Lucia',da:'Saint Lucia',de:'St. Lucia'},{code:'VC',flag:'🇻🇨',en:'Saint Vincent and the Grenadines',da:'Saint Vincent og Grenadinerne',de:'St. Vincent und die Grenadinen'},{code:'WS',flag:'🇼🇸',en:'Samoa',da:'Samoa',de:'Samoa'},{code:'SM',flag:'🇸🇲',en:'San Marino',da:'San Marino',de:'San Marino'},{code:'ST',flag:'🇸🇹',en:'Sao Tome and Principe',da:'São Tomé og Príncipe',de:'São Tomé und Príncipe'},{code:'SA',flag:'🇸🇦',en:'Saudi Arabia',da:'Saudi-Arabien',de:'Saudi-Arabien'},{code:'SN',flag:'🇸🇳',en:'Senegal',da:'Senegal',de:'Senegal'},{code:'RS',flag:'🇷🇸',en:'Serbia',da:'Serbien',de:'Serbien'},{code:'SC',flag:'🇸🇨',en:'Seychelles',da:'Seychellerne',de:'Seychellen'},{code:'SL',flag:'🇸🇱',en:'Sierra Leone',da:'Sierra Leone',de:'Sierra Leone'},{code:'SG',flag:'🇸🇬',en:'Singapore',da:'Singapore',de:'Singapur'},{code:'SK',flag:'🇸🇰',en:'Slovakia',da:'Slovakiet',de:'Slowakei'},{code:'SI',flag:'🇸🇮',en:'Slovenia',da:'Slovenien',de:'Slowenien'},{code:'SB',flag:'🇸🇧',en:'Solomon Islands',da:'Salomonøerne',de:'Salomonen'},{code:'SO',flag:'🇸🇴',en:'Somalia',da:'Somalia',de:'Somalia'},{code:'ZA',flag:'🇿🇦',en:'South Africa',da:'Sydafrika',de:'Südafrika'},{code:'SS',flag:'🇸🇸',en:'South Sudan',da:'Sydsudan',de:'Südsudan'},{code:'ES',flag:'🇪🇸',en:'Spain',da:'Spanien',de:'Spanien'},{code:'LK',flag:'🇱🇰',en:'Sri Lanka',da:'Sri Lanka',de:'Sri Lanka'},{code:'SD',flag:'🇸🇩',en:'Sudan',da:'Sudan',de:'Sudan'},{code:'SR',flag:'🇸🇷',en:'Suriname',da:'Surinam',de:'Suriname'},{code:'SE',flag:'🇸🇪',en:'Sweden',da:'Sverige',de:'Schweden'},{code:'CH',flag:'🇨🇭',en:'Switzerland',da:'Schweiz',de:'Schweiz'},{code:'SY',flag:'🇸🇾',en:'Syria',da:'Syrien',de:'Syrien'},{code:'TW',flag:'🇹🇼',en:'Taiwan',da:'Taiwan',de:'Taiwan'},{code:'TJ',flag:'🇹🇯',en:'Tajikistan',da:'Tadsjikistan',de:'Tadschikistan'},{code:'TZ',flag:'🇹🇿',en:'Tanzania',da:'Tanzania',de:'Tansania'},{code:'TH',flag:'🇹🇭',en:'Thailand',da:'Thailand',de:'Thailand'},{code:'TL',flag:'🇹🇱',en:'Timor-Leste',da:'Timor-Leste',de:'Timor-Leste'},{code:'TG',flag:'🇹🇬',en:'Togo',da:'Togo',de:'Togo'},{code:'TO',flag:'🇹🇴',en:'Tonga',da:'Tonga',de:'Tonga'},{code:'TT',flag:'🇹🇹',en:'Trinidad and Tobago',da:'Trinidad og Tobago',de:'Trinidad und Tobago'},{code:'TN',flag:'🇹🇳',en:'Tunisia',da:'Tunesien',de:'Tunesien'},{code:'TR',flag:'🇹🇷',en:'Turkey',da:'Tyrkiet',de:'Türkei'},{code:'TM',flag:'🇹🇲',en:'Turkmenistan',da:'Turkmenistan',de:'Turkmenistan'},{code:'TV',flag:'🇹🇻',en:'Tuvalu',da:'Tuvalu',de:'Tuvalu'},{code:'UG',flag:'🇺🇬',en:'Uganda',da:'Uganda',de:'Uganda'},{code:'UA',flag:'🇺🇦',en:'Ukraine',da:'Ukraine',de:'Ukraine'},{code:'AE',flag:'🇦🇪',en:'United Arab Emirates',da:'De Forenede Arabiske Emirater',de:'Vereinigte Arabische Emirate'},{code:'GB',flag:'🇬🇧',en:'United Kingdom',da:'Storbritannien',de:'Vereinigtes Königreich'},{code:'US',flag:'🇺🇸',en:'United States',da:'USA',de:'Vereinigte Staaten'},{code:'UY',flag:'🇺🇾',en:'Uruguay',da:'Uruguay',de:'Uruguay'},{code:'UZ',flag:'🇺🇿',en:'Uzbekistan',da:'Usbekistan',de:'Usbekistan'},{code:'VU',flag:'🇻🇺',en:'Vanuatu',da:'Vanuatu',de:'Vanuatu'},{code:'VE',flag:'🇻🇪',en:'Venezuela',da:'Venezuela',de:'Venezuela'},{code:'VN',flag:'🇻🇳',en:'Vietnam',da:'Vietnam',de:'Vietnam'},{code:'YE',flag:'🇾🇪',en:'Yemen',da:'Yemen',de:'Jemen'},{code:'ZM',flag:'🇿🇲',en:'Zambia',da:'Zambia',de:'Sambia'},{code:'ZW',flag:'🇿🇼',en:'Zimbabwe',da:'Zimbabwe',de:'Simbabwe'}
     ];
 
     let selectedCountry = _userProfile.country || JSON.parse(localStorage.getItem('blockjump_country') || 'null');
@@ -1099,15 +719,10 @@
       }
     });
 
-    document.getElementById('mm-country-search').addEventListener('input', e => {
-      renderCountryList(e.target.value);
-    });
-
+    document.getElementById('mm-country-search').addEventListener('input', e => { renderCountryList(e.target.value); });
     document.addEventListener('click', (e) => {
       const dd = document.getElementById('mm-country-dropdown');
-      if (dd.style.display !== 'none' && !e.target.closest('.mm-profile-field')) {
-        dd.style.display = 'none';
-      }
+      if (dd.style.display !== 'none' && !e.target.closest('.mm-profile-field')) dd.style.display = 'none';
     });
 
     document.getElementById('mm-username-input').value = currentUsername;
@@ -1177,21 +792,17 @@
     }
 
     let soundVols = loadSoundVols();
-
-    function saveSoundVol(key, val) {
-      soundVols[key] = val;
-      localStorage.setItem('soundVol_' + key, val);
-    }
+    function saveSoundVol(key, val) { soundVols[key] = val; localStorage.setItem('soundVol_' + key, val); }
 
     const LAVA_START_SPEED = 0.10;
     const LAVA_SPEED_INCREASE_RATE = 0.08;
     const LAVA_HEIGHT_BOOST_FACTOR = 0.05;
 
     const DIFFICULTY_SETTINGS = {
-      easy: { maxSpeed: 1.25, name: 'Easy' },
-      medium: { maxSpeed: 1.75, name: 'Medium' },
-      hard: { maxSpeed: 2.25, name: 'Hard' },
-      impossible: { maxSpeed: 3, name: 'Impossible' }
+      easy: { maxSpeed:1.25, name:'Easy' },
+      medium: { maxSpeed:1.75, name:'Medium' },
+      hard: { maxSpeed:2.25, name:'Hard' },
+      impossible: { maxSpeed:3, name:'Impossible' }
     };
 
     const PLATFORM_DISTANCE_X_MIN = 300;
@@ -1204,62 +815,62 @@
     const LAVA_HITBOX_OFFSET = 0;
 
     const ACHIEVEMENT_DEFS = [
-      { id: 'easy_250', mode: 'easy', type: 'height', threshold: 2500, name: 'Easy Climber I', desc: 'Reach a height of 250 on Easy difficulty — a solid start showing you can navigate the basic platforms and avoid the rising lava.' },
-      { id: 'easy_500', mode: 'easy', type: 'height', threshold: 5000, name: 'Easy Climber II', desc: 'Reach a height of 500 on Easy difficulty — you are starting to read platform patterns and managing your double jump wisely.' },
-      { id: 'easy_1000', mode: 'easy', type: 'height', threshold: 10000, name: 'Easy Climber III', desc: 'Reach a height of 1000 on Easy difficulty — at this point blue and orange platforms appear more often, stay focused.' },
-      { id: 'easy_2500', mode: 'easy', type: 'height', threshold: 25000, name: 'Easy Expert', desc: 'Reach a height of 2500 on Easy difficulty — you are now handling the lava acceleration and tricky platform sequences with skill.' },
-      { id: 'easy_5000', mode: 'easy', type: 'height', threshold: 50000, name: 'Easy Master', desc: 'Reach a height of 5000 on Easy difficulty — a major milestone showing true mastery of movement and platform reading on Easy.' },
-      { id: 'easy_10000', mode: 'easy', type: 'height', threshold: 100000, name: 'Easy Legend', desc: 'Reach a height of 10000 on Easy difficulty — an incredible run that demonstrates near-perfect play on Easy mode.' },
-      { id: 'easy_survive_30s', mode: 'easy', type: 'time', threshold: 30, name: 'Easy 30 Seconds', desc: 'Survive for 30 seconds on Easy difficulty — staying alive while the lava rises requires constant movement and awareness.' },
-      { id: 'easy_survive_1m', mode: 'easy', type: 'time', threshold: 60, name: 'Easy 1 Minute', desc: 'Survive for 1 full minute on Easy difficulty — the lava has sped up considerably by this point, keep jumping!' },
-      { id: 'easy_survive_3m', mode: 'easy', type: 'time', threshold: 180, name: 'Easy 3 Minutes', desc: 'Survive for 3 minutes on Easy difficulty — a sustained run that tests your stamina and decision-making under pressure.' },
-      { id: 'easy_survive_5m', mode: 'easy', type: 'time', threshold: 300, name: 'Easy 5 Minutes', desc: 'Survive for 5 minutes on Easy difficulty — the lava is relentless at this stage, this is a genuinely impressive run.' },
-      { id: 'easy_survive_10m', mode: 'easy', type: 'time', threshold: 600, name: 'Easy 10 Minutes', desc: 'Survive for 10 minutes on Easy difficulty — this is among the longest runs most players will ever achieve on Easy.' },
-      { id: 'easy_survive_15m', mode: 'easy', type: 'time', threshold: 900, name: 'Easy 15 Minutes', desc: 'Survive for 15 minutes on Easy difficulty — a legendary time that puts you among the very best Easy players ever.' },
-      { id: 'medium_250', mode: 'medium', type: 'height', threshold: 2500, name: 'Medium Climber I', desc: 'Reach a height of 250 on Medium difficulty — Medium introduces faster lava and more kill bricks, this is no small feat.' },
-      { id: 'medium_500', mode: 'medium', type: 'height', threshold: 5000, name: 'Medium Climber II', desc: 'Reach a height of 500 on Medium difficulty — you are now consistently clearing tricky platform layouts mid-run.' },
-      { id: 'medium_1000', mode: 'medium', type: 'height', threshold: 10000, name: 'Medium Climber III', desc: 'Reach a height of 1000 on Medium difficulty — the density of blue disappearing platforms increases heavily here.' },
-      { id: 'medium_2500', mode: 'medium', type: 'height', threshold: 25000, name: 'Medium Expert', desc: 'Reach a height of 2500 on Medium difficulty — exceptional performance handling the full range of Medium platform challenges.' },
-      { id: 'medium_5000', mode: 'medium', type: 'height', threshold: 50000, name: 'Medium Master', desc: 'Reach a height of 5000 on Medium difficulty — true mastery of timing, movement, and risk management on Medium.' },
-      { id: 'medium_10000', mode: 'medium', type: 'height', threshold: 100000, name: 'Medium Legend', desc: 'Reach a height of 10000 on Medium difficulty — an extraordinary run that very few players will ever accomplish.' },
-      { id: 'medium_survive_30s', mode: 'medium', type: 'time', threshold: 30, name: 'Medium 30 Seconds', desc: 'Survive for 30 seconds on Medium difficulty — the faster lava speed means every second counts more than on Easy.' },
-      { id: 'medium_survive_1m', mode: 'medium', type: 'time', threshold: 60, name: 'Medium 1 Minute', desc: 'Survive for 1 full minute on Medium difficulty — a solid run showing real competence on the standard difficulty.' },
-      { id: 'medium_survive_3m', mode: 'medium', type: 'time', threshold: 180, name: 'Medium 3 Minutes', desc: 'Survive for 3 minutes on Medium difficulty — the lava is moving significantly faster, great endurance here.' },
-      { id: 'medium_survive_5m', mode: 'medium', type: 'time', threshold: 300, name: 'Medium 5 Minutes', desc: 'Survive for 5 minutes on Medium difficulty — a seriously impressive time that showcases advanced platform game skills.' },
-      { id: 'medium_survive_10m', mode: 'medium', type: 'time', threshold: 600, name: 'Medium 10 Minutes', desc: 'Survive for 10 minutes on Medium difficulty — only the very best players consistently reach this survival time.' },
-      { id: 'medium_survive_15m', mode: 'medium', type: 'time', threshold: 900, name: 'Medium 15 Minutes', desc: 'Survive for 15 minutes on Medium difficulty — a god-tier time that represents the absolute peak of Medium performance.' },
-      { id: 'hard_250', mode: 'hard', type: 'height', threshold: 2500, name: 'Hard Climber I', desc: 'Reach a height of 250 on Hard difficulty — Hard mode lava accelerates brutally fast, getting here shows real skill.' },
-      { id: 'hard_500', mode: 'hard', type: 'height', threshold: 5000, name: 'Hard Climber II', desc: 'Reach a height of 500 on Hard difficulty — you are navigating a chaotic mix of disappearing, moving, and kill platforms.' },
-      { id: 'hard_1000', mode: 'hard', type: 'height', threshold: 10000, name: 'Hard Climber III', desc: 'Reach a height of 1000 on Hard difficulty — the platform density and lava speed at this point is extremely punishing.' },
-      { id: 'hard_2500', mode: 'hard', type: 'height', threshold: 25000, name: 'Hard Expert', desc: 'Reach a height of 2500 on Hard difficulty — only highly skilled players can maintain this level of play on Hard mode.' },
-      { id: 'hard_5000', mode: 'hard', type: 'height', threshold: 50000, name: 'Hard Master', desc: 'Reach a height of 5000 on Hard difficulty — an outstanding achievement that places you among the elite Hard players.' },
-      { id: 'hard_10000', mode: 'hard', type: 'height', threshold: 100000, name: 'Hard Legend', desc: 'Reach a height of 10000 on Hard difficulty — a legendary milestone that almost no one ever reaches on Hard mode.' },
-      { id: 'hard_survive_30s', mode: 'hard', type: 'time', threshold: 30, name: 'Hard 30 Seconds', desc: 'Survive for 30 seconds on Hard difficulty — just staying alive this long on Hard mode is a genuine accomplishment.' },
-      { id: 'hard_survive_1m', mode: 'hard', type: 'time', threshold: 60, name: 'Hard 1 Minute', desc: 'Survive for 1 full minute on Hard difficulty — the lava barely gives you time to breathe, great concentration.' },
-      { id: 'hard_survive_3m', mode: 'hard', type: 'time', threshold: 180, name: 'Hard 3 Minutes', desc: 'Survive for 3 minutes on Hard difficulty — an elite survival time that demands near-perfect play throughout.' },
-      { id: 'hard_survive_5m', mode: 'hard', type: 'time', threshold: 300, name: 'Hard 5 Minutes', desc: 'Survive for 5 minutes on Hard difficulty — one of the most difficult achievements in the game, truly world-class.' },
-      { id: 'hard_survive_10m', mode: 'hard', type: 'time', threshold: 600, name: 'Hard 10 Minutes', desc: 'Survive for 10 minutes on Hard difficulty — if you have this, you are one of the best Block Jump players alive.' },
-      { id: 'hard_survive_15m', mode: 'hard', type: 'time', threshold: 900, name: 'Hard 15 Minutes', desc: 'Survive for 15 minutes on Hard difficulty — a mythical achievement. Almost impossible. Are you even human?' },
-      { id: 'impossible_250', mode: 'impossible', type: 'height', threshold: 2500, name: 'Impossible Climber I', desc: 'Reach a height of 250 on Impossible difficulty — the lava speed is brutal from the start. Respect for even attempting this.' },
-      { id: 'impossible_500', mode: 'impossible', type: 'height', threshold: 5000, name: 'Impossible Climber II', desc: 'Reach a height of 500 on Impossible difficulty — the platform variety at full speed is overwhelming. Incredible result.' },
-      { id: 'impossible_1000', mode: 'impossible', type: 'height', threshold: 10000, name: 'Impossible Climber III', desc: 'Reach a height of 1000 on Impossible difficulty — at max lava speed with complex platforms, this is elite territory.' },
-      { id: 'impossible_2500', mode: 'impossible', type: 'height', threshold: 25000, name: 'Impossible Expert', desc: 'Reach a height of 2500 on Impossible difficulty — only a handful of players will ever see this achievement unlocked.' },
-      { id: 'impossible_5000', mode: 'impossible', type: 'height', threshold: 50000, name: 'Impossible Master', desc: 'Reach a height of 5000 on Impossible difficulty — a crowning achievement reserved for the absolute best players.' },
-      { id: 'impossible_10000', mode: 'impossible', type: 'height', threshold: 100000, name: 'Impossible Legend', desc: 'Reach a height of 10000 on Impossible difficulty — this may be the rarest achievement in the entire game. Truly legendary.' },
-      { id: 'impossible_survive_30s', mode: 'impossible', type: 'time', threshold: 30, name: 'Impossible 30 Seconds', desc: 'Survive for 30 seconds on Impossible difficulty — the lava hits max speed almost immediately. Any second is precious.' },
-      { id: 'impossible_survive_1m', mode: 'impossible', type: 'time', threshold: 60, name: 'Impossible 1 Minute', desc: 'Survive for 1 full minute on Impossible difficulty — a minute of pure chaos. Exceptional reflexes required.' },
-      { id: 'impossible_survive_3m', mode: 'impossible', type: 'time', threshold: 180, name: 'Impossible 3 Minutes', desc: 'Survive for 3 minutes on Impossible difficulty — you have mastered every platform type and the lava is your friend now.' },
-      { id: 'impossible_survive_5m', mode: 'impossible', type: 'time', threshold: 300, name: 'Impossible 5 Minutes', desc: 'Survive for 5 minutes on Impossible difficulty — a world-class survival time on the hardest setting available.' },
-      { id: 'impossible_survive_10m', mode: 'impossible', type: 'time', threshold: 600, name: 'Impossible 10 Minutes', desc: 'Survive for 10 minutes on Impossible difficulty — if this is unlocked, you may be the best Block Jump player in the world.' },
-      { id: 'impossible_survive_15m', mode: 'impossible', type: 'time', threshold: 900, name: 'Impossible 15 Minutes', desc: 'Survive for 15 minutes on Impossible difficulty — a feat so rare it borders on mythical. You have transcended the game.' },
-      { id: 'death_5', mode: 'general', type: 'death', threshold: 5, name: 'First Blood', desc: 'Die 5 times total across all runs. The lava gets everyone eventually — you are just getting started on your journey.' },
-      { id: 'death_10', mode: 'general', type: 'death', threshold: 10, name: 'Frequent Flier', desc: 'Die 10 times total. You are learning the hard way, but every death teaches you something new about the platforms.' },
-      { id: 'death_25', mode: 'general', type: 'death', threshold: 25, name: 'Veteran of Failure', desc: 'Die 25 times total. You have respawned more times than most, and your persistence is building real game sense.' },
-      { id: 'death_50', mode: 'general', type: 'death', threshold: 50, name: 'Hardcore Repeater', desc: 'Die 50 times total. Half a hundred deaths and still going — your determination is the true achievement here.' },
-      { id: 'death_100', mode: 'general', type: 'death', threshold: 100, name: 'Century of Deaths', desc: 'Die 100 times total. One hundred trips into the lava. At this point you practically live in it. Keep climbing.' },
-      { id: 'death_250', mode: 'general', type: 'death', threshold: 250, name: 'Lava Enthusiast', desc: 'Die 250 times total. You have spent more time dying than most people spend playing. Your dedication is unmatched.' },
-      { id: 'death_500', mode: 'general', type: 'death', threshold: 500, name: 'Death Addict', desc: 'Die 500 times total. Five hundred deaths means five hundred attempts. The lava knows your name by now.' },
-      { id: 'death_1000', mode: 'general', type: 'death', threshold: 1000, name: 'One Thousand Deaths', desc: 'Die 1000 times total. A thousand deaths. You have outlasted every obstacle through sheer refusal to quit. Legendary.' }
+      {id:'easy_250',mode:'easy',type:'height',threshold:2500,name:'Easy Climber I',desc:'Reach a height of 250 on Easy difficulty — a solid start showing you can navigate the basic platforms and avoid the rising lava.'},
+      {id:'easy_500',mode:'easy',type:'height',threshold:5000,name:'Easy Climber II',desc:'Reach a height of 500 on Easy difficulty — you are starting to read platform patterns and managing your double jump wisely.'},
+      {id:'easy_1000',mode:'easy',type:'height',threshold:10000,name:'Easy Climber III',desc:'Reach a height of 1000 on Easy difficulty — at this point blue and orange platforms appear more often, stay focused.'},
+      {id:'easy_2500',mode:'easy',type:'height',threshold:25000,name:'Easy Expert',desc:'Reach a height of 2500 on Easy difficulty — you are now handling the lava acceleration and tricky platform sequences with skill.'},
+      {id:'easy_5000',mode:'easy',type:'height',threshold:50000,name:'Easy Master',desc:'Reach a height of 5000 on Easy difficulty — a major milestone showing true mastery of movement and platform reading on Easy.'},
+      {id:'easy_10000',mode:'easy',type:'height',threshold:100000,name:'Easy Legend',desc:'Reach a height of 10000 on Easy difficulty — an incredible run that demonstrates near-perfect play on Easy mode.'},
+      {id:'easy_survive_30s',mode:'easy',type:'time',threshold:30,name:'Easy 30 Seconds',desc:'Survive for 30 seconds on Easy difficulty — staying alive while the lava rises requires constant movement and awareness.'},
+      {id:'easy_survive_1m',mode:'easy',type:'time',threshold:60,name:'Easy 1 Minute',desc:'Survive for 1 full minute on Easy difficulty — the lava has sped up considerably by this point, keep jumping!'},
+      {id:'easy_survive_3m',mode:'easy',type:'time',threshold:180,name:'Easy 3 Minutes',desc:'Survive for 3 minutes on Easy difficulty — a sustained run that tests your stamina and decision-making under pressure.'},
+      {id:'easy_survive_5m',mode:'easy',type:'time',threshold:300,name:'Easy 5 Minutes',desc:'Survive for 5 minutes on Easy difficulty — the lava is relentless at this stage, this is a genuinely impressive run.'},
+      {id:'easy_survive_10m',mode:'easy',type:'time',threshold:600,name:'Easy 10 Minutes',desc:'Survive for 10 minutes on Easy difficulty — this is among the longest runs most players will ever achieve on Easy.'},
+      {id:'easy_survive_15m',mode:'easy',type:'time',threshold:900,name:'Easy 15 Minutes',desc:'Survive for 15 minutes on Easy difficulty — a legendary time that puts you among the very best Easy players ever.'},
+      {id:'medium_250',mode:'medium',type:'height',threshold:2500,name:'Medium Climber I',desc:'Reach a height of 250 on Medium difficulty — Medium introduces faster lava and more kill bricks, this is no small feat.'},
+      {id:'medium_500',mode:'medium',type:'height',threshold:5000,name:'Medium Climber II',desc:'Reach a height of 500 on Medium difficulty — you are now consistently clearing tricky platform layouts mid-run.'},
+      {id:'medium_1000',mode:'medium',type:'height',threshold:10000,name:'Medium Climber III',desc:'Reach a height of 1000 on Medium difficulty — the density of blue disappearing platforms increases heavily here.'},
+      {id:'medium_2500',mode:'medium',type:'height',threshold:25000,name:'Medium Expert',desc:'Reach a height of 2500 on Medium difficulty — exceptional performance handling the full range of Medium platform challenges.'},
+      {id:'medium_5000',mode:'medium',type:'height',threshold:50000,name:'Medium Master',desc:'Reach a height of 5000 on Medium difficulty — true mastery of timing, movement, and risk management on Medium.'},
+      {id:'medium_10000',mode:'medium',type:'height',threshold:100000,name:'Medium Legend',desc:'Reach a height of 10000 on Medium difficulty — an extraordinary run that very few players will ever accomplish.'},
+      {id:'medium_survive_30s',mode:'medium',type:'time',threshold:30,name:'Medium 30 Seconds',desc:'Survive for 30 seconds on Medium difficulty — the faster lava speed means every second counts more than on Easy.'},
+      {id:'medium_survive_1m',mode:'medium',type:'time',threshold:60,name:'Medium 1 Minute',desc:'Survive for 1 full minute on Medium difficulty — a solid run showing real competence on the standard difficulty.'},
+      {id:'medium_survive_3m',mode:'medium',type:'time',threshold:180,name:'Medium 3 Minutes',desc:'Survive for 3 minutes on Medium difficulty — the lava is moving significantly faster, great endurance here.'},
+      {id:'medium_survive_5m',mode:'medium',type:'time',threshold:300,name:'Medium 5 Minutes',desc:'Survive for 5 minutes on Medium difficulty — a seriously impressive time that showcases advanced platform game skills.'},
+      {id:'medium_survive_10m',mode:'medium',type:'time',threshold:600,name:'Medium 10 Minutes',desc:'Survive for 10 minutes on Medium difficulty — only the very best players consistently reach this survival time.'},
+      {id:'medium_survive_15m',mode:'medium',type:'time',threshold:900,name:'Medium 15 Minutes',desc:'Survive for 15 minutes on Medium difficulty — a god-tier time that represents the absolute peak of Medium performance.'},
+      {id:'hard_250',mode:'hard',type:'height',threshold:2500,name:'Hard Climber I',desc:'Reach a height of 250 on Hard difficulty — Hard mode lava accelerates brutally fast, getting here shows real skill.'},
+      {id:'hard_500',mode:'hard',type:'height',threshold:5000,name:'Hard Climber II',desc:'Reach a height of 500 on Hard difficulty — you are navigating a chaotic mix of disappearing, moving, and kill platforms.'},
+      {id:'hard_1000',mode:'hard',type:'height',threshold:10000,name:'Hard Climber III',desc:'Reach a height of 1000 on Hard difficulty — the platform density and lava speed at this point is extremely punishing.'},
+      {id:'hard_2500',mode:'hard',type:'height',threshold:25000,name:'Hard Expert',desc:'Reach a height of 2500 on Hard difficulty — only highly skilled players can maintain this level of play on Hard mode.'},
+      {id:'hard_5000',mode:'hard',type:'height',threshold:50000,name:'Hard Master',desc:'Reach a height of 5000 on Hard difficulty — an outstanding achievement that places you among the elite Hard players.'},
+      {id:'hard_10000',mode:'hard',type:'height',threshold:100000,name:'Hard Legend',desc:'Reach a height of 10000 on Hard difficulty — a legendary milestone that almost no one ever reaches on Hard mode.'},
+      {id:'hard_survive_30s',mode:'hard',type:'time',threshold:30,name:'Hard 30 Seconds',desc:'Survive for 30 seconds on Hard difficulty — just staying alive this long on Hard mode is a genuine accomplishment.'},
+      {id:'hard_survive_1m',mode:'hard',type:'time',threshold:60,name:'Hard 1 Minute',desc:'Survive for 1 full minute on Hard difficulty — the lava barely gives you time to breathe, great concentration.'},
+      {id:'hard_survive_3m',mode:'hard',type:'time',threshold:180,name:'Hard 3 Minutes',desc:'Survive for 3 minutes on Hard difficulty — an elite survival time that demands near-perfect play throughout.'},
+      {id:'hard_survive_5m',mode:'hard',type:'time',threshold:300,name:'Hard 5 Minutes',desc:'Survive for 5 minutes on Hard difficulty — one of the most difficult achievements in the game, truly world-class.'},
+      {id:'hard_survive_10m',mode:'hard',type:'time',threshold:600,name:'Hard 10 Minutes',desc:'Survive for 10 minutes on Hard difficulty — if you have this, you are one of the best Block Jump players alive.'},
+      {id:'hard_survive_15m',mode:'hard',type:'time',threshold:900,name:'Hard 15 Minutes',desc:'Survive for 15 minutes on Hard difficulty — a mythical achievement. Almost impossible. Are you even human?'},
+      {id:'impossible_250',mode:'impossible',type:'height',threshold:2500,name:'Impossible Climber I',desc:'Reach a height of 250 on Impossible difficulty — the lava speed is brutal from the start. Respect for even attempting this.'},
+      {id:'impossible_500',mode:'impossible',type:'height',threshold:5000,name:'Impossible Climber II',desc:'Reach a height of 500 on Impossible difficulty — the platform variety at full speed is overwhelming. Incredible result.'},
+      {id:'impossible_1000',mode:'impossible',type:'height',threshold:10000,name:'Impossible Climber III',desc:'Reach a height of 1000 on Impossible difficulty — at max lava speed with complex platforms, this is elite territory.'},
+      {id:'impossible_2500',mode:'impossible',type:'height',threshold:25000,name:'Impossible Expert',desc:'Reach a height of 2500 on Impossible difficulty — only a handful of players will ever see this achievement unlocked.'},
+      {id:'impossible_5000',mode:'impossible',type:'height',threshold:50000,name:'Impossible Master',desc:'Reach a height of 5000 on Impossible difficulty — a crowning achievement reserved for the absolute best players.'},
+      {id:'impossible_10000',mode:'impossible',type:'height',threshold:100000,name:'Impossible Legend',desc:'Reach a height of 10000 on Impossible difficulty — this may be the rarest achievement in the entire game. Truly legendary.'},
+      {id:'impossible_survive_30s',mode:'impossible',type:'time',threshold:30,name:'Impossible 30 Seconds',desc:'Survive for 30 seconds on Impossible difficulty — the lava hits max speed almost immediately. Any second is precious.'},
+      {id:'impossible_survive_1m',mode:'impossible',type:'time',threshold:60,name:'Impossible 1 Minute',desc:'Survive for 1 full minute on Impossible difficulty — a minute of pure chaos. Exceptional reflexes required.'},
+      {id:'impossible_survive_3m',mode:'impossible',type:'time',threshold:180,name:'Impossible 3 Minutes',desc:'Survive for 3 minutes on Impossible difficulty — you have mastered every platform type and the lava is your friend now.'},
+      {id:'impossible_survive_5m',mode:'impossible',type:'time',threshold:300,name:'Impossible 5 Minutes',desc:'Survive for 5 minutes on Impossible difficulty — a world-class survival time on the hardest setting available.'},
+      {id:'impossible_survive_10m',mode:'impossible',type:'time',threshold:600,name:'Impossible 10 Minutes',desc:'Survive for 10 minutes on Impossible difficulty — if this is unlocked, you may be the best Block Jump player in the world.'},
+      {id:'impossible_survive_15m',mode:'impossible',type:'time',threshold:900,name:'Impossible 15 Minutes',desc:'Survive for 15 minutes on Impossible difficulty — a feat so rare it borders on mythical. You have transcended the game.'},
+      {id:'death_5',mode:'general',type:'death',threshold:5,name:'First Blood',desc:'Die 5 times total across all runs. The lava gets everyone eventually — you are just getting started on your journey.'},
+      {id:'death_10',mode:'general',type:'death',threshold:10,name:'Frequent Flier',desc:'Die 10 times total. You are learning the hard way, but every death teaches you something new about the platforms.'},
+      {id:'death_25',mode:'general',type:'death',threshold:25,name:'Veteran of Failure',desc:'Die 25 times total. You have respawned more times than most, and your persistence is building real game sense.'},
+      {id:'death_50',mode:'general',type:'death',threshold:50,name:'Hardcore Repeater',desc:'Die 50 times total. Half a hundred deaths and still going — your determination is the true achievement here.'},
+      {id:'death_100',mode:'general',type:'death',threshold:100,name:'Century of Deaths',desc:'Die 100 times total. One hundred trips into the lava. At this point you practically live in it. Keep climbing.'},
+      {id:'death_250',mode:'general',type:'death',threshold:250,name:'Lava Enthusiast',desc:'Die 250 times total. You have spent more time dying than most people spend playing. Your dedication is unmatched.'},
+      {id:'death_500',mode:'general',type:'death',threshold:500,name:'Death Addict',desc:'Die 500 times total. Five hundred deaths means five hundred attempts. The lava knows your name by now.'},
+      {id:'death_1000',mode:'general',type:'death',threshold:1000,name:'One Thousand Deaths',desc:'Die 1000 times total. A thousand deaths. You have outlasted every obstacle through sheer refusal to quit. Legendary.'}
     ];
 
     const player = document.getElementById("player");
@@ -1310,7 +921,6 @@
     const allSoundsToggle = document.getElementById("all-sounds-toggle");
 
     const PLAYER_SIZE = 40;
-
     let x, y, velY, jumpsLeft, lowestPlatformY;
     let currentHeight, globalDifficulty, lavaY, lavaSpeed;
     let startingY = 0;
@@ -1358,10 +968,7 @@
       impossible: _getInternalScore('impossible')
     };
 
-    let survivalTimes = Object.assign(
-      { easy: 0, medium: 0, hard: 0, impossible: 0 },
-      _userProfile.survivalTimes || {}
-    );
+    let survivalTimes = Object.assign({ easy:0, medium:0, hard:0, impossible:0 }, _userProfile.survivalTimes || {});
     ['easy','medium','hard','impossible'].forEach(d => {
       const k = 'survivalTime' + d.charAt(0).toUpperCase() + d.slice(1);
       const v = parseFloat(localStorage.getItem(k) || '0');
@@ -1383,9 +990,7 @@
         _visibilityHidden = false;
         if (!paused && gameStarted && !isDead) {
           const hiddenDuration = performance.now() - _hiddenAt;
-          if (gameStartTime > 0) {
-            gameStartTime += hiddenDuration;
-          }
+          if (gameStartTime > 0) gameStartTime += hiddenDuration;
           lastFrameTime = 0;
           update();
         }
@@ -1393,9 +998,7 @@
     });
 
     function loadAchievements() {
-      if (_userProfile.achievements && Object.keys(_userProfile.achievements).length > 0) {
-        return Object.assign({}, _userProfile.achievements);
-      }
+      if (_userProfile.achievements && Object.keys(_userProfile.achievements).length > 0) return Object.assign({}, _userProfile.achievements);
       const raw = localStorage.getItem('achievements');
       if (!raw) return {};
       try { return JSON.parse(raw); } catch(e) { return {}; }
@@ -1451,15 +1054,10 @@
       const total = ACHIEVEMENT_DEFS.length;
       const completed = ACHIEVEMENT_DEFS.filter(d => unlockedAchievements[d.id]).length;
       const countEl = document.getElementById('ach-count-display');
-      if (countEl && containerId === 'achievements-list') {
-        countEl.textContent = completed + ' / ' + total + ' Achievements';
-      }
+      if (countEl && containerId === 'achievements-list') countEl.textContent = completed + ' / ' + total + ' Achievements';
       let defs = ACHIEVEMENT_DEFS;
       if (diffFilter && diffFilter !== 'all') defs = defs.filter(d => d.mode === diffFilter);
-      if (searchTerm) {
-        const s = searchTerm.toLowerCase();
-        defs = defs.filter(d => d.name.toLowerCase().includes(s) || d.desc.toLowerCase().includes(s));
-      }
+      if (searchTerm) { const s = searchTerm.toLowerCase(); defs = defs.filter(d => d.name.toLowerCase().includes(s) || d.desc.toLowerCase().includes(s)); }
       if (filterMode === 'completed') defs = defs.filter(d => unlockedAchievements[d.id]);
       else if (filterMode === 'uncompleted') defs = defs.filter(d => !unlockedAchievements[d.id]);
       defs.forEach(def => {
@@ -1494,15 +1092,10 @@
         const maxDistance = window.innerHeight;
         const vm = Math.max(0, Math.min(1, 1 - (distanceToLava / maxDistance)));
         lavaSound.volume = getSoundVol('ambient') * vm;
-      } else {
-        lavaSound.volume = 0;
-      }
+      } else { lavaSound.volume = 0; }
     }
 
-    function initializeVolumes() {
-      updateAllVolumes();
-      syncAllAudioUI();
-    }
+    function initializeVolumes() { updateAllVolumes(); syncAllAudioUI(); }
 
     function syncAllAudioUI() {
       audioRespawn.checked = audioSettings.respawn;
@@ -1514,22 +1107,15 @@
       audioAchievement.checked = audioSettings.achievement;
       allSoundsToggle.checked = allSoundsEnabled;
       const mmMirrors = {
-        'mm-audio-respawn': 'respawn', 'mm-audio-lava': 'lava', 'mm-audio-jump': 'jump',
-        'mm-audio-walking': 'walking', 'mm-audio-brick': 'brick', 'mm-audio-ambient': 'ambient',
-        'mm-audio-achievement': 'achievement'
+        'mm-audio-respawn':'respawn','mm-audio-lava':'lava','mm-audio-jump':'jump',
+        'mm-audio-walking':'walking','mm-audio-brick':'brick','mm-audio-ambient':'ambient','mm-audio-achievement':'achievement'
       };
-      Object.entries(mmMirrors).forEach(([id, key]) => {
-        const el = document.getElementById(id);
-        if (el) el.checked = audioSettings[key];
-      });
+      Object.entries(mmMirrors).forEach(([id, key]) => { const el = document.getElementById(id); if (el) el.checked = audioSettings[key]; });
       const mmAll = document.getElementById('mm-all-sounds');
       if (mmAll) mmAll.checked = allSoundsEnabled;
       SOUND_KEYS.forEach(k => {
         const v = soundVols[k];
-        ['vol-' + k, 'pvol-' + k].forEach(id => {
-          const el = document.getElementById(id);
-          if (el) el.value = v;
-        });
+        ['vol-' + k, 'pvol-' + k].forEach(id => { const el = document.getElementById(id); if (el) el.value = v; });
       });
       updateAudioRowHighlights();
     }
@@ -1538,55 +1124,23 @@
       const map = { respawn:'asr-respawn', lava:'asr-lava', jump:'asr-jump', walking:'asr-walking', brick:'asr-brick', ambient:'asr-ambient', achievement:'asr-achievement' };
       const pmap = { respawn:'pasr-respawn', lava:'pasr-lava', jump:'pasr-jump', walking:'pasr-walking', brick:'pasr-brick', ambient:'pasr-ambient', achievement:'pasr-achievement' };
       Object.entries(map).forEach(([key, id]) => {
-        const el = document.getElementById(id);
-        if (el) el.classList.toggle('audio-row-on', !!audioSettings[key]);
-        const pel = document.getElementById(pmap[key]);
-        if (pel) pel.classList.toggle('audio-row-on', !!audioSettings[key]);
+        const el = document.getElementById(id); if (el) el.classList.toggle('audio-row-on', !!audioSettings[key]);
+        const pel = document.getElementById(pmap[key]); if (pel) pel.classList.toggle('audio-row-on', !!audioSettings[key]);
       });
     }
 
-    function playRespawnSound() {
-      if (!allSoundsEnabled || !audioSettings.respawn) return;
-      respawnSound.currentTime = 0;
-      respawnSound.play().catch(() => {});
-    }
-    function playLavaDieSound() {
-      if (!allSoundsEnabled || !audioSettings.lava) return;
-      lavaDieSound.currentTime = 0.1;
-      lavaDieSound.play().catch(() => {});
-    }
-    function playJumpSound() {
-      if (!allSoundsEnabled || !audioSettings.jump) return;
-      jumpSound.currentTime = 0;
-      jumpSound.play().catch(() => {});
-    }
-    function playWalkingSound() {
-      if (!allSoundsEnabled || !audioSettings.walking) return;
-      if (walkingSound.paused) { walkingSound.currentTime = 0; walkingSound.play().catch(() => {}); }
-    }
+    function playRespawnSound() { if (!allSoundsEnabled || !audioSettings.respawn) return; respawnSound.currentTime = 0; respawnSound.play().catch(()=>{}); }
+    function playLavaDieSound() { if (!allSoundsEnabled || !audioSettings.lava) return; lavaDieSound.currentTime = 0.1; lavaDieSound.play().catch(()=>{}); }
+    function playJumpSound() { if (!allSoundsEnabled || !audioSettings.jump) return; jumpSound.currentTime = 0; jumpSound.play().catch(()=>{}); }
+    function playWalkingSound() { if (!allSoundsEnabled || !audioSettings.walking) return; if (walkingSound.paused) { walkingSound.currentTime = 0; walkingSound.play().catch(()=>{}); } }
     function stopWalkingSound() { walkingSound.pause(); walkingSound.currentTime = 0; }
-    function playKillBrickSound() {
-      if (!allSoundsEnabled || !audioSettings.brick) return;
-      killBrickSound.currentTime = 0.5;
-      killBrickSound.play().catch(() => {});
-    }
-    function playAchievementSound() {
-      if (!allSoundsEnabled || !audioSettings.achievement) return;
-      achievementSound.currentTime = 0;
-      achievementSound.play().catch(() => {});
-    }
+    function playKillBrickSound() { if (!allSoundsEnabled || !audioSettings.brick) return; killBrickSound.currentTime = 0.5; killBrickSound.play().catch(()=>{}); }
+    function playAchievementSound() { if (!allSoundsEnabled || !audioSettings.achievement) return; achievementSound.currentTime = 0; achievementSound.play().catch(()=>{}); }
     function updateLavaSound() {
       if (!allSoundsEnabled || !audioSettings.ambient) { stopLavaSound(); return; }
       const isLavaVisible = lavaY < window.innerHeight;
-      if (isLavaVisible && !lavaInView) {
-        lavaInView = true;
-        lavaSound.currentTime = 0;
-        lavaSound.play().catch(() => {});
-      } else if (!isLavaVisible && lavaInView) {
-        lavaInView = false;
-        lavaSound.pause();
-        lavaSound.currentTime = 0;
-      }
+      if (isLavaVisible && !lavaInView) { lavaInView = true; lavaSound.currentTime = 0; lavaSound.play().catch(()=>{}); }
+      else if (!isLavaVisible && lavaInView) { lavaInView = false; lavaSound.pause(); lavaSound.currentTime = 0; }
       if (isLavaVisible) updateLavaVolume();
     }
     function stopLavaSound() { lavaSound.pause(); lavaSound.currentTime = 0; lavaInView = false; }
@@ -1613,16 +1167,8 @@
       document.documentElement.style.setProperty('--text-color', customColors.txt.join(','));
     }
 
-    function toggleEffects(enabled) {
-      effectsEnabled = enabled;
-      localStorage.setItem('effectsEnabled', enabled);
-      document.body.classList.toggle('no-effects', !enabled);
-    }
-    function toggleHQ(enabled) {
-      hqEnabled = enabled;
-      localStorage.setItem('hqEnabled', enabled);
-      document.body.classList.toggle('low-quality', !enabled);
-    }
+    function toggleEffects(enabled) { effectsEnabled = enabled; localStorage.setItem('effectsEnabled', enabled); document.body.classList.toggle('no-effects', !enabled); }
+    function toggleHQ(enabled) { hqEnabled = enabled; localStorage.setItem('hqEnabled', enabled); document.body.classList.toggle('low-quality', !enabled); }
 
     function changeDifficulty(difficulty) {
       if (currentDifficulty !== difficulty) {
@@ -1644,8 +1190,7 @@
         'obbyTopHeightEasy','obbyTopHeightMedium','obbyTopHeightHard','obbyTopHeightImpossible',
         'survivalTimeEasy','survivalTimeMedium','survivalTimeHard','survivalTimeImpossible',
         'achievements','blockjump_records','blockjump_username','blockjump_country',
-        'bj_profile','bj_total_playtime','bj_deaths',
-        _UID_KEY
+        'bj_profile','bj_total_playtime','bj_deaths', _UID_KEY
       ];
       SOUND_KEYS.forEach(k => keys_to_clear.push('soundVol_' + k));
       keys_to_clear.forEach(k => localStorage.removeItem(k));
@@ -1654,73 +1199,55 @@
 
     const translations = {
       en: {
-        height: 'HEIGHT', topHeight: 'TOP', topTime: 'TOP TIME', difficulty: 'DIFFICULTY',
-        timer: 'TIME',
-        doubleJump: 'Double Jump = true', pauseHint: 'Press ESC to pause',
-        paused: 'PAUSED', continue: 'CONTINUE', extra: 'EXTRA',
-        settings: 'SETTINGS', help: 'HELP', restart: 'RESTART', back: 'BACK',
-        youDied: 'YOU DIED', respawn: 'Click / Space to Respawn',
-        helpGreen: 'Green:', helpGreenDesc: 'Safe platform',
-        helpRed: 'Red:', helpRedDesc: 'Die when landing on it',
-        helpBlue: 'Blue:', helpBlueDesc: 'Disappears after 1 second',
-        helpOrange: 'Orange:', helpOrangeDesc: 'Moving platform',
-        helpWhite: 'White/gray:', helpWhiteDesc: 'Platform you can jump through and land on',
-        helpControls: 'Controls:', helpControlsDesc: 'W/A/D/SPACE and Arrow Keys + you have double jump',
-        helpAvoid: 'Avoid the Lava!', helpPause: 'ESC to pause',
-        settingsGraphics: 'Graphics', settingsVisualEffects: 'Visual Effects',
-        settingsDifficulty: 'Difficulty', settingsGameDifficulty: 'Game Difficulty',
-        settingsAudio: 'Audio', settingsAudioSettings: 'Audio Settings',
-        settingsLanguage: 'Language', settingsLanguageLabel: 'Language',
-        audioRespawn: 'Respawn Sound', audioLava: 'Lava Death Sound',
-        audioJump: 'Jump Sound', audioWalking: 'Walking Sound',
-        audioBrick: 'Kill Brick Sound', audioAmbient: 'Lava Ambient Sound',
-        langEnglish: 'English', langDanish: 'Danish', langGerman: 'German'
+        height:'HEIGHT', topHeight:'TOP', topTime:'TOP TIME', difficulty:'DIFFICULTY', timer:'TIME',
+        doubleJump:'Double Jump = true', pauseHint:'Press ESC to pause',
+        paused:'PAUSED', continue:'CONTINUE', extra:'EXTRA', settings:'SETTINGS', help:'HELP', restart:'RESTART', back:'BACK',
+        youDied:'YOU DIED', respawn:'Click / Space to Respawn',
+        helpGreen:'Green:', helpGreenDesc:'Safe platform', helpRed:'Red:', helpRedDesc:'Die when landing on it',
+        helpBlue:'Blue:', helpBlueDesc:'Disappears after 1 second', helpOrange:'Orange:', helpOrangeDesc:'Moving platform',
+        helpWhite:'White/gray:', helpWhiteDesc:'Platform you can jump through and land on',
+        helpControls:'Controls:', helpControlsDesc:'W/A/D/SPACE and Arrow Keys + you have double jump',
+        helpAvoid:'Avoid the Lava!', helpPause:'ESC to pause',
+        settingsGraphics:'Graphics', settingsVisualEffects:'Visual Effects',
+        settingsDifficulty:'Difficulty', settingsGameDifficulty:'Game Difficulty',
+        settingsAudio:'Audio', settingsLanguage:'Language', settingsLanguageLabel:'Language',
+        audioRespawn:'Respawn Sound', audioLava:'Lava Death Sound', audioJump:'Jump Sound',
+        audioWalking:'Walking Sound', audioBrick:'Kill Brick Sound', audioAmbient:'Lava Ambient Sound',
+        langEnglish:'English', langDanish:'Danish', langGerman:'German'
       },
       da: {
-        height: 'HØJDE', topHeight: 'TOP', topTime: 'TOP TID', difficulty: 'SVÆRHEDSGRAD',
-        timer: 'TID',
-        doubleJump: 'Dobbelt Hop = sand', pauseHint: 'Tryk ESC for pause',
-        paused: 'PAUSE', continue: 'FORTSÆT', extra: 'EKSTRA',
-        settings: 'INDSTILLINGER', help: 'HJÆLP', restart: 'GENSTART', back: 'TILBAGE',
-        youDied: 'DU DØDE', respawn: 'Klik / Mellemrum for Genstart',
-        helpGreen: 'Grøn:', helpGreenDesc: 'Sikker platform',
-        helpRed: 'Rød:', helpRedDesc: 'Dør ved at lande på den',
-        helpBlue: 'Blå:', helpBlueDesc: 'Forsvinder efter 1 sekund',
-        helpOrange: 'Orange:', helpOrangeDesc: 'Bevæger sig',
-        helpWhite: 'Hvid/grålig:', helpWhiteDesc: 'Platform man kan hoppe igennem og lande på',
-        helpControls: 'Kontroller:', helpControlsDesc: 'W/A/D/MELLEMRUM og Piletaster + dobbelt hop',
-        helpAvoid: 'Undgå Lavaen!', helpPause: 'ESC for pause',
-        settingsGraphics: 'Grafik', settingsVisualEffects: 'Visuelle Effekter',
-        settingsDifficulty: 'Sværhedsgrad', settingsGameDifficulty: 'Spil Sværhedsgrad',
-        settingsAudio: 'Lyd', settingsAudioSettings: 'Lydindstillinger',
-        settingsLanguage: 'Sprog', settingsLanguageLabel: 'Sprog',
-        audioRespawn: 'Genstart Lyd', audioLava: 'Lava Døds Lyd',
-        audioJump: 'Hop Lyd', audioWalking: 'Gå Lyd',
-        audioBrick: 'Dræb Klods Lyd', audioAmbient: 'Lava Ambiente Lyd',
-        langEnglish: 'Engelsk', langDanish: 'Dansk', langGerman: 'Tysk'
+        height:'HØJDE', topHeight:'TOP', topTime:'TOP TID', difficulty:'SVÆRHEDSGRAD', timer:'TID',
+        doubleJump:'Dobbelt Hop = sand', pauseHint:'Tryk ESC for pause',
+        paused:'PAUSE', continue:'FORTSÆT', extra:'EKSTRA', settings:'INDSTILLINGER', help:'HJÆLP', restart:'GENSTART', back:'TILBAGE',
+        youDied:'DU DØDE', respawn:'Klik / Mellemrum for Genstart',
+        helpGreen:'Grøn:', helpGreenDesc:'Sikker platform', helpRed:'Rød:', helpRedDesc:'Dør ved at lande på den',
+        helpBlue:'Blå:', helpBlueDesc:'Forsvinder efter 1 sekund', helpOrange:'Orange:', helpOrangeDesc:'Bevæger sig',
+        helpWhite:'Hvid/grålig:', helpWhiteDesc:'Platform man kan hoppe igennem og lande på',
+        helpControls:'Kontroller:', helpControlsDesc:'W/A/D/MELLEMRUM og Piletaster + dobbelt hop',
+        helpAvoid:'Undgå Lavaen!', helpPause:'ESC for pause',
+        settingsGraphics:'Grafik', settingsVisualEffects:'Visuelle Effekter',
+        settingsDifficulty:'Sværhedsgrad', settingsGameDifficulty:'Spil Sværhedsgrad',
+        settingsAudio:'Lyd', settingsLanguage:'Sprog', settingsLanguageLabel:'Sprog',
+        audioRespawn:'Genstart Lyd', audioLava:'Lava Døds Lyd', audioJump:'Hop Lyd',
+        audioWalking:'Gå Lyd', audioBrick:'Dræb Klods Lyd', audioAmbient:'Lava Ambiente Lyd',
+        langEnglish:'Engelsk', langDanish:'Dansk', langGerman:'Tysk'
       },
       de: {
-        height: 'HÖHE', topHeight: 'TOP', topTime: 'BEST ZEIT', difficulty: 'SCHWIERIGKEIT',
-        timer: 'ZEIT',
-        doubleJump: 'Doppelsprung = wahr', pauseHint: 'ESC drücken zum Pausieren',
-        paused: 'PAUSIERT', continue: 'FORTSETZEN', extra: 'EXTRA',
-        settings: 'EINSTELLUNGEN', help: 'HILFE', restart: 'NEUSTART', back: 'ZURÜCK',
-        youDied: 'DU BIST GESTORBEN', respawn: 'Klick / Leertaste zum Neustart',
-        helpGreen: 'Grün:', helpGreenDesc: 'Sichere Plattform',
-        helpRed: 'Rot:', helpRedDesc: 'Stirb beim Landen darauf',
-        helpBlue: 'Blau:', helpBlueDesc: 'Verschwindet nach 1 Sekunde',
-        helpOrange: 'Orange:', helpOrangeDesc: 'Bewegende Plattform',
-        helpWhite: 'Weiß/grau:', helpWhiteDesc: 'Plattform durch die man springen und landen kann',
-        helpControls: 'Steuerung:', helpControlsDesc: 'W/A/D/LEERTASTE und Pfeiltasten + Doppelsprung',
-        helpAvoid: 'Vermeide die Lava!', helpPause: 'ESC zum Pausieren',
-        settingsGraphics: 'Grafik', settingsVisualEffects: 'Visuelle Effekte',
-        settingsDifficulty: 'Schwierigkeit', settingsGameDifficulty: 'Spiel Schwierigkeit',
-        settingsAudio: 'Audio', settingsAudioSettings: 'Audioeinstellungen',
-        settingsLanguage: 'Sprache', settingsLanguageLabel: 'Sprache',
-        audioRespawn: 'Neustart Ton', audioLava: 'Lava Tod Ton',
-        audioJump: 'Sprung Ton', audioWalking: 'Lauf Ton',
-        audioBrick: 'Kill Brick Ton', audioAmbient: 'Lava Ambiente Ton',
-        langEnglish: 'Englisch', langDanish: 'Dänisch', langGerman: 'Deutsch'
+        height:'HÖHE', topHeight:'TOP', topTime:'BEST ZEIT', difficulty:'SCHWIERIGKEIT', timer:'ZEIT',
+        doubleJump:'Doppelsprung = wahr', pauseHint:'ESC drücken zum Pausieren',
+        paused:'PAUSIERT', continue:'FORTSETZEN', extra:'EXTRA', settings:'EINSTELLUNGEN', help:'HILFE', restart:'NEUSTART', back:'ZURÜCK',
+        youDied:'DU BIST GESTORBEN', respawn:'Klick / Leertaste zum Neustart',
+        helpGreen:'Grün:', helpGreenDesc:'Sichere Plattform', helpRed:'Rot:', helpRedDesc:'Stirb beim Landen darauf',
+        helpBlue:'Blau:', helpBlueDesc:'Verschwindet nach 1 Sekunde', helpOrange:'Orange:', helpOrangeDesc:'Bewegende Plattform',
+        helpWhite:'Weiß/grau:', helpWhiteDesc:'Plattform durch die man springen und landen kann',
+        helpControls:'Steuerung:', helpControlsDesc:'W/A/D/LEERTASTE und Pfeiltasten + Doppelsprung',
+        helpAvoid:'Vermeide die Lava!', helpPause:'ESC zum Pausieren',
+        settingsGraphics:'Grafik', settingsVisualEffects:'Visuelle Effekte',
+        settingsDifficulty:'Schwierigkeit', settingsGameDifficulty:'Spiel Schwierigkeit',
+        settingsAudio:'Audio', settingsLanguage:'Sprache', settingsLanguageLabel:'Sprache',
+        audioRespawn:'Neustart Ton', audioLava:'Lava Tod Ton', audioJump:'Sprung Ton',
+        audioWalking:'Lauf Ton', audioBrick:'Kill Brick Ton', audioAmbient:'Lava Ambiente Ton',
+        langEnglish:'Englisch', langDanish:'Dänisch', langGerman:'Deutsch'
       }
     };
 
@@ -1736,10 +1263,10 @@
     }
 
     function updateHUDVisibility() {
-      const t = translations[currentLanguage];
-      if (showHeightEnabled) { curEl.style.display = ''; } else { curEl.style.display = 'none'; }
-      if (showTopEnabled) { maxEl.style.display = ''; topTimeEl.style.display = ''; } else { maxEl.style.display = 'none'; topTimeEl.style.display = 'none'; }
-      if (showTimerEnabled) { timerEl.style.display = ''; } else { timerEl.style.display = 'none'; }
+      curEl.style.display = showHeightEnabled ? '' : 'none';
+      maxEl.style.display = showTopEnabled ? '' : 'none';
+      topTimeEl.style.display = showTopEnabled ? '' : 'none';
+      timerEl.style.display = showTimerEnabled ? '' : 'none';
       difficultyEl.style.display = '';
     }
 
@@ -1747,21 +1274,16 @@
       currentLanguage = lang;
       localStorage.setItem('language', lang);
       const t = translations[lang];
-      const h = Math.floor(currentHeight / 10);
-      const mh = Math.floor(maxHeights[currentDifficulty] / 10);
-
       updateHUDVisibility();
-      if (showHeightEnabled) curEl.textContent = t.height + ': ' + h;
+      if (showHeightEnabled) curEl.textContent = t.height + ': ' + Math.floor(currentHeight / 10);
       if (showTopEnabled) {
-        maxEl.textContent = t.topHeight + ': ' + mh;
+        maxEl.textContent = t.topHeight + ': ' + Math.floor(maxHeights[currentDifficulty] / 10);
         topTimeEl.textContent = t.topTime + ': ' + formatTime(survivalTimes[currentDifficulty] || 0);
       }
       if (showTimerEnabled) timerEl.textContent = t.timer + ': ' + formatTime(survivalSeconds);
-
       difficultyEl.textContent = t.difficulty + ': ' + DIFFICULTY_SETTINGS[currentDifficulty].name.toUpperCase();
       document.getElementById('hp-display').textContent = doubleJumpEnabled ? t.doubleJump : 'Double Jump = false';
       document.getElementById('pause-hint').textContent = t.pauseHint;
-
       document.getElementById('continue-btn').textContent = t.continue;
       document.getElementById('extra-btn').textContent = t.extra;
       document.getElementById('settings-btn').textContent = t.settings;
@@ -1771,10 +1293,8 @@
       document.getElementById('settings-back-btn').textContent = t.back;
       document.getElementById('extra-back-btn').textContent = t.back;
       document.getElementById('achievements-back-btn').textContent = t.back;
-
       document.getElementById('death-title').textContent = t.youDied;
       document.getElementById('death-subtitle').textContent = t.respawn;
-
       const selAll = (cls) => document.querySelectorAll(cls);
       selAll('.help-green').forEach(el => el.textContent = t.helpGreen);
       selAll('.help-green-desc').forEach(el => el.textContent = t.helpGreenDesc);
@@ -1790,7 +1310,6 @@
       selAll('.help-controls-desc').forEach(el => el.textContent = t.helpControlsDesc);
       selAll('.help-avoid').forEach(el => el.textContent = t.helpAvoid);
       selAll('.help-pause').forEach(el => el.textContent = t.helpPause);
-
       document.getElementById('audio-respawn-label').textContent = t.audioRespawn;
       document.getElementById('audio-lava-label').textContent = t.audioLava;
       document.getElementById('audio-jump-label').textContent = t.audioJump;
@@ -1804,7 +1323,6 @@
       document.getElementById('settings-audio-title').textContent = t.settingsAudio;
       document.getElementById('settings-language-title').textContent = t.settingsLanguage;
       document.getElementById('settings-language-label').textContent = t.settingsLanguageLabel;
-
       const langOptions = document.querySelectorAll('#language-select option');
       if (langOptions[0]) langOptions[0].textContent = '🇬🇧 ' + t.langEnglish;
       if (langOptions[1]) langOptions[1].textContent = '🇩🇰 ' + t.langDanish;
@@ -1813,7 +1331,6 @@
       if (mmLangOptions[0]) mmLangOptions[0].textContent = '🇬🇧 ' + t.langEnglish;
       if (mmLangOptions[1]) mmLangOptions[1].textContent = '🇩🇰 ' + t.langDanish;
       if (mmLangOptions[2]) mmLangOptions[2].textContent = '🇩🇪 ' + t.langGerman;
-
       updateCountryDisplay();
     }
 
@@ -1874,27 +1391,21 @@
       diedFromLava = fromLava;
       _totalDeaths++;
       localStorage.setItem('bj_deaths', _totalDeaths);
-
       const elapsed = gameStartTime > 0 ? (performance.now() - gameStartTime) / 1000 : 0;
       _runTimeSeconds = elapsed;
-      if (elapsed > (survivalTimes[currentDifficulty] || 0)) {
-        survivalTimes[currentDifficulty] = elapsed;
-      }
+      if (elapsed > (survivalTimes[currentDifficulty] || 0)) survivalTimes[currentDifficulty] = elapsed;
       survivalSeconds = elapsed;
       _totalPlaytime += elapsed;
       localStorage.setItem('bj_total_playtime', _totalPlaytime);
-
       saveMaxHeight();
       saveSurvivalTime();
       _setInternalScore(currentDifficulty, maxHeights[currentDifficulty]);
       checkAchievements();
-
       if (animationId) cancelAnimationFrame(animationId);
       stopWalkingSound();
       stopLavaSound();
       if (fromLava) playLavaDieSound();
       deathScreen.classList.add("active");
-
       const diffName = DIFFICULTY_SETTINGS[currentDifficulty].name;
       const runH = Math.floor(_runHeight / 10);
       const topH = Math.floor(maxHeights[currentDifficulty] / 10);
@@ -1902,7 +1413,6 @@
       document.getElementById('death-height-row').textContent = '📏 Height: ' + diffName.toLowerCase() + ' ' + runH + '/' + topH;
       document.getElementById('death-top-row').textContent = '🏆 Best (' + diffName + '): ' + topH;
       document.getElementById('death-time-row').textContent = '⏱ Time: ' + formatTime(_runTimeSeconds);
-
       updateProfileAndSave();
       pushProfileToGitHub();
     }
@@ -1912,10 +1422,8 @@
       stopWalkingSound();
       stopLavaSound();
       playRespawnSound();
-
       platforms.forEach(p => { p.style.display = 'none'; platformPool.push(p); });
       platforms = [];
-
       const centerY = (window.innerHeight - PLAYER_SIZE) / 2;
       x = (window.innerWidth - PLAYER_SIZE) / 2;
       y = centerY;
@@ -1937,24 +1445,20 @@
       lastFrameTime = 0;
       gameStartTime = 0;
       survivalSeconds = 0;
-
       document.body.style.background = "#020617";
       Object.keys(keys).forEach(k => keys[k] = false);
-
       player.style.left = x + "px";
       player.style.top = y + "px";
       lavaEl.style.top = lavaY + "px";
-
       const t = translations[currentLanguage];
       updateHUDVisibility();
       if (showHeightEnabled) curEl.textContent = t.height + ': 0';
       if (showTopEnabled) {
-        maxEl.textContent = t.topHeight + ': ' + Math.floor(maxHeights[currentDifficulty]/10);
+        maxEl.textContent = t.topHeight + ': ' + Math.floor(maxHeights[currentDifficulty] / 10);
         topTimeEl.textContent = t.topTime + ': ' + formatTime(survivalTimes[currentDifficulty] || 0);
       }
       if (showTimerEnabled) timerEl.textContent = t.timer + ': 0s';
       difficultyEl.textContent = t.difficulty + ': ' + DIFFICULTY_SETTINGS[currentDifficulty].name.toUpperCase();
-
       const startPlatformY = centerY + PLAYER_SIZE + 1;
       createPlatform(window.innerWidth / 2 - 200, startPlatformY, 400, "green");
       lowestPlatformY = startPlatformY;
@@ -1966,10 +1470,8 @@
     const jumpPower = 16;
     const speed = 6;
     const keys = {};
-
     let platforms = [];
     let platformPool = [];
-
     const LEFT_WALL = 0;
     const RIGHT_WALL = window.innerWidth;
     const maxJumpHeight = (jumpPower * jumpPower) / (2 * gravity);
@@ -1977,14 +1479,8 @@
     function createPlatform(px, py, width, type) {
       if (!type) type = "green";
       let p;
-      if (platformPool.length > 0) {
-        p = platformPool.pop();
-        p.style.display = 'block';
-      } else {
-        p = document.createElement("div");
-        p.className = "platform";
-        document.body.appendChild(p);
-      }
+      if (platformPool.length > 0) { p = platformPool.pop(); p.style.display = 'block'; }
+      else { p = document.createElement("div"); p.className = "platform"; document.body.appendChild(p); }
       p.className = "platform " + type;
       p.dataset.type = type;
       p.style.left = px + "px";
@@ -2019,15 +1515,8 @@
         globalDifficulty += 0.05;
         const wasLastRed = last.dataset.type === "red";
         let gapY, safeGapY, horizontalDist;
-        if (wasLastRed) {
-          gapY = PLATFORM_DISTANCE_Y_MIN * 0.5;
-          safeGapY = Math.min(maxJumpHeight * 0.35, gapY);
-          horizontalDist = PLATFORM_DISTANCE_X_MIN * 0.4;
-        } else {
-          gapY = PLATFORM_DISTANCE_Y_MIN + Math.random() * (PLATFORM_DISTANCE_Y_MAX - PLATFORM_DISTANCE_Y_MIN);
-          safeGapY = Math.min(maxJumpHeight * 0.55, gapY);
-          horizontalDist = PLATFORM_DISTANCE_X_MIN + Math.random() * (PLATFORM_DISTANCE_X_MAX - PLATFORM_DISTANCE_X_MIN);
-        }
+        if (wasLastRed) { gapY = PLATFORM_DISTANCE_Y_MIN * 0.5; safeGapY = Math.min(maxJumpHeight * 0.35, gapY); horizontalDist = PLATFORM_DISTANCE_X_MIN * 0.4; }
+        else { gapY = PLATFORM_DISTANCE_Y_MIN + Math.random() * (PLATFORM_DISTANCE_Y_MAX - PLATFORM_DISTANCE_Y_MIN); safeGapY = Math.min(maxJumpHeight * 0.55, gapY); horizontalDist = PLATFORM_DISTANCE_X_MIN + Math.random() * (PLATFORM_DISTANCE_X_MAX - PLATFORM_DISTANCE_X_MIN); }
         const offsetX = (Math.random() * 2 - 1) * horizontalDist;
         const width = PLATFORM_WIDTH;
         let px = lastX + offsetX - width / 2;
@@ -2036,18 +1525,10 @@
         let type = "green";
         const rand = Math.random();
         let redChance, blueChance, orangeChance, whiteChance;
-        if (currentHeight > 8000) {
-          redChance = 0.08; blueChance = 0.70; orangeChance = 0.10; whiteChance = 0.05;
-        } else if (currentHeight > 5000) {
-          redChance = 0.06; blueChance = 0.55; orangeChance = 0.15; whiteChance = 0.12;
-        } else if (currentHeight > 2500) {
-          redChance = 0.08; blueChance = 0.45; orangeChance = 0.20; whiteChance = 0.15;
-        } else {
-          redChance = Math.min(0.03 + globalDifficulty * 0.003, 0.12);
-          blueChance = Math.min(0.10 + globalDifficulty * 0.010, 0.40);
-          orangeChance = Math.min(0.15 + globalDifficulty * 0.006, 0.25);
-          whiteChance = Math.min(0.08 + globalDifficulty * 0.004, 0.15);
-        }
+        if (currentHeight > 8000) { redChance = 0.08; blueChance = 0.70; orangeChance = 0.10; whiteChance = 0.05; }
+        else if (currentHeight > 5000) { redChance = 0.06; blueChance = 0.55; orangeChance = 0.15; whiteChance = 0.12; }
+        else if (currentHeight > 2500) { redChance = 0.08; blueChance = 0.45; orangeChance = 0.20; whiteChance = 0.15; }
+        else { redChance = Math.min(0.03 + globalDifficulty * 0.003, 0.12); blueChance = Math.min(0.10 + globalDifficulty * 0.010, 0.40); orangeChance = Math.min(0.15 + globalDifficulty * 0.006, 0.25); whiteChance = Math.min(0.08 + globalDifficulty * 0.004, 0.15); }
         if (wasLastRed) {
           const ar = rand / (1 - redChance);
           if (ar < blueChance / (1 - redChance)) type = "blue";
@@ -2089,15 +1570,10 @@
       const deltaMultiplier = deltaTime / FRAME_TIME;
       lastFrameTime = currentTime;
       const cappedDelta = Math.min(deltaMultiplier, 3);
-
       if (gameStartTime === 0 && currentTime > 0) gameStartTime = currentTime;
-
       const currentSurvivalSecs = gameStartTime > 0 ? (currentTime - gameStartTime) / 1000 : 0;
-      if (currentSurvivalSecs > (survivalTimes[currentDifficulty] || 0)) {
-        survivalTimes[currentDifficulty] = currentSurvivalSecs;
-      }
+      if (currentSurvivalSecs > (survivalTimes[currentDifficulty] || 0)) survivalTimes[currentDifficulty] = currentSurvivalSecs;
       survivalSeconds = currentSurvivalSecs;
-
       const oldY = y;
       const moveSpeed = speed * cappedDelta;
       if (keys["a"] || keys["A"] || keys["ArrowLeft"]) x -= moveSpeed;
@@ -2105,10 +1581,7 @@
       x = Math.max(LEFT_WALL, Math.min(x, RIGHT_WALL - PLAYER_SIZE));
       const maxJumps = doubleJumpEnabled ? 2 : 1;
       if ((keys[" "] || keys["w"] || keys["W"] || keys["ArrowUp"]) && jumpsLeft > 0 && !keys._jumpHeld) {
-        velY = -jumpPower;
-        jumpsLeft--;
-        keys._jumpHeld = true;
-        playJumpSound();
+        velY = -jumpPower; jumpsLeft--; keys._jumpHeld = true; playJumpSound();
       }
       if (!keys[" "] && !keys["w"] && !keys["W"] && !keys["ArrowUp"]) keys._jumpHeld = false;
       velY += gravity * cappedDelta;
@@ -2124,34 +1597,18 @@
           let px = parseFloat(p.style.left) + pms * dir;
           const origLeft = parseFloat(p.dataset.originalLeft);
           const moveRange = parseFloat(p.dataset.moveRange);
-          if (px < origLeft - moveRange || px > origLeft + moveRange) {
-            dir *= -1;
-            p.dataset.moveDir = String(dir);
-            px = Math.max(origLeft - moveRange, Math.min(px, origLeft + moveRange));
-          }
-          if (px <= LEFT_WALL || px + p.offsetWidth >= RIGHT_WALL) {
-            dir *= -1;
-            p.dataset.moveDir = String(dir);
-          }
+          if (px < origLeft - moveRange || px > origLeft + moveRange) { dir *= -1; p.dataset.moveDir = String(dir); px = Math.max(origLeft - moveRange, Math.min(px, origLeft + moveRange)); }
+          if (px <= LEFT_WALL || px + p.offsetWidth >= RIGHT_WALL) { dir *= -1; p.dataset.moveDir = String(dir); }
           p.style.left = px + "px";
         }
         if (p.dataset.type === "blue") {
           if (p.dataset.disappearing === "true") {
             const respawnTime = parseFloat(p.dataset.respawnTime);
-            if (now >= respawnTime) {
-              p.style.opacity = "1";
-              p.dataset.disappearing = "false";
-              p.dataset.blueTimer = "0";
-            }
+            if (now >= respawnTime) { p.style.opacity = "1"; p.dataset.disappearing = "false"; p.dataset.blueTimer = "0"; }
           } else if (p.dataset.blueTimer !== "0") {
             const elapsed = (now - parseFloat(p.dataset.blueTimer)) / 1000;
-            if (elapsed >= 1.0) {
-              p.dataset.disappearing = "true";
-              p.dataset.respawnTime = String(now + 5000);
-              p.style.opacity = "0";
-            } else {
-              p.style.opacity = String(Math.max(0.2, 1 - elapsed));
-            }
+            if (elapsed >= 1.0) { p.dataset.disappearing = "true"; p.dataset.respawnTime = String(now + 5000); p.style.opacity = "0"; }
+            else { p.style.opacity = String(Math.max(0.2, 1 - elapsed)); }
           }
         }
       });
@@ -2164,62 +1621,28 @@
         if (type === "blue" && p.dataset.disappearing === "true") continue;
         if (x + PLAYER_SIZE > px && x < px + pw) {
           if (type === "white") {
-            if (oldY + PLAYER_SIZE <= py && y + PLAYER_SIZE >= py) {
-              velY = 0;
-              y = py - PLAYER_SIZE;
-              grounded = true;
-              jumpsLeft = maxJumps;
-            }
+            if (oldY + PLAYER_SIZE <= py && y + PLAYER_SIZE >= py) { velY = 0; y = py - PLAYER_SIZE; grounded = true; jumpsLeft = maxJumps; }
             continue;
           }
           if (oldY + PLAYER_SIZE <= py && y + PLAYER_SIZE >= py) {
-            if (type === "red") {
-              playKillBrickSound();
-              die(false);
-              return;
-            } else if (type === "blue") {
+            if (type === "red") { playKillBrickSound(); die(false); return; }
+            else if (type === "blue") {
               onBluePlatform = true;
               if (p.dataset.blueTimer == "0") p.dataset.blueTimer = String(now);
               const elapsed = (now - parseFloat(p.dataset.blueTimer)) / 1000;
-              if (elapsed >= 1.0) {
-                p.dataset.disappearing = "true";
-                p.dataset.respawnTime = String(now + 5000);
-                p.style.opacity = "0";
-                wasOnBluePlatform = true;
-              } else {
-                p.style.opacity = String(Math.max(0.2, 1 - elapsed));
-                velY = 0;
-                y = py - PLAYER_SIZE;
-                grounded = true;
-                jumpsLeft = maxJumps;
-              }
-            } else {
-              velY = 0;
-              y = py - PLAYER_SIZE;
-              grounded = true;
-              jumpsLeft = maxJumps;
-            }
+              if (elapsed >= 1.0) { p.dataset.disappearing = "true"; p.dataset.respawnTime = String(now + 5000); p.style.opacity = "0"; wasOnBluePlatform = true; }
+              else { p.style.opacity = String(Math.max(0.2, 1 - elapsed)); velY = 0; y = py - PLAYER_SIZE; grounded = true; jumpsLeft = maxJumps; }
+            } else { velY = 0; y = py - PLAYER_SIZE; grounded = true; jumpsLeft = maxJumps; }
           } else if (oldY >= py + 18 && y < py + 18 && velY < 0) {
-            if (type !== "white") {
-              velY = 0;
-              y = py + 18;
-            }
+            if (type !== "white") { velY = 0; y = py + 18; }
           }
         }
       }
       if (wasOnBluePlatform && !onBluePlatform && !grounded) wasOnBluePlatform = false;
       const isMovingHorizontally = (keys["a"] || keys["A"] || keys["ArrowLeft"] || keys["d"] || keys["D"] || keys["ArrowRight"]) && grounded;
-      if (isMovingHorizontally && !isWalking) {
-        isWalking = true;
-        playWalkingSound();
-      } else if (!isMovingHorizontally && isWalking) {
-        isWalking = false;
-        stopWalkingSound();
-      }
-      if ((y > lowestPlatformY + 400 && y > lavaY) || y > window.innerHeight + 500) {
-        die(true);
-        return;
-      }
+      if (isMovingHorizontally && !isWalking) { isWalking = true; playWalkingSound(); }
+      else if (!isMovingHorizontally && isWalking) { isWalking = false; stopWalkingSound(); }
+      if ((y > lowestPlatformY + 400 && y > lavaY) || y > window.innerHeight + 500) { die(true); return; }
       const targetY = (window.innerHeight - PLAYER_SIZE) / 2;
       const offset = targetY - y;
       platforms.forEach(p => { p.style.top = (parseFloat(p.style.top) + offset) + "px"; });
@@ -2234,10 +1657,7 @@
       _setInternalScore(currentDifficulty, maxHeights[currentDifficulty]);
       const heightBoost = Math.min(currentHeight / 100000, 1.5);
       const LAVA_MAX_SPEED = DIFFICULTY_SETTINGS[currentDifficulty].maxSpeed;
-      lavaSpeed = Math.min(
-        LAVA_START_SPEED + globalDifficulty * LAVA_SPEED_INCREASE_RATE + heightBoost * LAVA_HEIGHT_BOOST_FACTOR,
-        LAVA_MAX_SPEED
-      );
+      lavaSpeed = Math.min(LAVA_START_SPEED + globalDifficulty * LAVA_SPEED_INCREASE_RATE + heightBoost * LAVA_HEIGHT_BOOST_FACTOR, LAVA_MAX_SPEED);
       lavaY -= lavaSpeed * cappedDelta;
       lavaEl.style.top = lavaY + "px";
       updateLavaSound();
@@ -2246,11 +1666,7 @@
       const g = Math.floor(6 + heightProgress * 4);
       const b = Math.floor(23 + heightProgress * 27);
       document.body.style.background = 'rgb(' + r + ', ' + g + ', ' + b + ')';
-
-      if (y + PLAYER_SIZE >= lavaY + LAVA_HITBOX_OFFSET) {
-        die(true);
-        return;
-      }
+      if (y + PLAYER_SIZE >= lavaY + LAVA_HITBOX_OFFSET) { die(true); return; }
       const t = translations[currentLanguage];
       if (showHeightEnabled) curEl.textContent = t.height + ': ' + Math.floor(currentHeight / 10);
       if (showTopEnabled) {
@@ -2274,55 +1690,15 @@
     document.addEventListener("keyup", e => { keys[e.key] = false; });
 
     continueBtn.addEventListener("click", togglePause);
-
-    extraBtn.addEventListener("click", () => {
-      mainMenuDiv.style.display = "none";
-      extraMenu.style.display = "block";
-      pauseTitle.textContent = translations[currentLanguage].extra;
-    });
-    extraBackBtn.addEventListener("click", () => {
-      extraMenu.style.display = "none";
-      mainMenuDiv.style.display = "block";
-      pauseTitle.textContent = translations[currentLanguage].paused;
-    });
-    settingsBtn.addEventListener("click", () => {
-      extraMenu.style.display = "none";
-      settingsMenu.style.display = "block";
-      pauseTitle.textContent = translations[currentLanguage].settings;
-    });
-    settingsBackBtn.addEventListener("click", () => {
-      settingsMenu.style.display = "none";
-      extraMenu.style.display = "block";
-      pauseTitle.textContent = translations[currentLanguage].extra;
-    });
-    helpBtn.addEventListener("click", () => {
-      extraMenu.style.display = "none";
-      helpMenu.style.display = "block";
-      pauseTitle.textContent = translations[currentLanguage].help;
-    });
-    helpBackBtn.addEventListener("click", () => {
-      helpMenu.style.display = "none";
-      extraMenu.style.display = "block";
-      pauseTitle.textContent = translations[currentLanguage].extra;
-    });
-    achievementsBtn.addEventListener("click", () => {
-      extraMenu.style.display = "none";
-      achievementsPauseMenu.style.display = "block";
-      pauseTitle.textContent = "ACHIEVEMENTS";
-      renderAchievementsList('achievements-pause-list', '', 'all', 'all');
-    });
-    achievementsBackBtn.addEventListener("click", () => {
-      achievementsPauseMenu.style.display = "none";
-      extraMenu.style.display = "block";
-      pauseTitle.textContent = translations[currentLanguage].extra;
-    });
-    restartBtn.addEventListener("click", () => {
-      showPauseMain();
-      pauseMenu.classList.remove("active");
-      paused = false;
-      saveMaxHeight();
-      resetGame();
-    });
+    extraBtn.addEventListener("click", () => { mainMenuDiv.style.display = "none"; extraMenu.style.display = "block"; pauseTitle.textContent = translations[currentLanguage].extra; });
+    extraBackBtn.addEventListener("click", () => { extraMenu.style.display = "none"; mainMenuDiv.style.display = "block"; pauseTitle.textContent = translations[currentLanguage].paused; });
+    settingsBtn.addEventListener("click", () => { extraMenu.style.display = "none"; settingsMenu.style.display = "block"; pauseTitle.textContent = translations[currentLanguage].settings; });
+    settingsBackBtn.addEventListener("click", () => { settingsMenu.style.display = "none"; extraMenu.style.display = "block"; pauseTitle.textContent = translations[currentLanguage].extra; });
+    helpBtn.addEventListener("click", () => { extraMenu.style.display = "none"; helpMenu.style.display = "block"; pauseTitle.textContent = translations[currentLanguage].help; });
+    helpBackBtn.addEventListener("click", () => { helpMenu.style.display = "none"; extraMenu.style.display = "block"; pauseTitle.textContent = translations[currentLanguage].extra; });
+    achievementsBtn.addEventListener("click", () => { extraMenu.style.display = "none"; achievementsPauseMenu.style.display = "block"; pauseTitle.textContent = "ACHIEVEMENTS"; renderAchievementsList('achievements-pause-list','','all','all'); });
+    achievementsBackBtn.addEventListener("click", () => { achievementsPauseMenu.style.display = "none"; extraMenu.style.display = "block"; pauseTitle.textContent = translations[currentLanguage].extra; });
+    restartBtn.addEventListener("click", () => { showPauseMain(); pauseMenu.classList.remove("active"); paused = false; saveMaxHeight(); resetGame(); });
 
     document.getElementById('pause-main-menu-btn').addEventListener('click', async () => {
       const ok = await customConfirm('Return to Main Menu? Your current run will be lost.');
@@ -2344,35 +1720,26 @@
     function setupSettingsNavTabs(navPrefix, panelPrefix, tabs) {
       tabs.forEach(tab => {
         document.getElementById(navPrefix + tab).addEventListener('click', () => {
-          tabs.forEach(t => {
-            document.getElementById(navPrefix + t).classList.remove('active');
-            document.getElementById(panelPrefix + t).style.display = 'none';
-          });
+          tabs.forEach(t => { document.getElementById(navPrefix + t).classList.remove('active'); document.getElementById(panelPrefix + t).style.display = 'none'; });
           document.getElementById(navPrefix + tab).classList.add('active');
           document.getElementById(panelPrefix + tab).style.display = '';
         });
       });
     }
-    setupSettingsNavTabs('psnav-', 'pspanel-', ['graphics', 'audio', 'hud']);
-    setupSettingsNavTabs('snav-', 'spanel-', ['graphics', 'audio', 'hud']);
+    setupSettingsNavTabs('psnav-', 'pspanel-', ['graphics','audio','hud']);
+    setupSettingsNavTabs('snav-', 'spanel-', ['graphics','audio','hud']);
 
     function setupAudioDropdowns() {
       SOUND_KEYS.forEach(k => {
         const mmRow = document.getElementById('asr-' + k);
         const mmDrop = document.getElementById('adrop-' + k);
         if (mmRow && mmDrop) {
-          mmRow.querySelector('.audio-sound-header').addEventListener('click', (e) => {
-            if (e.target.closest('.toggle')) return;
-            mmDrop.style.display = mmDrop.style.display === 'none' ? 'block' : 'none';
-          });
+          mmRow.querySelector('.audio-sound-header').addEventListener('click', (e) => { if (e.target.closest('.toggle')) return; mmDrop.style.display = mmDrop.style.display === 'none' ? 'block' : 'none'; });
         }
         const pRow = document.getElementById('pasr-' + k);
         const pDrop = document.getElementById('padrop-' + k);
         if (pRow && pDrop) {
-          pRow.querySelector('.audio-sound-header').addEventListener('click', (e) => {
-            if (e.target.closest('.toggle')) return;
-            pDrop.style.display = pDrop.style.display === 'none' ? 'block' : 'none';
-          });
+          pRow.querySelector('.audio-sound-header').addEventListener('click', (e) => { if (e.target.closest('.toggle')) return; pDrop.style.display = pDrop.style.display === 'none' ? 'block' : 'none'; });
         }
         ['vol-' + k, 'pvol-' + k].forEach(volId => {
           const el = document.getElementById(volId);
@@ -2406,74 +1773,22 @@
       if (mm) mm.checked = e.target.checked;
     });
 
-    document.getElementById('p-feat-double-jump').addEventListener('change', e => {
-      doubleJumpEnabled = e.target.checked;
-      localStorage.setItem('featDoubleJump', doubleJumpEnabled);
-      document.getElementById('mm-feat-double-jump').checked = doubleJumpEnabled;
-      updateLanguage(currentLanguage);
-    });
-    document.getElementById('p-feat-show-height').addEventListener('change', e => {
-      showHeightEnabled = e.target.checked;
-      localStorage.setItem('featShowHeight', showHeightEnabled);
-      document.getElementById('mm-feat-show-height').checked = showHeightEnabled;
-      updateLanguage(currentLanguage);
-    });
-    document.getElementById('p-feat-show-top').addEventListener('change', e => {
-      showTopEnabled = e.target.checked;
-      localStorage.setItem('featShowTop', showTopEnabled);
-      document.getElementById('mm-feat-show-top').checked = showTopEnabled;
-      updateLanguage(currentLanguage);
-    });
-    document.getElementById('p-feat-show-timer').addEventListener('change', e => {
-      showTimerEnabled = e.target.checked;
-      localStorage.setItem('featShowTimer', showTimerEnabled);
-      document.getElementById('mm-feat-show-timer').checked = showTimerEnabled;
-      updateLanguage(currentLanguage);
-    });
+    document.getElementById('p-feat-double-jump').addEventListener('change', e => { doubleJumpEnabled = e.target.checked; localStorage.setItem('featDoubleJump', doubleJumpEnabled); document.getElementById('mm-feat-double-jump').checked = doubleJumpEnabled; updateLanguage(currentLanguage); });
+    document.getElementById('p-feat-show-height').addEventListener('change', e => { showHeightEnabled = e.target.checked; localStorage.setItem('featShowHeight', showHeightEnabled); document.getElementById('mm-feat-show-height').checked = showHeightEnabled; updateLanguage(currentLanguage); });
+    document.getElementById('p-feat-show-top').addEventListener('change', e => { showTopEnabled = e.target.checked; localStorage.setItem('featShowTop', showTopEnabled); document.getElementById('mm-feat-show-top').checked = showTopEnabled; updateLanguage(currentLanguage); });
+    document.getElementById('p-feat-show-timer').addEventListener('change', e => { showTimerEnabled = e.target.checked; localStorage.setItem('featShowTimer', showTimerEnabled); document.getElementById('mm-feat-show-timer').checked = showTimerEnabled; updateLanguage(currentLanguage); });
 
-    effectsToggle.addEventListener("change", e => {
-      toggleEffects(e.target.checked);
-      const mm = document.getElementById('mm-effects-toggle');
-      if (mm) mm.checked = e.target.checked;
-    });
-    hqToggle.addEventListener("change", e => {
-      toggleHQ(e.target.checked);
-      const mm = document.getElementById('mm-hq-toggle');
-      if (mm) mm.checked = e.target.checked;
-    });
-    languageSelect.addEventListener("change", e => {
-      updateLanguage(e.target.value);
-      const mm = document.getElementById('mm-language-select');
-      if (mm) mm.value = e.target.value;
-    });
+    effectsToggle.addEventListener("change", e => { toggleEffects(e.target.checked); const mm = document.getElementById('mm-effects-toggle'); if (mm) mm.checked = e.target.checked; });
+    hqToggle.addEventListener("change", e => { toggleHQ(e.target.checked); const mm = document.getElementById('mm-hq-toggle'); if (mm) mm.checked = e.target.checked; });
+    languageSelect.addEventListener("change", e => { updateLanguage(e.target.value); const mm = document.getElementById('mm-language-select'); if (mm) mm.value = e.target.value; });
     difficultySelect.addEventListener("change", e => changeDifficulty(e.target.value));
-
     document.getElementById('pause-reset-data-btn').addEventListener('click', resetAllData);
 
-    deathScreen.addEventListener("click", () => {
-      deathScreen.classList.remove("active");
-      isDead = false;
-      resetGame();
-    });
-    document.addEventListener("keydown", e => {
-      if (!isDead) return;
-      if (e.key === " " || e.code === "Space") {
-        deathScreen.classList.remove("active");
-        isDead = false;
-        resetGame();
-      }
-    });
+    deathScreen.addEventListener("click", () => { deathScreen.classList.remove("active"); isDead = false; resetGame(); });
+    document.addEventListener("keydown", e => { if (!isDead) return; if (e.key === " " || e.code === "Space") { deathScreen.classList.remove("active"); isDead = false; resetGame(); } });
 
-    document.getElementById('mm-play-btn').addEventListener('click', () => {
-      document.getElementById('main-menu-screen').style.display = 'none';
-      document.getElementById('mm-play-select-screen').style.display = 'flex';
-    });
-
-    document.getElementById('mm-play-select-back-btn').addEventListener('click', () => {
-      document.getElementById('mm-play-select-screen').style.display = 'none';
-      document.getElementById('main-menu-screen').style.display = 'flex';
-    });
-
+    document.getElementById('mm-play-btn').addEventListener('click', () => { document.getElementById('main-menu-screen').style.display = 'none'; document.getElementById('mm-play-select-screen').style.display = 'flex'; });
+    document.getElementById('mm-play-select-back-btn').addEventListener('click', () => { document.getElementById('mm-play-select-screen').style.display = 'none'; document.getElementById('main-menu-screen').style.display = 'flex'; });
     document.getElementById('mode-singleplayer-btn').addEventListener('click', () => {
       document.getElementById('mm-play-select-screen').style.display = 'none';
       document.getElementById('hud').style.display = '';
@@ -2482,132 +1797,61 @@
       gameStarted = true;
       resetGame();
     });
-
     document.getElementById('mode-multiplayer-btn').addEventListener('click', showComingSoon);
     document.getElementById('mode-challenge-btn').addEventListener('click', showComingSoon);
 
-    document.getElementById('mm-settings-btn').addEventListener('click', () => {
-      document.getElementById('main-menu-screen').style.display = 'none';
-      document.getElementById('mm-settings-screen').style.display = 'flex';
-    });
-    document.getElementById('mm-settings-back-btn').addEventListener('click', () => {
-      document.getElementById('mm-settings-screen').style.display = 'none';
-      document.getElementById('main-menu-screen').style.display = 'flex';
-    });
-    document.getElementById('mm-extra-btn').addEventListener('click', () => {
-      document.getElementById('main-menu-screen').style.display = 'none';
-      document.getElementById('mm-extra-screen').style.display = 'flex';
-    });
-    document.getElementById('mm-extra-back-btn').addEventListener('click', () => {
-      document.getElementById('mm-extra-screen').style.display = 'none';
-      document.getElementById('main-menu-screen').style.display = 'flex';
-    });
-    document.getElementById('mm-stats-btn').addEventListener('click', () => {
-      document.getElementById('mm-extra-screen').style.display = 'none';
-      document.getElementById('mm-stats-screen').style.display = 'flex';
-      updateExtraStats();
-    });
-    document.getElementById('mm-stats-back-btn').addEventListener('click', () => {
-      document.getElementById('mm-stats-screen').style.display = 'none';
-      document.getElementById('mm-extra-screen').style.display = 'flex';
-    });
-    document.getElementById('mm-changelog-btn').addEventListener('click', () => {
-      document.getElementById('mm-extra-screen').style.display = 'none';
-      document.getElementById('mm-changelog-screen').style.display = 'flex';
-    });
-    document.getElementById('mm-changelog-back-btn').addEventListener('click', () => {
-      document.getElementById('mm-changelog-screen').style.display = 'none';
-      document.getElementById('mm-extra-screen').style.display = 'flex';
-    });
-    document.getElementById('mm-help-btn').addEventListener('click', () => {
-      document.getElementById('mm-extra-screen').style.display = 'none';
-      document.getElementById('mm-help-screen').style.display = 'flex';
-    });
-    document.getElementById('mm-help-back-btn').addEventListener('click', () => {
-      document.getElementById('mm-help-screen').style.display = 'none';
-      document.getElementById('mm-extra-screen').style.display = 'flex';
-    });
-    document.getElementById('mm-community-btn').addEventListener('click', () => {
-      document.getElementById('mm-extra-screen').style.display = 'none';
-      document.getElementById('mm-community-screen').style.display = 'flex';
-    });
-    document.getElementById('mm-community-back-btn').addEventListener('click', () => {
-      document.getElementById('mm-community-screen').style.display = 'none';
-      document.getElementById('mm-extra-screen').style.display = 'flex';
-    });
+    document.getElementById('mm-settings-btn').addEventListener('click', () => { document.getElementById('main-menu-screen').style.display = 'none'; document.getElementById('mm-settings-screen').style.display = 'flex'; });
+    document.getElementById('mm-settings-back-btn').addEventListener('click', () => { document.getElementById('mm-settings-screen').style.display = 'none'; document.getElementById('main-menu-screen').style.display = 'flex'; });
+    document.getElementById('mm-extra-btn').addEventListener('click', () => { document.getElementById('main-menu-screen').style.display = 'none'; document.getElementById('mm-extra-screen').style.display = 'flex'; });
+    document.getElementById('mm-extra-back-btn').addEventListener('click', () => { document.getElementById('mm-extra-screen').style.display = 'none'; document.getElementById('main-menu-screen').style.display = 'flex'; });
+    document.getElementById('mm-stats-btn').addEventListener('click', () => { document.getElementById('mm-extra-screen').style.display = 'none'; document.getElementById('mm-stats-screen').style.display = 'flex'; updateExtraStats(); });
+    document.getElementById('mm-stats-back-btn').addEventListener('click', () => { document.getElementById('mm-stats-screen').style.display = 'none'; document.getElementById('mm-extra-screen').style.display = 'flex'; });
+    document.getElementById('mm-changelog-btn').addEventListener('click', () => { document.getElementById('mm-extra-screen').style.display = 'none'; document.getElementById('mm-changelog-screen').style.display = 'flex'; });
+    document.getElementById('mm-changelog-back-btn').addEventListener('click', () => { document.getElementById('mm-changelog-screen').style.display = 'none'; document.getElementById('mm-extra-screen').style.display = 'flex'; });
+    document.getElementById('mm-help-btn').addEventListener('click', () => { document.getElementById('mm-extra-screen').style.display = 'none'; document.getElementById('mm-help-screen').style.display = 'flex'; });
+    document.getElementById('mm-help-back-btn').addEventListener('click', () => { document.getElementById('mm-help-screen').style.display = 'none'; document.getElementById('mm-extra-screen').style.display = 'flex'; });
+    document.getElementById('mm-community-btn').addEventListener('click', () => { document.getElementById('mm-extra-screen').style.display = 'none'; document.getElementById('mm-community-screen').style.display = 'flex'; });
+    document.getElementById('mm-community-back-btn').addEventListener('click', () => { document.getElementById('mm-community-screen').style.display = 'none'; document.getElementById('mm-extra-screen').style.display = 'flex'; });
     document.getElementById('community-discord-btn').addEventListener('click', showComingSoon);
     document.getElementById('community-youtube-btn').addEventListener('click', showComingSoon);
 
     document.getElementById('mm-achievements-btn').addEventListener('click', () => {
       document.getElementById('main-menu-screen').style.display = 'none';
       document.getElementById('mm-achievements-screen').style.display = 'flex';
-      const sf = document.getElementById('ach-search').value;
-      const ff = document.getElementById('ach-filter').value;
-      const df = document.getElementById('ach-diff-filter').value;
-      renderAchievementsList('achievements-list', sf, ff, df);
-    });
-    document.getElementById('mm-achievements-back-btn').addEventListener('click', () => {
-      document.getElementById('mm-achievements-screen').style.display = 'none';
-      document.getElementById('main-menu-screen').style.display = 'flex';
-    });
-
-    document.getElementById('ach-search').addEventListener('input', () => {
       renderAchievementsList('achievements-list', document.getElementById('ach-search').value, document.getElementById('ach-filter').value, document.getElementById('ach-diff-filter').value);
     });
-    document.getElementById('ach-filter').addEventListener('change', () => {
-      renderAchievementsList('achievements-list', document.getElementById('ach-search').value, document.getElementById('ach-filter').value, document.getElementById('ach-diff-filter').value);
-    });
-    document.getElementById('ach-diff-filter').addEventListener('change', () => {
-      renderAchievementsList('achievements-list', document.getElementById('ach-search').value, document.getElementById('ach-filter').value, document.getElementById('ach-diff-filter').value);
-    });
+    document.getElementById('mm-achievements-back-btn').addEventListener('click', () => { document.getElementById('mm-achievements-screen').style.display = 'none'; document.getElementById('main-menu-screen').style.display = 'flex'; });
+    document.getElementById('ach-search').addEventListener('input', () => { renderAchievementsList('achievements-list', document.getElementById('ach-search').value, document.getElementById('ach-filter').value, document.getElementById('ach-diff-filter').value); });
+    document.getElementById('ach-filter').addEventListener('change', () => { renderAchievementsList('achievements-list', document.getElementById('ach-search').value, document.getElementById('ach-filter').value, document.getElementById('ach-diff-filter').value); });
+    document.getElementById('ach-diff-filter').addEventListener('change', () => { renderAchievementsList('achievements-list', document.getElementById('ach-search').value, document.getElementById('ach-filter').value, document.getElementById('ach-diff-filter').value); });
 
     let lbDisplayCount = 10;
 
-    document.getElementById('mm-leaderboard-btn').addEventListener('click', () => {
-      document.getElementById('main-menu-screen').style.display = 'none';
-      document.getElementById('mm-leaderboard-screen').style.display = 'flex';
-      renderLeaderboard();
-    });
-    document.getElementById('mm-leaderboard-back-btn').addEventListener('click', () => {
-      document.getElementById('mm-leaderboard-screen').style.display = 'none';
-      document.getElementById('main-menu-screen').style.display = 'flex';
-    });
+    document.getElementById('mm-leaderboard-btn').addEventListener('click', () => { document.getElementById('main-menu-screen').style.display = 'none'; document.getElementById('mm-leaderboard-screen').style.display = 'flex'; renderLeaderboard(); });
+    document.getElementById('mm-leaderboard-back-btn').addEventListener('click', () => { document.getElementById('mm-leaderboard-screen').style.display = 'none'; document.getElementById('main-menu-screen').style.display = 'flex'; });
 
     document.getElementById('lb-count-btn').addEventListener('click', async () => {
       const val = await customInputPrompt('How many players to display?', lbDisplayCount);
-      if (val && val > 0) {
-        lbDisplayCount = Math.min(val, 9999);
-        document.getElementById('lb-count-btn').textContent = 'Show ' + lbDisplayCount;
-        renderLeaderboard();
-      }
+      if (val && val > 0) { lbDisplayCount = Math.min(val, 9999); document.getElementById('lb-count-btn').textContent = 'Show ' + lbDisplayCount; renderLeaderboard(); }
     });
 
     async function renderLeaderboard() {
       const lbList = document.getElementById('lb-list');
       lbList.innerHTML = '<div class="lb-loading">Loading...</div>';
-
       const diffFilter = document.getElementById('lb-diff-filter').value;
       const sortOrder = document.getElementById('lb-sort').value;
-
-      const ghData = await fetchGitHubData();
+      let ghData = null;
+      try { ghData = await fetchGitHubData(); } catch(e) { console.warn('Leaderboard fetch error:', e); }
       if (!ghData || !Array.isArray(ghData.data) || ghData.data.length === 0) {
         lbList.innerHTML = '<div class="lb-empty">No leaderboard data found. Play a game to appear here!</div>';
         return;
       }
-
       let records = ghData.data.map(entry => {
-        const hs = (entry.highScore && typeof entry.highScore === 'object')
-          ? entry.highScore
-          : { easy: 0, medium: 0, hard: 0, impossible: 0 };
-        const st = (entry.survivalTimes && typeof entry.survivalTimes === 'object')
-          ? entry.survivalTimes
-          : { easy: 0, medium: 0, hard: 0, impossible: 0 };
+        const hs = (entry.highScore && typeof entry.highScore === 'object') ? entry.highScore : { easy:0, medium:0, hard:0, impossible:0 };
+        const st = (entry.survivalTimes && typeof entry.survivalTimes === 'object') ? entry.survivalTimes : { easy:0, medium:0, hard:0, impossible:0 };
         let score = 0;
-        if (diffFilter === 'all') {
-          score = Math.max(...Object.values(hs).map(v => Number(v) || 0));
-        } else {
-          score = Number(hs[diffFilter] || 0);
-        }
+        if (diffFilter === 'all') score = Math.max(...Object.values(hs).map(v => Number(v) || 0));
+        else score = Number(hs[diffFilter] || 0);
         return {
           username: entry.username || 'Anonymous',
           flag: entry.countryFlag || '🌍',
@@ -2621,21 +1865,15 @@
           achievements: entry.achievements || 0
         };
       });
-
       records.sort((a, b) => sortOrder === 'desc' ? b.score - a.score : a.score - b.score);
       records = records.slice(0, lbDisplayCount);
-
       lbList.innerHTML = '';
-      if (records.length === 0) {
-        lbList.innerHTML = '<div class="lb-empty">No records found.</div>';
-        return;
-      }
-
+      if (records.length === 0) { lbList.innerHTML = '<div class="lb-empty">No records found.</div>'; return; }
       records.forEach((r, i) => {
         const div = document.createElement('div');
         div.className = 'lb-entry';
-        const diffColor = { easy: '#22c55e', medium: '#38bdf8', hard: '#f97316', impossible: '#ef4444', all: '#fcd34d' }[r.difficulty] || '#fff';
-        div.innerHTML = '<div class="lb-rank">#' + (i + 1) + '</div><div class="lb-flag">' + (r.flag || '🌍') + '</div><div class="lb-name">' + (r.username || 'Anonymous') + '</div><div class="lb-diff" style="color:' + diffColor + '">' + (r.difficulty !== 'all' ? r.difficulty : 'all') + '</div><div class="lb-score">' + r.score + '</div>';
+        const diffColor = { easy:'#22c55e', medium:'#38bdf8', hard:'#f97316', impossible:'#ef4444', all:'#fcd34d' }[r.difficulty] || '#fff';
+        div.innerHTML = '<div class="lb-rank">#' + (i + 1) + '</div><div class="lb-flag">' + (r.flag || '🌍') + '</div><div class="lb-name">' + (r.username || 'Anonymous') + '</div><div class="lb-diff" style="color:' + diffColor + '">' + r.difficulty + '</div><div class="lb-score">' + r.score + '</div>';
         div.addEventListener('click', () => showLbDetail(r));
         lbList.appendChild(div);
       });
@@ -2646,8 +1884,8 @@
       const content = document.getElementById('lb-detail-content');
       const hs = r.highScore || {};
       const st = r.survivalTimes || {};
-      const diffs = ['easy', 'medium', 'hard', 'impossible'];
-      const diffColors = { easy: '#22c55e', medium: '#38bdf8', hard: '#f97316', impossible: '#ef4444' };
+      const diffs = ['easy','medium','hard','impossible'];
+      const diffColors = { easy:'#22c55e', medium:'#38bdf8', hard:'#f97316', impossible:'#ef4444' };
       let scoresHtml = diffs.map(d =>
         '<div class="lb-detail-diff-row"><span style="color:' + diffColors[d] + ';font-weight:bold;text-transform:capitalize;">' + d + '</span>' +
         '<span>Score: <b>' + Math.floor((Number(hs[d]) || 0) / 10) + '</b></span>' +
@@ -2663,94 +1901,42 @@
       detail.style.display = 'flex';
     }
 
-    document.getElementById('lb-detail-close').addEventListener('click', () => {
-      document.getElementById('lb-entry-detail').style.display = 'none';
-    });
-
+    document.getElementById('lb-detail-close').addEventListener('click', () => { document.getElementById('lb-entry-detail').style.display = 'none'; });
     document.getElementById('lb-diff-filter').addEventListener('change', renderLeaderboard);
     document.getElementById('lb-sort').addEventListener('change', renderLeaderboard);
 
-    document.getElementById('mm-effects-toggle').addEventListener('change', e => {
-      toggleEffects(e.target.checked);
-      effectsToggle.checked = e.target.checked;
-    });
-    document.getElementById('mm-hq-toggle').addEventListener('change', e => {
-      toggleHQ(e.target.checked);
-      hqToggle.checked = e.target.checked;
-    });
-    document.getElementById('mm-difficulty-select').addEventListener('change', e => {
-      currentDifficulty = e.target.value;
-      localStorage.setItem('difficulty', currentDifficulty);
-      difficultySelect.value = currentDifficulty;
-    });
-    document.getElementById('mm-language-select').addEventListener('change', e => {
-      updateLanguage(e.target.value);
-      languageSelect.value = e.target.value;
-    });
-    document.getElementById('mm-all-sounds').addEventListener('change', e => {
-      allSoundsEnabled = e.target.checked;
-      localStorage.setItem('allSounds', allSoundsEnabled);
-      allSoundsToggle.checked = e.target.checked;
-      updateAllVolumes();
-    });
+    document.getElementById('mm-effects-toggle').addEventListener('change', e => { toggleEffects(e.target.checked); effectsToggle.checked = e.target.checked; });
+    document.getElementById('mm-hq-toggle').addEventListener('change', e => { toggleHQ(e.target.checked); hqToggle.checked = e.target.checked; });
+    document.getElementById('mm-difficulty-select').addEventListener('change', e => { currentDifficulty = e.target.value; localStorage.setItem('difficulty', currentDifficulty); difficultySelect.value = currentDifficulty; });
+    document.getElementById('mm-language-select').addEventListener('change', e => { updateLanguage(e.target.value); languageSelect.value = e.target.value; });
+    document.getElementById('mm-all-sounds').addEventListener('change', e => { allSoundsEnabled = e.target.checked; localStorage.setItem('allSounds', allSoundsEnabled); allSoundsToggle.checked = e.target.checked; updateAllVolumes(); });
 
     const mmAudioMap = {
       'mm-audio-respawn': audioRespawn, 'mm-audio-lava': audioLava, 'mm-audio-jump': audioJump,
-      'mm-audio-walking': audioWalking, 'mm-audio-brick': audioBrick, 'mm-audio-ambient': audioAmbient,
-      'mm-audio-achievement': audioAchievement
+      'mm-audio-walking': audioWalking, 'mm-audio-brick': audioBrick, 'mm-audio-ambient': audioAmbient, 'mm-audio-achievement': audioAchievement
     };
-    Object.entries(mmAudioMap).forEach(([id, pauseEl]) => {
-      document.getElementById(id).addEventListener('change', e => {
-        pauseEl.checked = e.target.checked;
-        saveAudioSettings();
-      });
-    });
+    Object.entries(mmAudioMap).forEach(([id, pauseEl]) => { document.getElementById(id).addEventListener('change', e => { pauseEl.checked = e.target.checked; saveAudioSettings(); }); });
 
     document.getElementById('mm-reset-data-btn').addEventListener('click', resetAllData);
-
-    document.getElementById('mm-feat-double-jump').addEventListener('change', e => {
-      doubleJumpEnabled = e.target.checked;
-      localStorage.setItem('featDoubleJump', doubleJumpEnabled);
-      document.getElementById('p-feat-double-jump').checked = doubleJumpEnabled;
-      updateLanguage(currentLanguage);
-    });
-    document.getElementById('mm-feat-show-height').addEventListener('change', e => {
-      showHeightEnabled = e.target.checked;
-      localStorage.setItem('featShowHeight', showHeightEnabled);
-      document.getElementById('p-feat-show-height').checked = showHeightEnabled;
-      updateLanguage(currentLanguage);
-    });
-    document.getElementById('mm-feat-show-top').addEventListener('change', e => {
-      showTopEnabled = e.target.checked;
-      localStorage.setItem('featShowTop', showTopEnabled);
-      document.getElementById('p-feat-show-top').checked = showTopEnabled;
-      updateLanguage(currentLanguage);
-    });
-    document.getElementById('mm-feat-show-timer').addEventListener('change', e => {
-      showTimerEnabled = e.target.checked;
-      localStorage.setItem('featShowTimer', showTimerEnabled);
-      document.getElementById('p-feat-show-timer').checked = showTimerEnabled;
-      updateLanguage(currentLanguage);
-    });
+    document.getElementById('mm-feat-double-jump').addEventListener('change', e => { doubleJumpEnabled = e.target.checked; localStorage.setItem('featDoubleJump', doubleJumpEnabled); document.getElementById('p-feat-double-jump').checked = doubleJumpEnabled; updateLanguage(currentLanguage); });
+    document.getElementById('mm-feat-show-height').addEventListener('change', e => { showHeightEnabled = e.target.checked; localStorage.setItem('featShowHeight', showHeightEnabled); document.getElementById('p-feat-show-height').checked = showHeightEnabled; updateLanguage(currentLanguage); });
+    document.getElementById('mm-feat-show-top').addEventListener('change', e => { showTopEnabled = e.target.checked; localStorage.setItem('featShowTop', showTopEnabled); document.getElementById('p-feat-show-top').checked = showTopEnabled; updateLanguage(currentLanguage); });
+    document.getElementById('mm-feat-show-timer').addEventListener('change', e => { showTimerEnabled = e.target.checked; localStorage.setItem('featShowTimer', showTimerEnabled); document.getElementById('p-feat-show-timer').checked = showTimerEnabled; updateLanguage(currentLanguage); });
 
     function init() {
       initializeVolumes();
-
       effectsToggle.checked = effectsEnabled;
       hqToggle.checked = hqEnabled;
       document.getElementById('mm-effects-toggle').checked = effectsEnabled;
       document.getElementById('mm-hq-toggle').checked = hqEnabled;
       toggleEffects(effectsEnabled);
       toggleHQ(hqEnabled);
-
       languageSelect.value = currentLanguage;
       document.getElementById('mm-language-select').value = currentLanguage;
       difficultySelect.value = currentDifficulty;
       document.getElementById('mm-difficulty-select').value = currentDifficulty;
-
       allSoundsToggle.checked = allSoundsEnabled;
       document.getElementById('mm-all-sounds').checked = allSoundsEnabled;
-
       document.getElementById('mm-feat-double-jump').checked = doubleJumpEnabled;
       document.getElementById('mm-feat-show-height').checked = showHeightEnabled;
       document.getElementById('mm-feat-show-top').checked = showTopEnabled;
@@ -2759,13 +1945,11 @@
       document.getElementById('p-feat-show-height').checked = showHeightEnabled;
       document.getElementById('p-feat-show-top').checked = showTopEnabled;
       document.getElementById('p-feat-show-timer').checked = showTimerEnabled;
-
       applyColors();
       updateLanguage(currentLanguage);
       updateAudioRowHighlights();
       updateCountryDisplay();
       getOrCreateUserId();
-
       document.getElementById('hud').style.display = 'none';
       document.getElementById('hp-display').style.display = 'none';
       document.getElementById('pause-hint').style.display = 'none';
