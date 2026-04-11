@@ -22,5 +22,29 @@
     "totalPlaytime": 315.2519379999882,
     "deaths": 15,
     "achievements": 8
+  },
+  {
+    "encUserId": "ICAAMCZ0IT9wPQFTAEYyNj5KdCsmJC51OjM1bgtY",
+    "username": "JePPxx",
+    "country": "DK",
+    "countryFlag": "🇩🇰",
+    "countryName": "Denmark",
+    "highScore": {
+      "easy": 0,
+      "medium": 21310,
+      "hard": 60600,
+      "impossible": 61175
+    },
+    "survivalTimes": {
+      "easy": 0,
+      "medium": 0,
+      "hard": 0,
+      "impossible": 15.390400000002234
+    },
+    "joinDate": "2026-04-11T20:21:52.520Z",
+    "lastSeen": "2026-04-11T20:23:09.281Z",
+    "totalPlaytime": 15.390400000002234,
+    "deaths": 1,
+    "achievements": 13
   }
 ]
