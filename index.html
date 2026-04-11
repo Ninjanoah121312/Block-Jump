@@ -50,7 +50,7 @@
 
   <div id="main-menu-screen">
     <div class="mm-logo">BLOCK JUMP</div>
-    <div class="mm-version">v1.4.0</div>
+    <div class="mm-version">v1.5.0</div>
     <div class="mm-profile-row">
       <div class="mm-profile-field">
         <input type="text" id="mm-username-input" class="mm-username-input" placeholder="Enter username..." maxlength="20">
@@ -237,30 +237,47 @@
     <div class="mm-overlay-content">
       <div class="mm-overlay-title">EXTRA</div>
       <div class="mm-section">
-        <div class="mm-section-title">Player Stats</div>
+        <button class="mm-btn" id="mm-stats-btn" style="margin-bottom:10px;">STATS</button>
+        <button class="mm-btn" id="mm-changelog-btn" style="margin-bottom:10px;">CHANGELOG</button>
+        <button class="mm-btn" id="mm-help-btn" style="margin-bottom:10px;">HELP</button>
+        <button class="mm-btn" id="mm-community-btn">COMMUNITY</button>
+      </div>
+      <button class="mm-btn" id="mm-extra-back-btn">BACK</button>
+    </div>
+  </div>
+
+  <div id="mm-stats-screen" class="mm-overlay" style="display:none;">
+    <div class="mm-overlay-content">
+      <div class="mm-overlay-title">STATS</div>
+      <div class="mm-section">
+        <div class="mm-section-title">Player Info</div>
         <div id="extra-stats-container" class="extra-stats-grid">
+          <div class="extra-stat-item extra-stat-wide"><div class="extra-stat-label">Name</div><div class="extra-stat-value" id="stat-name">-</div></div>
           <div class="extra-stat-item"><div class="extra-stat-label">Total Playtime</div><div class="extra-stat-value" id="stat-playtime">0s</div></div>
           <div class="extra-stat-item"><div class="extra-stat-label">Deaths</div><div class="extra-stat-value" id="stat-deaths">0</div></div>
           <div class="extra-stat-item"><div class="extra-stat-label">Join Date</div><div class="extra-stat-value" id="stat-joindate">-</div></div>
           <div class="extra-stat-item"><div class="extra-stat-label">Achievements</div><div class="extra-stat-value" id="stat-achievements">0/0</div></div>
-          <div class="extra-stat-item extra-stat-wide"><div class="extra-stat-label">Top Height (All)</div><div class="extra-stat-value" id="stat-topheight">0</div></div>
         </div>
       </div>
       <div class="mm-section">
-        <div class="mm-section-title">Top Height by Difficulty</div>
+        <div class="mm-section-title">Top Score by Difficulty</div>
         <div class="extra-stats-grid">
-          <div class="extra-stat-item"><div class="extra-stat-label">Easy</div><div class="extra-stat-value stat-easy" id="stat-top-easy">0</div></div>
-          <div class="extra-stat-item"><div class="extra-stat-label">Medium</div><div class="extra-stat-value stat-medium" id="stat-top-medium">0</div></div>
-          <div class="extra-stat-item"><div class="extra-stat-label">Hard</div><div class="extra-stat-value stat-hard" id="stat-top-hard">0</div></div>
-          <div class="extra-stat-item"><div class="extra-stat-label">Impossible</div><div class="extra-stat-value stat-impossible" id="stat-top-impossible">0</div></div>
+          <div class="extra-stat-item"><div class="extra-stat-label">Easy</div><div class="extra-stat-value stat-easy" id="stat-score-easy">0</div></div>
+          <div class="extra-stat-item"><div class="extra-stat-label">Medium</div><div class="extra-stat-value stat-medium" id="stat-score-medium">0</div></div>
+          <div class="extra-stat-item"><div class="extra-stat-label">Hard</div><div class="extra-stat-value stat-hard" id="stat-score-hard">0</div></div>
+          <div class="extra-stat-item"><div class="extra-stat-label">Impossible</div><div class="extra-stat-value stat-impossible" id="stat-score-impossible">0</div></div>
         </div>
       </div>
-      <div class="mm-section extra-links-section">
-        <button class="mm-btn" id="mm-changelog-btn">CHANGELOG</button>
-        <button class="mm-btn" id="mm-help-btn">HELP</button>
-        <button class="mm-btn" id="mm-community-btn">COMMUNITY</button>
+      <div class="mm-section">
+        <div class="mm-section-title">Top Time by Difficulty</div>
+        <div class="extra-stats-grid">
+          <div class="extra-stat-item"><div class="extra-stat-label">Easy</div><div class="extra-stat-value stat-easy" id="stat-time-easy">0s</div></div>
+          <div class="extra-stat-item"><div class="extra-stat-label">Medium</div><div class="extra-stat-value stat-medium" id="stat-time-medium">0s</div></div>
+          <div class="extra-stat-item"><div class="extra-stat-label">Hard</div><div class="extra-stat-value stat-hard" id="stat-time-hard">0s</div></div>
+          <div class="extra-stat-item"><div class="extra-stat-label">Impossible</div><div class="extra-stat-value stat-impossible" id="stat-time-impossible">0s</div></div>
+        </div>
       </div>
-      <button class="mm-btn" id="mm-extra-back-btn">BACK</button>
+      <button class="mm-btn" id="mm-stats-back-btn">BACK</button>
     </div>
   </div>
 
@@ -268,18 +285,19 @@
     <div class="mm-overlay-content">
       <div class="mm-overlay-title">CHANGELOG</div>
       <div class="mm-section">
-        <div class="mm-section-title">Changelog - v1.4.0</div>
+        <div class="mm-section-title">Changelog - v1.2.0</div>
         <div class="changelog-box">
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Timer HUD with toggle in settings</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Extra Stats section: playtime, deaths, join date, achievements</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Per-difficulty top height tracking</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Death screen shows difficulty, run height, and top height</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Achievements are clickable with detail toggle</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Country selection with full world country list</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Custom leaderboard count popup (no browser prompt)</div>
-          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Leaderboard shows country flag</div>
+          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Lava no longer freezes when tab is hidden — timer abuse prevented</div>
+          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Death screen only shows the time achieved in that run</div>
+          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Top difficulty HUD is now localStorage persisted</div>
+          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Stats screen with Name, Top Score per diff, Top Timer per diff, Deaths, Achievements</div>
+          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Stats button in Extra menu</div>
+          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Audio toggle moved into settings panel (inside Extra box)</div>
+          <div class="changelog-entry"><span class="cl-tag new">NEW</span> HUD hierarchy: Score → Top Score → Timer → Top Time → Difficulty</div>
+          <div class="changelog-entry"><span class="cl-tag new">NEW</span> Death achievements (5, 10, 25, 50, 100, 250, 500, 1000 deaths)</div>
+          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Time achievements capped at 15 minutes max</div>
+          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Achievement descriptions are more detailed and informative</div>
           <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Score system uses internal protected variable</div>
-          <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Audio dropdowns toggle on click</div>
           <div class="changelog-entry"><span class="cl-tag fix">FIX</span> All previous bugs resolved</div>
         </div>
       </div>
@@ -333,6 +351,7 @@
             <option value="medium">Medium</option>
             <option value="hard">Hard</option>
             <option value="impossible">Impossible</option>
+            <option value="general">General</option>
           </select>
         </div>
       </div>
@@ -371,8 +390,9 @@
 
   <div id="hud">
     <span id="current">HEIGHT: 0</span>
-    <span id="max">TOP HEIGHT: 0</span>
+    <span id="max">TOP: 0</span>
     <span id="timer-display">TIME: 0s</span>
+    <span id="top-time-display">TOP TIME: 0s</span>
     <span id="difficulty-display">DIFFICULTY: MEDIUM</span>
   </div>
 
@@ -582,6 +602,7 @@
         <div class="death-stat-row" id="death-difficulty-row"></div>
         <div class="death-stat-row" id="death-height-row"></div>
         <div class="death-stat-row" id="death-top-row"></div>
+        <div class="death-stat-row" id="death-time-row"></div>
       </div>
       <p id="death-subtitle">Click / Space to Respawn</p>
     </div>
@@ -602,13 +623,11 @@
       ) return false;
     };
 
-    // ===================== SECURE USER ID SYSTEM =====================
     const _UID_PREFIX = 'DO_NOT_SHARE_WITH_ANYONE_';
     const _UID_RAND = '48291057362819403728591046372819504738291047382910473829104738';
     const _UID_KEY = _UID_PREFIX + _UID_RAND;
 
     function _encryptUserId(uid) {
-      // Simple XOR + base64 encryption for userId stored on GitHub
       const key = 'BJ_SECURE_2024_XK9';
       let result = '';
       for (let i = 0; i < uid.length; i++) {
@@ -638,22 +657,33 @@
       return uid;
     }
 
-    // ===================== GITHUB CONFIG =====================
     const GITHUB_REPO = 'Ninjanoah121312/Block-Jump';
     const GITHUB_FILE = 'Data/User_Data.Json';
-    const GITHUB_TOKEN = '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';
+    const GITHUB_TOKEN = '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';
     const GITHUB_API = `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
 
     async function fetchGitHubData() {
       try {
         const res = await fetch(GITHUB_API, {
-          headers: { Authorization: `token ${GITHUB_TOKEN}`, Accept: 'application/vnd.github.v3+json' }
+          headers: {
+            Authorization: `Bearer ${GITHUB_TOKEN}`,
+            Accept: 'application/vnd.github.v3+json'
+          }
         });
         if (!res.ok) return null;
         const json = await res.json();
-        const decoded = atob(json.content.replace(/\n/g, ''));
-        return { data: JSON.parse(decoded), sha: json.sha };
-      } catch (e) { return null; }
+        const rawContent = json.content.replace(/\n/g, '').replace(/\s/g, '');
+        const decoded = decodeURIComponent(escape(atob(rawContent)));
+        let parsed;
+        try {
+          parsed = JSON.parse(decoded);
+        } catch(e) {
+          parsed = [];
+        }
+        return { data: Array.isArray(parsed) ? parsed : [], sha: json.sha };
+      } catch(e) {
+        return null;
+      }
     }
 
     async function saveToGitHub(record) {
@@ -662,11 +692,10 @@
         let records = [];
         let sha = null;
         if (existing) {
-          records = Array.isArray(existing.data) ? existing.data : [];
+          records = existing.data;
           sha = existing.sha;
         }
         const encUid = _encryptUserId(record.userid);
-        // Find existing entry by encrypted userId
         const idx = records.findIndex(r => {
           try { return _decryptUserId(r.encUserId) === record.userid; } catch(e) { return false; }
         });
@@ -677,7 +706,7 @@
           countryFlag: record.countryFlag,
           countryName: record.countryName,
           highScore: record.highScore,
-          scores: record.scores,
+          survivalTimes: record.survivalTimes,
           joinDate: record.joinDate,
           lastSeen: record.lastSeen,
           totalPlaytime: record.totalPlaytime,
@@ -689,22 +718,25 @@
         } else {
           records.push(entry);
         }
-        const content = btoa(unescape(encodeURIComponent(JSON.stringify(records, null, 2))));
+        const jsonStr = JSON.stringify(records, null, 2);
+        const content = btoa(unescape(encodeURIComponent(jsonStr)));
         const body = { message: `Update profile - ${record.username}`, content };
         if (sha) body.sha = sha;
-        await fetch(GITHUB_API, {
+        const putRes = await fetch(GITHUB_API, {
           method: 'PUT',
           headers: {
-            Authorization: `token ${GITHUB_TOKEN}`,
+            Authorization: `Bearer ${GITHUB_TOKEN}`,
             Accept: 'application/vnd.github.v3+json',
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(body)
         });
-      } catch (e) {}
+        return putRes.ok;
+      } catch(e) {
+        return false;
+      }
     }
 
-    // ===================== LOCAL PROFILE =====================
     function getLocalProfile() {
       try {
         const raw = localStorage.getItem('bj_profile');
@@ -730,13 +762,16 @@
           totalPlaytime: parseFloat(localStorage.getItem('bj_total_playtime') || '0'),
           deaths: parseInt(localStorage.getItem('bj_deaths') || '0'),
           highScore: { easy: 0, medium: 0, hard: 0, impossible: 0 },
+          survivalTimes: { easy: 0, medium: 0, hard: 0, impossible: 0 },
           achievements: {}
         };
-        // Migrate old high scores if present
         ['easy','medium','hard','impossible'].forEach(d => {
           const k = 'obbyTopHeight' + d.charAt(0).toUpperCase() + d.slice(1);
           const v = parseInt(localStorage.getItem(k) || '0');
           if (v > 0) profile.highScore[d] = v;
+          const tk = 'survivalTime' + d.charAt(0).toUpperCase() + d.slice(1);
+          const tv = parseFloat(localStorage.getItem(tk) || '0');
+          if (tv > 0) profile.survivalTimes[d] = tv;
         });
         saveLocalProfile(profile);
       }
@@ -751,6 +786,8 @@
       _userProfile.totalPlaytime = _totalPlaytime;
       _userProfile.deaths = _totalDeaths;
       _userProfile.achievements = unlockedAchievements;
+      _userProfile.highScore = Object.assign({}, _internalScores);
+      _userProfile.survivalTimes = Object.assign({}, survivalTimes);
       saveLocalProfile(_userProfile);
     }
 
@@ -763,7 +800,7 @@
         countryFlag: _userProfile.country ? _userProfile.country.flag : '',
         countryName: _userProfile.country ? _userProfile.country.en : '',
         highScore: _userProfile.highScore,
-        scores: _userProfile.highScore, // alias for leaderboard
+        survivalTimes: _userProfile.survivalTimes,
         joinDate: _userProfile.joinDate,
         lastSeen: new Date().toISOString(),
         totalPlaytime: _userProfile.totalPlaytime,
@@ -773,22 +810,19 @@
       await saveToGitHub(record);
     }
 
-    // ===================== TRACKED STATS =====================
     let _totalPlaytime = _userProfile.totalPlaytime || 0;
     let _totalDeaths = _userProfile.deaths || 0;
 
-    // Internal protected high score — not exposed on window
     const _internalScores = Object.assign({ easy: 0, medium: 0, hard: 0, impossible: 0 }, _userProfile.highScore || {});
 
     function _getInternalScore(diff) { return _internalScores[diff] || 0; }
     function _setInternalScore(diff, val) {
       if (val > (_internalScores[diff] || 0)) {
         _internalScores[diff] = val;
-        _userProfile.highScore[diff] = val;
+        if (_userProfile.highScore) _userProfile.highScore[diff] = val;
       }
     }
 
-    // ===================== COUNTRIES =====================
     const ALL_COUNTRIES = [
       { code: 'AF', flag: '🇦🇫', en: 'Afghanistan', da: 'Afghanistan', de: 'Afghanistan' },
       { code: 'AL', flag: '🇦🇱', en: 'Albania', da: 'Albanien', de: 'Albanien' },
@@ -1098,7 +1132,6 @@
       closeBtn.addEventListener('click', close);
     }
 
-    // ===================== AUDIO =====================
     const SOUND_KEYS = ['respawn','lava','jump','walking','brick','ambient','achievement'];
     const DEFAULT_VOLS = { respawn:70, lava:60, jump:40, walking:70, brick:80, ambient:40, achievement:90 };
 
@@ -1117,14 +1150,6 @@
       soundVols[key] = val;
       localStorage.setItem('soundVol_' + key, val);
     }
-
-    const START_TIME_RESPAWN = 0;
-    const START_TIME_LAVA_DIE = 0.1;
-    const START_TIME_JUMP = 0;
-    const START_TIME_WALKING = 0;
-    const START_TIME_KILL_BRICK = 0.5;
-    const START_TIME_LAVA = 0;
-    const START_TIME_ACHIEVEMENT = 0;
 
     const LAVA_START_SPEED = 0.10;
     const LAVA_SPEED_INCREASE_RATE = 0.08;
@@ -1146,86 +1171,70 @@
     const PLATFORM_MOVE_RANGE = 175;
     const LAVA_HITBOX_OFFSET = 0;
 
-    // ===================== ACHIEVEMENTS =====================
     const ACHIEVEMENT_DEFS = [
-      { id: 'easy_250', mode: 'easy', type: 'height', threshold: 2500, name: 'Easy 250', desc: 'Reach height 250 on Easy' },
-      { id: 'easy_500', mode: 'easy', type: 'height', threshold: 5000, name: 'Easy 500', desc: 'Reach height 500 on Easy' },
-      { id: 'easy_1000', mode: 'easy', type: 'height', threshold: 10000, name: 'Easy 1000', desc: 'Reach height 1000 on Easy' },
-      { id: 'easy_2500', mode: 'easy', type: 'height', threshold: 25000, name: 'Easy 2500', desc: 'Reach height 2500 on Easy' },
-      { id: 'easy_5000', mode: 'easy', type: 'height', threshold: 50000, name: 'Easy 5000', desc: 'Reach height 5000 on Easy' },
-      { id: 'easy_7500', mode: 'easy', type: 'height', threshold: 75000, name: 'Easy 7500', desc: 'Reach height 7500 on Easy' },
-      { id: 'easy_10000', mode: 'easy', type: 'height', threshold: 100000, name: 'Easy 10000', desc: 'Reach height 10000 on Easy' },
-      { id: 'easy_12500', mode: 'easy', type: 'height', threshold: 125000, name: 'Easy 12500', desc: 'Reach height 12500 on Easy' },
-      { id: 'easy_15000', mode: 'easy', type: 'height', threshold: 150000, name: 'Easy 15000', desc: 'Reach height 15000 on Easy' },
-      { id: 'easy_20000', mode: 'easy', type: 'height', threshold: 200000, name: 'Easy 20000', desc: 'Reach height 20000 on Easy' },
-      { id: 'easy_25000', mode: 'easy', type: 'height', threshold: 250000, name: 'Easy 25000', desc: 'Reach height 25000 on Easy' },
-      { id: 'easy_survive_30s', mode: 'easy', type: 'time', threshold: 30, name: 'Easy Survivor 30s', desc: 'Survive 30 seconds on Easy' },
-      { id: 'easy_survive_1m', mode: 'easy', type: 'time', threshold: 60, name: 'Easy Survivor 1m', desc: 'Survive 1 minute on Easy' },
-      { id: 'easy_survive_2m', mode: 'easy', type: 'time', threshold: 120, name: 'Easy Survivor 2m', desc: 'Survive 2 minutes on Easy' },
-      { id: 'easy_survive_5m', mode: 'easy', type: 'time', threshold: 300, name: 'Easy Survivor 5m', desc: 'Survive 5 minutes on Easy' },
-      { id: 'easy_survive_10m', mode: 'easy', type: 'time', threshold: 600, name: 'Easy Survivor 10m', desc: 'Survive 10 minutes on Easy' },
-      { id: 'easy_survive_20m', mode: 'easy', type: 'time', threshold: 1200, name: 'Easy Survivor 20m', desc: 'Survive 20 minutes on Easy' },
-      { id: 'easy_survive_30m', mode: 'easy', type: 'time', threshold: 1800, name: 'Easy Survivor 30m', desc: 'Survive 30 minutes on Easy' },
-      { id: 'medium_250', mode: 'medium', type: 'height', threshold: 2500, name: 'Medium 250', desc: 'Reach height 250 on Medium' },
-      { id: 'medium_500', mode: 'medium', type: 'height', threshold: 5000, name: 'Medium 500', desc: 'Reach height 500 on Medium' },
-      { id: 'medium_1000', mode: 'medium', type: 'height', threshold: 10000, name: 'Medium 1000', desc: 'Reach height 1000 on Medium' },
-      { id: 'medium_2500', mode: 'medium', type: 'height', threshold: 25000, name: 'Medium 2500', desc: 'Reach height 2500 on Medium' },
-      { id: 'medium_5000', mode: 'medium', type: 'height', threshold: 50000, name: 'Medium 5000', desc: 'Reach height 5000 on Medium' },
-      { id: 'medium_7500', mode: 'medium', type: 'height', threshold: 75000, name: 'Medium 7500', desc: 'Reach height 7500 on Medium' },
-      { id: 'medium_10000', mode: 'medium', type: 'height', threshold: 100000, name: 'Medium 10000', desc: 'Reach height 10000 on Medium' },
-      { id: 'medium_12500', mode: 'medium', type: 'height', threshold: 125000, name: 'Medium 12500', desc: 'Reach height 12500 on Medium' },
-      { id: 'medium_15000', mode: 'medium', type: 'height', threshold: 150000, name: 'Medium 15000', desc: 'Reach height 15000 on Medium' },
-      { id: 'medium_20000', mode: 'medium', type: 'height', threshold: 200000, name: 'Medium 20000', desc: 'Reach height 20000 on Medium' },
-      { id: 'medium_25000', mode: 'medium', type: 'height', threshold: 250000, name: 'Medium 25000', desc: 'Reach height 25000 on Medium' },
-      { id: 'medium_survive_30s', mode: 'medium', type: 'time', threshold: 30, name: 'Medium Survivor 30s', desc: 'Survive 30 seconds on Medium' },
-      { id: 'medium_survive_1m', mode: 'medium', type: 'time', threshold: 60, name: 'Medium Survivor 1m', desc: 'Survive 1 minute on Medium' },
-      { id: 'medium_survive_2m', mode: 'medium', type: 'time', threshold: 120, name: 'Medium Survivor 2m', desc: 'Survive 2 minutes on Medium' },
-      { id: 'medium_survive_5m', mode: 'medium', type: 'time', threshold: 300, name: 'Medium Survivor 5m', desc: 'Survive 5 minutes on Medium' },
-      { id: 'medium_survive_10m', mode: 'medium', type: 'time', threshold: 600, name: 'Medium Survivor 10m', desc: 'Survive 10 minutes on Medium' },
-      { id: 'medium_survive_20m', mode: 'medium', type: 'time', threshold: 1200, name: 'Medium Survivor 20m', desc: 'Survive 20 minutes on Medium' },
-      { id: 'medium_survive_30m', mode: 'medium', type: 'time', threshold: 1800, name: 'Medium Survivor 30m', desc: 'Survive 30 minutes on Medium' },
-      { id: 'hard_250', mode: 'hard', type: 'height', threshold: 2500, name: 'Hard 250', desc: 'Reach height 250 on Hard' },
-      { id: 'hard_500', mode: 'hard', type: 'height', threshold: 5000, name: 'Hard 500', desc: 'Reach height 500 on Hard' },
-      { id: 'hard_1000', mode: 'hard', type: 'height', threshold: 10000, name: 'Hard 1000', desc: 'Reach height 1000 on Hard' },
-      { id: 'hard_2500', mode: 'hard', type: 'height', threshold: 25000, name: 'Hard 2500', desc: 'Reach height 2500 on Hard' },
-      { id: 'hard_5000', mode: 'hard', type: 'height', threshold: 50000, name: 'Hard 5000', desc: 'Reach height 5000 on Hard' },
-      { id: 'hard_7500', mode: 'hard', type: 'height', threshold: 75000, name: 'Hard 7500', desc: 'Reach height 7500 on Hard' },
-      { id: 'hard_10000', mode: 'hard', type: 'height', threshold: 100000, name: 'Hard 10000', desc: 'Reach height 10000 on Hard' },
-      { id: 'hard_12500', mode: 'hard', type: 'height', threshold: 125000, name: 'Hard 12500', desc: 'Reach height 12500 on Hard' },
-      { id: 'hard_15000', mode: 'hard', type: 'height', threshold: 150000, name: 'Hard 15000', desc: 'Reach height 15000 on Hard' },
-      { id: 'hard_20000', mode: 'hard', type: 'height', threshold: 200000, name: 'Hard 20000', desc: 'Reach height 20000 on Hard' },
-      { id: 'hard_25000', mode: 'hard', type: 'height', threshold: 250000, name: 'Hard 25000', desc: 'Reach height 25000 on Hard' },
-      { id: 'hard_survive_30s', mode: 'hard', type: 'time', threshold: 30, name: 'Hard Survivor 30s', desc: 'Survive 30 seconds on Hard' },
-      { id: 'hard_survive_1m', mode: 'hard', type: 'time', threshold: 60, name: 'Hard Survivor 1m', desc: 'Survive 1 minute on Hard' },
-      { id: 'hard_survive_2m', mode: 'hard', type: 'time', threshold: 120, name: 'Hard Survivor 2m', desc: 'Survive 2 minutes on Hard' },
-      { id: 'hard_survive_5m', mode: 'hard', type: 'time', threshold: 300, name: 'Hard Survivor 5m', desc: 'Survive 5 minutes on Hard' },
-      { id: 'hard_survive_10m', mode: 'hard', type: 'time', threshold: 600, name: 'Hard Survivor 10m', desc: 'Survive 10 minutes on Hard' },
-      { id: 'hard_survive_20m', mode: 'hard', type: 'time', threshold: 1200, name: 'Hard Survivor 20m', desc: 'Survive 20 minutes on Hard' },
-      { id: 'hard_survive_30m', mode: 'hard', type: 'time', threshold: 1800, name: 'Hard Survivor 30m', desc: 'Survive 30 minutes on Hard' },
-      { id: 'impossible_250', mode: 'impossible', type: 'height', threshold: 2500, name: 'Impossible 250', desc: 'Reach height 250 on Impossible' },
-      { id: 'impossible_500', mode: 'impossible', type: 'height', threshold: 5000, name: 'Impossible 500', desc: 'Reach height 500 on Impossible' },
-      { id: 'impossible_1000', mode: 'impossible', type: 'height', threshold: 10000, name: 'Impossible 1000', desc: 'Reach height 1000 on Impossible' },
-      { id: 'impossible_2500', mode: 'impossible', type: 'height', threshold: 25000, name: 'Impossible 2500', desc: 'Reach height 2500 on Impossible' },
-      { id: 'impossible_5000', mode: 'impossible', type: 'height', threshold: 50000, name: 'Impossible 5000', desc: 'Reach height 5000 on Impossible' },
-      { id: 'impossible_7500', mode: 'impossible', type: 'height', threshold: 75000, name: 'Impossible 7500', desc: 'Reach height 7500 on Impossible' },
-      { id: 'impossible_10000', mode: 'impossible', type: 'height', threshold: 100000, name: 'Impossible 10000', desc: 'Reach height 10000 on Impossible' },
-      { id: 'impossible_12500', mode: 'impossible', type: 'height', threshold: 125000, name: 'Impossible 12500', desc: 'Reach height 12500 on Impossible' },
-      { id: 'impossible_15000', mode: 'impossible', type: 'height', threshold: 150000, name: 'Impossible 15000', desc: 'Reach height 15000 on Impossible' },
-      { id: 'impossible_20000', mode: 'impossible', type: 'height', threshold: 200000, name: 'Impossible 20000', desc: 'Reach height 20000 on Impossible' },
-      { id: 'impossible_25000', mode: 'impossible', type: 'height', threshold: 250000, name: 'Impossible 25000', desc: 'Reach height 25000 on Impossible' },
-      { id: 'impossible_survive_30s', mode: 'impossible', type: 'time', threshold: 30, name: 'Impossible Survivor 30s', desc: 'Survive 30 seconds on Impossible' },
-      { id: 'impossible_survive_1m', mode: 'impossible', type: 'time', threshold: 60, name: 'Impossible Survivor 1m', desc: 'Survive 1 minute on Impossible' },
-      { id: 'impossible_survive_2m', mode: 'impossible', type: 'time', threshold: 120, name: 'Impossible Survivor 2m', desc: 'Survive 2 minutes on Impossible' },
-      { id: 'impossible_survive_5m', mode: 'impossible', type: 'time', threshold: 300, name: 'Impossible Survivor 5m', desc: 'Survive 5 minutes on Impossible' },
-      { id: 'impossible_survive_10m', mode: 'impossible', type: 'time', threshold: 600, name: 'Impossible Survivor 10m', desc: 'Survive 10 minutes on Impossible' },
-      { id: 'impossible_survive_20m', mode: 'impossible', type: 'time', threshold: 1200, name: 'Impossible Survivor 20m', desc: 'Survive 20 minutes on Impossible' },
-      { id: 'impossible_survive_30m', mode: 'impossible', type: 'time', threshold: 1800, name: 'Impossible Survivor 30m', desc: 'Survive 30 minutes on Impossible' }
+      { id: 'easy_250', mode: 'easy', type: 'height', threshold: 2500, name: 'Easy Climber I', desc: 'Reach a height of 250 on Easy difficulty — a solid start showing you can navigate the basic platforms and avoid the rising lava.' },
+      { id: 'easy_500', mode: 'easy', type: 'height', threshold: 5000, name: 'Easy Climber II', desc: 'Reach a height of 500 on Easy difficulty — you are starting to read platform patterns and managing your double jump wisely.' },
+      { id: 'easy_1000', mode: 'easy', type: 'height', threshold: 10000, name: 'Easy Climber III', desc: 'Reach a height of 1000 on Easy difficulty — at this point blue and orange platforms appear more often, stay focused.' },
+      { id: 'easy_2500', mode: 'easy', type: 'height', threshold: 25000, name: 'Easy Expert', desc: 'Reach a height of 2500 on Easy difficulty — you are now handling the lava acceleration and tricky platform sequences with skill.' },
+      { id: 'easy_5000', mode: 'easy', type: 'height', threshold: 50000, name: 'Easy Master', desc: 'Reach a height of 5000 on Easy difficulty — a major milestone showing true mastery of movement and platform reading on Easy.' },
+      { id: 'easy_10000', mode: 'easy', type: 'height', threshold: 100000, name: 'Easy Legend', desc: 'Reach a height of 10000 on Easy difficulty — an incredible run that demonstrates near-perfect play on Easy mode.' },
+      { id: 'easy_survive_30s', mode: 'easy', type: 'time', threshold: 30, name: 'Easy 30 Seconds', desc: 'Survive for 30 seconds on Easy difficulty — staying alive while the lava rises requires constant movement and awareness.' },
+      { id: 'easy_survive_1m', mode: 'easy', type: 'time', threshold: 60, name: 'Easy 1 Minute', desc: 'Survive for 1 full minute on Easy difficulty — the lava has sped up considerably by this point, keep jumping!' },
+      { id: 'easy_survive_3m', mode: 'easy', type: 'time', threshold: 180, name: 'Easy 3 Minutes', desc: 'Survive for 3 minutes on Easy difficulty — a sustained run that tests your stamina and decision-making under pressure.' },
+      { id: 'easy_survive_5m', mode: 'easy', type: 'time', threshold: 300, name: 'Easy 5 Minutes', desc: 'Survive for 5 minutes on Easy difficulty — the lava is relentless at this stage, this is a genuinely impressive run.' },
+      { id: 'easy_survive_10m', mode: 'easy', type: 'time', threshold: 600, name: 'Easy 10 Minutes', desc: 'Survive for 10 minutes on Easy difficulty — this is among the longest runs most players will ever achieve on Easy.' },
+      { id: 'easy_survive_15m', mode: 'easy', type: 'time', threshold: 900, name: 'Easy 15 Minutes', desc: 'Survive for 15 minutes on Easy difficulty — a legendary time that puts you among the very best Easy players ever.' },
+      { id: 'medium_250', mode: 'medium', type: 'height', threshold: 2500, name: 'Medium Climber I', desc: 'Reach a height of 250 on Medium difficulty — Medium introduces faster lava and more kill bricks, this is no small feat.' },
+      { id: 'medium_500', mode: 'medium', type: 'height', threshold: 5000, name: 'Medium Climber II', desc: 'Reach a height of 500 on Medium difficulty — you are now consistently clearing tricky platform layouts mid-run.' },
+      { id: 'medium_1000', mode: 'medium', type: 'height', threshold: 10000, name: 'Medium Climber III', desc: 'Reach a height of 1000 on Medium difficulty — the density of blue disappearing platforms increases heavily here.' },
+      { id: 'medium_2500', mode: 'medium', type: 'height', threshold: 25000, name: 'Medium Expert', desc: 'Reach a height of 2500 on Medium difficulty — exceptional performance handling the full range of Medium platform challenges.' },
+      { id: 'medium_5000', mode: 'medium', type: 'height', threshold: 50000, name: 'Medium Master', desc: 'Reach a height of 5000 on Medium difficulty — true mastery of timing, movement, and risk management on Medium.' },
+      { id: 'medium_10000', mode: 'medium', type: 'height', threshold: 100000, name: 'Medium Legend', desc: 'Reach a height of 10000 on Medium difficulty — an extraordinary run that very few players will ever accomplish.' },
+      { id: 'medium_survive_30s', mode: 'medium', type: 'time', threshold: 30, name: 'Medium 30 Seconds', desc: 'Survive for 30 seconds on Medium difficulty — the faster lava speed means every second counts more than on Easy.' },
+      { id: 'medium_survive_1m', mode: 'medium', type: 'time', threshold: 60, name: 'Medium 1 Minute', desc: 'Survive for 1 full minute on Medium difficulty — a solid run showing real competence on the standard difficulty.' },
+      { id: 'medium_survive_3m', mode: 'medium', type: 'time', threshold: 180, name: 'Medium 3 Minutes', desc: 'Survive for 3 minutes on Medium difficulty — the lava is moving significantly faster, great endurance here.' },
+      { id: 'medium_survive_5m', mode: 'medium', type: 'time', threshold: 300, name: 'Medium 5 Minutes', desc: 'Survive for 5 minutes on Medium difficulty — a seriously impressive time that showcases advanced platform game skills.' },
+      { id: 'medium_survive_10m', mode: 'medium', type: 'time', threshold: 600, name: 'Medium 10 Minutes', desc: 'Survive for 10 minutes on Medium difficulty — only the very best players consistently reach this survival time.' },
+      { id: 'medium_survive_15m', mode: 'medium', type: 'time', threshold: 900, name: 'Medium 15 Minutes', desc: 'Survive for 15 minutes on Medium difficulty — a god-tier time that represents the absolute peak of Medium performance.' },
+      { id: 'hard_250', mode: 'hard', type: 'height', threshold: 2500, name: 'Hard Climber I', desc: 'Reach a height of 250 on Hard difficulty — Hard mode lava accelerates brutally fast, getting here shows real skill.' },
+      { id: 'hard_500', mode: 'hard', type: 'height', threshold: 5000, name: 'Hard Climber II', desc: 'Reach a height of 500 on Hard difficulty — you are navigating a chaotic mix of disappearing, moving, and kill platforms.' },
+      { id: 'hard_1000', mode: 'hard', type: 'height', threshold: 10000, name: 'Hard Climber III', desc: 'Reach a height of 1000 on Hard difficulty — the platform density and lava speed at this point is extremely punishing.' },
+      { id: 'hard_2500', mode: 'hard', type: 'height', threshold: 25000, name: 'Hard Expert', desc: 'Reach a height of 2500 on Hard difficulty — only highly skilled players can maintain this level of play on Hard mode.' },
+      { id: 'hard_5000', mode: 'hard', type: 'height', threshold: 50000, name: 'Hard Master', desc: 'Reach a height of 5000 on Hard difficulty — an outstanding achievement that places you among the elite Hard players.' },
+      { id: 'hard_10000', mode: 'hard', type: 'height', threshold: 100000, name: 'Hard Legend', desc: 'Reach a height of 10000 on Hard difficulty — a legendary milestone that almost no one ever reaches on Hard mode.' },
+      { id: 'hard_survive_30s', mode: 'hard', type: 'time', threshold: 30, name: 'Hard 30 Seconds', desc: 'Survive for 30 seconds on Hard difficulty — just staying alive this long on Hard mode is a genuine accomplishment.' },
+      { id: 'hard_survive_1m', mode: 'hard', type: 'time', threshold: 60, name: 'Hard 1 Minute', desc: 'Survive for 1 full minute on Hard difficulty — the lava barely gives you time to breathe, great concentration.' },
+      { id: 'hard_survive_3m', mode: 'hard', type: 'time', threshold: 180, name: 'Hard 3 Minutes', desc: 'Survive for 3 minutes on Hard difficulty — an elite survival time that demands near-perfect play throughout.' },
+      { id: 'hard_survive_5m', mode: 'hard', type: 'time', threshold: 300, name: 'Hard 5 Minutes', desc: 'Survive for 5 minutes on Hard difficulty — one of the most difficult achievements in the game, truly world-class.' },
+      { id: 'hard_survive_10m', mode: 'hard', type: 'time', threshold: 600, name: 'Hard 10 Minutes', desc: 'Survive for 10 minutes on Hard difficulty — if you have this, you are one of the best Block Jump players alive.' },
+      { id: 'hard_survive_15m', mode: 'hard', type: 'time', threshold: 900, name: 'Hard 15 Minutes', desc: 'Survive for 15 minutes on Hard difficulty — a mythical achievement. Almost impossible. Are you even human?' },
+      { id: 'impossible_250', mode: 'impossible', type: 'height', threshold: 2500, name: 'Impossible Climber I', desc: 'Reach a height of 250 on Impossible difficulty — the lava speed is brutal from the start. Respect for even attempting this.' },
+      { id: 'impossible_500', mode: 'impossible', type: 'height', threshold: 5000, name: 'Impossible Climber II', desc: 'Reach a height of 500 on Impossible difficulty — the platform variety at full speed is overwhelming. Incredible result.' },
+      { id: 'impossible_1000', mode: 'impossible', type: 'height', threshold: 10000, name: 'Impossible Climber III', desc: 'Reach a height of 1000 on Impossible difficulty — at max lava speed with complex platforms, this is elite territory.' },
+      { id: 'impossible_2500', mode: 'impossible', type: 'height', threshold: 25000, name: 'Impossible Expert', desc: 'Reach a height of 2500 on Impossible difficulty — only a handful of players will ever see this achievement unlocked.' },
+      { id: 'impossible_5000', mode: 'impossible', type: 'height', threshold: 50000, name: 'Impossible Master', desc: 'Reach a height of 5000 on Impossible difficulty — a crowning achievement reserved for the absolute best players.' },
+      { id: 'impossible_10000', mode: 'impossible', type: 'height', threshold: 100000, name: 'Impossible Legend', desc: 'Reach a height of 10000 on Impossible difficulty — this may be the rarest achievement in the entire game. Truly legendary.' },
+      { id: 'impossible_survive_30s', mode: 'impossible', type: 'time', threshold: 30, name: 'Impossible 30 Seconds', desc: 'Survive for 30 seconds on Impossible difficulty — the lava hits max speed almost immediately. Any second is precious.' },
+      { id: 'impossible_survive_1m', mode: 'impossible', type: 'time', threshold: 60, name: 'Impossible 1 Minute', desc: 'Survive for 1 full minute on Impossible difficulty — a minute of pure chaos. Exceptional reflexes required.' },
+      { id: 'impossible_survive_3m', mode: 'impossible', type: 'time', threshold: 180, name: 'Impossible 3 Minutes', desc: 'Survive for 3 minutes on Impossible difficulty — you have mastered every platform type and the lava is your friend now.' },
+      { id: 'impossible_survive_5m', mode: 'impossible', type: 'time', threshold: 300, name: 'Impossible 5 Minutes', desc: 'Survive for 5 minutes on Impossible difficulty — a world-class survival time on the hardest setting available.' },
+      { id: 'impossible_survive_10m', mode: 'impossible', type: 'time', threshold: 600, name: 'Impossible 10 Minutes', desc: 'Survive for 10 minutes on Impossible difficulty — if this is unlocked, you may be the best Block Jump player in the world.' },
+      { id: 'impossible_survive_15m', mode: 'impossible', type: 'time', threshold: 900, name: 'Impossible 15 Minutes', desc: 'Survive for 15 minutes on Impossible difficulty — a feat so rare it borders on mythical. You have transcended the game.' },
+      { id: 'death_5', mode: 'general', type: 'death', threshold: 5, name: 'First Blood', desc: 'Die 5 times total across all runs. The lava gets everyone eventually — you are just getting started on your journey.' },
+      { id: 'death_10', mode: 'general', type: 'death', threshold: 10, name: 'Frequent Flier', desc: 'Die 10 times total. You are learning the hard way, but every death teaches you something new about the platforms.' },
+      { id: 'death_25', mode: 'general', type: 'death', threshold: 25, name: 'Veteran of Failure', desc: 'Die 25 times total. You have respawned more times than most, and your persistence is building real game sense.' },
+      { id: 'death_50', mode: 'general', type: 'death', threshold: 50, name: 'Hardcore Repeater', desc: 'Die 50 times total. Half a hundred deaths and still going — your determination is the true achievement here.' },
+      { id: 'death_100', mode: 'general', type: 'death', threshold: 100, name: 'Century of Deaths', desc: 'Die 100 times total. One hundred trips into the lava. At this point you practically live in it. Keep climbing.' },
+      { id: 'death_250', mode: 'general', type: 'death', threshold: 250, name: 'Lava Enthusiast', desc: 'Die 250 times total. You have spent more time dying than most people spend playing. Your dedication is unmatched.' },
+      { id: 'death_500', mode: 'general', type: 'death', threshold: 500, name: 'Death Addict', desc: 'Die 500 times total. Five hundred deaths means five hundred attempts. The lava knows your name by now.' },
+      { id: 'death_1000', mode: 'general', type: 'death', threshold: 1000, name: 'One Thousand Deaths', desc: 'Die 1000 times total. A thousand deaths. You have outlasted every obstacle through sheer refusal to quit. Legendary.' }
     ];
 
     const player = document.getElementById("player");
     const curEl = document.getElementById("current");
     const maxEl = document.getElementById("max");
     const timerEl = document.getElementById("timer-display");
+    const topTimeEl = document.getElementById("top-time-display");
     const difficultyEl = document.getElementById("difficulty-display");
     const lavaEl = document.getElementById("lava");
     const pauseMenu = document.getElementById("pause-menu");
@@ -1283,7 +1292,8 @@
     let gameStarted = false;
     let gameStartTime = 0;
     let survivalSeconds = 0;
-    let _runHeight = 0; // track current run height separately from max
+    let _runHeight = 0;
+    let _runTimeSeconds = 0;
 
     let effectsEnabled = localStorage.getItem('effectsEnabled') !== 'false';
     let hqEnabled = localStorage.getItem('hqEnabled') !== 'false';
@@ -1309,7 +1319,6 @@
     const TARGET_FPS = 60;
     const FRAME_TIME = 1000 / TARGET_FPS;
 
-    // Use internal protected scores instead of maxHeights
     let maxHeights = {
       easy: _getInternalScore('easy'),
       medium: _getInternalScore('medium'),
@@ -1317,15 +1326,41 @@
       impossible: _getInternalScore('impossible')
     };
 
-    let survivalTimes = {
-      easy: parseFloat(localStorage.getItem('survivalTimeEasy') || '0'),
-      medium: parseFloat(localStorage.getItem('survivalTimeMedium') || '0'),
-      hard: parseFloat(localStorage.getItem('survivalTimeHard') || '0'),
-      impossible: parseFloat(localStorage.getItem('survivalTimeImpossible') || '0')
-    };
+    let survivalTimes = Object.assign(
+      { easy: 0, medium: 0, hard: 0, impossible: 0 },
+      _userProfile.survivalTimes || {}
+    );
+    ['easy','medium','hard','impossible'].forEach(d => {
+      const k = 'survivalTime' + d.charAt(0).toUpperCase() + d.slice(1);
+      const v = parseFloat(localStorage.getItem(k) || '0');
+      if (v > survivalTimes[d]) survivalTimes[d] = v;
+    });
+
+    let _visibilityHidden = false;
+    let _hiddenAt = 0;
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        _visibilityHidden = true;
+        _hiddenAt = performance.now();
+        if (!paused && gameStarted && !isDead) {
+          if (animationId) cancelAnimationFrame(animationId);
+          stopWalkingSound();
+        }
+      } else {
+        _visibilityHidden = false;
+        if (!paused && gameStarted && !isDead) {
+          const hiddenDuration = performance.now() - _hiddenAt;
+          if (gameStartTime > 0) {
+            gameStartTime += hiddenDuration;
+          }
+          lastFrameTime = 0;
+          update();
+        }
+      }
+    });
 
     function loadAchievements() {
-      // Load from profile first, then localStorage fallback
       if (_userProfile.achievements && Object.keys(_userProfile.achievements).length > 0) {
         return Object.assign({}, _userProfile.achievements);
       }
@@ -1346,8 +1381,9 @@
       ACHIEVEMENT_DEFS.forEach(def => {
         if (unlockedAchievements[def.id]) return;
         let val = 0;
-        if (def.type === 'height') val = maxHeights[def.mode];
-        else if (def.type === 'time') val = survivalTimes[def.mode];
+        if (def.type === 'height') val = maxHeights[def.mode] || 0;
+        else if (def.type === 'time') val = survivalTimes[def.mode] || 0;
+        else if (def.type === 'death') val = _totalDeaths;
         if (val >= def.threshold) {
           const now = new Date();
           unlockedAchievements[def.id] = { name: def.name, time: now.toLocaleString() };
@@ -1479,32 +1515,32 @@
 
     function playRespawnSound() {
       if (!allSoundsEnabled || !audioSettings.respawn) return;
-      respawnSound.currentTime = START_TIME_RESPAWN;
+      respawnSound.currentTime = 0;
       respawnSound.play().catch(() => {});
     }
     function playLavaDieSound() {
       if (!allSoundsEnabled || !audioSettings.lava) return;
-      lavaDieSound.currentTime = START_TIME_LAVA_DIE;
+      lavaDieSound.currentTime = 0.1;
       lavaDieSound.play().catch(() => {});
     }
     function playJumpSound() {
       if (!allSoundsEnabled || !audioSettings.jump) return;
-      jumpSound.currentTime = START_TIME_JUMP;
+      jumpSound.currentTime = 0;
       jumpSound.play().catch(() => {});
     }
     function playWalkingSound() {
       if (!allSoundsEnabled || !audioSettings.walking) return;
-      if (walkingSound.paused) { walkingSound.currentTime = START_TIME_WALKING; walkingSound.play().catch(() => {}); }
+      if (walkingSound.paused) { walkingSound.currentTime = 0; walkingSound.play().catch(() => {}); }
     }
-    function stopWalkingSound() { walkingSound.pause(); walkingSound.currentTime = START_TIME_WALKING; }
+    function stopWalkingSound() { walkingSound.pause(); walkingSound.currentTime = 0; }
     function playKillBrickSound() {
       if (!allSoundsEnabled || !audioSettings.brick) return;
-      killBrickSound.currentTime = START_TIME_KILL_BRICK;
+      killBrickSound.currentTime = 0.5;
       killBrickSound.play().catch(() => {});
     }
     function playAchievementSound() {
       if (!allSoundsEnabled || !audioSettings.achievement) return;
-      achievementSound.currentTime = START_TIME_ACHIEVEMENT;
+      achievementSound.currentTime = 0;
       achievementSound.play().catch(() => {});
     }
     function updateLavaSound() {
@@ -1512,16 +1548,16 @@
       const isLavaVisible = lavaY < window.innerHeight;
       if (isLavaVisible && !lavaInView) {
         lavaInView = true;
-        lavaSound.currentTime = START_TIME_LAVA;
+        lavaSound.currentTime = 0;
         lavaSound.play().catch(() => {});
       } else if (!isLavaVisible && lavaInView) {
         lavaInView = false;
         lavaSound.pause();
-        lavaSound.currentTime = START_TIME_LAVA;
+        lavaSound.currentTime = 0;
       }
       if (isLavaVisible) updateLavaVolume();
     }
-    function stopLavaSound() { lavaSound.pause(); lavaSound.currentTime = START_TIME_LAVA; lavaInView = false; }
+    function stopLavaSound() { lavaSound.pause(); lavaSound.currentTime = 0; lavaInView = false; }
 
     function saveAudioSettings() {
       audioSettings.respawn = audioRespawn.checked;
@@ -1584,10 +1620,9 @@
       location.reload();
     }
 
-    // ===================== TRANSLATIONS =====================
     const translations = {
       en: {
-        height: 'HEIGHT', topHeight: 'TOP HEIGHT', difficulty: 'DIFFICULTY',
+        height: 'HEIGHT', topHeight: 'TOP', topTime: 'TOP TIME', difficulty: 'DIFFICULTY',
         timer: 'TIME',
         doubleJump: 'Double Jump = true', pauseHint: 'Press ESC to pause',
         paused: 'PAUSED', continue: 'CONTINUE', extra: 'EXTRA',
@@ -1610,7 +1645,7 @@
         langEnglish: 'English', langDanish: 'Danish', langGerman: 'German'
       },
       da: {
-        height: 'HØJDE', topHeight: 'TOP HØJDE', difficulty: 'SVÆRHEDSGRAD',
+        height: 'HØJDE', topHeight: 'TOP', topTime: 'TOP TID', difficulty: 'SVÆRHEDSGRAD',
         timer: 'TID',
         doubleJump: 'Dobbelt Hop = sand', pauseHint: 'Tryk ESC for pause',
         paused: 'PAUSE', continue: 'FORTSÆT', extra: 'EKSTRA',
@@ -1633,7 +1668,7 @@
         langEnglish: 'Engelsk', langDanish: 'Dansk', langGerman: 'Tysk'
       },
       de: {
-        height: 'HÖHE', topHeight: 'TOP HÖHE', difficulty: 'SCHWIERIGKEIT',
+        height: 'HÖHE', topHeight: 'TOP', topTime: 'BEST ZEIT', difficulty: 'SCHWIERIGKEIT',
         timer: 'ZEIT',
         doubleJump: 'Doppelsprung = wahr', pauseHint: 'ESC drücken zum Pausieren',
         paused: 'PAUSIERT', continue: 'FORTSETZEN', extra: 'EXTRA',
@@ -1668,6 +1703,14 @@
       return h + 'h ' + rm + 'm';
     }
 
+    function updateHUDVisibility() {
+      const t = translations[currentLanguage];
+      if (showHeightEnabled) { curEl.style.display = ''; } else { curEl.style.display = 'none'; }
+      if (showTopEnabled) { maxEl.style.display = ''; topTimeEl.style.display = ''; } else { maxEl.style.display = 'none'; topTimeEl.style.display = 'none'; }
+      if (showTimerEnabled) { timerEl.style.display = ''; } else { timerEl.style.display = 'none'; }
+      difficultyEl.style.display = '';
+    }
+
     function updateLanguage(lang) {
       currentLanguage = lang;
       localStorage.setItem('language', lang);
@@ -1675,12 +1718,13 @@
       const h = Math.floor(currentHeight / 10);
       const mh = Math.floor(maxHeights[currentDifficulty] / 10);
 
-      if (showHeightEnabled) { curEl.textContent = t.height + ': ' + h; curEl.style.display = ''; }
-      else { curEl.style.display = 'none'; }
-      if (showTopEnabled) { maxEl.textContent = t.topHeight + ': ' + mh; maxEl.style.display = ''; }
-      else { maxEl.style.display = 'none'; }
-      if (showTimerEnabled) { timerEl.style.display = ''; }
-      else { timerEl.style.display = 'none'; }
+      updateHUDVisibility();
+      if (showHeightEnabled) curEl.textContent = t.height + ': ' + h;
+      if (showTopEnabled) {
+        maxEl.textContent = t.topHeight + ': ' + mh;
+        topTimeEl.textContent = t.topTime + ': ' + formatTime(survivalTimes[currentDifficulty] || 0);
+      }
+      if (showTimerEnabled) timerEl.textContent = t.timer + ': ' + formatTime(survivalSeconds);
 
       difficultyEl.textContent = t.difficulty + ': ' + DIFFICULTY_SETTINGS[currentDifficulty].name.toUpperCase();
       document.getElementById('hp-display').textContent = doubleJumpEnabled ? t.doubleJump : 'Double Jump = false';
@@ -1778,27 +1822,32 @@
     }
 
     function updateExtraStats() {
+      const name = _userProfile.username || 'Anonymous';
+      document.getElementById('stat-name').textContent = name;
       document.getElementById('stat-playtime').textContent = formatTime(_totalPlaytime);
       document.getElementById('stat-deaths').textContent = _totalDeaths;
       const joinDate = _userProfile.joinDate ? new Date(_userProfile.joinDate).toLocaleDateString() : '-';
       document.getElementById('stat-joindate').textContent = joinDate;
       const completed = ACHIEVEMENT_DEFS.filter(d => unlockedAchievements[d.id]).length;
       document.getElementById('stat-achievements').textContent = completed + ' / ' + ACHIEVEMENT_DEFS.length;
-      const allTop = Math.max(...Object.values(maxHeights));
-      document.getElementById('stat-topheight').textContent = Math.floor(allTop / 10);
       ['easy','medium','hard','impossible'].forEach(d => {
-        document.getElementById('stat-top-' + d).textContent = Math.floor(maxHeights[d] / 10);
+        document.getElementById('stat-score-' + d).textContent = Math.floor(maxHeights[d] / 10);
+        document.getElementById('stat-time-' + d).textContent = formatTime(survivalTimes[d] || 0);
       });
     }
 
     async function die(fromLava) {
+      if (isDead) return;
       isDead = true;
       diedFromLava = fromLava;
       _totalDeaths++;
       localStorage.setItem('bj_deaths', _totalDeaths);
 
       const elapsed = gameStartTime > 0 ? (performance.now() - gameStartTime) / 1000 : 0;
-      survivalTimes[currentDifficulty] = Math.max(survivalTimes[currentDifficulty], elapsed);
+      _runTimeSeconds = elapsed;
+      if (elapsed > (survivalTimes[currentDifficulty] || 0)) {
+        survivalTimes[currentDifficulty] = elapsed;
+      }
       survivalSeconds = elapsed;
       _totalPlaytime += elapsed;
       localStorage.setItem('bj_total_playtime', _totalPlaytime);
@@ -1813,13 +1862,13 @@
       if (fromLava) playLavaDieSound();
       deathScreen.classList.add("active");
 
-      // Update death screen info
       const diffName = DIFFICULTY_SETTINGS[currentDifficulty].name;
       const runH = Math.floor(_runHeight / 10);
       const topH = Math.floor(maxHeights[currentDifficulty] / 10);
-      document.getElementById('death-difficulty-row').textContent = '🎮 ' + diffName;
-      document.getElementById('death-height-row').textContent = '📏 Run Height: ' + runH;
+      document.getElementById('death-difficulty-row').textContent = '🎮 Difficulty: ' + diffName;
+      document.getElementById('death-height-row').textContent = '📏 Height: ' + diffName.toLowerCase() + ' ' + runH + '/' + topH;
       document.getElementById('death-top-row').textContent = '🏆 Best (' + diffName + '): ' + topH;
+      document.getElementById('death-time-row').textContent = '⏱ Time: ' + formatTime(_runTimeSeconds);
 
       updateProfileAndSave();
       pushProfileToGitHub();
@@ -1842,6 +1891,7 @@
       jumpsLeft = doubleJumpEnabled ? 2 : 1;
       currentHeight = 0;
       _runHeight = 0;
+      _runTimeSeconds = 0;
       globalDifficulty = 0;
       lavaY = window.innerHeight + 200;
       lavaSpeed = LAVA_START_SPEED;
@@ -1863,12 +1913,13 @@
       lavaEl.style.top = lavaY + "px";
 
       const t = translations[currentLanguage];
-      if (showHeightEnabled) { curEl.textContent = t.height + ': 0'; curEl.style.display = ''; }
-      else { curEl.style.display = 'none'; }
-      if (showTopEnabled) { maxEl.textContent = t.topHeight + ': ' + Math.floor(maxHeights[currentDifficulty]/10); maxEl.style.display = ''; }
-      else { maxEl.style.display = 'none'; }
-      if (showTimerEnabled) { timerEl.textContent = t.timer + ': 0s'; timerEl.style.display = ''; }
-      else { timerEl.style.display = 'none'; }
+      updateHUDVisibility();
+      if (showHeightEnabled) curEl.textContent = t.height + ': 0';
+      if (showTopEnabled) {
+        maxEl.textContent = t.topHeight + ': ' + Math.floor(maxHeights[currentDifficulty]/10);
+        topTimeEl.textContent = t.topTime + ': ' + formatTime(survivalTimes[currentDifficulty] || 0);
+      }
+      if (showTimerEnabled) timerEl.textContent = t.timer + ': 0s';
       difficultyEl.textContent = t.difficulty + ': ' + DIFFICULTY_SETTINGS[currentDifficulty].name.toUpperCase();
 
       const startPlatformY = centerY + PLAYER_SIZE + 1;
@@ -1997,8 +2048,9 @@
     }
 
     function update(currentTime) {
-      if (currentTime === undefined) currentTime = 0;
+      if (currentTime === undefined) currentTime = performance.now();
       if (paused || isDead) return;
+      if (_visibilityHidden) return;
       if (!lastFrameTime) lastFrameTime = currentTime;
       const deltaTime = currentTime - lastFrameTime;
       const deltaMultiplier = deltaTime / FRAME_TIME;
@@ -2008,7 +2060,7 @@
       if (gameStartTime === 0 && currentTime > 0) gameStartTime = currentTime;
 
       const currentSurvivalSecs = gameStartTime > 0 ? (currentTime - gameStartTime) / 1000 : 0;
-      if (currentSurvivalSecs > survivalTimes[currentDifficulty]) {
+      if (currentSurvivalSecs > (survivalTimes[currentDifficulty] || 0)) {
         survivalTimes[currentDifficulty] = currentSurvivalSecs;
       }
       survivalSeconds = currentSurvivalSecs;
@@ -2144,8 +2196,8 @@
       startingY += offset;
       y = targetY;
       currentHeight = Math.max(0, startingY - y);
-      _runHeight = currentHeight; // track this run's height for death screen
-      maxHeights[currentDifficulty] = Math.max(maxHeights[currentDifficulty], currentHeight);
+      _runHeight = currentHeight;
+      maxHeights[currentDifficulty] = Math.max(maxHeights[currentDifficulty] || 0, currentHeight);
       _setInternalScore(currentDifficulty, maxHeights[currentDifficulty]);
       const heightBoost = Math.min(currentHeight / 100000, 1.5);
       const LAVA_MAX_SPEED = DIFFICULTY_SETTINGS[currentDifficulty].maxSpeed;
@@ -2168,7 +2220,10 @@
       }
       const t = translations[currentLanguage];
       if (showHeightEnabled) curEl.textContent = t.height + ': ' + Math.floor(currentHeight / 10);
-      if (showTopEnabled) maxEl.textContent = t.topHeight + ': ' + Math.floor(maxHeights[currentDifficulty] / 10);
+      if (showTopEnabled) {
+        maxEl.textContent = t.topHeight + ': ' + Math.floor(maxHeights[currentDifficulty] / 10);
+        topTimeEl.textContent = t.topTime + ': ' + formatTime(survivalTimes[currentDifficulty] || 0);
+      }
       if (showTimerEnabled) timerEl.textContent = t.timer + ': ' + formatTime(currentSurvivalSecs);
       checkAchievements();
       recyclePlatforms();
@@ -2409,11 +2464,19 @@
     document.getElementById('mm-extra-btn').addEventListener('click', () => {
       document.getElementById('main-menu-screen').style.display = 'none';
       document.getElementById('mm-extra-screen').style.display = 'flex';
-      updateExtraStats();
     });
     document.getElementById('mm-extra-back-btn').addEventListener('click', () => {
       document.getElementById('mm-extra-screen').style.display = 'none';
       document.getElementById('main-menu-screen').style.display = 'flex';
+    });
+    document.getElementById('mm-stats-btn').addEventListener('click', () => {
+      document.getElementById('mm-extra-screen').style.display = 'none';
+      document.getElementById('mm-stats-screen').style.display = 'flex';
+      updateExtraStats();
+    });
+    document.getElementById('mm-stats-back-btn').addEventListener('click', () => {
+      document.getElementById('mm-stats-screen').style.display = 'none';
+      document.getElementById('mm-extra-screen').style.display = 'flex';
     });
     document.getElementById('mm-changelog-btn').addEventListener('click', () => {
       document.getElementById('mm-extra-screen').style.display = 'none';
@@ -2465,7 +2528,6 @@
       renderAchievementsList('achievements-list', document.getElementById('ach-search').value, document.getElementById('ach-filter').value, document.getElementById('ach-diff-filter').value);
     });
 
-    // ===================== LEADERBOARD =====================
     let lbDisplayCount = 10;
 
     document.getElementById('mm-leaderboard-btn').addEventListener('click', () => {
@@ -2496,41 +2558,33 @@
 
       let records = [];
       const ghData = await fetchGitHubData();
-      if (ghData && Array.isArray(ghData.data)) {
-        // Build leaderboard from GitHub data (one entry per user, use their best score for selected diff)
-        const raw = ghData.data;
-        raw.forEach(entry => {
+      if (ghData && Array.isArray(ghData.data) && ghData.data.length > 0) {
+        ghData.data.forEach(entry => {
           const username = entry.username || 'Anonymous';
           const flag = entry.countryFlag || '🌍';
           const countryName = entry.countryName || entry.country || '';
-          const country = entry.country || '';
           let score = 0;
           if (diffFilter === 'all') {
-            // max across all difficulties
             if (entry.highScore && typeof entry.highScore === 'object') {
               score = Math.max(...Object.values(entry.highScore).map(v => Number(v) || 0));
             } else {
-              score = Number(entry.highScore || entry.score || 0);
+              score = Number(entry.highScore || 0);
             }
           } else {
             if (entry.highScore && typeof entry.highScore === 'object') {
               score = Number(entry.highScore[diffFilter] || 0);
             } else {
-              score = Number(entry.score || 0);
+              score = 0;
             }
           }
-          // Decrypt userId for display lookup
-          let uid = null;
-          try { uid = entry.encUserId ? _decryptUserId(entry.encUserId) : null; } catch(e) {}
-          records.push({ username, flag, countryName, country, score, difficulty: diffFilter === 'all' ? 'all' : diffFilter });
+          records.push({ username, flag, countryName, score: Math.floor(score / 10), difficulty: diffFilter });
         });
       } else {
-        // Fallback to local profile
         const localProf = getLocalProfile();
         if (localProf) {
           let score = 0;
           if (diffFilter === 'all') {
-            score = Math.max(...Object.values(localProf.highScore || {}).map(v => Number(v) || 0));
+            score = Math.max(...Object.values(localProf.highScore || {easy:0,medium:0,hard:0,impossible:0}).map(v => Number(v) || 0));
           } else {
             score = Number((localProf.highScore || {})[diffFilter] || 0);
           }
@@ -2538,15 +2592,12 @@
             username: localProf.username || 'Anonymous',
             flag: localProf.country ? localProf.country.flag : '🌍',
             countryName: localProf.country ? localProf.country.en : '',
-            country: localProf.country ? localProf.country.code : '',
             score: Math.floor(score / 10),
             difficulty: diffFilter
           });
         }
       }
 
-      // Convert raw scores to display scores (divide by 10)
-      records = records.map(r => ({...r, score: r.score > 1000 ? Math.floor(r.score / 10) : r.score}));
       records.sort((a, b) => sortOrder === 'desc' ? b.score - a.score : a.score - b.score);
       records = records.slice(0, lbDisplayCount);
 
@@ -2569,7 +2620,7 @@
     function showLbDetail(r) {
       const detail = document.getElementById('lb-entry-detail');
       const content = document.getElementById('lb-detail-content');
-      content.innerHTML = '<div class="lb-detail-name">' + (r.flag || '') + ' ' + (r.username || 'Anonymous') + '</div><div class="lb-detail-score">Score: ' + r.score + '</div><div class="lb-detail-diff">Difficulty: ' + (r.difficulty || '') + '</div><div class="lb-detail-country">Country: ' + (r.countryName || r.country || 'Unknown') + '</div>';
+      content.innerHTML = '<div class="lb-detail-name">' + (r.flag || '') + ' ' + (r.username || 'Anonymous') + '</div><div class="lb-detail-score">Score: ' + r.score + '</div><div class="lb-detail-diff">Difficulty: ' + (r.difficulty || '') + '</div><div class="lb-detail-country">Country: ' + (r.countryName || 'Unknown') + '</div>';
       detail.style.display = 'flex';
     }
 
