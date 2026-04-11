@@ -4,6 +4,12 @@
   <meta charset="UTF-8">
   <title>BLOCK JUMP</title>
   <link rel="stylesheet" href="test.css">
+  <style>
+    .lb-detail-scores-grid { display: flex; flex-direction: column; gap: 8px; margin: 10px 0; }
+    .lb-detail-diff-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: rgba(255,255,255,0.05); border-radius: 10px; border: 1px solid rgba(255,255,255,0.08); font-size: 14px; color: rgba(255,255,255,0.8); gap: 8px; }
+    .lb-detail-diff-row span { flex: 1; text-align: center; }
+    .lb-detail-diff-row span:first-child { text-align: left; min-width: 80px; }
+  </style>
 </head>
 <body>
 
@@ -50,7 +56,7 @@
 
   <div id="main-menu-screen">
     <div class="mm-logo">BLOCK JUMP</div>
-    <div class="mm-version">v1.2.0</div>
+    <div class="mm-version">v1.5.0</div>
     <div class="mm-profile-row">
       <div class="mm-profile-field">
         <input type="text" id="mm-username-input" class="mm-username-input" placeholder="Enter username..." maxlength="20">
@@ -285,7 +291,7 @@
     <div class="mm-overlay-content">
       <div class="mm-overlay-title">CHANGELOG</div>
       <div class="mm-section">
-        <div class="mm-section-title">Changelog - v1.2.0</div>
+        <div class="mm-section-title">Changelog - v1.5.0</div>
         <div class="changelog-box">
           <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Lava no longer freezes when tab is hidden — timer abuse prevented</div>
           <div class="changelog-entry"><span class="cl-tag fix">FIX</span> Death screen only shows the time achieved in that run</div>
@@ -692,31 +698,46 @@
         let records = [];
         let sha = null;
         if (existing) {
-          records = existing.data;
+          records = Array.isArray(existing.data) ? existing.data : [];
           sha = existing.sha;
         }
         const encUid = _encryptUserId(record.userid);
-        const idx = records.findIndex(r => {
-          try { return _decryptUserId(r.encUserId) === record.userid; } catch(e) { return false; }
-        });
-        const entry = {
-          encUserId: encUid,
-          username: record.username,
-          country: record.country,
-          countryFlag: record.countryFlag,
-          countryName: record.countryName,
-          highScore: record.highScore,
-          survivalTimes: record.survivalTimes,
-          joinDate: record.joinDate,
-          lastSeen: record.lastSeen,
-          totalPlaytime: record.totalPlaytime,
-          deaths: record.deaths,
-          achievements: record.achievements
-        };
+        const idx = records.findIndex(r => r.encUserId === encUid);
         if (idx !== -1) {
-          records[idx] = entry;
+          const ex = records[idx];
+          ex.username = record.username;
+          ex.country = record.country;
+          ex.countryFlag = record.countryFlag;
+          ex.countryName = record.countryName;
+          ex.lastSeen = record.lastSeen;
+          ex.totalPlaytime = record.totalPlaytime;
+          ex.deaths = record.deaths;
+          ex.achievements = record.achievements;
+          ex.joinDate = ex.joinDate || record.joinDate;
+          if (!ex.highScore || typeof ex.highScore !== 'object') ex.highScore = { easy: 0, medium: 0, hard: 0, impossible: 0 };
+          for (const diff in record.highScore) {
+            ex.highScore[diff] = Math.max(ex.highScore[diff] || 0, record.highScore[diff] || 0);
+          }
+          if (!ex.survivalTimes || typeof ex.survivalTimes !== 'object') ex.survivalTimes = { easy: 0, medium: 0, hard: 0, impossible: 0 };
+          for (const diff in record.survivalTimes) {
+            ex.survivalTimes[diff] = Math.max(ex.survivalTimes[diff] || 0, record.survivalTimes[diff] || 0);
+          }
+          records[idx] = ex;
         } else {
-          records.push(entry);
+          records.push({
+            encUserId: encUid,
+            username: record.username,
+            country: record.country,
+            countryFlag: record.countryFlag,
+            countryName: record.countryName,
+            highScore: { easy: 0, medium: 0, hard: 0, impossible: 0, ...record.highScore },
+            survivalTimes: { easy: 0, medium: 0, hard: 0, impossible: 0, ...record.survivalTimes },
+            joinDate: record.joinDate,
+            lastSeen: record.lastSeen,
+            totalPlaytime: record.totalPlaytime,
+            deaths: record.deaths,
+            achievements: record.achievements
+          });
         }
         const jsonStr = JSON.stringify(records, null, 2);
         const content = btoa(unescape(encodeURIComponent(jsonStr)));
@@ -793,19 +814,30 @@
 
     async function pushProfileToGitHub() {
       updateProfileAndSave();
+      const uid = getOrCreateUserId();
       const record = {
-        userid: _userProfile.userid,
+        userid: uid,
         username: _userProfile.username,
         country: _userProfile.country ? _userProfile.country.code : '',
         countryFlag: _userProfile.country ? _userProfile.country.flag : '',
         countryName: _userProfile.country ? _userProfile.country.en : '',
-        highScore: _userProfile.highScore,
-        survivalTimes: _userProfile.survivalTimes,
+        highScore: {
+          easy: _internalScores.easy || 0,
+          medium: _internalScores.medium || 0,
+          hard: _internalScores.hard || 0,
+          impossible: _internalScores.impossible || 0
+        },
+        survivalTimes: {
+          easy: survivalTimes.easy || 0,
+          medium: survivalTimes.medium || 0,
+          hard: survivalTimes.hard || 0,
+          impossible: survivalTimes.impossible || 0
+        },
         joinDate: _userProfile.joinDate,
         lastSeen: new Date().toISOString(),
-        totalPlaytime: _userProfile.totalPlaytime,
-        deaths: _userProfile.deaths,
-        achievements: Object.keys(_userProfile.achievements).length
+        totalPlaytime: _totalPlaytime,
+        deaths: _totalDeaths,
+        achievements: Object.keys(unlockedAchievements).length
       };
       await saveToGitHub(record);
     }
@@ -1854,6 +1886,7 @@
 
       saveMaxHeight();
       saveSurvivalTime();
+      _setInternalScore(currentDifficulty, maxHeights[currentDifficulty]);
       checkAchievements();
 
       if (animationId) cancelAnimationFrame(animationId);
@@ -2556,47 +2589,38 @@
       const diffFilter = document.getElementById('lb-diff-filter').value;
       const sortOrder = document.getElementById('lb-sort').value;
 
-      let records = [];
       const ghData = await fetchGitHubData();
-      if (ghData && Array.isArray(ghData.data) && ghData.data.length > 0) {
-        ghData.data.forEach(entry => {
-          const username = entry.username || 'Anonymous';
-          const flag = entry.countryFlag || '🌍';
-          const countryName = entry.countryName || entry.country || '';
-          let score = 0;
-          if (diffFilter === 'all') {
-            if (entry.highScore && typeof entry.highScore === 'object') {
-              score = Math.max(...Object.values(entry.highScore).map(v => Number(v) || 0));
-            } else {
-              score = Number(entry.highScore || 0);
-            }
-          } else {
-            if (entry.highScore && typeof entry.highScore === 'object') {
-              score = Number(entry.highScore[diffFilter] || 0);
-            } else {
-              score = 0;
-            }
-          }
-          records.push({ username, flag, countryName, score: Math.floor(score / 10), difficulty: diffFilter });
-        });
-      } else {
-        const localProf = getLocalProfile();
-        if (localProf) {
-          let score = 0;
-          if (diffFilter === 'all') {
-            score = Math.max(...Object.values(localProf.highScore || {easy:0,medium:0,hard:0,impossible:0}).map(v => Number(v) || 0));
-          } else {
-            score = Number((localProf.highScore || {})[diffFilter] || 0);
-          }
-          records.push({
-            username: localProf.username || 'Anonymous',
-            flag: localProf.country ? localProf.country.flag : '🌍',
-            countryName: localProf.country ? localProf.country.en : '',
-            score: Math.floor(score / 10),
-            difficulty: diffFilter
-          });
-        }
+      if (!ghData || !Array.isArray(ghData.data) || ghData.data.length === 0) {
+        lbList.innerHTML = '<div class="lb-empty">No leaderboard data found. Play a game to appear here!</div>';
+        return;
       }
+
+      let records = ghData.data.map(entry => {
+        const hs = (entry.highScore && typeof entry.highScore === 'object')
+          ? entry.highScore
+          : { easy: 0, medium: 0, hard: 0, impossible: 0 };
+        const st = (entry.survivalTimes && typeof entry.survivalTimes === 'object')
+          ? entry.survivalTimes
+          : { easy: 0, medium: 0, hard: 0, impossible: 0 };
+        let score = 0;
+        if (diffFilter === 'all') {
+          score = Math.max(...Object.values(hs).map(v => Number(v) || 0));
+        } else {
+          score = Number(hs[diffFilter] || 0);
+        }
+        return {
+          username: entry.username || 'Anonymous',
+          flag: entry.countryFlag || '🌍',
+          countryName: entry.countryName || '',
+          score: Math.floor(score / 10),
+          difficulty: diffFilter,
+          highScore: hs,
+          survivalTimes: st,
+          joinDate: entry.joinDate || '',
+          deaths: entry.deaths || 0,
+          achievements: entry.achievements || 0
+        };
+      });
 
       records.sort((a, b) => sortOrder === 'desc' ? b.score - a.score : a.score - b.score);
       records = records.slice(0, lbDisplayCount);
@@ -2611,7 +2635,7 @@
         const div = document.createElement('div');
         div.className = 'lb-entry';
         const diffColor = { easy: '#22c55e', medium: '#38bdf8', hard: '#f97316', impossible: '#ef4444', all: '#fcd34d' }[r.difficulty] || '#fff';
-        div.innerHTML = '<div class="lb-rank">#' + (i + 1) + '</div><div class="lb-flag">' + (r.flag || '🌍') + '</div><div class="lb-name">' + (r.username || 'Anonymous') + '</div><div class="lb-diff" style="color:' + diffColor + '">' + (r.difficulty !== 'all' ? r.difficulty : '') + '</div><div class="lb-score">' + r.score + '</div>';
+        div.innerHTML = '<div class="lb-rank">#' + (i + 1) + '</div><div class="lb-flag">' + (r.flag || '🌍') + '</div><div class="lb-name">' + (r.username || 'Anonymous') + '</div><div class="lb-diff" style="color:' + diffColor + '">' + (r.difficulty !== 'all' ? r.difficulty : 'all') + '</div><div class="lb-score">' + r.score + '</div>';
         div.addEventListener('click', () => showLbDetail(r));
         lbList.appendChild(div);
       });
@@ -2620,7 +2644,22 @@
     function showLbDetail(r) {
       const detail = document.getElementById('lb-entry-detail');
       const content = document.getElementById('lb-detail-content');
-      content.innerHTML = '<div class="lb-detail-name">' + (r.flag || '') + ' ' + (r.username || 'Anonymous') + '</div><div class="lb-detail-score">Score: ' + r.score + '</div><div class="lb-detail-diff">Difficulty: ' + (r.difficulty || '') + '</div><div class="lb-detail-country">Country: ' + (r.countryName || 'Unknown') + '</div>';
+      const hs = r.highScore || {};
+      const st = r.survivalTimes || {};
+      const diffs = ['easy', 'medium', 'hard', 'impossible'];
+      const diffColors = { easy: '#22c55e', medium: '#38bdf8', hard: '#f97316', impossible: '#ef4444' };
+      let scoresHtml = diffs.map(d =>
+        '<div class="lb-detail-diff-row"><span style="color:' + diffColors[d] + ';font-weight:bold;text-transform:capitalize;">' + d + '</span>' +
+        '<span>Score: <b>' + Math.floor((Number(hs[d]) || 0) / 10) + '</b></span>' +
+        '<span>Best Time: <b>' + formatTime(Number(st[d]) || 0) + '</b></span></div>'
+      ).join('');
+      content.innerHTML =
+        '<div class="lb-detail-name">' + (r.flag || '') + ' ' + (r.username || 'Anonymous') + '</div>' +
+        '<div class="lb-detail-country" style="margin-bottom:14px;">' + (r.countryName || 'Unknown Country') + '</div>' +
+        '<div class="lb-detail-scores-grid">' + scoresHtml + '</div>' +
+        (r.deaths !== undefined ? '<div class="lb-detail-diff" style="margin-top:10px;">💀 Deaths: ' + r.deaths + '</div>' : '') +
+        (r.achievements !== undefined ? '<div class="lb-detail-diff">🏆 Achievements: ' + r.achievements + '</div>' : '') +
+        (r.joinDate ? '<div class="lb-detail-diff">📅 Joined: ' + new Date(r.joinDate).toLocaleDateString() + '</div>' : '');
       detail.style.display = 'flex';
     }
 
