@@ -85,14 +85,14 @@
     },
     "survivalTimes": {
       "easy": 0,
-      "medium": 34.682,
+      "medium": 36.543,
       "hard": 0,
       "impossible": 0
     },
     "joinDate": "2026-04-12T20:09:58.694Z",
-    "lastSeen": "2026-04-12T20:14:48.115Z",
-    "totalPlaytime": 236.992,
-    "deaths": 14,
+    "lastSeen": "2026-04-12T20:16:20.650Z",
+    "totalPlaytime": 328.378,
+    "deaths": 18,
     "achievements": 4
   }
 ]
