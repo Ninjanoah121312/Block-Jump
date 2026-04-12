@@ -73,10 +73,10 @@
   },
   {
     "encUserId": "ICAAYykgJWsnOAAJVl46NSVOdXwqJiB7ITEkJlxRXw==",
-    "username": "Anonymous",
-    "country": "",
-    "countryFlag": "",
-    "countryName": "",
+    "username": "BlueEL",
+    "country": "FR",
+    "countryFlag": "🇫🇷",
+    "countryName": "France",
     "highScore": {
       "easy": 0,
       "medium": 3745.7535834720547,
@@ -90,9 +90,9 @@
       "impossible": 0
     },
     "joinDate": "2026-04-12T20:09:58.694Z",
-    "lastSeen": "2026-04-12T20:16:20.650Z",
-    "totalPlaytime": 328.378,
-    "deaths": 18,
-    "achievements": 4
+    "lastSeen": "2026-04-12T20:18:14.219Z",
+    "totalPlaytime": 392.02099999999996,
+    "deaths": 25,
+    "achievements": 5
   }
 ]
