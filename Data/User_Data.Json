@@ -94,5 +94,29 @@
     "totalPlaytime": 460.59080000014296,
     "deaths": 16,
     "achievements": 7
+  },
+  {
+    "encUserId": "ICAAaytzNjkiOV8IB0QyNjMPcSs1PSZ1MyckJlBD",
+    "username": "Anonymous",
+    "country": "AR",
+    "countryFlag": "🇦🇷",
+    "countryName": "Argentina",
+    "highScore": {
+      "easy": 0,
+      "medium": 723.2253970411698,
+      "hard": 0,
+      "impossible": 0
+    },
+    "survivalTimes": {
+      "easy": 0,
+      "medium": 12.248399999618531,
+      "hard": 0,
+      "impossible": 0
+    },
+    "joinDate": "2026-04-13T12:26:58.979Z",
+    "lastSeen": "2026-04-13T12:27:21.738Z",
+    "totalPlaytime": 12.248399999618531,
+    "deaths": 1,
+    "achievements": 0
   }
 ]
