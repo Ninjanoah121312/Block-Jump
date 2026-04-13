@@ -121,10 +121,10 @@
   },
   {
     "encUserId": "ICAANCEoLSpyPl1VAQEyNjMNKDo6PHd1LGY3LQNE",
-    "username": "Ninja_thebest",
-    "country": "",
-    "countryFlag": "",
-    "countryName": "",
+    "username": "Noah",
+    "country": "DK",
+    "countryFlag": "🇩🇰",
+    "countryName": "Denmark",
     "highScore": {
       "easy": 0,
       "medium": 3790,
@@ -138,9 +138,9 @@
       "impossible": 0
     },
     "joinDate": "2026-04-13T11:43:45.504Z",
-    "lastSeen": "2026-04-13T11:46:20.032Z",
-    "totalPlaytime": 2.0328999999761583,
-    "deaths": 1,
+    "lastSeen": "2026-04-13T11:46:49.482Z",
+    "totalPlaytime": 4.2607000000476845,
+    "deaths": 2,
     "achievements": 3
   }
 ]
