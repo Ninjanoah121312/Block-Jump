@@ -97,10 +97,10 @@
   },
   {
     "encUserId": "ICAAaj8oPWQqMANTW1kxLzxMLSMpMi03OyB9Zkg=",
-    "username": "Anonymous",
-    "country": "",
-    "countryFlag": "",
-    "countryName": "",
+    "username": "Zach",
+    "country": "DK",
+    "countryFlag": "🇩🇰",
+    "countryName": "Denmark",
     "highScore": {
       "easy": 0,
       "medium": 4022.797092158614,
@@ -114,9 +114,9 @@
       "impossible": 0
     },
     "joinDate": "2026-04-13T08:08:20.648Z",
-    "lastSeen": "2026-04-13T08:09:43.958Z",
-    "totalPlaytime": 45.80040000001192,
-    "deaths": 2,
+    "lastSeen": "2026-04-13T08:10:07.095Z",
+    "totalPlaytime": 48.03890000001192,
+    "deaths": 3,
     "achievements": 2
   }
 ]
