@@ -103,20 +103,20 @@
     "countryName": "Argentina",
     "highScore": {
       "easy": 0,
-      "medium": 773.0050984023319,
+      "medium": 993.7497084123759,
       "hard": 0,
       "impossible": 0
     },
     "survivalTimes": {
       "easy": 0,
-      "medium": 12.248399999618531,
+      "medium": 14.471299999713898,
       "hard": 0,
       "impossible": 0
     },
     "joinDate": "2026-04-13T12:26:58.979Z",
-    "lastSeen": "2026-04-13T12:32:01.037Z",
-    "totalPlaytime": 81.05229999923705,
-    "deaths": 12,
+    "lastSeen": "2026-04-13T12:32:16.804Z",
+    "totalPlaytime": 95.52359999895094,
+    "deaths": 13,
     "achievements": 2
   }
 ]
