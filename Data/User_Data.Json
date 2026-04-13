@@ -94,5 +94,29 @@
     "totalPlaytime": 541.333,
     "deaths": 28,
     "achievements": 8
+  },
+  {
+    "encUserId": "ICAAaj8oPWQqMANTW1kxLzxMLSMpMi03OyB9Zkg=",
+    "username": "Anonymous",
+    "country": "",
+    "countryFlag": "",
+    "countryName": "",
+    "highScore": {
+      "easy": 0,
+      "medium": 3560,
+      "hard": 0,
+      "impossible": 0
+    },
+    "survivalTimes": {
+      "easy": 0,
+      "medium": 12.805499999976156,
+      "hard": 0,
+      "impossible": 0
+    },
+    "joinDate": "2026-04-13T08:08:20.648Z",
+    "lastSeen": "2026-04-13T08:09:09.704Z",
+    "totalPlaytime": 12.805499999976156,
+    "deaths": 1,
+    "achievements": 1
   }
 ]
