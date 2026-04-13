@@ -1,29 +1,5 @@
 [
   {
-    "encUserId": "ICAAInF7ISAkNFNVS1kxLHhAISxraiYrYDB3b0Y=",
-    "username": "Noah",
-    "country": "DK",
-    "countryFlag": "🇩🇰",
-    "countryName": "Denmark",
-    "highScore": {
-      "easy": 7528.571506970705,
-      "medium": 566.7860744000011,
-      "hard": 0,
-      "impossible": 0
-    },
-    "survivalTimes": {
-      "easy": 122.8973999999941,
-      "medium": 8.65433600000596,
-      "hard": 0,
-      "impossible": 0
-    },
-    "joinDate": "2026-04-10T16:16:04.192Z",
-    "lastSeen": "2026-04-12T13:26:22.000Z",
-    "totalPlaytime": 486.91803800001776,
-    "deaths": 21,
-    "achievements": 8
-  },
-  {
     "encUserId": "ICAAMCZ0IT9wPQFTAEYyNj5KdCsmJC51OjM1bgtY",
     "username": "JePPxx",
     "country": "DK",
@@ -120,7 +96,7 @@
     "achievements": 7
   },
   {
-    "encUserId": "ICAANCEoLSpyPl1VAQEyNjMNKDo6PHd1LGY3LQNE",
+    "encUserId": "ICAANyYgIiojJ0EGVwwyNj1ONXo0JStzOiE8KQZR",
     "username": "Noah",
     "country": "DK",
     "countryFlag": "🇩🇰",
