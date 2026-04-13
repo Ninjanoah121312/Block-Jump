@@ -103,20 +103,20 @@
     "countryName": "",
     "highScore": {
       "easy": 0,
-      "medium": 3560,
+      "medium": 4022.797092158614,
       "hard": 0,
       "impossible": 0
     },
     "survivalTimes": {
       "easy": 0,
-      "medium": 12.805499999976156,
+      "medium": 32.99490000003576,
       "hard": 0,
       "impossible": 0
     },
     "joinDate": "2026-04-13T08:08:20.648Z",
-    "lastSeen": "2026-04-13T08:09:09.704Z",
-    "totalPlaytime": 12.805499999976156,
-    "deaths": 1,
-    "achievements": 1
+    "lastSeen": "2026-04-13T08:09:43.958Z",
+    "totalPlaytime": 45.80040000001192,
+    "deaths": 2,
+    "achievements": 2
   }
 ]
