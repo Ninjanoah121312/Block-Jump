@@ -1,15 +1,3 @@
-const _ENC_TOKEN = 'JSMrOiAsCzksMQBpensRAHFncBN6FCIdNxsdPwo6F3pqAGV/YwwOLzgnPSogJggyZiA7YytwdmF6MCwlAhEMYH19JxAVO3wrB3ZfDXUeGAtnBAMGFD0XLyxVOVxg';
-
-function _rt() {
-  const k = 'BJ_RUNTIME_XK9_2024';
-  const b = atob(_ENC_TOKEN);
-  let r = '';
-  for (let i = 0; i < b.length; i++) r += String.fromCharCode(b.charCodeAt(i) ^ k.charCodeAt(i % k.length));
-  return r;
-}
-
-const GITHUB_TOKEN = _rt();
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -455,9 +443,9 @@ const GITHUB_TOKEN = _rt();
 
     const GITHUB_REPO = 'Ninjanoah121312/Block-Jump';
     const GITHUB_FILE = 'Data/User_Data.Json';
-    const GITHUB_TOKEN = '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';
-
-
+    const _ENC_TOKEN = 'JSMrOiAsCzksMQBpensRAHFncBN6FCIdNxsdPwo6F3pqAGV/YwwOLzgnPSogJggyZiA7YytwdmF6MCwlAhEMYH19JxAVO3wrB3ZfDXUeGAtnBAMGFD0XLyxVOVxg';
+    function _rt() { const k='BJ_RUNTIME_XK9_2024'; const b=atob(_ENC_TOKEN); let r=''; for(let i=0;i<b.length;i++) r+=String.fromCharCode(b.charCodeAt(i)^k.charCodeAt(i%k.length)); return r; }
+    const GITHUB_TOKEN = _rt();
     const GITHUB_API = `https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
 
     function b64EncodeUnicode(str) {
