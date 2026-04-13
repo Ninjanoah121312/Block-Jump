@@ -94,29 +94,5 @@
     "totalPlaytime": 460.59080000014296,
     "deaths": 16,
     "achievements": 7
-  },
-  {
-    "encUserId": "ICAANyYgIiojJ0EGVwwyNj1ONXo0JStzOiE8KQZR",
-    "username": "Noah",
-    "country": "DK",
-    "countryFlag": "🇩🇰",
-    "countryName": "Denmark",
-    "highScore": {
-      "easy": 0,
-      "medium": 3790,
-      "hard": 0,
-      "impossible": 0
-    },
-    "survivalTimes": {
-      "easy": 0,
-      "medium": 35.532804000000006,
-      "hard": 0,
-      "impossible": 0
-    },
-    "joinDate": "2026-04-13T11:43:45.504Z",
-    "lastSeen": "2026-04-13T11:46:49.482Z",
-    "totalPlaytime": 4.2607000000476845,
-    "deaths": 2,
-    "achievements": 3
   }
 ]
