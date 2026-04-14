@@ -1,6 +1,22 @@
 {
   "posts": [
     {
+      "id": "post_1776198618267_ntw1zy",
+      "title": "test",
+      "body": "test",
+      "tag": "question",
+      "images": [],
+      "createdBy": "1",
+      "createdByUsername": "Ninja_thebest",
+      "isAdmin": true,
+      "createdAt": "2026-04-14T20:30:18.267Z",
+      "replies": [],
+      "status": "open",
+      "statusMessage": "",
+      "pinned": false,
+      "deletedBy": null
+    },
+    {
       "id": "post_1776143360583_bcmcd0",
       "title": "Does this work?",
       "body": "Maybe",
