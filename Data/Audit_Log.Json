@@ -298,5 +298,15 @@
     "by": "1",
     "byUsername": "Ninja_thebest",
     "at": "2026-04-14T20:33:53.154Z"
+  },
+  {
+    "action": "achievement_unlocked",
+    "details": {
+      "achievement": "medium_250",
+      "name": "Medium Climber I"
+    },
+    "by": "1",
+    "byUsername": "Ninja_thebest",
+    "at": "2026-04-14T20:34:28.415Z"
   }
 ]
