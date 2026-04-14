@@ -288,5 +288,15 @@
     "by": "1",
     "byUsername": "Ninja_thebest",
     "at": "2026-04-14T20:32:38.667Z"
+  },
+  {
+    "action": "login",
+    "details": {
+      "userid": "1",
+      "username": "Ninja_thebest"
+    },
+    "by": "1",
+    "byUsername": "Ninja_thebest",
+    "at": "2026-04-14T20:33:53.154Z"
   }
 ]
