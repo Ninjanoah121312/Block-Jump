@@ -195,5 +195,15 @@
     "by": "1",
     "byUsername": "Ninja_thebest",
     "at": "2026-04-14T20:30:08.852Z"
+  },
+  {
+    "action": "forum_post_created",
+    "details": {
+      "postId": "post_1776198618267_ntw1zy",
+      "title": "test"
+    },
+    "by": "1",
+    "byUsername": "Ninja_thebest",
+    "at": "2026-04-14T20:30:19.265Z"
   }
 ]
