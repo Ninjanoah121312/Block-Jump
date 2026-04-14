@@ -393,5 +393,15 @@
     "by": "1",
     "byUsername": "Ninja_thebest",
     "at": "2026-04-14T21:36:16.195Z"
+  },
+  {
+    "action": "achievement_unlocked",
+    "details": {
+      "achievement": "playthrough_5",
+      "name": "First Blood"
+    },
+    "by": "1",
+    "byUsername": "Ninja_thebest",
+    "at": "2026-04-14T21:36:27.144Z"
   }
 ]
