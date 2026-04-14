@@ -14,9 +14,9 @@
     },
     "e": 1,
     "joinDate": "2026-04-14T20:25:00.287Z",
-    "lastSeen": "2026-04-14T21:36:10.248Z",
-    "totalPlaytime": 114.78010000000893,
-    "playthroughs": 5,
+    "lastSeen": "2026-04-14T21:36:31.199Z",
+    "totalPlaytime": 119.11110000000893,
+    "playthroughs": 6,
     "highScore": {
       "easy": 0,
       "medium": 3632.0395331996624,
@@ -37,10 +37,14 @@
       "medium_survive_30s": {
         "name": "Medium 30 Seconds",
         "time": "4/14/2026, 10:34:34 PM"
+      },
+      "playthrough_5": {
+        "name": "First Blood",
+        "time": "14/04/2026, 23:36:26"
       }
     },
     "showOnLeaderboard": true,
-    "apiCalls": 12,
+    "apiCalls": 13,
     "apiLog": [
       {
         "action": "account_created",
@@ -93,6 +97,10 @@
       {
         "action": "login",
         "time": "2026-04-14T21:36:10.248Z"
+      },
+      {
+        "action": "pushCurrentUser",
+        "time": "2026-04-14T21:36:31.200Z"
       }
     ],
     "muted": {
@@ -102,11 +110,11 @@
     "settings": {
       "effectsEnabled": false,
       "gfxSettings": {
-        "bluePlatform": true,
-        "lava": true,
-        "player": true,
-        "platforms": true,
-        "hud": true
+        "bluePlatform": false,
+        "lava": false,
+        "player": false,
+        "platforms": false,
+        "hud": false
       },
       "language": "en",
       "difficulty": "medium",
@@ -136,6 +144,6 @@
         "achievement": 90
       }
     },
-    "deaths": 5
+    "deaths": 6
   }
 ]
