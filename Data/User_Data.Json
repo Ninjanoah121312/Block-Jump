@@ -112,10 +112,7 @@
       }
     ],
     "muted": null,
-    "banned": {
-      "until": "2026-04-14T15:45:16.878Z",
-      "reason": "ez"
-    },
+    "banned": null,
     "blocked": [],
     "settings": {
       "effectsEnabled": false,
