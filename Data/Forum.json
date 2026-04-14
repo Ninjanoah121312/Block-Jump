@@ -9,7 +9,16 @@
       "createdBy": "1",
       "createdByUsername": "Ninja_thebest",
       "createdAt": "2026-04-14T05:09:20.583Z",
-      "replies": [],
+      "replies": [
+        {
+          "id": "r_1776143371896_hc83hl",
+          "body": "yo",
+          "createdBy": "1",
+          "createdByUsername": "Ninja_thebest",
+          "createdAt": "2026-04-14T05:09:31.896Z",
+          "deletedBy": null
+        }
+      ],
       "status": "open",
       "statusMessage": "",
       "pinned": false,
