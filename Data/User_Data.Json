@@ -52,7 +52,7 @@
       }
     },
     "showOnLeaderboard": true,
-    "apiCalls": 7,
+    "apiCalls": 8,
     "apiLog": [
       {
         "action": "login",
@@ -81,13 +81,17 @@
       {
         "action": "pushCurrentUser",
         "time": "2026-04-14T11:33:48.482Z"
+      },
+      {
+        "action": "pushCurrentUser",
+        "time": "2026-04-14T11:33:59.965Z"
       }
     ],
     "muted": null,
     "banned": null,
     "blocked": [],
     "settings": {
-      "effectsEnabled": true,
+      "effectsEnabled": false,
       "hqEnabled": false,
       "language": "en",
       "difficulty": "medium",
