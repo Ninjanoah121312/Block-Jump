@@ -93,5 +93,44 @@
       }
     },
     "deaths": 1
+  },
+  {
+    "__meta": true,
+    "nextUserId": 2
+  },
+  {
+    "userid": "1",
+    "username": "Cockyclicker2000",
+    "password": "Njc2N2Vwc3RlaW4=",
+    "country": {
+      "code": "AF",
+      "flag": "🇦🇫",
+      "en": "Afghanistan"
+    },
+    "e": 0,
+    "joinDate": "2026-04-14T11:31:08.240Z",
+    "lastSeen": "2026-04-14T11:31:08.240Z",
+    "totalPlaytime": 0,
+    "playthroughs": 0,
+    "highScore": {
+      "easy": 0,
+      "medium": 0,
+      "hard": 0,
+      "impossible": 0
+    },
+    "survivalTimes": {
+      "easy": 0,
+      "medium": 0,
+      "hard": 0,
+      "impossible": 0
+    },
+    "achievements": {},
+    "showOnLeaderboard": true,
+    "apiCalls": 0,
+    "apiLog": [],
+    "muted": null,
+    "banned": null,
+    "blocked": [],
+    "settings": {}
   }
 ]
