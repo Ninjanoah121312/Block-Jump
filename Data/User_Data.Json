@@ -31,7 +31,7 @@
     },
     "achievements": {},
     "showOnLeaderboard": true,
-    "apiCalls": 2,
+    "apiCalls": 3,
     "apiLog": [
       {
         "action": "login",
@@ -40,11 +40,44 @@
       {
         "action": "login",
         "time": "2026-04-14T06:28:25.831Z"
+      },
+      {
+        "action": "pushCurrentUser",
+        "time": "2026-04-14T06:28:39.054Z"
       }
     ],
     "muted": null,
     "banned": null,
     "blocked": [],
-    "settings": {}
+    "settings": {
+      "effectsEnabled": true,
+      "hqEnabled": false,
+      "language": "en",
+      "difficulty": "medium",
+      "allSounds": true,
+      "featDoubleJump": true,
+      "featShowHeight": true,
+      "featShowTop": true,
+      "featShowTimer": true,
+      "showOnLeaderboard": true,
+      "audioSettings": {
+        "respawn": true,
+        "lava": true,
+        "jump": true,
+        "walking": true,
+        "brick": true,
+        "ambient": true,
+        "achievement": true
+      },
+      "soundVols": {
+        "respawn": 70,
+        "lava": 60,
+        "jump": 40,
+        "walking": 70,
+        "brick": 80,
+        "ambient": 40,
+        "achievement": 90
+      }
+    }
   }
 ]
