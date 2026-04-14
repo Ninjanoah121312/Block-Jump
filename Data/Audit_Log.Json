@@ -260,5 +260,15 @@
     "by": "1",
     "byUsername": "Ninja_thebest",
     "at": "2026-04-14T20:31:00.917Z"
+  },
+  {
+    "action": "user_muted",
+    "details": {
+      "targetId": null,
+      "until": "2026-04-14T20:31:45.421Z"
+    },
+    "by": "1",
+    "byUsername": "Ninja_thebest",
+    "at": "2026-04-14T20:31:05.915Z"
   }
 ]
