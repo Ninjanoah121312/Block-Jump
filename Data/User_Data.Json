@@ -14,7 +14,7 @@
     },
     "e": 1,
     "joinDate": "2026-04-14T05:08:21.717Z",
-    "lastSeen": "2026-04-14T05:08:21.717Z",
+    "lastSeen": "2026-04-14T05:17:47.689Z",
     "totalPlaytime": 0,
     "playthroughs": 0,
     "highScore": {
@@ -31,8 +31,13 @@
     },
     "achievements": {},
     "showOnLeaderboard": true,
-    "apiCalls": 0,
-    "apiLog": [],
+    "apiCalls": 1,
+    "apiLog": [
+      {
+        "action": "login",
+        "time": "2026-04-14T05:17:47.689Z"
+      }
+    ],
     "muted": null,
     "banned": null,
     "blocked": [],
