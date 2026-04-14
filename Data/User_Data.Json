@@ -52,7 +52,7 @@
       }
     },
     "showOnLeaderboard": true,
-    "apiCalls": 14,
+    "apiCalls": 15,
     "apiLog": [
       {
         "action": "login",
@@ -109,6 +109,10 @@
       {
         "action": "login",
         "time": "2026-04-14T15:45:13.246Z"
+      },
+      {
+        "action": "pushCurrentUser",
+        "time": "2026-04-14T16:16:57.372Z"
       }
     ],
     "muted": null,
@@ -116,11 +120,18 @@
     "blocked": [],
     "settings": {
       "effectsEnabled": false,
-      "hqEnabled": false,
+      "gfxSettings": {
+        "bluePlatform": true,
+        "lava": true,
+        "player": true,
+        "platforms": true,
+        "hud": true
+      },
       "language": "en",
       "difficulty": "medium",
       "allSounds": true,
-      "featDoubleJump": true,
+      "doubleJumpGameplay": true,
+      "showDoubleJumpHUD": true,
       "featShowHeight": true,
       "featShowTop": true,
       "featShowTimer": true,
