@@ -158,5 +158,15 @@
     "by": "unknown",
     "byUsername": "unknown",
     "at": "2026-04-14T20:29:11.770Z"
+  },
+  {
+    "action": "user_muted",
+    "details": {
+      "targetId": "1",
+      "until": "2026-04-14T20:30:27.489Z"
+    },
+    "by": "1",
+    "byUsername": "Ninja_thebest",
+    "at": "2026-04-14T20:29:42.095Z"
   }
 ]
