@@ -10,7 +10,17 @@
       "createdByUsername": "Ninja_thebest",
       "isAdmin": true,
       "createdAt": "2026-04-14T20:30:18.267Z",
-      "replies": [],
+      "replies": [
+        {
+          "id": "r_1776198627399_2k9sko",
+          "body": "e",
+          "createdBy": "1",
+          "createdByUsername": "Ninja_thebest",
+          "isAdmin": true,
+          "createdAt": "2026-04-14T20:30:27.399Z",
+          "deletedBy": null
+        }
+      ],
       "status": "open",
       "statusMessage": "",
       "pinned": false,
