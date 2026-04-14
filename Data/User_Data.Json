@@ -47,7 +47,10 @@
       }
     ],
     "muted": null,
-    "banned": null,
+    "banned": {
+      "until": "2026-04-14T20:27:32.684Z",
+      "reason": "eee"
+    },
     "settings": {}
   }
 ]
