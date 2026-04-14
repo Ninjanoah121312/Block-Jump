@@ -65,7 +65,8 @@
       "status": "open",
       "statusMessage": "",
       "pinned": false,
-      "deletedBy": null
+      "deletedBy": "1",
+      "deletedAt": "2026-04-14T20:30:07.907Z"
     }
   ]
 }
