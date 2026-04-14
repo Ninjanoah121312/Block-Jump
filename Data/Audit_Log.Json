@@ -47,5 +47,16 @@
     "by": "1",
     "byUsername": "Ninja_thebest",
     "at": "2026-04-14T15:41:17.438Z"
+  },
+  {
+    "action": "user_banned",
+    "details": {
+      "targetId": null,
+      "until": "2026-04-14T15:45:15.713Z",
+      "reason": "ez"
+    },
+    "by": "1",
+    "byUsername": "Ninja_thebest",
+    "at": "2026-04-14T15:45:11.192Z"
   }
 ]
