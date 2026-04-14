@@ -7,27 +7,19 @@
 </head>
 <body>
 
-<audio id="respawn-sound" src="sounds/respawn.mp3" preload="auto"></audio>
-<audio id="lava-die-sound" src="sounds/lava_die.mp3" preload="auto"></audio>
-<audio id="jump-sound" src="sounds/jump.mp3" preload="auto"></audio>
-<audio id="walking-sound" src="sounds/walking.mp3" preload="auto" loop></audio>
-<audio id="kill-brick-sound" src="sounds/kill_brick.mp3" preload="auto"></audio>
-<audio id="lava-sound" src="sounds/lava.mp3" preload="auto" loop></audio>
-<audio id="achievement-sound" src="sounds/achivement.mp3" preload="auto"></audio>
-
 <div id="notify-banner"></div>
 <div id="ctx-menu" style="display:none;"></div>
 
 <div id="auth-screen">
   <div class="auth-box">
     <div class="auth-logo">BLOCK JUMP</div>
-    <div class="auth-sub">v1.4.0</div>
+    <div class="auth-sub">v1.5.0</div>
     <div class="auth-tabs">
       <button class="auth-tab active" id="auth-tab-login">LOGIN</button>
       <button class="auth-tab" id="auth-tab-signup">SIGN UP</button>
     </div>
     <div id="auth-login-panel">
-      <div class="auth-field"><label>USER ID</label><input type="text" id="auth-login-userid" class="auth-input" placeholder="Enter your user ID..."></div>
+      <div class="auth-field"><label>USERNAME</label><input type="text" id="auth-login-username" class="auth-input" placeholder="Enter your username..."></div>
       <div class="auth-field"><label>PASSWORD</label><input type="password" id="auth-login-password" class="auth-input" placeholder="Enter password..."></div>
       <div class="auth-remember"><label><input type="checkbox" id="auth-remember-me"> Remember me</label></div>
       <div class="auth-error" id="auth-login-error"></div>
@@ -36,6 +28,7 @@
     <div id="auth-signup-panel" style="display:none;">
       <div class="auth-field"><label>USERNAME</label><input type="text" id="auth-signup-username" class="auth-input" placeholder="Choose a username..." maxlength="20"></div>
       <div class="auth-field"><label>PASSWORD</label><input type="password" id="auth-signup-password" class="auth-input" placeholder="Choose a password..."></div>
+      <div class="auth-remember"><label><input type="checkbox" id="auth-signup-remember-me"> Remember me</label></div>
       <div class="auth-field" id="auth-signup-country-field">
         <label>COUNTRY</label>
         <button class="mm-country-btn" id="auth-country-btn" style="width:100%;">
@@ -65,7 +58,7 @@
 
 <div id="quality-popup" style="display:none;">
   <div id="quality-box">
-    <h2>QUALITY</h2>
+    <h2>GRAPHICS</h2>
     <p>Choose your graphics quality. This can be changed later in Settings.</p>
     <div class="quality-btns">
       <button class="mm-btn" id="quality-high-btn" style="flex:1;">HIGH QUALITY</button>
@@ -186,9 +179,23 @@
   </div>
 </div>
 
+<div id="admin-panel-overlay" style="display:none;">
+  <div class="custom-popup-overlay"></div>
+  <div class="custom-popup-box" style="max-width:600px;width:95%;max-height:80vh;overflow-y:auto;">
+    <div style="color:rgb(var(--text-color));font-size:22px;font-weight:900;letter-spacing:2px;margin-bottom:16px;text-shadow:0 0 15px rgba(var(--text-color),0.8);">⚙️ ADMIN PANEL</div>
+    <input type="text" id="admin-user-search" class="custom-input-field" placeholder="Search users..." style="width:100%;margin-bottom:12px;">
+    <div id="admin-user-list" style="max-height:300px;overflow-y:auto;margin-bottom:12px;"></div>
+    <div id="admin-api-log-section" style="margin-bottom:12px;">
+      <div style="color:rgb(var(--text-color));font-size:15px;font-weight:bold;margin-bottom:8px;">API Call Log</div>
+      <div id="admin-api-log" style="max-height:150px;overflow-y:auto;background:rgba(0,0,0,0.3);border-radius:10px;padding:8px;"></div>
+    </div>
+    <button class="custom-popup-cancel" id="admin-panel-close" style="width:100%;margin-top:8px;">CLOSE</button>
+  </div>
+</div>
+
 <div id="main-menu-screen" style="display:none;">
   <div class="mm-logo">BLOCK JUMP</div>
-  <div class="mm-version">v1.4.0</div>
+  <div class="mm-version">v1.5.0</div>
   <div id="mm-logged-in-bar">
     <span id="mm-user-display"></span>
     <button class="mm-btn" id="mm-logout-btn" style="padding:8px 16px;font-size:13px;width:auto;">LOGOUT</button>
@@ -197,20 +204,20 @@
     <button class="mm-btn mm-play" id="mm-play-btn">PLAY</button>
     <button class="mm-btn" id="mm-settings-btn">SETTINGS</button>
     <button class="mm-btn" id="mm-extra-btn">EXTRA</button>
-    <button class="mm-btn" id="mm-achievements-btn">PLAYTHROUGHS</button>
+    <button class="mm-btn" id="mm-achievements-btn">ACHIEVEMENTS</button>
     <button class="mm-btn" id="mm-leaderboard-btn">LEADERBOARD</button>
   </div>
 </div>
 
 <div id="mm-play-select-screen" class="mm-overlay" style="display:none;">
-  <div class="mm-overlay-content" style="align-items:center;text-align:center;">
+  <div class="mm-overlay-content" style="text-align:center;max-width:500px;">
     <div class="mm-overlay-title">SELECT MODE</div>
-    <div class="play-mode-row" style="justify-content:center;">
+    <div class="play-mode-row">
       <button class="mm-btn play-mode-btn" id="mode-singleplayer-btn">SINGLEPLAYER</button>
       <button class="mm-btn play-mode-btn" id="mode-challenge-btn">CHALLENGE</button>
       <button class="mm-btn play-mode-btn" id="mode-multiplayer-btn">MULTIPLAYER</button>
     </div>
-    <button class="mm-btn" id="mm-play-select-back-btn">BACK</button>
+    <button class="mm-btn" id="mm-play-select-back-btn" style="margin-top:8px;">BACK</button>
   </div>
 </div>
 
@@ -225,28 +232,53 @@
     </div>
     <div class="settings-panel" id="spanel-graphics">
       <div class="mm-section">
-        <div class="mm-section-title">Graphics</div>
+        <div class="mm-section-title">Graphics Quality</div>
         <div class="setting-item"><span>Visual Effects</span><label class="toggle"><input type="checkbox" id="mm-effects-toggle" checked><span class="slider"></span></label></div>
-        <div class="setting-item"><span>High Quality</span><label class="toggle"><input type="checkbox" id="mm-hq-toggle" checked><span class="slider"></span></label></div>
+        <div class="setting-item"><span>Blue Platform Glow</span><label class="toggle"><input type="checkbox" id="mm-gfx-blue-platform" checked><span class="slider"></span></label></div>
+        <div class="setting-item"><span>Lava Glow & Shimmer</span><label class="toggle"><input type="checkbox" id="mm-gfx-lava" checked><span class="slider"></span></label></div>
+        <div class="setting-item"><span>Player Glow</span><label class="toggle"><input type="checkbox" id="mm-gfx-player" checked><span class="slider"></span></label></div>
+        <div class="setting-item"><span>Platform Shadows</span><label class="toggle"><input type="checkbox" id="mm-gfx-platforms" checked><span class="slider"></span></label></div>
+        <div class="setting-item"><span>HUD Blur & Glow</span><label class="toggle"><input type="checkbox" id="mm-gfx-hud" checked><span class="slider"></span></label></div>
       </div>
     </div>
     <div class="settings-panel" id="spanel-audio" style="display:none;">
       <div class="mm-section">
         <div class="mm-section-title">Audio</div>
         <div class="setting-item"><span>All Sounds</span><label class="toggle"><input type="checkbox" id="mm-all-sounds" checked><span class="slider"></span></label></div>
-        <div class="audio-sound-row" id="asr-respawn"><div class="audio-sound-header"><span>Respawn Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-respawn" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="adrop-respawn" style="display:none;"><input type="range" class="volume-slider" id="vol-respawn" min="0" max="100" value="70"></div></div>
-        <div class="audio-sound-row" id="asr-lava"><div class="audio-sound-header"><span>Lava Playthrough Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-lava" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="adrop-lava" style="display:none;"><input type="range" class="volume-slider" id="vol-lava" min="0" max="100" value="60"></div></div>
-        <div class="audio-sound-row" id="asr-jump"><div class="audio-sound-header"><span>Jump Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-jump" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="adrop-jump" style="display:none;"><input type="range" class="volume-slider" id="vol-jump" min="0" max="100" value="40"></div></div>
-        <div class="audio-sound-row" id="asr-walking"><div class="audio-sound-header"><span>Walking Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-walking" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="adrop-walking" style="display:none;"><input type="range" class="volume-slider" id="vol-walking" min="0" max="100" value="70"></div></div>
-        <div class="audio-sound-row" id="asr-brick"><div class="audio-sound-header"><span>Kill Brick Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-brick" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="adrop-brick" style="display:none;"><input type="range" class="volume-slider" id="vol-brick" min="0" max="100" value="80"></div></div>
-        <div class="audio-sound-row" id="asr-ambient"><div class="audio-sound-header"><span>Lava Ambient Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-ambient" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="adrop-ambient" style="display:none;"><input type="range" class="volume-slider" id="vol-ambient" min="0" max="100" value="40"></div></div>
-        <div class="audio-sound-row" id="asr-achievement"><div class="audio-sound-header"><span>Achievement Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-achievement" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="adrop-achievement" style="display:none;"><input type="range" class="volume-slider" id="vol-achievement" min="0" max="100" value="90"></div></div>
+        <div class="audio-sound-row" id="asr-respawn">
+          <div class="audio-sound-header"><span>Respawn Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-respawn" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-dropdown" id="adrop-respawn" style="display:none;"><input type="range" class="volume-slider" id="vol-respawn" min="0" max="100" value="70"></div>
+        </div>
+        <div class="audio-sound-row" id="asr-lava">
+          <div class="audio-sound-header"><span>Lava Playthrough Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-lava" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-dropdown" id="adrop-lava" style="display:none;"><input type="range" class="volume-slider" id="vol-lava" min="0" max="100" value="60"></div>
+        </div>
+        <div class="audio-sound-row" id="asr-jump">
+          <div class="audio-sound-header"><span>Jump Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-jump" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-dropdown" id="adrop-jump" style="display:none;"><input type="range" class="volume-slider" id="vol-jump" min="0" max="100" value="40"></div>
+        </div>
+        <div class="audio-sound-row" id="asr-walking">
+          <div class="audio-sound-header"><span>Walking Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-walking" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-dropdown" id="adrop-walking" style="display:none;"><input type="range" class="volume-slider" id="vol-walking" min="0" max="100" value="70"></div>
+        </div>
+        <div class="audio-sound-row" id="asr-brick">
+          <div class="audio-sound-header"><span>Kill Brick Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-brick" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-dropdown" id="adrop-brick" style="display:none;"><input type="range" class="volume-slider" id="vol-brick" min="0" max="100" value="80"></div>
+        </div>
+        <div class="audio-sound-row" id="asr-ambient">
+          <div class="audio-sound-header"><span>Lava Ambient Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-ambient" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-dropdown" id="adrop-ambient" style="display:none;"><input type="range" class="volume-slider" id="vol-ambient" min="0" max="100" value="40"></div>
+        </div>
+        <div class="audio-sound-row" id="asr-achievement">
+          <div class="audio-sound-header"><span>Achievement Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-achievement" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-dropdown" id="adrop-achievement" style="display:none;"><input type="range" class="volume-slider" id="vol-achievement" min="0" max="100" value="90"></div>
+        </div>
       </div>
     </div>
     <div class="settings-panel" id="spanel-hud" style="display:none;">
       <div class="mm-section">
-        <div class="mm-section-title">HUD</div>
-        <div class="setting-item"><span>Double Jump</span><label class="toggle"><input type="checkbox" id="mm-feat-double-jump" checked><span class="slider"></span></label></div>
+        <div class="mm-section-title">HUD Display</div>
+        <div class="setting-item"><span>Show Double Jump Status</span><label class="toggle"><input type="checkbox" id="mm-feat-double-jump" checked><span class="slider"></span></label></div>
         <div class="setting-item"><span>Show Height</span><label class="toggle"><input type="checkbox" id="mm-feat-show-height" checked><span class="slider"></span></label></div>
         <div class="setting-item"><span>Show Top Height</span><label class="toggle"><input type="checkbox" id="mm-feat-show-top" checked><span class="slider"></span></label></div>
         <div class="setting-item"><span>Show Timer</span><label class="toggle"><input type="checkbox" id="mm-feat-show-timer" checked><span class="slider"></span></label></div>
@@ -254,6 +286,10 @@
       <div class="mm-section">
         <div class="mm-section-title">Leaderboard</div>
         <div class="setting-item"><span>Show score on leaderboard</span><label class="toggle"><input type="checkbox" id="mm-show-on-lb" checked><span class="slider"></span></label></div>
+      </div>
+      <div class="mm-section">
+        <div class="mm-section-title">Gameplay</div>
+        <div class="setting-item"><span>Double Jump Enabled</span><label class="toggle"><input type="checkbox" id="mm-gameplay-double-jump" checked><span class="slider"></span></label></div>
       </div>
       <div class="mm-section">
         <div class="mm-section-title">Difficulty</div>
@@ -269,17 +305,31 @@
       </div>
       <div class="mm-section" id="mm-export-import-section">
         <div class="mm-section-title">Settings Export / Import</div>
-        <textarea id="settings-export-text" readonly placeholder="Click Export to get settings code..."></textarea>
+        <textarea id="settings-export-text" placeholder="Click Export to get settings code..."></textarea>
         <div class="exp-imp-btns">
           <button class="exp-btn" id="settings-export-btn">EXPORT</button>
           <button class="imp-btn" id="settings-import-btn">IMPORT</button>
         </div>
+        <div style="color:rgba(var(--text-color),0.4);font-size:11px;margin-top:6px;text-align:center;">Paste a settings code above then click Import</div>
       </div>
     </div>
     <div class="settings-panel" id="spanel-profile" style="display:none;">
       <div class="mm-section">
         <div class="mm-section-title">Profile Settings</div>
+        <div class="auth-field"><label>NEW USERNAME</label><input type="text" id="profile-change-username" class="auth-input" placeholder="New username (leave blank to keep)..." maxlength="20"></div>
         <div class="auth-field"><label>NEW PASSWORD</label><input type="password" id="profile-change-password" class="auth-input" placeholder="New password (leave blank to keep)..."></div>
+        <div class="auth-field" id="profile-country-field">
+          <label>COUNTRY</label>
+          <button class="mm-country-btn" id="profile-country-btn" style="width:100%;">
+            <span id="profile-country-flag">🌍</span>
+            <span id="profile-country-name">Select Country</span>
+            <span class="mm-country-arrow">▼</span>
+          </button>
+          <div class="mm-country-dropdown" id="profile-country-dropdown" style="display:none;position:relative;">
+            <input type="text" class="mm-country-search" id="profile-country-search" placeholder="Search country...">
+            <div class="mm-country-list" id="profile-country-list"></div>
+          </div>
+        </div>
         <button class="mm-btn" id="profile-save-btn" style="margin-top:10px;">SAVE CHANGES</button>
         <button class="mm-btn danger-btn" id="profile-logout-btn" style="margin-top:8px;">LOGOUT</button>
       </div>
@@ -303,14 +353,14 @@
 </div>
 
 <div id="mm-forum-screen" class="mm-overlay" style="display:none;">
-  <div class="mm-overlay-content" style="max-width:720px;">
+  <div class="mm-overlay-content" style="max-width:740px;">
     <div class="mm-overlay-title">FEEDBACK FORUM</div>
     <div id="forum-list-view">
       <div class="forum-topbar">
-        <input type="text" id="forum-search" class="auth-input" placeholder="🔍 Search forums..." style="flex:1;">
+        <input type="text" id="forum-search" class="auth-input" placeholder="🔍 Search forums..." style="flex:1;min-width:0;">
         <select id="forum-tag-filter" class="difficulty-dropdown">
           <option value="all">All Tags</option>
-          <option value="bug">🐛 Bug/Glitch</option>
+          <option value="bug">🐛 Bug</option>
           <option value="suggestion">💡 Suggestion</option>
           <option value="question">❓ Question</option>
         </select>
@@ -320,13 +370,13 @@
           <option value="completed">Completed</option>
           <option value="thought">Thought About</option>
         </select>
-        <button class="mm-btn" id="forum-new-post-btn" style="padding:10px 18px;font-size:14px;width:auto;">+ New Post</button>
+        <button class="mm-btn forum-new-post-btn-styled" id="forum-new-post-btn">+ New Post</button>
       </div>
       <div id="forum-posts-list"></div>
     </div>
     <div id="forum-new-post-view" style="display:none;">
       <div class="mm-section">
-        <div class="mm-section-title">New Forum Post</div>
+        <div class="mm-section-title">✍️ New Forum Post</div>
         <div class="auth-field"><label>TITLE</label><input type="text" id="new-post-title" class="auth-input" placeholder="Post title..." maxlength="80"></div>
         <div class="auth-field"><label>MESSAGE</label><textarea id="new-post-body" class="auth-input" placeholder="Describe your feedback..." style="min-height:80px;resize:vertical;"></textarea></div>
         <div class="auth-field">
@@ -339,11 +389,16 @@
           <input type="hidden" id="new-post-tag" value="">
         </div>
         <div class="auth-field">
-          <label>IMAGES (optional, 3 max)</label>
-          <div class="forum-img-row" id="forum-img-upload-row">
-            <label class="forum-img-slot" id="forum-img-slot-0"><span>+</span><input type="file" accept="image/*" id="forum-img-0" style="display:none;"></label>
-            <label class="forum-img-slot" id="forum-img-slot-1"><span>+</span><input type="file" accept="image/*" id="forum-img-1" style="display:none;"></label>
-            <label class="forum-img-slot" id="forum-img-slot-2"><span>+</span><input type="file" accept="image/*" id="forum-img-2" style="display:none;"></label>
+          <label>IMAGES (optional, 5 max)</label>
+          <div id="forum-img-dropzone" class="forum-img-dropzone">
+            <div class="forum-dropzone-hint">📂 Drag &amp; drop images here or click slots below</div>
+            <div class="forum-img-row" id="forum-img-upload-row">
+              <label class="forum-img-slot" id="forum-img-slot-0"><span>+</span><input type="file" accept="image/*" id="forum-img-0" style="display:none;"></label>
+              <label class="forum-img-slot" id="forum-img-slot-1"><span>+</span><input type="file" accept="image/*" id="forum-img-1" style="display:none;"></label>
+              <label class="forum-img-slot" id="forum-img-slot-2"><span>+</span><input type="file" accept="image/*" id="forum-img-2" style="display:none;"></label>
+              <label class="forum-img-slot" id="forum-img-slot-3"><span>+</span><input type="file" accept="image/*" id="forum-img-3" style="display:none;"></label>
+              <label class="forum-img-slot" id="forum-img-slot-4"><span>+</span><input type="file" accept="image/*" id="forum-img-4" style="display:none;"></label>
+            </div>
           </div>
         </div>
         <div class="exp-imp-btns">
@@ -352,7 +407,7 @@
         </div>
       </div>
     </div>
-    <div id="forum-thread-view" style="display:none;">
+    <div id="forum-thread-view-wrap" style="display:none;">
       <div id="forum-thread-header"></div>
       <div id="forum-thread-messages"></div>
       <div id="forum-thread-reply-area">
@@ -362,6 +417,7 @@
           <button class="imp-btn" id="forum-thread-back-btn" style="flex:1;">BACK</button>
         </div>
       </div>
+      <div id="forum-closed-notice" style="display:none;" class="forum-closed-notice">🔒 This thread is closed. No new replies can be added.</div>
     </div>
     <button class="mm-btn" id="mm-forum-back-btn">BACK TO EXTRA</button>
   </div>
@@ -374,20 +430,18 @@
       <div class="mm-section-title">Player Info</div>
       <div id="extra-stats-container" class="extra-stats-grid">
         <div class="extra-stat-item extra-stat-wide"><div class="extra-stat-label">Name</div><div class="extra-stat-value" id="stat-name">-</div></div>
-        <div class="extra-stat-item"><div class="extra-stat-label">Total Playtime</div><div class="extra-stat-value" id="stat-playtime">0s</div></div>
+        <div class="extra-stat-item"><div class="extra-stat-label">User ID</div><div class="extra-stat-value" id="stat-userid">-</div></div>
+        <div class="extra-stat-item"><div class="extra-stat-label">Total Users</div><div class="extra-stat-value" id="stat-total-users">-</div></div>
+        <div class="extra-stat-item"><div class="extra-stat-label">Obby Playtime</div><div class="extra-stat-value" id="stat-playtime">0s</div></div>
+        <div class="extra-stat-item"><div class="extra-stat-label">Website Time</div><div class="extra-stat-value" id="stat-website-time">0s</div></div>
         <div class="extra-stat-item"><div class="extra-stat-label">Playthroughs</div><div class="extra-stat-value" id="stat-deaths">0</div></div>
         <div class="extra-stat-item"><div class="extra-stat-label">Join Date</div><div class="extra-stat-value" id="stat-joindate">-</div></div>
         <div class="extra-stat-item"><div class="extra-stat-label">Achievements</div><div class="extra-stat-value" id="stat-achievements">0/0</div></div>
-        <div class="extra-stat-item"><div class="extra-stat-label">API Calls</div><div class="extra-stat-value" id="stat-api-calls">0</div></div>
       </div>
     </div>
     <div class="mm-section">
       <div class="mm-section-title">Score &amp; Time by Difficulty</div>
       <div class="lb-detail-scores-grid" id="stats-diff-grid"></div>
-    </div>
-    <div class="mm-section" id="stats-api-log-section">
-      <div class="mm-section-title">API Call Log</div>
-      <div id="stats-api-log" style="max-height:200px;overflow-y:auto;"></div>
     </div>
     <button class="mm-btn" id="mm-stats-back-btn">BACK</button>
   </div>
@@ -421,7 +475,7 @@
       <p><strong style="color:#38bdf8">🔵 Blue:</strong> <span>Disappearing platform — disappears after 1 second. Jump quickly!</span></p>
       <p><strong style="color:#f97316">🟠 Orange:</strong> <span>Moving platform — slides back and forth. Time your jumps carefully.</span></p>
       <p><strong style="color:#e2e8f0">⚪ White/Gray:</strong> <span>Pass-through platform — jump through from below, land on top.</span></p>
-      <p><strong style="color:rgb(56,189,248)">🎯 Goal:</strong> <span>Climb as high as possible while the lava rises from below. Don't get swallowed!</span></p>
+      <p><strong style="color:rgb(56,189,248)">🎯 Goal:</strong> <span>Climb as high as possible while the lava rises from below.</span></p>
       <p><strong style="color:rgb(56,189,248)">🎮 Controls:</strong> <span>W / A / D / SPACE / Arrow Keys to move and jump. You have double jump!</span></p>
       <p><strong style="color:#ef4444">🌋 Avoid the Lava!</strong> <span>The lava speeds up the longer you survive. Stay ahead!</span></p>
       <p><strong style="color:rgba(255,255,255,0.6)">⏸ ESC to pause</strong></p>
@@ -432,11 +486,11 @@
 
 <div id="mm-achievements-screen" class="mm-overlay" style="display:none;">
   <div class="mm-overlay-content">
-    <div class="mm-overlay-title">PLAYTHROUGHS</div>
+    <div class="mm-overlay-title">ACHIEVEMENTS</div>
     <div id="ach-header-bar">
       <div id="ach-count-display"></div>
       <div id="ach-controls">
-        <input type="text" id="ach-search" placeholder="Search playthroughs...">
+        <input type="text" id="ach-search" placeholder="Search achievements...">
         <select id="ach-filter"><option value="all">Show All</option><option value="completed">Completed</option><option value="uncompleted">Uncompleted</option></select>
         <select id="ach-diff-filter"><option value="all">All Difficulties</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option><option value="impossible">Impossible</option><option value="general">General</option></select>
       </div>
@@ -463,7 +517,7 @@
     <div class="lb-controls">
       <select id="lb-diff-filter" class="lb-select"><option value="all">All Difficulties</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option><option value="impossible">Impossible</option></select>
       <select id="lb-sort" class="lb-select"><option value="desc">Highest First</option><option value="asc">Lowest First</option></select>
-      <button class="mm-btn lb-count-btn" id="lb-count-btn" style="flex:1;min-width:100px;font-size:14px;padding:10px 12px;">Show 10</button>
+      <button class="mm-btn lb-count-btn" id="lb-count-btn">Show 10</button>
     </div>
     <div id="lb-list"></div>
     <div id="lb-entry-detail" style="display:none;">
@@ -492,7 +546,7 @@
 <div id="achievement-notification">
   <div class="ach-icon">🏆</div>
   <div class="ach-text">
-    <div class="ach-label">Playthrough Unlocked!</div>
+    <div class="ach-label">Achievement Unlocked!</div>
     <div class="ach-name" id="ach-notif-name"></div>
   </div>
 </div>
@@ -510,7 +564,7 @@
       <h3>EXTRA</h3>
       <button class="menu-btn secondary" id="settings-btn">SETTINGS</button>
       <button class="menu-btn secondary" id="help-btn">HELP</button>
-      <button class="menu-btn secondary" id="achievements-btn">PLAYTHROUGHS</button>
+      <button class="menu-btn secondary" id="achievements-btn">ACHIEVEMENTS</button>
       <button class="menu-btn" id="extra-back-btn">BACK</button>
     </div>
     <div class="help-section" id="settings-menu">
@@ -522,9 +576,13 @@
       </div>
       <div class="settings-panel" id="pspanel-graphics">
         <div class="settings-section">
-          <h4 id="settings-graphics-title">Graphics</h4>
+          <h4 id="settings-graphics-title">Graphics Quality</h4>
           <div class="setting-item"><span id="settings-visual-effects">Visual Effects</span><label class="toggle"><input type="checkbox" id="effects-toggle" checked><span class="slider"></span></label></div>
-          <div class="setting-item"><span>High Quality</span><label class="toggle"><input type="checkbox" id="hq-toggle" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>Blue Platform Glow</span><label class="toggle"><input type="checkbox" id="p-gfx-blue-platform" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>Lava Glow</span><label class="toggle"><input type="checkbox" id="p-gfx-lava" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>Player Glow</span><label class="toggle"><input type="checkbox" id="p-gfx-player" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>Platform Shadows</span><label class="toggle"><input type="checkbox" id="p-gfx-platforms" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>HUD Blur</span><label class="toggle"><input type="checkbox" id="p-gfx-hud" checked><span class="slider"></span></label></div>
         </div>
       </div>
       <div class="settings-panel" id="pspanel-audio" style="display:none;">
@@ -542,11 +600,15 @@
       </div>
       <div class="settings-panel" id="pspanel-hud" style="display:none;">
         <div class="settings-section">
-          <h4>HUD</h4>
-          <div class="setting-item"><span>Double Jump</span><label class="toggle"><input type="checkbox" id="p-feat-double-jump" checked><span class="slider"></span></label></div>
+          <h4>HUD Display</h4>
+          <div class="setting-item"><span>Show Double Jump Status</span><label class="toggle"><input type="checkbox" id="p-feat-show-double-jump-hud" checked><span class="slider"></span></label></div>
           <div class="setting-item"><span>Show Height</span><label class="toggle"><input type="checkbox" id="p-feat-show-height" checked><span class="slider"></span></label></div>
           <div class="setting-item"><span>Show Top Height</span><label class="toggle"><input type="checkbox" id="p-feat-show-top" checked><span class="slider"></span></label></div>
           <div class="setting-item"><span>Show Timer</span><label class="toggle"><input type="checkbox" id="p-feat-show-timer" checked><span class="slider"></span></label></div>
+        </div>
+        <div class="settings-section">
+          <h4>Gameplay</h4>
+          <div class="setting-item"><span>Double Jump Enabled</span><label class="toggle"><input type="checkbox" id="p-gameplay-double-jump" checked><span class="slider"></span></label></div>
         </div>
         <div class="settings-section">
           <h4 id="settings-difficulty-title">Difficulty</h4>
@@ -579,7 +641,7 @@
       <button class="menu-btn" id="help-back-btn">BACK</button>
     </div>
     <div class="help-section" id="achievements-pause-menu">
-      <h3>PLAYTHROUGHS</h3>
+      <h3>ACHIEVEMENTS</h3>
       <div id="achievements-pause-list"></div>
       <button class="menu-btn" id="achievements-back-btn">BACK</button>
     </div>
@@ -597,6 +659,60 @@
     <p id="death-subtitle">Click / Space to Respawn</p>
   </div>
 </div>
+
+<style>
+.forum-img-dropzone{border:2px dashed rgba(var(--btn-color),0.35);border-radius:14px;padding:16px;transition:all 0.2s ease;background:rgba(var(--btn-color),0.03);}
+.forum-img-dropzone.drag-over{border-color:rgba(var(--btn-color),0.9);background:rgba(var(--btn-color),0.1);box-shadow:0 0 20px rgba(var(--btn-color),0.4);}
+.forum-dropzone-hint{color:rgba(var(--text-color),0.4);font-size:13px;text-align:center;margin-bottom:12px;}
+.forum-img-row{display:flex;gap:8px;flex-wrap:wrap;}
+.forum-new-post-btn-styled{padding:10px 18px;font-size:14px;width:auto;flex-shrink:0;}
+.forum-post-card{background:linear-gradient(135deg,rgba(var(--btn-color),0.05) 0%,rgba(var(--btn-color),0.02) 100%);border:2px solid rgba(var(--btn-color),0.15);border-radius:16px;padding:18px 20px;margin:10px 0;cursor:pointer;transition:all 0.2s ease;position:relative;overflow:hidden;}
+.forum-post-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(var(--btn-color),0.4),transparent);opacity:0;transition:opacity 0.2s ease;}
+.forum-post-card:hover{border-color:rgba(var(--btn-color),0.45);background:linear-gradient(135deg,rgba(var(--btn-color),0.09) 0%,rgba(var(--btn-color),0.04) 100%);transform:translateY(-1px);box-shadow:0 4px 20px rgba(0,0,0,0.4),0 0 20px rgba(var(--btn-color),0.1);}
+.forum-post-card:hover::before{opacity:1;}
+.forum-closed-notice{background:rgba(239,68,68,0.1);border:2px solid rgba(239,68,68,0.4);border-radius:12px;padding:14px 18px;color:#ef4444;font-weight:bold;font-size:14px;text-align:center;margin-top:12px;}
+.forum-post-header{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px;}
+.forum-post-title{color:white;font-size:16px;font-weight:bold;margin-bottom:6px;line-height:1.4;}
+.forum-post-preview{color:rgba(255,255,255,0.5);font-size:13px;line-height:1.5;margin-bottom:10px;}
+.forum-post-footer{display:flex;align-items:center;gap:12px;font-size:12px;color:rgba(255,255,255,0.35);padding-top:10px;border-top:1px solid rgba(var(--btn-color),0.08);}
+.forum-pin-badge{font-size:11px;font-weight:bold;color:#fcd34d;background:rgba(252,211,77,0.15);border:1px solid rgba(252,211,77,0.4);border-radius:6px;padding:2px 8px;}
+.forum-tag-label{font-size:11px;font-weight:bold;padding:3px 9px;border-radius:6px;color:white;letter-spacing:0.5px;}
+.forum-status-label{font-size:12px;font-weight:bold;}
+.forum-post-meta{color:rgba(255,255,255,0.35);font-size:12px;margin-left:auto;}
+.forum-status-msg{color:rgba(255,255,255,0.4);font-size:12px;font-style:italic;}
+.forum-post-imgs{display:flex;gap:8px;margin:8px 0;flex-wrap:wrap;}
+.forum-post-thumb{width:80px;height:60px;object-fit:cover;border-radius:8px;border:2px solid rgba(var(--btn-color),0.2);cursor:pointer;transition:all 0.2s ease;}
+.forum-post-thumb:hover{border-color:rgba(var(--btn-color),0.6);transform:scale(1.05);}
+.forum-empty{color:rgba(var(--text-color),0.35);text-align:center;padding:40px;font-size:15px;}
+.forum-tag-picker{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;}
+.forum-tag-btn{padding:9px 16px;font-size:13px;font-weight:bold;border:2px solid rgba(var(--btn-color),0.35);background:rgba(var(--btn-color),0.08);color:rgba(var(--text-color),0.7);border-radius:10px;cursor:pointer;font-family:inherit;transition:all 0.15s ease;}
+.forum-tag-btn.active,.forum-tag-btn:hover{border-color:rgba(var(--btn-color),0.8);background:rgba(var(--btn-color),0.2);color:rgb(var(--text-color));}
+.forum-thread-title-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:8px;}
+.forum-thread-title{color:white;font-size:20px;font-weight:900;margin:0;flex:1;}
+.forum-thread-meta{color:rgba(255,255,255,0.45);font-size:13px;margin-bottom:10px;}
+.forum-thread-body{color:rgba(255,255,255,0.75);font-size:15px;line-height:1.6;margin-bottom:12px;padding:14px 16px;background:rgba(var(--btn-color),0.04);border-radius:10px;border:1px solid rgba(var(--btn-color),0.1);}
+.forum-reply-item{background:rgba(var(--btn-color),0.04);border:2px solid rgba(var(--btn-color),0.1);border-radius:12px;padding:12px 16px;margin:8px 0;}
+.forum-reply-header{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.forum-reply-user{color:rgb(var(--text-color));font-size:13px;font-weight:bold;}
+.forum-reply-time{color:rgba(255,255,255,0.35);font-size:11px;}
+.forum-reply-body{color:rgba(255,255,255,0.7);font-size:14px;line-height:1.5;}
+.forum-delete-btn{margin-left:auto;padding:4px 10px;font-size:14px;border:1px solid rgba(239,68,68,0.4);background:rgba(239,68,68,0.08);color:#ef4444;border-radius:7px;cursor:pointer;transition:all 0.15s ease;}
+.forum-delete-btn:hover{background:#ef4444;color:white;}
+.forum-status-banner{padding:10px 16px;border-radius:10px;border:2px solid;font-weight:bold;font-size:14px;margin:10px 0;background:rgba(0,0,0,0.2);}
+.forum-admin-badge{background:rgba(239,68,68,0.2);border:1px solid rgba(239,68,68,0.5);color:#ef4444;font-size:10px;font-weight:bold;padding:2px 6px;border-radius:4px;letter-spacing:1px;}
+#forum-thread-messages{max-height:35vh;overflow-y:auto;margin:14px 0;padding-right:4px;}
+#forum-thread-view-wrap{max-height:65vh;overflow-y:auto;padding-right:4px;}
+.admin-user-row{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;border:1px solid rgba(var(--btn-color),0.15);margin:4px 0;background:rgba(var(--btn-color),0.04);cursor:pointer;transition:all 0.15s ease;}
+.admin-user-row:hover{background:rgba(var(--btn-color),0.1);border-color:rgba(var(--btn-color),0.35);}
+.admin-user-name{flex:1;color:white;font-size:14px;font-weight:bold;}
+.admin-user-id{color:rgba(var(--text-color),0.5);font-size:12px;}
+.admin-user-btns{display:flex;gap:6px;}
+.admin-action-btn{padding:5px 10px;font-size:12px;font-weight:bold;border-radius:7px;cursor:pointer;font-family:inherit;transition:all 0.15s ease;border:1px solid;}
+.admin-action-btn.mute{border-color:rgba(252,211,77,0.5);background:rgba(252,211,77,0.08);color:#fcd34d;}
+.admin-action-btn.ban{border-color:rgba(239,68,68,0.5);background:rgba(239,68,68,0.08);color:#ef4444;}
+.admin-action-btn.mute:hover{background:#fcd34d;color:#020617;}
+.admin-action-btn.ban:hover{background:#ef4444;color:white;}
+</style>
 
 <script>
 document.addEventListener('contextmenu',e=>e.preventDefault());
@@ -616,7 +732,17 @@ const GITHUB_AUDIT_FILE='Data/Audit_Log.Json';
 const GITHUB_AUDIT_API=`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_AUDIT_FILE}`;
 const LANGUAGES_API=`https://api.github.com/repos/${GITHUB_REPO}/contents/${LANGUAGES_FILE}`;
 
-let _auditSha=null;
+const _CRED_KEY='BJ_CRED_STORE_V2';
+function _encryptCred(obj){const s=JSON.stringify(obj);const k='BJ_LOCAL_ENC_9K';let r='';for(let i=0;i<s.length;i++)r+=String.fromCharCode(s.charCodeAt(i)^k.charCodeAt(i%k.length));return btoa(r);}
+function _decryptCred(enc){try{const b=atob(enc);const k='BJ_LOCAL_ENC_9K';let r='';for(let i=0;i<b.length;i++)r+=String.fromCharCode(b.charCodeAt(i)^k.charCodeAt(i%k.length));return JSON.parse(r);}catch(e){return null;}}
+function storeCredentials(username,password){localStorage.setItem(_CRED_KEY,_encryptCred({username,password}));}
+function loadCredentials(){const s=localStorage.getItem(_CRED_KEY);if(!s)return null;return _decryptCred(s);}
+function clearCredentials(){localStorage.removeItem(_CRED_KEY);}
+
+let _websiteStartTime=Date.now();
+let _websiteTime=parseInt(localStorage.getItem('bj_website_time')||'0');
+setInterval(()=>{_websiteTime+=5;localStorage.setItem('bj_website_time',_websiteTime);},5000);
+
 async function appendAudit(action,details){
   try{
     let entries=[];let sha=null;
@@ -625,9 +751,17 @@ async function appendAudit(action,details){
     if(!Array.isArray(entries))entries=[];
     entries.push({action,details,by:_loggedInUser?_loggedInUser.userid:'unknown',byUsername:_loggedInUser?_loggedInUser.username:'unknown',at:new Date().toISOString()});
     if(entries.length>2000)entries=entries.slice(-2000);
-    const body={message:'Audit: '+action,content:b64EncodeUnicode(JSON.stringify(entries,null,2))};
+    const content=b64EncodeUnicode(JSON.stringify(entries,null,2));
+    const body={message:'Audit: '+action,content};
     if(sha)body.sha=sha;
-    await fetch(GITHUB_AUDIT_API,{method:'PUT',headers:{'Authorization':`Bearer ${GITHUB_TOKEN}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify(body)});
+    const saveRes=await fetch(GITHUB_AUDIT_API,{method:'PUT',headers:{'Authorization':`Bearer ${GITHUB_TOKEN}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify(body)});
+    if(!saveRes.ok){
+      const delay=3000+Math.random()*2000;
+      await new Promise(r=>setTimeout(r,delay));
+      const body2={message:'Audit retry: '+action,content};
+      if(sha)body2.sha=sha;
+      await fetch(GITHUB_AUDIT_API,{method:'PUT',headers:{'Authorization':`Bearer ${GITHUB_TOKEN}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify(body2)});
+    }
   }catch(e){}
 }
 
@@ -637,6 +771,8 @@ function b64DecodeUnicode(b64){const bin=atob(b64);const bytes=new Uint8Array(bi
 let _loggedInUser=null;
 let _allUsersCache=null;
 let _allUsersSha=null;
+let _isSaving=false;
+let _saveQueue=[];
 
 async function fetchAllUsers(){
   try{
@@ -651,14 +787,40 @@ async function fetchAllUsers(){
   }catch(e){return{data:[],sha:null};}
 }
 
-async function saveAllUsers(users){
+async function saveAllUsersWithRetry(users,retries=3){
   if(!_allUsersSha)return false;
-  try{
-    const content=b64EncodeUnicode(JSON.stringify(users,null,2));
-    const res=await fetch(GITHUB_USER_API,{method:'PUT',headers:{'Authorization':`Bearer ${GITHUB_TOKEN}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify({message:'Update user data',content,sha:_allUsersSha})});
-    if(res.ok){const j=await res.json();_allUsersSha=j.content.sha;return true;}
-    return false;
-  }catch(e){return false;}
+  for(let attempt=0;attempt<retries;attempt++){
+    try{
+      const content=b64EncodeUnicode(JSON.stringify(users,null,2));
+      const res=await fetch(GITHUB_USER_API,{method:'PUT',headers:{'Authorization':`Bearer ${GITHUB_TOKEN}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify({message:'Update user data',content,sha:_allUsersSha})});
+      if(res.ok){
+        const j=await res.json();_allUsersSha=j.content.sha;
+        const delay=3000+Math.random()*2000;
+        await new Promise(r=>setTimeout(r,delay));
+        const verifyRes=await fetch(GITHUB_USER_API,{headers:{'Authorization':`Bearer ${GITHUB_TOKEN}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}});
+        if(verifyRes.ok){const vj=await verifyRes.json();_allUsersSha=vj.sha;return true;}
+        return true;
+      }
+      if(res.status===409){
+        await fetchAllUsers();
+        const idx=users.findIndex(u=>!u.__meta&&_loggedInUser&&u.userid===_loggedInUser.userid);
+        if(idx!==-1&&_loggedInUser)_allUsersCache[_allUsersCache.findIndex(u=>!u.__meta&&u.userid===_loggedInUser.userid)]=_loggedInUser;
+        const delay=3000+Math.random()*2000;await new Promise(r=>setTimeout(r,delay));
+        continue;
+      }
+      const delay=3000+Math.random()*2000;await new Promise(r=>setTimeout(r,delay));
+    }catch(e){if(attempt<retries-1){const delay=3000+Math.random()*2000;await new Promise(r=>setTimeout(r,delay));}}
+  }
+  return false;
+}
+
+async function saveAllUsers(users){
+  if(_isSaving){return new Promise(resolve=>{_saveQueue.push({users:JSON.parse(JSON.stringify(users)),resolve});});}
+  _isSaving=true;
+  const ok=await saveAllUsersWithRetry(users);
+  _isSaving=false;
+  if(_saveQueue.length>0){const next=_saveQueue.shift();saveAllUsers(next.users).then(next.resolve);}
+  return ok;
 }
 
 function trackApiCall(action){
@@ -669,25 +831,29 @@ function trackApiCall(action){
   _loggedInUser.apiCalls++;
 }
 
-async function signUp(username,password,country){
+async function signUp(username,password,country,rememberMe){
   const {data}=await fetchAllUsers();
   if(data.find(u=>u.username&&u.username.toLowerCase()===username.toLowerCase()))return{ok:false,error:'Username already taken.'};
-  let meta=data.find(u=>u.__meta);
-  let nextId=1;
-  if(meta){nextId=meta.nextUserId||1;}else{meta={__meta:true,nextUserId:1};_allUsersCache.push(meta);}
-  const userid=String(nextId);
-  meta.nextUserId=nextId+1;
-  const newUser={userid,username,password:btoa(password),country:country||null,e:0,joinDate:new Date().toISOString(),lastSeen:new Date().toISOString(),totalPlaytime:0,playthroughs:0,highScore:{easy:0,medium:0,hard:0,impossible:0},survivalTimes:{easy:0,medium:0,hard:0,impossible:0},achievements:{},showOnLeaderboard:true,apiCalls:0,apiLog:[],muted:null,banned:null,blocked:[],settings:{}};
+  let meta=_allUsersCache.find(u=>u.__meta);
+  const existingUsers=data.filter(u=>!u.__meta&&u.userid);
+  let maxId=0;
+  existingUsers.forEach(u=>{const n=parseInt(u.userid)||0;if(n>maxId)maxId=n;});
+  const userid=String(maxId+1);
+  if(!meta){meta={__meta:true,nextUserId:maxId+2};_allUsersCache.push(meta);}
+  else{meta.nextUserId=maxId+2;}
+  const newUser={userid,username,password:btoa(password),country:country||null,e:0,joinDate:new Date().toISOString(),lastSeen:new Date().toISOString(),totalPlaytime:0,playthroughs:0,highScore:{easy:0,medium:0,hard:0,impossible:0},survivalTimes:{easy:0,medium:0,hard:0,impossible:0},achievements:{},showOnLeaderboard:true,apiCalls:0,apiLog:[{action:'account_created',time:new Date().toISOString()}],muted:null,banned:null,settings:{}};
   _allUsersCache.push(newUser);
   const ok=await saveAllUsers(_allUsersCache);
   if(!ok)return{ok:false,error:'Failed to save. Try again.'};
+  if(rememberMe)storeCredentials(username,password);
+  appendAudit('account_created',{userid,username});
   return{ok:true,user:newUser};
 }
 
-async function login(userid,password){
+async function login(username,password){
   await fetchAllUsers();
-  const user=_allUsersCache.find(u=>!u.__meta&&u.userid===userid);
-  if(!user)return{ok:false,error:'User ID not found.'};
+  const user=_allUsersCache.find(u=>!u.__meta&&u.username&&u.username.toLowerCase()===username.toLowerCase());
+  if(!user)return{ok:false,error:'Username not found.'};
   if(user.password!==btoa(password))return{ok:false,error:'Wrong password.'};
   user.lastSeen=new Date().toISOString();
   if(!user.apiLog)user.apiLog=[];
@@ -695,6 +861,7 @@ async function login(userid,password){
   if(!user.apiCalls)user.apiCalls=0;
   user.apiCalls++;
   await saveAllUsers(_allUsersCache);
+  appendAudit('login',{userid:user.userid,username:user.username});
   return{ok:true,user};
 }
 
@@ -702,6 +869,7 @@ async function pushCurrentUserToGitHub(){
   if(!_loggedInUser||!_allUsersCache)return;
   trackApiCall('pushCurrentUser');
   saveSettingsToUser();
+  await fetchAllUsers();
   const idx=_allUsersCache.findIndex(u=>!u.__meta&&u.userid===_loggedInUser.userid);
   if(idx!==-1)_allUsersCache[idx]=Object.assign({},_loggedInUser);
   await saveAllUsers(_allUsersCache);
@@ -752,6 +920,7 @@ const ALL_COUNTRIES=[
 ];
 
 let _authSelectedCountry=null;
+let _profileSelectedCountry=null;
 
 function renderCountryDropdown(listId,searchId,ddId,btnFlagId,btnNameId,onSelect){
   const listEl=document.getElementById(listId);
@@ -779,49 +948,41 @@ function setupCountryDropdown(btnId,ddId,searchId,listId,flagId,nameId,onSelect)
 }
 
 setupCountryDropdown('auth-country-btn','auth-country-dropdown','auth-country-search','auth-country-list','auth-country-flag','auth-country-name',c=>{_authSelectedCountry=c;});
+setupCountryDropdown('profile-country-btn','profile-country-dropdown','profile-country-search','profile-country-list','profile-country-flag','profile-country-name',c=>{_profileSelectedCountry=c;});
 
 document.getElementById('auth-tab-login').addEventListener('click',()=>{document.getElementById('auth-tab-login').classList.add('active');document.getElementById('auth-tab-signup').classList.remove('active');document.getElementById('auth-login-panel').style.display='';document.getElementById('auth-signup-panel').style.display='none';});
 document.getElementById('auth-tab-signup').addEventListener('click',()=>{document.getElementById('auth-tab-signup').classList.add('active');document.getElementById('auth-tab-login').classList.remove('active');document.getElementById('auth-signup-panel').style.display='';document.getElementById('auth-login-panel').style.display='none';});
 
 document.getElementById('auth-login-btn').addEventListener('click',async()=>{
-  const uid=document.getElementById('auth-login-userid').value.trim();
+  const username=document.getElementById('auth-login-username').value.trim();
   const pw=document.getElementById('auth-login-password').value;
   const errEl=document.getElementById('auth-login-error');
-  if(!uid||!pw){errEl.textContent='Please fill all fields.';return;}
+  if(!username||!pw){errEl.textContent='Please fill all fields.';return;}
   errEl.textContent='Logging in...';
-  const result=await login(uid,pw);
+  const result=await login(username,pw);
   if(!result.ok){errEl.textContent=result.error;return;}
   const user=result.user;
   if(user.banned){
     const now=Date.now();
-    if(user.banned.until==='permanent'||new Date(user.banned.until).getTime()>now){
-      showBanScreen(user);return;
-    }else{
-      user.banned=null;
-      const idx=_allUsersCache.findIndex(u=>u.userid===user.userid);
-      if(idx!==-1)_allUsersCache[idx]=user;
-      await saveAllUsers(_allUsersCache);
-    }
+    if(user.banned.until==='permanent'||new Date(user.banned.until).getTime()>now){showBanScreen(user);return;}
+    else{user.banned=null;const idx=_allUsersCache.findIndex(u=>u.userid===user.userid);if(idx!==-1)_allUsersCache[idx]=user;await saveAllUsers(_allUsersCache);}
   }
-  if(document.getElementById('auth-remember-me').checked)localStorage.setItem('bj_remember_userid',uid);
-  else localStorage.removeItem('bj_remember_userid');
-  _loggedInUser=user;
-  errEl.textContent='';
-  afterLogin();
+  if(document.getElementById('auth-remember-me').checked)storeCredentials(username,pw);
+  else clearCredentials();
+  _loggedInUser=user;errEl.textContent='';afterLogin();
 });
 
 document.getElementById('auth-signup-btn').addEventListener('click',async()=>{
   const username=document.getElementById('auth-signup-username').value.trim();
   const password=document.getElementById('auth-signup-password').value;
+  const rememberMe=document.getElementById('auth-signup-remember-me').checked;
   const errEl=document.getElementById('auth-signup-error');
   if(!username||!password){errEl.textContent='Please fill all fields.';return;}
   if(!_authSelectedCountry){errEl.textContent='Please select a country.';return;}
   errEl.textContent='Creating account...';
-  const result=await signUp(username,password,_authSelectedCountry);
+  const result=await signUp(username,password,_authSelectedCountry,rememberMe);
   if(!result.ok){errEl.textContent=result.error;return;}
-  _loggedInUser=result.user;
-  errEl.textContent='';
-  afterLogin();
+  _loggedInUser=result.user;errEl.textContent='';afterLogin();
 });
 
 function showBanScreen(user){
@@ -830,10 +991,7 @@ function showBanScreen(user){
   document.getElementById('ban-reason-text').textContent='Reason: '+(user.banned&&user.banned.reason?user.banned.reason:'No reason given.');
   const cd=document.getElementById('ban-countdown-text');
   if(user.banned&&user.banned.until==='permanent'){cd.textContent='This ban is permanent.';}
-  else if(user.banned){
-    function updateCd(){const ms=new Date(user.banned.until).getTime()-Date.now();if(ms<=0){cd.textContent='Ban expired. Refresh to continue.';return;}const s=Math.floor(ms/1000);const m=Math.floor(s/60);const h=Math.floor(m/60);const d=Math.floor(h/24);cd.textContent='Unban in: '+(d>0?d+'d ':'')+(h%24>0?h%24+'h ':'')+(m%60>0?m%60+'m ':'')+(s%60)+'s';setTimeout(updateCd,1000);}
-    updateCd();
-  }
+  else if(user.banned){function updateCd(){const ms=new Date(user.banned.until).getTime()-Date.now();if(ms<=0){cd.textContent='Ban expired. Refresh to continue.';return;}const s=Math.floor(ms/1000);const m=Math.floor(s/60);const h=Math.floor(m/60);const d=Math.floor(h/24);cd.textContent='Unban in: '+(d>0?d+'d ':'')+(h%24>0?h%24+'h ':'')+(m%60>0?m%60+'m ':'')+(s%60)+'s';setTimeout(updateCd,1000);}updateCd();}
 }
 
 function afterLogin(){
@@ -841,16 +999,14 @@ function afterLogin(){
   initMainMenu();
 }
 
-function isUserMuted(user){
-  if(!user||!user.muted)return false;
-  if(user.muted.until==='permanent')return true;
-  return new Date(user.muted.until).getTime()>Date.now();
-}
+function isUserMuted(user){if(!user||!user.muted)return false;if(user.muted.until==='permanent')return true;return new Date(user.muted.until).getTime()>Date.now();}
+function isUserBanned(user){if(!user||!user.banned)return false;if(user.banned.until==='permanent')return true;return new Date(user.banned.until).getTime()>Date.now();}
+function isAdmin(user){return user&&user.e===1;}
 
-function isUserBanned(user){
-  if(!user||!user.banned)return false;
-  if(user.banned.until==='permanent')return true;
-  return new Date(user.banned.until).getTime()>Date.now();
+function isValidAdmin(user){
+  if(!user)return false;
+  if(user.e!==1)return false;
+  return true;
 }
 
 const SOUND_KEYS=['respawn','lava','jump','walking','brick','ambient','achievement'];
@@ -859,11 +1015,13 @@ SOUND_KEYS.forEach(k=>{soundVols[k]=parseInt(localStorage.getItem('soundVol_'+k)
 function saveSoundVol(k,v){soundVols[k]=v;localStorage.setItem('soundVol_'+k,v);}
 
 let effectsEnabled=localStorage.getItem('effectsEnabled')!=='false';
-let hqEnabled=localStorage.getItem('hqEnabled')!=='false';
+let gfxSettings={bluePlatform:localStorage.getItem('gfx_bluePlatform')!=='false',lava:localStorage.getItem('gfx_lava')!=='false',player:localStorage.getItem('gfx_player')!=='false',platforms:localStorage.getItem('gfx_platforms')!=='false',hud:localStorage.getItem('gfx_hud')!=='false'};
 let currentLanguage=localStorage.getItem('language')||'en';
 let currentDifficulty=localStorage.getItem('difficulty')||'medium';
 let allSoundsEnabled=localStorage.getItem('allSounds')!=='false';
 let doubleJumpEnabled=localStorage.getItem('featDoubleJump')!=='false';
+let doubleJumpGameplay=localStorage.getItem('gameplayDoubleJump')!=='false';
+let showDoubleJumpHUD=localStorage.getItem('featShowDoubleJump')!=='false';
 let showHeightEnabled=localStorage.getItem('featShowHeight')!=='false';
 let showTopEnabled=localStorage.getItem('featShowTop')!=='false';
 let showTimerEnabled=localStorage.getItem('featShowTimer')!=='false';
@@ -941,7 +1099,7 @@ function loadPlayerData(){
   maxHeights=Object.assign({easy:0,medium:0,hard:0,impossible:0},_loggedInUser.highScore||{});
   survivalTimes=Object.assign({easy:0,medium:0,hard:0,impossible:0},_loggedInUser.survivalTimes||{});
   unlockedAchievements=Object.assign({},_loggedInUser.achievements||{});
-  _totalDeaths=_loggedInUser.deaths||0;
+  _totalDeaths=_loggedInUser.playthroughs||_loggedInUser.deaths||0;
   _totalPlaytime=_loggedInUser.totalPlaytime||0;
 }
 
@@ -950,30 +1108,131 @@ function savePlayerData(){
   _loggedInUser.highScore=Object.assign({},maxHeights);
   _loggedInUser.survivalTimes=Object.assign({},survivalTimes);
   _loggedInUser.achievements=Object.assign({},unlockedAchievements);
+  _loggedInUser.playthroughs=_totalDeaths;
   _loggedInUser.deaths=_totalDeaths;
   _loggedInUser.totalPlaytime=_totalPlaytime;
   _loggedInUser.lastSeen=new Date().toISOString();
 }
 
-const respawnSound=document.getElementById('respawn-sound');
-const lavaDieSound=document.getElementById('lava-die-sound');
-const jumpSound=document.getElementById('jump-sound');
-const walkingSound=document.getElementById('walking-sound');
-const killBrickSound=document.getElementById('kill-brick-sound');
-const lavaSound=document.getElementById('lava-sound');
-const achievementSound=document.getElementById('achievement-sound');
-const effectsToggle=document.getElementById('effects-toggle');
-const hqToggle=document.getElementById('hq-toggle');
-const languageSelect=document.getElementById('language-select');
-const difficultySelect=document.getElementById('difficulty-select');
-const audioRespawn=document.getElementById('audio-respawn');
-const audioLava=document.getElementById('audio-lava');
-const audioJump=document.getElementById('audio-jump');
-const audioWalking=document.getElementById('audio-walking');
-const audioBrick=document.getElementById('audio-brick');
-const audioAmbient=document.getElementById('audio-ambient');
-const audioAchievement=document.getElementById('audio-achievement');
-const allSoundsToggle=document.getElementById('all-sounds-toggle');
+function applyGfxSettings(){
+  document.body.classList.toggle('no-effects',!effectsEnabled);
+  const root=document.documentElement;
+  if(!gfxSettings.bluePlatform){root.style.setProperty('--gfx-blue-shadow','none');}else{root.style.removeProperty('--gfx-blue-shadow');}
+  if(!gfxSettings.lava){document.getElementById('lava').style.filter='none';document.getElementById('lava').style.animation='none';}else{document.getElementById('lava').style.filter='';document.getElementById('lava').style.animation='';}
+  if(!gfxSettings.player){document.getElementById('player').style.boxShadow='none';document.getElementById('player').style.animation='none';}else{document.getElementById('player').style.boxShadow='';document.getElementById('player').style.animation='';}
+  document.querySelectorAll('.platform').forEach(p=>{if(!gfxSettings.platforms){p.style.boxShadow='0 2px 4px rgba(0,0,0,0.3)';}else{p.style.boxShadow='';}});
+  const hudEls=[document.getElementById('hud'),document.getElementById('hp-display'),document.getElementById('pause-hint')];
+  hudEls.forEach(el=>{if(el){if(!gfxSettings.hud){el.style.backdropFilter='none';el.style.boxShadow='none';}else{el.style.backdropFilter='';el.style.boxShadow='';}}});
+}
+
+function saveGfxSettings(){Object.keys(gfxSettings).forEach(k=>localStorage.setItem('gfx_'+k,gfxSettings[k]));applyGfxSettings();}
+
+function syncGfxUI(){
+  document.getElementById('mm-gfx-blue-platform').checked=gfxSettings.bluePlatform;
+  document.getElementById('mm-gfx-lava').checked=gfxSettings.lava;
+  document.getElementById('mm-gfx-player').checked=gfxSettings.player;
+  document.getElementById('mm-gfx-platforms').checked=gfxSettings.platforms;
+  document.getElementById('mm-gfx-hud').checked=gfxSettings.hud;
+  document.getElementById('p-gfx-blue-platform').checked=gfxSettings.bluePlatform;
+  document.getElementById('p-gfx-lava').checked=gfxSettings.lava;
+  document.getElementById('p-gfx-player').checked=gfxSettings.player;
+  document.getElementById('p-gfx-platforms').checked=gfxSettings.platforms;
+  document.getElementById('p-gfx-hud').checked=gfxSettings.hud;
+}
+
+['blue-platform','lava','player','platforms','hud'].forEach(k=>{
+  const key=k.replace(/-([a-z])/g,(_,c)=>c.toUpperCase());
+  const mmEl=document.getElementById('mm-gfx-'+k);
+  const pEl=document.getElementById('p-gfx-'+k);
+  if(mmEl)mmEl.addEventListener('change',e=>{gfxSettings[key]=e.target.checked;if(pEl)pEl.checked=e.target.checked;saveGfxSettings();onSettingChanged();});
+  if(pEl)pEl.addEventListener('change',e=>{gfxSettings[key]=e.target.checked;if(mmEl)mmEl.checked=e.target.checked;saveGfxSettings();onSettingChanged();});
+});
+
+function getSoundVol(key){return soundVols[key]/100;}
+function updateAllVolumes(){}
+function updateLavaVolume(){}
+function initializeVolumes(){syncAllAudioUI();}
+function syncAllAudioUI(){
+  const allSoundsToggle=document.getElementById('all-sounds-toggle');if(allSoundsToggle)allSoundsToggle.checked=allSoundsEnabled;
+  const mmAll=document.getElementById('mm-all-sounds');if(mmAll)mmAll.checked=allSoundsEnabled;
+  const idMap={'audio-respawn':'respawn','audio-lava':'lava','audio-jump':'jump','audio-walking':'walking','audio-brick':'brick','audio-ambient':'ambient','audio-achievement':'achievement'};
+  Object.entries(idMap).forEach(([id,key])=>{const el=document.getElementById(id);if(el)el.checked=audioSettings[key];const mmEl=document.getElementById('mm-audio-'+key);if(mmEl)mmEl.checked=audioSettings[key];});
+  SOUND_KEYS.forEach(k=>{const v=soundVols[k];['vol-'+k,'pvol-'+k].forEach(id=>{const el=document.getElementById(id);if(el)el.value=v;});});
+  updateAudioRowHighlights();
+}
+function updateAudioRowHighlights(){
+  const map={respawn:'asr-respawn',lava:'asr-lava',jump:'asr-jump',walking:'asr-walking',brick:'asr-brick',ambient:'asr-ambient',achievement:'asr-achievement'};
+  const pmap={respawn:'pasr-respawn',lava:'pasr-lava',jump:'pasr-jump',walking:'pasr-walking',brick:'pasr-brick',ambient:'pasr-ambient',achievement:'pasr-achievement'};
+  Object.entries(map).forEach(([key,id])=>{const el=document.getElementById(id);if(el)el.classList.toggle('audio-row-on',!!audioSettings[key]);const pel=document.getElementById(pmap[key]);if(pel)pel.classList.toggle('audio-row-on',!!audioSettings[key]);});
+}
+function playRespawnSound(){}
+function playLavaDieSound(){}
+function playJumpSound(){}
+function playWalkingSound(){}
+function stopWalkingSound(){}
+function playKillBrickSound(){}
+function playAchievementSound(){}
+function updateLavaSound(){}
+function stopLavaSound(){}
+function saveAudioSettings(){
+  const idMap={'audio-respawn':'respawn','audio-lava':'lava','audio-jump':'jump','audio-walking':'walking','audio-brick':'brick','audio-ambient':'ambient','audio-achievement':'achievement'};
+  Object.entries(idMap).forEach(([id,key])=>{const el=document.getElementById(id);if(el)audioSettings[key]=el.checked;});
+  Object.keys(audioSettings).forEach(k=>localStorage.setItem('audio'+k.charAt(0).toUpperCase()+k.slice(1),audioSettings[k]));
+  syncAllAudioUI();
+}
+
+let customColors={btn:JSON.parse(localStorage.getItem('customBtnColor')||'[56,189,248]'),txt:JSON.parse(localStorage.getItem('customTxtColor')||'[56,189,248]')};
+function applyColors(){document.documentElement.style.setProperty('--btn-color',customColors.btn.join(','));document.documentElement.style.setProperty('--text-color',customColors.txt.join(','));}
+function toggleEffects(enabled){effectsEnabled=enabled;localStorage.setItem('effectsEnabled',enabled);document.body.classList.toggle('no-effects',!enabled);}
+function changeDifficulty(difficulty){if(currentDifficulty!==difficulty){currentDifficulty=difficulty;localStorage.setItem('difficulty',difficulty);updateLanguage(currentLanguage);if(!isDead&&gameStarted)die(false);}}
+
+async function resetAllData(){
+  const ok=await customConfirm('Reset ALL data? This cannot be undone.');
+  if(!ok)return;
+  const keys_to_clear=['effectsEnabled','language','difficulty','allSounds','featDoubleJump','featShowHeight','featShowTop','featShowTimer','customBtnColor','customTxtColor','audioRespawn','audioLava','audioJump','audioWalking','audioBrick','audioAmbient','audioAchievement','bj_showOnLb','bj_qualityAsked','gameplayDoubleJump','featShowDoubleJump'];
+  SOUND_KEYS.forEach(k=>keys_to_clear.push('soundVol_'+k));
+  Object.keys(gfxSettings).forEach(k=>keys_to_clear.push('gfx_'+k));
+  keys_to_clear.forEach(k=>localStorage.removeItem(k));
+  location.reload();
+}
+
+const translations={
+  en:{height:'HEIGHT',topHeight:'TOP',topTime:'TOP TIME',difficulty:'DIFFICULTY',timer:'TIME',doubleJump:'Double Jump = true',pauseHint:'Press ESC to pause',paused:'PAUSED',continue:'CONTINUE',extra:'EXTRA',settings:'SETTINGS',help:'HELP',restart:'RESTART',back:'BACK',youDied:'PLAYTHROUGH OVER',respawn:'Click / Space to Respawn',settingsGraphics:'Graphics Quality',settingsVisualEffects:'Visual Effects',settingsDifficulty:'Difficulty',settingsGameDifficulty:'Game Difficulty',settingsAudio:'Audio',settingsLanguage:'Language',settingsLanguageLabel:'Language',audioRespawn:'Respawn Sound',audioLava:'Lava Playthrough Sound',audioJump:'Jump Sound',audioWalking:'Walking Sound',audioBrick:'Kill Brick Sound',audioAmbient:'Lava Ambient Sound'},
+  da:{height:'HØJDE',topHeight:'TOP',topTime:'TOP TID',difficulty:'SVÆRHEDSGRAD',timer:'TID',doubleJump:'Dobbelt Hop = sand',pauseHint:'Tryk ESC for pause',paused:'PAUSE',continue:'FORTSÆT',extra:'EKSTRA',settings:'INDSTILLINGER',help:'HJÆLP',restart:'GENSTART',back:'TILBAGE',youDied:'GENNEMSPILNING SLUT',respawn:'Klik / Mellemrum for Genstart',settingsGraphics:'Grafikkvalitet',settingsVisualEffects:'Visuelle Effekter',settingsDifficulty:'Sværhedsgrad',settingsGameDifficulty:'Spil Sværhedsgrad',settingsAudio:'Lyd',settingsLanguage:'Sprog',settingsLanguageLabel:'Sprog',audioRespawn:'Genstart Lyd',audioLava:'Lava Lyd',audioJump:'Hop Lyd',audioWalking:'Gå Lyd',audioBrick:'Dræb Klods Lyd',audioAmbient:'Lava Ambiente Lyd'},
+  de:{height:'HÖHE',topHeight:'TOP',topTime:'BEST ZEIT',difficulty:'SCHWIERIGKEIT',timer:'ZEIT',doubleJump:'Doppelsprung = wahr',pauseHint:'ESC drücken zum Pausieren',paused:'PAUSIERT',continue:'FORTSETZEN',extra:'EXTRA',settings:'EINSTELLUNGEN',help:'HILFE',restart:'NEUSTART',back:'ZURÜCK',youDied:'DURCHSPIELUNG VORBEI',respawn:'Klick / Leertaste zum Neustart',settingsGraphics:'Grafikqualität',settingsVisualEffects:'Visuelle Effekte',settingsDifficulty:'Schwierigkeit',settingsGameDifficulty:'Spiel Schwierigkeit',settingsAudio:'Audio',settingsLanguage:'Sprache',settingsLanguageLabel:'Sprache',audioRespawn:'Neustart Ton',audioLava:'Lava Ton',audioJump:'Sprung Ton',audioWalking:'Lauf Ton',audioBrick:'Kill Brick Ton',audioAmbient:'Lava Ambiente Ton'}
+};
+
+function formatTime(seconds){const s=Math.floor(seconds);if(s<60)return s+'s';const m=Math.floor(s/60);const rs=s%60;if(m<60)return m+'m '+rs+'s';const h=Math.floor(m/60);const rm=m%60;return h+'h '+rm+'m';}
+function updateHUDVisibility(){
+  document.getElementById('current').style.display=showHeightEnabled?'':'none';
+  document.getElementById('max').style.display=showTopEnabled?'':'none';
+  document.getElementById('top-time-display').style.display=showTopEnabled?'':'none';
+  document.getElementById('timer-display').style.display=showTimerEnabled?'':'none';
+  document.getElementById('difficulty-display').style.display='';
+  document.getElementById('hp-display').style.display=showDoubleJumpHUD?'':'none';
+}
+
+function updateLanguage(lang){
+  currentLanguage=lang;localStorage.setItem('language',lang);
+  const t=translations[lang]||translations['en'];
+  updateHUDVisibility();
+  const curEl=document.getElementById('current');const maxEl=document.getElementById('max');const timerEl=document.getElementById('timer-display');const topTimeEl=document.getElementById('top-time-display');const difficultyEl=document.getElementById('difficulty-display');
+  if(showHeightEnabled&&curEl)curEl.textContent=t.height+': '+Math.floor(currentHeight/10);
+  if(showTopEnabled&&maxEl){maxEl.textContent=t.topHeight+': '+Math.floor(maxHeights[currentDifficulty]/10);topTimeEl.textContent=t.topTime+': '+formatTime(survivalTimes[currentDifficulty]||0);}
+  if(showTimerEnabled&&timerEl)timerEl.textContent=t.timer+': '+formatTime(survivalSeconds);
+  if(difficultyEl)difficultyEl.textContent=t.difficulty+': '+DIFFICULTY_SETTINGS[currentDifficulty].name.toUpperCase();
+  const hpEl=document.getElementById('hp-display');if(hpEl)hpEl.textContent=doubleJumpGameplay?t.doubleJump:'Double Jump = false';
+  const phEl=document.getElementById('pause-hint');if(phEl)phEl.textContent=t.pauseHint;
+  const textMap={'continue-btn':'continue','extra-btn':'extra','settings-btn':'settings','help-btn':'help','restart-btn':'restart','help-back-btn':'back','settings-back-btn':'back','extra-back-btn':'back','achievements-back-btn':'back','death-title':'youDied','death-subtitle':'respawn'};
+  Object.entries(textMap).forEach(([id,key])=>{const el=document.getElementById(id);if(el&&t[key])el.textContent=t[key];});
+  const labelMap={'audio-respawn-label':'audioRespawn','audio-lava-label':'audioLava','audio-jump-label':'audioJump','audio-walking-label':'audioWalking','audio-brick-label':'audioBrick','audio-ambient-label':'audioAmbient','settings-graphics-title':'settingsGraphics','settings-visual-effects':'settingsVisualEffects','settings-difficulty-title':'settingsDifficulty','settings-game-difficulty':'settingsGameDifficulty','settings-audio-title':'settingsAudio','settings-language-title':'settingsLanguage','settings-language-label':'settingsLanguageLabel'};
+  Object.entries(labelMap).forEach(([id,key])=>{const el=document.getElementById(id);if(el&&t[key])el.textContent=t[key];});
+}
+
+function populateLanguageDropdowns(){
+  const opts=Object.entries(_loadedLanguages).map(([code,data])=>`<option value="${code}">${data.flag||''} ${data.nativeName||data.name||code}</option>`).join('');
+  ['language-select','mm-language-select'].forEach(id=>{const sel=document.getElementById(id);if(sel){sel.innerHTML=opts;sel.value=currentLanguage;if(!_loadedLanguages[currentLanguage])sel.value=Object.keys(_loadedLanguages)[0]||'en';}});
+}
 
 const PLAYER_SIZE=40;
 let x,y,velY,jumpsLeft,lowestPlatformY;
@@ -1021,7 +1280,7 @@ const DIFFICULTY_SETTINGS={easy:{maxSpeed:1.25,name:'Easy'},medium:{maxSpeed:1.7
 
 let _visibilityHidden=false;
 let _hiddenAt=0;
-document.addEventListener('visibilitychange',()=>{if(document.hidden){_visibilityHidden=true;_hiddenAt=performance.now();if(!paused&&gameStarted&&!isDead){if(animationId)cancelAnimationFrame(animationId);stopWalkingSound();}}else{_visibilityHidden=false;if(!paused&&gameStarted&&!isDead){const hd=performance.now()-_hiddenAt;if(gameStartTime>0)gameStartTime+=hd;lastFrameTime=0;update();}}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){_visibilityHidden=true;_hiddenAt=performance.now();if(!paused&&gameStarted&&!isDead){if(animationId)cancelAnimationFrame(animationId);}}else{_visibilityHidden=false;if(!paused&&gameStarted&&!isDead){const hd=performance.now()-_hiddenAt;if(gameStartTime>0)gameStartTime+=hd;lastFrameTime=0;update();}}});
 
 const player=document.getElementById('player');
 const curEl=document.getElementById('current');
@@ -1031,22 +1290,12 @@ const topTimeEl=document.getElementById('top-time-display');
 const difficultyEl=document.getElementById('difficulty-display');
 const lavaEl=document.getElementById('lava');
 const pauseMenu=document.getElementById('pause-menu');
-const continueBtn=document.getElementById('continue-btn');
-const restartBtn=document.getElementById('restart-btn');
-const extraBtn=document.getElementById('extra-btn');
-const extraBackBtn=document.getElementById('extra-back-btn');
-const helpBtn=document.getElementById('help-btn');
-const settingsBtn=document.getElementById('settings-btn');
-const helpBackBtn=document.getElementById('help-back-btn');
-const settingsBackBtn=document.getElementById('settings-back-btn');
 const deathScreen=document.getElementById('death-screen');
 const mainMenuDiv=document.getElementById('main-menu');
 const extraMenu=document.getElementById('extra-menu');
 const helpMenu=document.getElementById('help-menu');
 const settingsMenu=document.getElementById('settings-menu');
 const pauseTitle=document.getElementById('pause-title');
-const achievementsBtn=document.getElementById('achievements-btn');
-const achievementsBackBtn=document.getElementById('achievements-back-btn');
 const achievementsPauseMenu=document.getElementById('achievements-pause-menu');
 
 let achNotifQueue=[];
@@ -1059,7 +1308,13 @@ function checkAchievements(){
     if(def.type==='height')val=maxHeights[def.mode]||0;
     else if(def.type==='time')val=survivalTimes[def.mode]||0;
     else if(def.type==='death')val=_totalDeaths;
-    if(val>=def.threshold){const now=new Date();unlockedAchievements[def.id]={name:def.name,time:now.toLocaleString()};achNotifQueue.push(def.name);processAchievementQueue();}
+    if(val>=def.threshold){
+      const now=new Date();
+      unlockedAchievements[def.id]={name:def.name,time:now.toLocaleString()};
+      achNotifQueue.push(def.name);
+      processAchievementQueue();
+      appendAudit('achievement_unlocked',{achievement:def.id,name:def.name});
+    }
   });
 }
 function processAchievementQueue(){if(achNotifShowing||achNotifQueue.length===0)return;const name=achNotifQueue.shift();showAchievementNotification(name);}
@@ -1068,7 +1323,7 @@ function showAchievementNotification(name){achNotifShowing=true;const notif=docu
 function renderAchievementsList(containerId,searchTerm,filterMode,diffFilter){
   const container=document.getElementById(containerId);if(!container)return;container.innerHTML='';
   const total=ACHIEVEMENT_DEFS.length;const completed=ACHIEVEMENT_DEFS.filter(d=>unlockedAchievements[d.id]).length;
-  const countEl=document.getElementById('ach-count-display');if(countEl&&containerId==='achievements-list')countEl.textContent=completed+' / '+total+' Playthroughs';
+  const countEl=document.getElementById('ach-count-display');if(countEl&&containerId==='achievements-list')countEl.textContent=completed+' / '+total+' Achievements';
   let defs=ACHIEVEMENT_DEFS;
   if(diffFilter&&diffFilter!=='all')defs=defs.filter(d=>d.mode===diffFilter);
   if(searchTerm){const s=searchTerm.toLowerCase();defs=defs.filter(d=>d.name.toLowerCase().includes(s)||d.desc.toLowerCase().includes(s));}
@@ -1083,115 +1338,26 @@ function renderAchievementsList(containerId,searchTerm,filterMode,diffFilter){
   });
 }
 
-function getSoundVol(key){return soundVols[key]/100;}
-function updateAllVolumes(){const f=allSoundsEnabled?1:0;respawnSound.volume=(audioSettings.respawn?getSoundVol('respawn'):0)*f;lavaDieSound.volume=(audioSettings.lava?getSoundVol('lava'):0)*f;jumpSound.volume=(audioSettings.jump?getSoundVol('jump'):0)*f;walkingSound.volume=(audioSettings.walking?getSoundVol('walking'):0)*f;killBrickSound.volume=(audioSettings.brick?getSoundVol('brick'):0)*f;achievementSound.volume=(audioSettings.achievement?getSoundVol('achievement'):0)*f;}
-function updateLavaVolume(){if(!allSoundsEnabled||!audioSettings.ambient){lavaSound.volume=0;return;}if(lavaInView){const d=lavaY-(y+PLAYER_SIZE);const m=Math.max(0,Math.min(1,1-(d/window.innerHeight)));lavaSound.volume=getSoundVol('ambient')*m;}else{lavaSound.volume=0;}}
-function initializeVolumes(){updateAllVolumes();syncAllAudioUI();}
-function syncAllAudioUI(){
-  audioRespawn.checked=audioSettings.respawn;audioLava.checked=audioSettings.lava;audioJump.checked=audioSettings.jump;audioWalking.checked=audioSettings.walking;audioBrick.checked=audioSettings.brick;audioAmbient.checked=audioSettings.ambient;audioAchievement.checked=audioSettings.achievement;allSoundsToggle.checked=allSoundsEnabled;
-  const mmMirrors={'mm-audio-respawn':'respawn','mm-audio-lava':'lava','mm-audio-jump':'jump','mm-audio-walking':'walking','mm-audio-brick':'brick','mm-audio-ambient':'ambient','mm-audio-achievement':'achievement'};
-  Object.entries(mmMirrors).forEach(([id,key])=>{const el=document.getElementById(id);if(el)el.checked=audioSettings[key];});
-  const mmAll=document.getElementById('mm-all-sounds');if(mmAll)mmAll.checked=allSoundsEnabled;
-  SOUND_KEYS.forEach(k=>{const v=soundVols[k];['vol-'+k,'pvol-'+k].forEach(id=>{const el=document.getElementById(id);if(el)el.value=v;});});
-  updateAudioRowHighlights();
-}
-function updateAudioRowHighlights(){const map={respawn:'asr-respawn',lava:'asr-lava',jump:'asr-jump',walking:'asr-walking',brick:'asr-brick',ambient:'asr-ambient',achievement:'asr-achievement'};const pmap={respawn:'pasr-respawn',lava:'pasr-lava',jump:'pasr-jump',walking:'pasr-walking',brick:'pasr-brick',ambient:'pasr-ambient',achievement:'pasr-achievement'};Object.entries(map).forEach(([key,id])=>{const el=document.getElementById(id);if(el)el.classList.toggle('audio-row-on',!!audioSettings[key]);const pel=document.getElementById(pmap[key]);if(pel)pel.classList.toggle('audio-row-on',!!audioSettings[key]);});}
-function playRespawnSound(){if(!allSoundsEnabled||!audioSettings.respawn)return;respawnSound.currentTime=0;respawnSound.play().catch(()=>{});}
-function playLavaDieSound(){if(!allSoundsEnabled||!audioSettings.lava)return;lavaDieSound.currentTime=0.1;lavaDieSound.play().catch(()=>{});}
-function playJumpSound(){if(!allSoundsEnabled||!audioSettings.jump)return;jumpSound.currentTime=0;jumpSound.play().catch(()=>{});}
-function playWalkingSound(){if(!allSoundsEnabled||!audioSettings.walking)return;if(walkingSound.paused){walkingSound.currentTime=0;walkingSound.play().catch(()=>{});}}
-function stopWalkingSound(){walkingSound.pause();walkingSound.currentTime=0;}
-function playKillBrickSound(){if(!allSoundsEnabled||!audioSettings.brick)return;killBrickSound.currentTime=0.5;killBrickSound.play().catch(()=>{});}
-function playAchievementSound(){if(!allSoundsEnabled||!audioSettings.achievement)return;achievementSound.currentTime=0;achievementSound.play().catch(()=>{});}
-function updateLavaSound(){if(!allSoundsEnabled||!audioSettings.ambient){stopLavaSound();return;}const isLavaVisible=lavaY<window.innerHeight;if(isLavaVisible&&!lavaInView){lavaInView=true;lavaSound.currentTime=0;lavaSound.play().catch(()=>{});}else if(!isLavaVisible&&lavaInView){lavaInView=false;lavaSound.pause();lavaSound.currentTime=0;}if(isLavaVisible)updateLavaVolume();}
-function stopLavaSound(){lavaSound.pause();lavaSound.currentTime=0;lavaInView=false;}
-function saveAudioSettings(){audioSettings.respawn=audioRespawn.checked;audioSettings.lava=audioLava.checked;audioSettings.jump=audioJump.checked;audioSettings.walking=audioWalking.checked;audioSettings.brick=audioBrick.checked;audioSettings.ambient=audioAmbient.checked;audioSettings.achievement=audioAchievement.checked;Object.keys(audioSettings).forEach(k=>localStorage.setItem('audio'+k.charAt(0).toUpperCase()+k.slice(1),audioSettings[k]));syncAllAudioUI();updateAllVolumes();}
-let customColors={btn:JSON.parse(localStorage.getItem('customBtnColor')||'[56,189,248]'),txt:JSON.parse(localStorage.getItem('customTxtColor')||'[56,189,248]')};
-function applyColors(){document.documentElement.style.setProperty('--btn-color',customColors.btn.join(','));document.documentElement.style.setProperty('--text-color',customColors.txt.join(','));}
-function toggleEffects(enabled){effectsEnabled=enabled;localStorage.setItem('effectsEnabled',enabled);document.body.classList.toggle('no-effects',!enabled);}
-function toggleHQ(enabled){hqEnabled=enabled;localStorage.setItem('hqEnabled',enabled);document.body.classList.toggle('low-quality',!enabled);}
-function changeDifficulty(difficulty){if(currentDifficulty!==difficulty){currentDifficulty=difficulty;localStorage.setItem('difficulty',difficulty);updateLanguage(currentLanguage);if(!isDead&&gameStarted)die(false);}}
-
-async function resetAllData(){
-  const ok=await customConfirm('Reset ALL data? This cannot be undone.');
-  if(!ok)return;
-  const keys_to_clear=['effectsEnabled','hqEnabled','language','difficulty','allSounds','featDoubleJump','featShowHeight','featShowTop','featShowTimer','customBtnColor','customTxtColor','audioRespawn','audioLava','audioJump','audioWalking','audioBrick','audioAmbient','audioAchievement','bj_showOnLb','bj_qualityAsked'];
-  SOUND_KEYS.forEach(k=>keys_to_clear.push('soundVol_'+k));
-  keys_to_clear.forEach(k=>localStorage.removeItem(k));
-  location.reload();
-}
-
-const translations={
-  en:{height:'HEIGHT',topHeight:'TOP',topTime:'TOP TIME',difficulty:'DIFFICULTY',timer:'TIME',doubleJump:'Double Jump = true',pauseHint:'Press ESC to pause',paused:'PAUSED',continue:'CONTINUE',extra:'EXTRA',settings:'SETTINGS',help:'HELP',restart:'RESTART',back:'BACK',youDied:'PLAYTHROUGH OVER',respawn:'Click / Space to Respawn',settingsGraphics:'Graphics',settingsVisualEffects:'Visual Effects',settingsDifficulty:'Difficulty',settingsGameDifficulty:'Game Difficulty',settingsAudio:'Audio',settingsLanguage:'Language',settingsLanguageLabel:'Language',audioRespawn:'Respawn Sound',audioLava:'Lava Playthrough Sound',audioJump:'Jump Sound',audioWalking:'Walking Sound',audioBrick:'Kill Brick Sound',audioAmbient:'Lava Ambient Sound'},
-  da:{height:'HØJDE',topHeight:'TOP',topTime:'TOP TID',difficulty:'SVÆRHEDSGRAD',timer:'TID',doubleJump:'Dobbelt Hop = sand',pauseHint:'Tryk ESC for pause',paused:'PAUSE',continue:'FORTSÆT',extra:'EKSTRA',settings:'INDSTILLINGER',help:'HJÆLP',restart:'GENSTART',back:'TILBAGE',youDied:'GENNEMSPILNING SLUT',respawn:'Klik / Mellemrum for Genstart',settingsGraphics:'Grafik',settingsVisualEffects:'Visuelle Effekter',settingsDifficulty:'Sværhedsgrad',settingsGameDifficulty:'Spil Sværhedsgrad',settingsAudio:'Lyd',settingsLanguage:'Sprog',settingsLanguageLabel:'Sprog',audioRespawn:'Genstart Lyd',audioLava:'Lava Gennemspilning Lyd',audioJump:'Hop Lyd',audioWalking:'Gå Lyd',audioBrick:'Dræb Klods Lyd',audioAmbient:'Lava Ambiente Lyd'},
-  de:{height:'HÖHE',topHeight:'TOP',topTime:'BEST ZEIT',difficulty:'SCHWIERIGKEIT',timer:'ZEIT',doubleJump:'Doppelsprung = wahr',pauseHint:'ESC drücken zum Pausieren',paused:'PAUSIERT',continue:'FORTSETZEN',extra:'EXTRA',settings:'EINSTELLUNGEN',help:'HILFE',restart:'NEUSTART',back:'ZURÜCK',youDied:'DURCHSPIELUNG VORBEI',respawn:'Klick / Leertaste zum Neustart',settingsGraphics:'Grafik',settingsVisualEffects:'Visuelle Effekte',settingsDifficulty:'Schwierigkeit',settingsGameDifficulty:'Spiel Schwierigkeit',settingsAudio:'Audio',settingsLanguage:'Sprache',settingsLanguageLabel:'Sprache',audioRespawn:'Neustart Ton',audioLava:'Lava Durchspielung Ton',audioJump:'Sprung Ton',audioWalking:'Lauf Ton',audioBrick:'Kill Brick Ton',audioAmbient:'Lava Ambiente Ton'}
-};
-
-function formatTime(seconds){const s=Math.floor(seconds);if(s<60)return s+'s';const m=Math.floor(s/60);const rs=s%60;if(m<60)return m+'m '+rs+'s';const h=Math.floor(m/60);const rm=m%60;return h+'h '+rm+'m';}
-function updateHUDVisibility(){curEl.style.display=showHeightEnabled?'':'none';maxEl.style.display=showTopEnabled?'':'none';topTimeEl.style.display=showTopEnabled?'':'none';timerEl.style.display=showTimerEnabled?'':'none';difficultyEl.style.display='';}
-function updateLanguage(lang){
-  currentLanguage=lang;localStorage.setItem('language',lang);
-  const t=translations[lang]||translations['en'];updateHUDVisibility();
-  if(showHeightEnabled)curEl.textContent=t.height+': '+Math.floor(currentHeight/10);
-  if(showTopEnabled){maxEl.textContent=t.topHeight+': '+Math.floor(maxHeights[currentDifficulty]/10);topTimeEl.textContent=t.topTime+': '+formatTime(survivalTimes[currentDifficulty]||0);}
-  if(showTimerEnabled)timerEl.textContent=t.timer+': '+formatTime(survivalSeconds);
-  difficultyEl.textContent=t.difficulty+': '+DIFFICULTY_SETTINGS[currentDifficulty].name.toUpperCase();
-  document.getElementById('hp-display').textContent=doubleJumpEnabled?t.doubleJump:'Double Jump = false';
-  document.getElementById('pause-hint').textContent=t.pauseHint;
-  document.getElementById('continue-btn').textContent=t.continue;
-  document.getElementById('extra-btn').textContent=t.extra;
-  document.getElementById('settings-btn').textContent=t.settings;
-  document.getElementById('help-btn').textContent=t.help;
-  document.getElementById('restart-btn').textContent=t.restart;
-  document.getElementById('help-back-btn').textContent=t.back;
-  document.getElementById('settings-back-btn').textContent=t.back;
-  document.getElementById('extra-back-btn').textContent=t.back;
-  document.getElementById('achievements-back-btn').textContent=t.back;
-  document.getElementById('death-title').textContent=t.youDied;
-  document.getElementById('death-subtitle').textContent=t.respawn;
-  if(document.getElementById('audio-respawn-label'))document.getElementById('audio-respawn-label').textContent=t.audioRespawn;
-  if(document.getElementById('audio-lava-label'))document.getElementById('audio-lava-label').textContent=t.audioLava;
-  if(document.getElementById('audio-jump-label'))document.getElementById('audio-jump-label').textContent=t.audioJump;
-  if(document.getElementById('audio-walking-label'))document.getElementById('audio-walking-label').textContent=t.audioWalking;
-  if(document.getElementById('audio-brick-label'))document.getElementById('audio-brick-label').textContent=t.audioBrick;
-  if(document.getElementById('audio-ambient-label'))document.getElementById('audio-ambient-label').textContent=t.audioAmbient;
-  if(document.getElementById('settings-graphics-title'))document.getElementById('settings-graphics-title').textContent=t.settingsGraphics;
-  if(document.getElementById('settings-visual-effects'))document.getElementById('settings-visual-effects').textContent=t.settingsVisualEffects;
-  if(document.getElementById('settings-difficulty-title'))document.getElementById('settings-difficulty-title').textContent=t.settingsDifficulty;
-  if(document.getElementById('settings-game-difficulty'))document.getElementById('settings-game-difficulty').textContent=t.settingsGameDifficulty;
-  if(document.getElementById('settings-audio-title'))document.getElementById('settings-audio-title').textContent=t.settingsAudio;
-  if(document.getElementById('settings-language-title'))document.getElementById('settings-language-title').textContent=t.settingsLanguage;
-  if(document.getElementById('settings-language-label'))document.getElementById('settings-language-label').textContent=t.settingsLanguageLabel;
-}
-
-function populateLanguageDropdowns(){
-  const opts=Object.entries(_loadedLanguages).map(([code,data])=>`<option value="${code}">${data.flag||''} ${data.nativeName||data.name||code}</option>`).join('');
-  ['language-select','mm-language-select'].forEach(id=>{const sel=document.getElementById(id);if(sel){sel.innerHTML=opts;sel.value=currentLanguage;if(!_loadedLanguages[currentLanguage])sel.value=Object.keys(_loadedLanguages)[0]||'en';}});
-}
-
-function saveMaxHeight(){localStorage.setItem('obbyTopHeight'+currentDifficulty.charAt(0).toUpperCase()+currentDifficulty.slice(1),maxHeights[currentDifficulty]);}
-function saveSurvivalTime(){localStorage.setItem('survivalTime'+currentDifficulty.charAt(0).toUpperCase()+currentDifficulty.slice(1),survivalTimes[currentDifficulty]);}
-function showPauseMain(){helpMenu.style.display='none';settingsMenu.style.display='none';extraMenu.style.display='none';achievementsPauseMenu.style.display='none';mainMenuDiv.style.display='block';pauseTitle.textContent=translations[currentLanguage]?translations[currentLanguage].paused:'PAUSED';}
-
 function togglePause(){
   paused=!paused;
-  if(paused){pauseMenu.classList.add('active');showPauseMain();if(animationId)cancelAnimationFrame(animationId);stopWalkingSound();stopLavaSound();}
+  if(paused){pauseMenu.classList.add('active');showPauseMain();if(animationId)cancelAnimationFrame(animationId);}
   else{pauseMenu.classList.remove('active');lastFrameTime=0;if(gameStartTime>0)gameStartTime=performance.now()-survivalSeconds*1000;update();}
 }
 
 function updateExtraStats(){
   document.getElementById('stat-name').textContent=_loggedInUser?_loggedInUser.username:'Anonymous';
+  document.getElementById('stat-userid').textContent=_loggedInUser?('#'+_loggedInUser.userid):'#?';
+  const totalUsers=_allUsersCache?_allUsersCache.filter(u=>!u.__meta).length:0;
+  document.getElementById('stat-total-users').textContent=totalUsers||'?';
   document.getElementById('stat-playtime').textContent=formatTime(_totalPlaytime);
+  document.getElementById('stat-website-time').textContent=formatTime(_websiteTime);
   document.getElementById('stat-deaths').textContent=_totalDeaths;
   document.getElementById('stat-joindate').textContent=_loggedInUser&&_loggedInUser.joinDate?new Date(_loggedInUser.joinDate).toLocaleDateString():'-';
   const completed=ACHIEVEMENT_DEFS.filter(d=>unlockedAchievements[d.id]).length;
   document.getElementById('stat-achievements').textContent=completed+' / '+ACHIEVEMENT_DEFS.length;
-  document.getElementById('stat-api-calls').textContent=(_loggedInUser&&_loggedInUser.apiCalls)||0;
   const diffColors={easy:'#22c55e',medium:'#38bdf8',hard:'#f97316',impossible:'#ef4444'};
   const grid=document.getElementById('stats-diff-grid');
   if(grid){grid.innerHTML=['easy','medium','hard','impossible'].map(d=>`<div class="lb-detail-diff-row"><span style="color:${diffColors[d]};font-weight:bold;text-transform:capitalize;">${d}</span><span>Score: <b>${Math.floor(maxHeights[d]/10)}</b></span><span>Timer: <b>${formatTime(survivalTimes[d]||0)}</b></span></div>`).join('');}
-  const logEl=document.getElementById('stats-api-log');
-  if(logEl&&_loggedInUser&&_loggedInUser.apiLog){const last=(_loggedInUser.apiLog||[]).slice(-30).reverse();logEl.innerHTML=last.length?last.map(entry=>`<div class="api-log-entry"><span class="api-log-action">${entry.action}</span><span class="api-log-time">${new Date(entry.time).toLocaleString()}</span></div>`).join(''):'<div style="color:rgba(255,255,255,0.4);font-size:13px;text-align:center;padding:8px;">No API calls logged yet.</div>';}
 }
 
 async function die(fromLava){
@@ -1199,27 +1365,28 @@ async function die(fromLava){
   _totalDeaths++;
   const elapsed=gameStartTime>0?(performance.now()-gameStartTime)/1000:0;
   _runTimeSeconds=elapsed;
-  if(elapsed>(survivalTimes[currentDifficulty]||0))survivalTimes[currentDifficulty]=elapsed;
+  if(elapsed>(survivalTimes[currentDifficulty]||0)){survivalTimes[currentDifficulty]=elapsed;}
   survivalSeconds=elapsed;_totalPlaytime+=elapsed;
-  saveMaxHeight();saveSurvivalTime();
+  if(_runHeight>0&&_runHeight>(maxHeights[currentDifficulty]||0)){maxHeights[currentDifficulty]=_runHeight;}
+  savePlayerData();
   checkAchievements();
-  if(animationId)cancelAnimationFrame(animationId);stopWalkingSound();stopLavaSound();
+  if(animationId)cancelAnimationFrame(animationId);
   if(fromLava)playLavaDieSound();
   deathScreen.classList.add('active');
   const diffName=DIFFICULTY_SETTINGS[currentDifficulty].name;
   document.getElementById('death-difficulty-row').innerHTML='🎮 <b>'+diffName+'</b>';
   document.getElementById('death-score-row').innerHTML='📏 Score: <b>'+Math.floor(_runHeight/10)+'</b> / Best: <b>'+Math.floor(maxHeights[currentDifficulty]/10)+'</b>';
   document.getElementById('death-time-row').innerHTML='⏱ Timer: <b>'+formatTime(_runTimeSeconds)+'</b> / Best: <b>'+formatTime(survivalTimes[currentDifficulty])+'</b>';
-  savePlayerData();
+  appendAudit('playthrough_ended',{difficulty:currentDifficulty,score:Math.floor(_runHeight/10),time:Math.floor(_runTimeSeconds)});
   pushCurrentUserToGitHub();
 }
 
 function resetGame(){
-  if(animationId)cancelAnimationFrame(animationId);stopWalkingSound();stopLavaSound();playRespawnSound();
+  if(animationId)cancelAnimationFrame(animationId);playRespawnSound();
   platforms.forEach(p=>{p.style.display='none';platformPool.push(p);});platforms=[];
   const centerY=(window.innerHeight-PLAYER_SIZE)/2;
   x=(window.innerWidth-PLAYER_SIZE)/2;y=centerY;startingY=centerY;
-  velY=0;jumpsLeft=doubleJumpEnabled?2:1;currentHeight=0;_runHeight=0;_runTimeSeconds=0;
+  velY=0;jumpsLeft=doubleJumpGameplay?2:1;currentHeight=0;_runHeight=0;_runTimeSeconds=0;
   globalDifficulty=0;lavaY=window.innerHeight+200;lavaSpeed=LAVA_START_SPEED;
   isDead=false;paused=false;wasOnBluePlatform=false;isWalking=false;diedFromLava=false;lavaInView=false;lastFrameTime=0;gameStartTime=0;survivalSeconds=0;
   document.body.style.background='#020617';
@@ -1293,7 +1460,7 @@ function update(currentTime){
   if(keys['a']||keys['A']||keys['ArrowLeft'])x-=moveSpeed;
   if(keys['d']||keys['D']||keys['ArrowRight'])x+=moveSpeed;
   x=Math.max(LEFT_WALL,Math.min(x,RIGHT_WALL-PLAYER_SIZE));
-  const maxJumps=doubleJumpEnabled?2:1;
+  const maxJumps=doubleJumpGameplay?2:1;
   const jumpPressed=keys[' ']||keys['w']||keys['W']||keys['ArrowUp'];
   if(jumpPressed&&jumpsLeft>0&&!keys._jumpHeld){velY=-jumpPower;jumpsLeft--;keys._jumpHeld=true;playJumpSound();}
   if(!jumpPressed)keys._jumpHeld=false;
@@ -1318,20 +1485,16 @@ function update(currentTime){
     }
   }
   if(wasOnBluePlatform&&!onBluePlatform&&!grounded)wasOnBluePlatform=false;
-  const isMovingHorizontally=(keys['a']||keys['A']||keys['ArrowLeft']||keys['d']||keys['D']||keys['ArrowRight'])&&grounded;
-  if(isMovingHorizontally&&!isWalking){isWalking=true;playWalkingSound();}
-  else if(!isMovingHorizontally&&isWalking){isWalking=false;stopWalkingSound();}
   if((y>lowestPlatformY+400&&y>lavaY)||y>window.innerHeight+500){die(true);return;}
   const targetY=(window.innerHeight-PLAYER_SIZE)/2;const offset=targetY-y;
   platforms.forEach(p=>{p.style.top=(parseFloat(p.style.top)+offset)+'px';});
   lavaY+=offset;lavaEl.style.top=lavaY+'px';lowestPlatformY+=offset;startingY+=offset;y=targetY;
-  currentHeight=Math.max(0,startingY-y);_runHeight=currentHeight;
+  currentHeight=Math.max(0,startingY-y);_runHeight=Math.max(_runHeight,currentHeight);
   maxHeights[currentDifficulty]=Math.max(maxHeights[currentDifficulty]||0,currentHeight);
   const heightBoost=Math.min(currentHeight/100000,1.5);
   const LAVA_MAX_SPEED=DIFFICULTY_SETTINGS[currentDifficulty].maxSpeed;
   lavaSpeed=Math.min(LAVA_START_SPEED+globalDifficulty*LAVA_SPEED_INCREASE_RATE+heightBoost*LAVA_HEIGHT_BOOST_FACTOR,LAVA_MAX_SPEED);
   lavaY-=lavaSpeed*cappedDelta;lavaEl.style.top=lavaY+'px';
-  updateLavaSound();
   const heightProgress=Math.min(currentHeight/15000,1);
   const r=Math.floor(2+heightProgress*18);const g=Math.floor(6+heightProgress*4);const b=Math.floor(23+heightProgress*27);
   document.body.style.background='rgb('+r+', '+g+', '+b+')';
@@ -1351,26 +1514,29 @@ document.addEventListener('keydown',e=>{
   keys[e.key]=true;
 });
 document.addEventListener('keyup',e=>{keys[e.key]=false;});
-continueBtn.addEventListener('click',togglePause);
-extraBtn.addEventListener('click',()=>{mainMenuDiv.style.display='none';extraMenu.style.display='block';pauseTitle.textContent='EXTRA';});
-extraBackBtn.addEventListener('click',()=>{extraMenu.style.display='none';mainMenuDiv.style.display='block';pauseTitle.textContent=translations[currentLanguage]?translations[currentLanguage].paused:'PAUSED';});
-settingsBtn.addEventListener('click',()=>{extraMenu.style.display='none';settingsMenu.style.display='block';pauseTitle.textContent='SETTINGS';});
-settingsBackBtn.addEventListener('click',()=>{settingsMenu.style.display='none';extraMenu.style.display='block';pauseTitle.textContent='EXTRA';});
-helpBtn.addEventListener('click',()=>{extraMenu.style.display='none';helpMenu.style.display='block';pauseTitle.textContent='HELP';});
-helpBackBtn.addEventListener('click',()=>{helpMenu.style.display='none';extraMenu.style.display='block';pauseTitle.textContent='EXTRA';});
-achievementsBtn.addEventListener('click',()=>{extraMenu.style.display='none';achievementsPauseMenu.style.display='block';pauseTitle.textContent='PLAYTHROUGHS';renderAchievementsList('achievements-pause-list','','all','all');});
-achievementsBackBtn.addEventListener('click',()=>{achievementsPauseMenu.style.display='none';extraMenu.style.display='block';pauseTitle.textContent='EXTRA';});
-restartBtn.addEventListener('click',()=>{showPauseMain();pauseMenu.classList.remove('active');paused=false;saveMaxHeight();resetGame();});
+
+document.getElementById('continue-btn').addEventListener('click',togglePause);
+document.getElementById('extra-btn').addEventListener('click',()=>{mainMenuDiv.style.display='none';extraMenu.style.display='block';pauseTitle.textContent='EXTRA';});
+document.getElementById('extra-back-btn').addEventListener('click',()=>{extraMenu.style.display='none';mainMenuDiv.style.display='block';pauseTitle.textContent=translations[currentLanguage]?translations[currentLanguage].paused:'PAUSED';});
+document.getElementById('settings-btn').addEventListener('click',()=>{extraMenu.style.display='none';settingsMenu.style.display='block';pauseTitle.textContent='SETTINGS';});
+document.getElementById('settings-back-btn').addEventListener('click',()=>{settingsMenu.style.display='none';extraMenu.style.display='block';pauseTitle.textContent='EXTRA';});
+document.getElementById('help-btn').addEventListener('click',()=>{extraMenu.style.display='none';helpMenu.style.display='block';pauseTitle.textContent='HELP';});
+document.getElementById('help-back-btn').addEventListener('click',()=>{helpMenu.style.display='none';extraMenu.style.display='block';pauseTitle.textContent='EXTRA';});
+document.getElementById('achievements-btn').addEventListener('click',()=>{extraMenu.style.display='none';achievementsPauseMenu.style.display='block';pauseTitle.textContent='ACHIEVEMENTS';renderAchievementsList('achievements-pause-list','','all','all');});
+document.getElementById('achievements-back-btn').addEventListener('click',()=>{achievementsPauseMenu.style.display='none';extraMenu.style.display='block';pauseTitle.textContent='EXTRA';});
+document.getElementById('restart-btn').addEventListener('click',()=>{showPauseMain();pauseMenu.classList.remove('active');paused=false;resetGame();});
 
 document.getElementById('pause-main-menu-btn').addEventListener('click',async()=>{
   const ok=await customConfirm('Return to Main Menu? Your current run will be lost.');
   if(!ok)return;
   pauseMenu.classList.remove('active');paused=false;gameStarted=false;
-  if(animationId)cancelAnimationFrame(animationId);stopWalkingSound();stopLavaSound();
+  if(animationId)cancelAnimationFrame(animationId);
   platforms.forEach(p=>{p.style.display='none';platformPool.push(p);});platforms=[];
   document.getElementById('hud').style.display='none';document.getElementById('hp-display').style.display='none';document.getElementById('pause-hint').style.display='none';
   document.getElementById('main-menu-screen').style.display='flex';
 });
+
+function showPauseMain(){helpMenu.style.display='none';settingsMenu.style.display='none';extraMenu.style.display='none';achievementsPauseMenu.style.display='none';mainMenuDiv.style.display='block';pauseTitle.textContent=translations[currentLanguage]?translations[currentLanguage].paused:'PAUSED';}
 
 function setupSettingsNavTabs(navPrefix,panelPrefix,tabs){
   tabs.forEach(tab=>{
@@ -1386,25 +1552,46 @@ setupSettingsNavTabs('snav-','spanel-',['graphics','audio','hud','profile']);
 function setupAudioDropdowns(){
   SOUND_KEYS.forEach(k=>{
     const mmRow=document.getElementById('asr-'+k);const mmDrop=document.getElementById('adrop-'+k);
-    if(mmRow&&mmDrop){mmRow.querySelector('.audio-sound-header').addEventListener('click',e=>{if(e.target.closest('.toggle'))return;mmDrop.style.display=mmDrop.style.display==='none'?'block':'none';});}
+    if(mmRow&&mmDrop){const h=mmRow.querySelector('.audio-sound-header');if(h)h.addEventListener('click',e=>{if(e.target.closest('.toggle'))return;mmDrop.style.display=mmDrop.style.display==='block'?'none':'block';});}
     const pRow=document.getElementById('pasr-'+k);const pDrop=document.getElementById('padrop-'+k);
-    if(pRow&&pDrop){pRow.querySelector('.audio-sound-header').addEventListener('click',e=>{if(e.target.closest('.toggle'))return;pDrop.style.display=pDrop.style.display==='none'?'block':'none';});}
-    ['vol-'+k,'pvol-'+k].forEach(volId=>{const el=document.getElementById(volId);if(el){el.addEventListener('input',()=>{saveSoundVol(k,parseInt(el.value));const otherId=volId.startsWith('p')?'vol-'+k:'pvol-'+k;const other=document.getElementById(otherId);if(other)other.value=el.value;updateAllVolumes();});}});
+    if(pRow&&pDrop){const h=pRow.querySelector('.audio-sound-header');if(h)h.addEventListener('click',e=>{if(e.target.closest('.toggle'))return;pDrop.style.display=pDrop.style.display==='block'?'none':'block';});}
+    ['vol-'+k,'pvol-'+k].forEach(volId=>{const el=document.getElementById(volId);if(el){el.addEventListener('input',()=>{saveSoundVol(k,parseInt(el.value,10));const otherId=volId.startsWith('p')?'vol-'+k:'pvol-'+k;const other=document.getElementById(otherId);if(other)other.value=el.value;});}});
   });
 }
+
 setupAudioDropdowns();
 
-audioRespawn.addEventListener('change',saveAudioSettings);audioLava.addEventListener('change',saveAudioSettings);audioJump.addEventListener('change',saveAudioSettings);audioWalking.addEventListener('change',saveAudioSettings);audioBrick.addEventListener('change',saveAudioSettings);audioAmbient.addEventListener('change',saveAudioSettings);audioAchievement.addEventListener('change',saveAudioSettings);
-allSoundsToggle.addEventListener('change',e=>{allSoundsEnabled=e.target.checked;localStorage.setItem('allSounds',allSoundsEnabled);updateAllVolumes();const mm=document.getElementById('mm-all-sounds');if(mm)mm.checked=e.target.checked;});
-document.getElementById('p-feat-double-jump').addEventListener('change',e=>{doubleJumpEnabled=e.target.checked;localStorage.setItem('featDoubleJump',doubleJumpEnabled);document.getElementById('mm-feat-double-jump').checked=doubleJumpEnabled;updateLanguage(currentLanguage);});
+const allSoundsToggle=document.getElementById('all-sounds-toggle');
+if(allSoundsToggle)allSoundsToggle.addEventListener('change',e=>{allSoundsEnabled=e.target.checked;localStorage.setItem('allSounds',allSoundsEnabled);const mm=document.getElementById('mm-all-sounds');if(mm)mm.checked=e.target.checked;});
+document.getElementById('mm-all-sounds').addEventListener('change',e=>{allSoundsEnabled=e.target.checked;localStorage.setItem('allSounds',allSoundsEnabled);if(allSoundsToggle)allSoundsToggle.checked=e.target.checked;});
+
+['respawn','lava','jump','walking','brick','ambient','achievement'].forEach(key=>{
+  const mmEl=document.getElementById('mm-audio-'+key);const pEl=document.getElementById('audio-'+key);
+  if(mmEl)mmEl.addEventListener('change',e=>{audioSettings[key]=e.target.checked;if(pEl)pEl.checked=e.target.checked;localStorage.setItem('audio'+key.charAt(0).toUpperCase()+key.slice(1),e.target.checked);updateAudioRowHighlights();});
+  if(pEl)pEl.addEventListener('change',e=>{audioSettings[key]=e.target.checked;if(mmEl)mmEl.checked=e.target.checked;localStorage.setItem('audio'+key.charAt(0).toUpperCase()+key.slice(1),e.target.checked);updateAudioRowHighlights();});
+});
+
+document.getElementById('p-feat-show-double-jump-hud').addEventListener('change',e=>{showDoubleJumpHUD=e.target.checked;localStorage.setItem('featShowDoubleJump',showDoubleJumpHUD);document.getElementById('mm-feat-double-jump').checked=showDoubleJumpHUD;updateLanguage(currentLanguage);});
+document.getElementById('mm-feat-double-jump').addEventListener('change',e=>{showDoubleJumpHUD=e.target.checked;localStorage.setItem('featShowDoubleJump',showDoubleJumpHUD);document.getElementById('p-feat-show-double-jump-hud').checked=showDoubleJumpHUD;updateLanguage(currentLanguage);});
+
+document.getElementById('p-gameplay-double-jump').addEventListener('change',e=>{doubleJumpGameplay=e.target.checked;localStorage.setItem('gameplayDoubleJump',doubleJumpGameplay);document.getElementById('mm-gameplay-double-jump').checked=doubleJumpGameplay;updateLanguage(currentLanguage);});
+document.getElementById('mm-gameplay-double-jump').addEventListener('change',e=>{doubleJumpGameplay=e.target.checked;localStorage.setItem('gameplayDoubleJump',doubleJumpGameplay);document.getElementById('p-gameplay-double-jump').checked=doubleJumpGameplay;updateLanguage(currentLanguage);});
+
 document.getElementById('p-feat-show-height').addEventListener('change',e=>{showHeightEnabled=e.target.checked;localStorage.setItem('featShowHeight',showHeightEnabled);document.getElementById('mm-feat-show-height').checked=showHeightEnabled;updateLanguage(currentLanguage);});
+document.getElementById('mm-feat-show-height').addEventListener('change',e=>{showHeightEnabled=e.target.checked;localStorage.setItem('featShowHeight',showHeightEnabled);document.getElementById('p-feat-show-height').checked=showHeightEnabled;updateLanguage(currentLanguage);});
 document.getElementById('p-feat-show-top').addEventListener('change',e=>{showTopEnabled=e.target.checked;localStorage.setItem('featShowTop',showTopEnabled);document.getElementById('mm-feat-show-top').checked=showTopEnabled;updateLanguage(currentLanguage);});
+document.getElementById('mm-feat-show-top').addEventListener('change',e=>{showTopEnabled=e.target.checked;localStorage.setItem('featShowTop',showTopEnabled);document.getElementById('p-feat-show-top').checked=showTopEnabled;updateLanguage(currentLanguage);});
 document.getElementById('p-feat-show-timer').addEventListener('change',e=>{showTimerEnabled=e.target.checked;localStorage.setItem('featShowTimer',showTimerEnabled);document.getElementById('mm-feat-show-timer').checked=showTimerEnabled;updateLanguage(currentLanguage);});
-effectsToggle.addEventListener('change',e=>{toggleEffects(e.target.checked);const mm=document.getElementById('mm-effects-toggle');if(mm)mm.checked=e.target.checked;});
-hqToggle.addEventListener('change',e=>{toggleHQ(e.target.checked);const mm=document.getElementById('mm-hq-toggle');if(mm)mm.checked=e.target.checked;});
-languageSelect.addEventListener('change',e=>{updateLanguage(e.target.value);const mm=document.getElementById('mm-language-select');if(mm)mm.value=e.target.value;});
-difficultySelect.addEventListener('change',e=>changeDifficulty(e.target.value));
+document.getElementById('mm-feat-show-timer').addEventListener('change',e=>{showTimerEnabled=e.target.checked;localStorage.setItem('featShowTimer',showTimerEnabled);document.getElementById('p-feat-show-timer').checked=showTimerEnabled;updateLanguage(currentLanguage);});
+
+document.getElementById('effects-toggle').addEventListener('change',e=>{toggleEffects(e.target.checked);const mm=document.getElementById('mm-effects-toggle');if(mm)mm.checked=e.target.checked;});
+document.getElementById('mm-effects-toggle').addEventListener('change',e=>{toggleEffects(e.target.checked);document.getElementById('effects-toggle').checked=e.target.checked;onSettingChanged();});
+document.getElementById('language-select').addEventListener('change',e=>{updateLanguage(e.target.value);const mm=document.getElementById('mm-language-select');if(mm)mm.value=e.target.value;});
+document.getElementById('mm-language-select').addEventListener('change',e=>{updateLanguage(e.target.value);document.getElementById('language-select').value=e.target.value;onSettingChanged();});
+document.getElementById('difficulty-select').addEventListener('change',e=>changeDifficulty(e.target.value));
+document.getElementById('mm-difficulty-select').addEventListener('change',e=>{currentDifficulty=e.target.value;localStorage.setItem('difficulty',currentDifficulty);document.getElementById('difficulty-select').value=currentDifficulty;onSettingChanged();});
 document.getElementById('pause-reset-data-btn').addEventListener('click',resetAllData);
+document.getElementById('mm-reset-data-btn').addEventListener('click',resetAllData);
 
 deathScreen.addEventListener('click',()=>{if(!isDead)return;deathScreen.classList.remove('active');isDead=false;resetGame();});
 document.addEventListener('keydown',e=>{if(!isDead)return;if(e.key===' '||e.code==='Space'){deathScreen.classList.remove('active');isDead=false;resetGame();}});
@@ -1424,7 +1611,6 @@ document.getElementById('mode-challenge-btn').addEventListener('click',showComin
 
 document.getElementById('mm-settings-btn').addEventListener('click',()=>{document.getElementById('main-menu-screen').style.display='none';document.getElementById('mm-settings-screen').style.display='flex';});
 document.getElementById('mm-settings-back-btn').addEventListener('click',()=>{document.getElementById('mm-settings-screen').style.display='none';document.getElementById('main-menu-screen').style.display='flex';});
-
 document.getElementById('mm-extra-btn').addEventListener('click',()=>{document.getElementById('main-menu-screen').style.display='none';document.getElementById('mm-extra-screen').style.display='flex';});
 document.getElementById('mm-extra-back-btn').addEventListener('click',()=>{document.getElementById('mm-extra-screen').style.display='none';document.getElementById('main-menu-screen').style.display='flex';});
 document.getElementById('mm-stats-btn').addEventListener('click',()=>{document.getElementById('mm-extra-screen').style.display='none';document.getElementById('mm-stats-screen').style.display='flex';updateExtraStats();});
@@ -1443,21 +1629,7 @@ document.getElementById('ach-search').addEventListener('input',()=>{renderAchiev
 document.getElementById('ach-filter').addEventListener('change',()=>{renderAchievementsList('achievements-list',document.getElementById('ach-search').value,document.getElementById('ach-filter').value,document.getElementById('ach-diff-filter').value);});
 document.getElementById('ach-diff-filter').addEventListener('change',()=>{renderAchievementsList('achievements-list',document.getElementById('ach-search').value,document.getElementById('ach-filter').value,document.getElementById('ach-diff-filter').value);});
 
-document.getElementById('mm-effects-toggle').addEventListener('change',e=>{toggleEffects(e.target.checked);effectsToggle.checked=e.target.checked;onSettingChanged();});
-document.getElementById('mm-hq-toggle').addEventListener('change',e=>{toggleHQ(e.target.checked);hqToggle.checked=e.target.checked;onSettingChanged();});
-document.getElementById('mm-difficulty-select').addEventListener('change',e=>{currentDifficulty=e.target.value;localStorage.setItem('difficulty',currentDifficulty);difficultySelect.value=currentDifficulty;onSettingChanged();});
-document.getElementById('mm-language-select').addEventListener('change',e=>{updateLanguage(e.target.value);languageSelect.value=e.target.value;onSettingChanged();});
-document.getElementById('mm-all-sounds').addEventListener('change',e=>{allSoundsEnabled=e.target.checked;localStorage.setItem('allSounds',allSoundsEnabled);allSoundsToggle.checked=e.target.checked;updateAllVolumes();onSettingChanged();});
 document.getElementById('mm-show-on-lb').addEventListener('change',e=>{showOnLeaderboard=e.target.checked;localStorage.setItem('bj_showOnLb',showOnLeaderboard);onSettingChanged();});
-document.getElementById('mm-reset-data-btn').addEventListener('click',resetAllData);
-document.getElementById('mm-feat-double-jump').addEventListener('change',e=>{doubleJumpEnabled=e.target.checked;localStorage.setItem('featDoubleJump',doubleJumpEnabled);document.getElementById('p-feat-double-jump').checked=doubleJumpEnabled;updateLanguage(currentLanguage);});
-document.getElementById('mm-feat-show-height').addEventListener('change',e=>{showHeightEnabled=e.target.checked;localStorage.setItem('featShowHeight',showHeightEnabled);document.getElementById('p-feat-show-height').checked=showHeightEnabled;updateLanguage(currentLanguage);});
-document.getElementById('mm-feat-show-top').addEventListener('change',e=>{showTopEnabled=e.target.checked;localStorage.setItem('featShowTop',showTopEnabled);document.getElementById('p-feat-show-top').checked=showTopEnabled;updateLanguage(currentLanguage);});
-document.getElementById('mm-feat-show-timer').addEventListener('change',e=>{showTimerEnabled=e.target.checked;localStorage.setItem('featShowTimer',showTimerEnabled);document.getElementById('mm-feat-show-timer').checked=showTimerEnabled;updateLanguage(currentLanguage);});
-const mmAudioMap={'mm-audio-respawn':audioRespawn,'mm-audio-lava':audioLava,'mm-audio-jump':audioJump,'mm-audio-walking':audioWalking,'mm-audio-brick':audioBrick,'mm-audio-ambient':audioAmbient,'mm-audio-achievement':audioAchievement};
-Object.entries(mmAudioMap).forEach(([id,pauseEl])=>{document.getElementById(id).addEventListener('change',e=>{pauseEl.checked=e.target.checked;saveAudioSettings();});});
-document.getElementById('settings-export-btn').addEventListener('click',exportSettings);
-document.getElementById('settings-import-btn').addEventListener('click',importSettings);
 
 let lbDisplayCount=10;
 let lbShowTimer=false;
@@ -1484,7 +1656,7 @@ async function renderLeaderboard(){
     let score=0,time=0;
     if(diffFilter==='all'){score=Math.max(...Object.values(hs).map(v=>Number(v)||0));time=Math.max(...Object.values(st).map(v=>Number(v)||0));}
     else{score=Number(hs[diffFilter]||0);time=Number(st[diffFilter]||0);}
-    return{username:entry.username||'Anonymous',flag:(entry.country&&entry.country.flag)||'🌍',countryName:(entry.country&&entry.country.en)||'',score:Math.floor(score/10),time,difficulty:diffFilter,highScore:hs,survivalTimes:st,joinDate:entry.joinDate||'',deaths:entry.deaths||0,achievements:Object.keys(entry.achievements||{}).length};
+    return{username:entry.username||'Anonymous',flag:(entry.country&&entry.country.flag)||'🌍',countryName:(entry.country&&entry.country.en)||'',score:Math.floor(score/10),time,difficulty:diffFilter,highScore:hs,survivalTimes:st,joinDate:entry.joinDate||'',playthroughs:entry.playthroughs||entry.deaths||0,achievements:Object.keys(entry.achievements||{}).length,isAdmin:entry.e===1};
   });
   const sortVal=lbShowTimer?'time':'score';
   records.sort((a,b)=>sortOrder==='desc'?b[sortVal]-a[sortVal]:a[sortVal]-b[sortVal]);
@@ -1495,7 +1667,8 @@ async function renderLeaderboard(){
     const div=document.createElement('div');div.className='lb-entry';
     const diffColor={easy:'#22c55e',medium:'#38bdf8',hard:'#f97316',impossible:'#ef4444',all:'#fcd34d'}[r.difficulty]||'#fff';
     const displayVal=lbShowTimer?formatTime(r.time):r.score;
-    div.innerHTML='<div class="lb-rank">#'+(i+1)+'</div><div class="lb-flag">'+(r.flag||'🌍')+'</div><div class="lb-name">'+(r.username||'Anonymous')+'</div><div class="lb-diff" style="color:'+diffColor+'">'+r.difficulty+'</div><div class="lb-score">'+displayVal+'</div>';
+    const adminBadge=r.isAdmin?'<span style="background:rgba(239,68,68,0.2);border:1px solid rgba(239,68,68,0.5);color:#ef4444;font-size:10px;font-weight:bold;padding:2px 5px;border-radius:4px;margin-left:4px;">ADMIN</span>':'';
+    div.innerHTML='<div class="lb-rank">#'+(i+1)+'</div><div class="lb-flag">'+(r.flag||'🌍')+'</div><div class="lb-name">'+(r.username||'Anonymous')+adminBadge+'</div><div class="lb-diff" style="color:'+diffColor+'">'+r.difficulty+'</div><div class="lb-score">'+displayVal+'</div>';
     div.addEventListener('click',()=>showLbDetail(r));lbList.appendChild(div);
   });
 }
@@ -1504,37 +1677,53 @@ function showLbDetail(r){
   const detail=document.getElementById('lb-entry-detail');const content=document.getElementById('lb-detail-content');
   const hs=r.highScore||{};const st=r.survivalTimes||{};
   const diffs=['easy','medium','hard','impossible'];const diffColors={easy:'#22c55e',medium:'#38bdf8',hard:'#f97316',impossible:'#ef4444'};
+  const adminTag=r.isAdmin?'<span style="background:rgba(239,68,68,0.2);border:1px solid rgba(239,68,68,0.5);color:#ef4444;font-size:11px;font-weight:bold;padding:2px 7px;border-radius:5px;display:inline-block;margin-bottom:10px;">⚙️ ADMIN</span><br>':'';
   let scoresHtml=diffs.map(d=>'<div class="lb-detail-diff-row"><span style="color:'+diffColors[d]+';font-weight:bold;text-transform:capitalize;">'+d+'</span><span>Score: <b>'+Math.floor((Number(hs[d])||0)/10)+'</b></span><span>Best Time: <b>'+formatTime(Number(st[d])||0)+'</b></span></div>').join('');
-  content.innerHTML='<div class="lb-detail-name">'+(r.flag||'')+' '+(r.username||'Anonymous')+'</div><div class="lb-detail-country" style="margin-bottom:14px;">'+(r.countryName||'Unknown Country')+'</div><div class="lb-detail-scores-grid">'+scoresHtml+'</div>'+(r.deaths!==undefined?'<div class="lb-detail-diff" style="margin-top:10px;">🔄 Playthroughs: '+r.deaths+'</div>':'')+(r.achievements!==undefined?'<div class="lb-detail-diff">🏆 Achievements: '+r.achievements+'/'+ACHIEVEMENT_DEFS.length+'</div>':'')+(r.joinDate?'<div class="lb-detail-diff">📅 Joined: '+new Date(r.joinDate).toLocaleDateString()+'</div>':'');
+  content.innerHTML='<div class="lb-detail-name">'+(r.flag||'')+' '+(r.username||'Anonymous')+'</div>'+adminTag+'<div class="lb-detail-country" style="margin-bottom:14px;">'+(r.countryName||'Unknown Country')+'</div><div class="lb-detail-scores-grid">'+scoresHtml+'</div>'+(r.playthroughs!==undefined?'<div class="lb-detail-diff" style="margin-top:10px;">🔄 Playthroughs: '+r.playthroughs+'</div>':'')+(r.achievements!==undefined?'<div class="lb-detail-diff">🏆 Achievements: '+r.achievements+'/'+ACHIEVEMENT_DEFS.length+'</div>':'')+(r.joinDate?'<div class="lb-detail-diff">📅 Joined: '+new Date(r.joinDate).toLocaleDateString()+'</div>':'');
   detail.style.display='flex';
 }
 
 function showNotifyBanner(msg,duration=3000){const b=document.getElementById('notify-banner');b.textContent=msg;b.style.display='block';clearTimeout(b._t);b._t=setTimeout(()=>{b.style.display='none';},duration);}
 
 function customConfirm(msg){return new Promise(resolve=>{const popup=document.getElementById('custom-popup');document.getElementById('custom-popup-msg').textContent=msg;const cancelBtn=document.getElementById('custom-popup-cancel');cancelBtn.style.display='';popup.style.display='flex';function ok(){popup.style.display='none';cleanup();resolve(true);}function cancel(){popup.style.display='none';cleanup();resolve(false);}function cleanup(){document.getElementById('custom-popup-ok').removeEventListener('click',ok);cancelBtn.removeEventListener('click',cancel);}document.getElementById('custom-popup-ok').addEventListener('click',ok);cancelBtn.addEventListener('click',cancel);});}
-
 function customInputPrompt(msg,defaultVal){return new Promise(resolve=>{const popup=document.getElementById('custom-input-popup');document.getElementById('custom-input-msg').textContent=msg;const field=document.getElementById('custom-input-field');field.value=defaultVal||'';popup.style.display='flex';function ok(){popup.style.display='none';cleanup();resolve(parseInt(field.value)||null);}function cancel(){popup.style.display='none';cleanup();resolve(null);}function cleanup(){document.getElementById('custom-input-ok').removeEventListener('click',ok);document.getElementById('custom-input-cancel').removeEventListener('click',cancel);}document.getElementById('custom-input-ok').addEventListener('click',ok);document.getElementById('custom-input-cancel').addEventListener('click',cancel);setTimeout(()=>field.focus(),50);});}
-
 function customTextPrompt(msg){return new Promise(resolve=>{const popup=document.getElementById('custom-text-input-popup');document.getElementById('custom-text-input-msg').textContent=msg;const field=document.getElementById('custom-text-input-field');field.value='';popup.style.display='flex';function ok(){popup.style.display='none';cleanup();resolve(field.value.trim()||null);}function cancel(){popup.style.display='none';cleanup();resolve(null);}function cleanup(){document.getElementById('custom-text-input-ok').removeEventListener('click',ok);document.getElementById('custom-text-input-cancel').removeEventListener('click',cancel);}document.getElementById('custom-text-input-ok').addEventListener('click',ok);document.getElementById('custom-text-input-cancel').addEventListener('click',cancel);setTimeout(()=>field.focus(),50);});}
-
 function showComingSoon(){const popup=document.getElementById('coming-soon-popup');popup.style.display='flex';const closeBtn=document.getElementById('coming-soon-close');let timer=setTimeout(()=>{popup.style.display='none';},3000);function close(){clearTimeout(timer);popup.style.display='none';closeBtn.removeEventListener('click',close);}closeBtn.addEventListener('click',close);}
 
+document.getElementById('settings-export-btn').addEventListener('click',exportSettings);
+document.getElementById('settings-import-btn').addEventListener('click',importSettings);
+
+const exportTextEl=document.getElementById('settings-export-text');
+exportTextEl.removeAttribute('readonly');
+
+exportTextEl.addEventListener('input',()=>{
+  const val=exportTextEl.value.trim();
+  if(val==='Admin'&&isValidAdmin(_loggedInUser)){
+    exportTextEl.value='';
+    openAdminPanel();
+  }
+});
+
 function exportSettings(){
-  const data={effectsEnabled,hqEnabled,language:currentLanguage,difficulty:currentDifficulty,allSounds:allSoundsEnabled,featDoubleJump:doubleJumpEnabled,featShowHeight:showHeightEnabled,featShowTop:showTopEnabled,featShowTimer:showTimerEnabled,showOnLeaderboard,audioSettings:Object.assign({},audioSettings),soundVols:Object.assign({},soundVols)};
+  const data={effectsEnabled,language:currentLanguage,difficulty:currentDifficulty,allSounds:allSoundsEnabled,gfxSettings:Object.assign({},gfxSettings),doubleJumpGameplay,showDoubleJumpHUD,featShowHeight:showHeightEnabled,featShowTop:showTopEnabled,featShowTimer:showTimerEnabled,showOnLeaderboard,audioSettings:Object.assign({},audioSettings),soundVols:Object.assign({},soundVols)};
   const code=btoa(JSON.stringify(data));
-  document.getElementById('settings-export-text').value=code;showNotifyBanner('Settings exported! Copy the text above.');
+  exportTextEl.value=code;
+  showNotifyBanner('Settings exported! Copy the text above.');
 }
 
 function importSettings(){
-  const code=document.getElementById('settings-export-text').value.trim();if(!code){showNotifyBanner('Paste a settings code first!');return;}
+  const code=exportTextEl.value.trim();
+  if(!code){showNotifyBanner('Paste a settings code first!');return;}
+  if(code==='Admin'){if(isValidAdmin(_loggedInUser)){exportTextEl.value='';openAdminPanel();}return;}
   try{
     const data=JSON.parse(atob(code));
     if(data.effectsEnabled!==undefined){effectsEnabled=data.effectsEnabled;toggleEffects(effectsEnabled);}
-    if(data.hqEnabled!==undefined){hqEnabled=data.hqEnabled;toggleHQ(hqEnabled);}
+    if(data.gfxSettings){Object.assign(gfxSettings,data.gfxSettings);saveGfxSettings();}
     if(data.language){currentLanguage=data.language;localStorage.setItem('language',currentLanguage);}
     if(data.difficulty){currentDifficulty=data.difficulty;localStorage.setItem('difficulty',currentDifficulty);}
     if(data.allSounds!==undefined){allSoundsEnabled=data.allSounds;localStorage.setItem('allSounds',allSoundsEnabled);}
-    if(data.featDoubleJump!==undefined){doubleJumpEnabled=data.featDoubleJump;localStorage.setItem('featDoubleJump',doubleJumpEnabled);}
+    if(data.doubleJumpGameplay!==undefined){doubleJumpGameplay=data.doubleJumpGameplay;localStorage.setItem('gameplayDoubleJump',doubleJumpGameplay);}
+    if(data.showDoubleJumpHUD!==undefined){showDoubleJumpHUD=data.showDoubleJumpHUD;localStorage.setItem('featShowDoubleJump',showDoubleJumpHUD);}
     if(data.featShowHeight!==undefined){showHeightEnabled=data.featShowHeight;localStorage.setItem('featShowHeight',showHeightEnabled);}
     if(data.featShowTop!==undefined){showTopEnabled=data.featShowTop;localStorage.setItem('featShowTop',showTopEnabled);}
     if(data.featShowTimer!==undefined){showTimerEnabled=data.featShowTimer;localStorage.setItem('featShowTimer',showTimerEnabled);}
@@ -1545,65 +1734,104 @@ function importSettings(){
   }catch(e){showNotifyBanner('Invalid settings code!');}
 }
 
+async function openAdminPanel(){
+  if(!isValidAdmin(_loggedInUser))return;
+  const panel=document.getElementById('admin-panel-overlay');panel.style.display='flex';
+  await loadAdminPanel();
+}
+
+async function loadAdminPanel(){
+  const listEl=document.getElementById('admin-user-list');
+  const logEl=document.getElementById('admin-api-log');
+  listEl.innerHTML='<div style="color:rgba(255,255,255,0.4);padding:12px;text-align:center;">Loading users...</div>';
+  const {data}=await fetchAllUsers();
+  const searchTerm=(document.getElementById('admin-user-search').value||'').toLowerCase();
+  const users=data.filter(u=>!u.__meta&&(!searchTerm||u.username.toLowerCase().includes(searchTerm)));
+  listEl.innerHTML='';
+  if(users.length===0){listEl.innerHTML='<div style="color:rgba(255,255,255,0.4);padding:12px;text-align:center;">No users found.</div>';return;}
+  users.forEach(u=>{
+    const row=document.createElement('div');row.className='admin-user-row';
+    const adminBadge=u.e===1?'<span style="background:rgba(239,68,68,0.2);border:1px solid rgba(239,68,68,0.5);color:#ef4444;font-size:10px;font-weight:bold;padding:2px 5px;border-radius:4px;margin-left:4px;">ADMIN</span>':'';
+    row.innerHTML=`<div class="admin-user-name">${escHtml(u.username)}${adminBadge}</div><div class="admin-user-id">#${u.userid}</div><div class="admin-user-btns"><button class="admin-action-btn mute" data-uid="${u.userid}" data-uname="${escHtml(u.username)}">🔇 Mute</button><button class="admin-action-btn ban" data-uid="${u.userid}" data-uname="${escHtml(u.username)}">🚫 Ban</button></div>`;
+    row.querySelector('.admin-action-btn.mute').addEventListener('click',e=>{e.stopPropagation();openMutePopup(u.userid,u.username);});
+    row.querySelector('.admin-action-btn.ban').addEventListener('click',e=>{e.stopPropagation();openBanPopup(u.userid,u.username);});
+    listEl.appendChild(row);
+  });
+  let allLogs=[];
+  data.forEach(u=>{if(u.apiLog&&Array.isArray(u.apiLog)){u.apiLog.forEach(entry=>{allLogs.push({...entry,username:u.username,userid:u.userid});});}});
+  allLogs.sort((a,b)=>new Date(b.time)-new Date(a.time));
+  const recentLogs=allLogs.slice(0,50);
+  logEl.innerHTML=recentLogs.length?recentLogs.map(entry=>`<div class="api-log-entry"><span class="api-log-action">[${escHtml(entry.username||'?')}] ${escHtml(entry.action)}</span><span class="api-log-time">${new Date(entry.time).toLocaleString()}</span></div>`).join(''):'<div style="color:rgba(255,255,255,0.3);text-align:center;padding:8px;">No logs.</div>';
+}
+
+document.getElementById('admin-user-search').addEventListener('input',()=>{if(document.getElementById('admin-panel-overlay').style.display!=='none')loadAdminPanel();});
+document.getElementById('admin-panel-close').addEventListener('click',()=>{document.getElementById('admin-panel-overlay').style.display='none';});
+
 function onSettingChanged(){
   saveSettingsToUser();
   clearTimeout(window._settingsSaveTimer);
   window._settingsSaveTimer=setTimeout(pushCurrentUserToGitHub,2000);
 }
+
 function syncUIToSettings(){
-  effectsToggle.checked=effectsEnabled;hqToggle.checked=hqEnabled;
-  document.getElementById('mm-effects-toggle').checked=effectsEnabled;document.getElementById('mm-hq-toggle').checked=hqEnabled;
-  languageSelect.value=currentLanguage;document.getElementById('mm-language-select').value=currentLanguage;
-  difficultySelect.value=currentDifficulty;document.getElementById('mm-difficulty-select').value=currentDifficulty;
-  allSoundsToggle.checked=allSoundsEnabled;document.getElementById('mm-all-sounds').checked=allSoundsEnabled;
-  document.getElementById('mm-feat-double-jump').checked=doubleJumpEnabled;document.getElementById('mm-feat-show-height').checked=showHeightEnabled;document.getElementById('mm-feat-show-top').checked=showTopEnabled;document.getElementById('mm-feat-show-timer').checked=showTimerEnabled;
-  document.getElementById('p-feat-double-jump').checked=doubleJumpEnabled;document.getElementById('p-feat-show-height').checked=showHeightEnabled;document.getElementById('p-feat-show-top').checked=showTopEnabled;document.getElementById('p-feat-show-timer').checked=showTimerEnabled;
+  document.getElementById('effects-toggle').checked=effectsEnabled;
+  document.getElementById('mm-effects-toggle').checked=effectsEnabled;
+  syncGfxUI();
+  document.getElementById('language-select').value=currentLanguage;document.getElementById('mm-language-select').value=currentLanguage;
+  document.getElementById('difficulty-select').value=currentDifficulty;document.getElementById('mm-difficulty-select').value=currentDifficulty;
+  if(allSoundsToggle)allSoundsToggle.checked=allSoundsEnabled;document.getElementById('mm-all-sounds').checked=allSoundsEnabled;
+  document.getElementById('mm-feat-double-jump').checked=showDoubleJumpHUD;
+  document.getElementById('mm-feat-show-height').checked=showHeightEnabled;document.getElementById('mm-feat-show-top').checked=showTopEnabled;document.getElementById('mm-feat-show-timer').checked=showTimerEnabled;
+  document.getElementById('p-feat-show-double-jump-hud').checked=showDoubleJumpHUD;
+  document.getElementById('p-feat-show-height').checked=showHeightEnabled;document.getElementById('p-feat-show-top').checked=showTopEnabled;document.getElementById('p-feat-show-timer').checked=showTimerEnabled;
+  document.getElementById('mm-gameplay-double-jump').checked=doubleJumpGameplay;
+  document.getElementById('p-gameplay-double-jump').checked=doubleJumpGameplay;
   document.getElementById('mm-show-on-lb').checked=showOnLeaderboard;
   syncAllAudioUI();updateAllVolumes();updateLanguage(currentLanguage);
 }
 
 const CHANGELOGS=[
+  {version:'v1.5.0',date:'14-04-2026',entries:[
+    {tag:'new',text:'Login now uses username instead of user ID'},
+    {tag:'new',text:'Remember me on both login and signup — credentials stored securely encrypted'},
+    {tag:'new',text:'Auto-login on page load if remember me was enabled'},
+    {tag:'new',text:'Profile settings: change username, password, and country'},
+    {tag:'new',text:'Renamed Playthroughs to Achievements in main menu'},
+    {tag:'new',text:'Gamemode select screen now centered with clean layout'},
+    {tag:'new',text:'Improved feedback forum design with card hover effects'},
+    {tag:'new',text:'Forum image upload supports drag & drop with visual feedback'},
+    {tag:'new',text:'Forum supports up to 5 image attachments'},
+    {tag:'new',text:'Completed forum threads are locked — no new replies allowed'},
+    {tag:'new',text:'All sound effects removed from playback (settings still visible)'},
+    {tag:'new',text:'Graphics settings split into individual toggles per feature'},
+    {tag:'new',text:'Quality popup now only shows after login'},
+    {tag:'new',text:'Admin panel accessible via Import field — Admin tag on leaderboard and forums'},
+    {tag:'new',text:'Import/Export text field is now editable'},
+    {tag:'new',text:'Stats screen: UserID, total users, website time, obby playtime'},
+    {tag:'new',text:'Audit log: account creation, playthroughs, achievements, forum posts, messages'},
+    {tag:'new',text:'Save system: retry on failure with 3-5s delay, data verification'},
+    {tag:'new',text:'UserID now set to highest existing + 1'},
+    {tag:'fix',text:'Playthrough height and time now correctly save on death'},
+    {tag:'fix',text:'HUD toggles now only hide UI — gameplay features are separate'},
+    {tag:'fix',text:'Double jump HUD visibility separated from double jump gameplay toggle'}
+  ]},
   {version:'v1.4.1',date:'13-04-2026',entries:[
     {tag:'fix',text:'Jump bug fixed: holding jump then landing then jumping again now works correctly'},
-    {tag:'fix',text:'Username and country locked to account creation only — removed from profile settings'},
-    {tag:'new',text:'Admin right-click context menu on forum posts: delete, set status, pin/unpin'},
-    {tag:'new',text:'Pinned posts always appear at top of forum list'},
-    {tag:'new',text:'Audit log system: every admin action logged with who, what, when'},
-    {tag:'fix',text:'All "death/deaths" terminology replaced with "playthroughs"'},
-    {tag:'fix',text:'All menus centered and HUD elements aligned consistently'},
-    {tag:'fix',text:'User ID system starts at 1 and increments; deleted accounts do not reuse IDs'}
+    {tag:'new',text:'Pinned forum posts always appear at top'},
+    {tag:'new',text:'Admin tag visible on leaderboard'},
+    {tag:'fix',text:'All death terminology replaced with playthroughs'}
   ]},
   {version:'v1.4.0',date:'13-04-2026',entries:[
-    {tag:'new',text:'Full login/signup system with user ID and password'},
-    {tag:'new',text:'Remember me feature — saves user ID and auto-logs in on next visit'},
-    {tag:'new',text:'Feedback Forum inside Extra with bug/suggestion/question tags'},
-    {tag:'new',text:'Forum posts stored on GitHub Forum.json — real-time polling every second'},
-    {tag:'new',text:'Admin system: e=1 grants delete/mute/ban/mark abilities'},
-    {tag:'new',text:'Admins can mute users from forums for custom durations'},
-    {tag:'new',text:'Admins can ban users with countdown and reason displayed'},
-    {tag:'new',text:'Admins can mark posts as Completed or Thought About with custom message'},
-    {tag:'new',text:'Forum post/reply deletion: owner or admin only'},
-    {tag:'new',text:'Profile tab in Settings: change password only'},
-    {tag:'new',text:'Playthrough achievements renamed from Death achievements'},
-    {tag:'new',text:'API call log per player — visible in Stats screen'},
-    {tag:'fix',text:'Loading screen completely removed'},
-    {tag:'fix',text:'All styles moved to test.css'},
-    {tag:'fix',text:'userid field standardised'}
+    {tag:'new',text:'Full login/signup system'},
+    {tag:'new',text:'Feedback Forum with bug/suggestion/question tags'},
+    {tag:'new',text:'Forum posts with real-time polling'},
+    {tag:'new',text:'Profile tab in Settings'}
   ]},
   {version:'v1.3.0',date:'12-04-2026',entries:[
-    {tag:'new',text:'Languages loaded dynamically from languages.json on GitHub'},
-    {tag:'new',text:'Quality selection popup on first visit (High/Low quality)'},
-    {tag:'new',text:'Show/hide score on leaderboard toggle in settings'},
-    {tag:'new',text:'Leaderboard score/timer switch'},
+    {tag:'new',text:'Languages loaded dynamically'},
+    {tag:'new',text:'Quality selection popup on first visit'},
     {tag:'new',text:'Settings export/import by text code'},
-    {tag:'fix',text:'Platform colors accurate (green/red/blue/orange/white)'},
-    {tag:'fix',text:'Help menu describes what to do in the game'}
-  ]},
-  {version:'v1.2.0',date:'11-04-2026',entries:[
-    {tag:'fix',text:'Lava no longer freezes when tab is hidden'},
-    {tag:'new',text:'Stats screen with Name, Top Score per diff, Top Timer per diff, Playthroughs, Achievements'},
-    {tag:'new',text:'Playthrough achievements (5, 10, 25, 50, 100, 250, 500, 1000 playthroughs)'},
-    {tag:'fix',text:'All previous bugs resolved'}
+    {tag:'fix',text:'Platform colors accurate'}
   ]}
 ];
 
@@ -1616,8 +1844,8 @@ function showQualityPopup(){
   return new Promise(resolve=>{
     const asked=localStorage.getItem('bj_qualityAsked');if(asked){resolve();return;}
     const popup=document.getElementById('quality-popup');popup.style.display='flex';
-    document.getElementById('quality-high-btn').addEventListener('click',()=>{toggleHQ(true);localStorage.setItem('bj_qualityAsked','1');popup.style.display='none';resolve();},{once:true});
-    document.getElementById('quality-low-btn').addEventListener('click',()=>{toggleHQ(false);localStorage.setItem('bj_qualityAsked','1');popup.style.display='none';resolve();},{once:true});
+    document.getElementById('quality-high-btn').addEventListener('click',()=>{Object.keys(gfxSettings).forEach(k=>gfxSettings[k]=true);saveGfxSettings();effectsEnabled=true;toggleEffects(true);localStorage.setItem('bj_qualityAsked','1');popup.style.display='none';resolve();},{once:true});
+    document.getElementById('quality-low-btn').addEventListener('click',()=>{Object.keys(gfxSettings).forEach(k=>gfxSettings[k]=false);saveGfxSettings();effectsEnabled=false;toggleEffects(false);localStorage.setItem('bj_qualityAsked','1');popup.style.display='none';resolve();},{once:true});
   });
 }
 
@@ -1625,11 +1853,12 @@ function loadSettingsFromUser(){
   if(!_loggedInUser||!_loggedInUser.settings)return;
   const s=_loggedInUser.settings;
   if(s.effectsEnabled!==undefined){effectsEnabled=s.effectsEnabled;toggleEffects(effectsEnabled);}
-  if(s.hqEnabled!==undefined){hqEnabled=s.hqEnabled;toggleHQ(hqEnabled);}
+  if(s.gfxSettings){Object.assign(gfxSettings,s.gfxSettings);saveGfxSettings();}
   if(s.language){currentLanguage=s.language;localStorage.setItem('language',currentLanguage);}
   if(s.difficulty){currentDifficulty=s.difficulty;localStorage.setItem('difficulty',currentDifficulty);}
   if(s.allSounds!==undefined){allSoundsEnabled=s.allSounds;localStorage.setItem('allSounds',allSoundsEnabled);}
-  if(s.featDoubleJump!==undefined){doubleJumpEnabled=s.featDoubleJump;localStorage.setItem('featDoubleJump',doubleJumpEnabled);}
+  if(s.doubleJumpGameplay!==undefined){doubleJumpGameplay=s.doubleJumpGameplay;localStorage.setItem('gameplayDoubleJump',doubleJumpGameplay);}
+  if(s.showDoubleJumpHUD!==undefined){showDoubleJumpHUD=s.showDoubleJumpHUD;localStorage.setItem('featShowDoubleJump',showDoubleJumpHUD);}
   if(s.featShowHeight!==undefined){showHeightEnabled=s.featShowHeight;localStorage.setItem('featShowHeight',showHeightEnabled);}
   if(s.featShowTop!==undefined){showTopEnabled=s.featShowTop;localStorage.setItem('featShowTop',showTopEnabled);}
   if(s.featShowTimer!==undefined){showTimerEnabled=s.featShowTimer;localStorage.setItem('featShowTimer',showTimerEnabled);}
@@ -1637,37 +1866,35 @@ function loadSettingsFromUser(){
   if(s.audioSettings)Object.assign(audioSettings,s.audioSettings);
   if(s.soundVols)Object.assign(soundVols,s.soundVols);
 }
+
 function saveSettingsToUser(){
   if(!_loggedInUser)return;
-  _loggedInUser.settings={effectsEnabled,hqEnabled,language:currentLanguage,difficulty:currentDifficulty,allSounds:allSoundsEnabled,featDoubleJump:doubleJumpEnabled,featShowHeight:showHeightEnabled,featShowTop:showTopEnabled,featShowTimer:showTimerEnabled,showOnLeaderboard,audioSettings:Object.assign({},audioSettings),soundVols:Object.assign({},soundVols)};
+  _loggedInUser.settings={effectsEnabled,gfxSettings:Object.assign({},gfxSettings),language:currentLanguage,difficulty:currentDifficulty,allSounds:allSoundsEnabled,doubleJumpGameplay,showDoubleJumpHUD,featShowHeight:showHeightEnabled,featShowTop:showTopEnabled,featShowTimer:showTimerEnabled,showOnLeaderboard,audioSettings:Object.assign({},audioSettings),soundVols:Object.assign({},soundVols)};
 }
+
 function initMainMenu(){
   loadPlayerData();
   loadSettingsFromUser();
-  document.getElementById('mm-user-display').textContent=(_loggedInUser?(_loggedInUser.country&&_loggedInUser.country.flag?_loggedInUser.country.flag+' ':'')+(_loggedInUser.username||_loggedInUser.userid):'');
+  const flag=_loggedInUser&&_loggedInUser.country&&_loggedInUser.country.flag?_loggedInUser.country.flag+' ':'';
+  const adminTag=isAdmin(_loggedInUser)?'<span style="background:rgba(239,68,68,0.2);border:1px solid rgba(239,68,68,0.5);color:#ef4444;font-size:10px;font-weight:bold;padding:2px 6px;border-radius:4px;margin-left:6px;vertical-align:middle;">ADMIN</span>':'';
+  document.getElementById('mm-user-display').innerHTML=flag+(_loggedInUser?_loggedInUser.username:'')+adminTag;
+  if(_loggedInUser&&_loggedInUser.country){document.getElementById('profile-country-flag').textContent=_loggedInUser.country.flag||'🌍';document.getElementById('profile-country-name').textContent=_loggedInUser.country.en||'Select Country';_profileSelectedCountry=_loggedInUser.country;}
   initializeVolumes();
-  effectsToggle.checked=effectsEnabled;hqToggle.checked=hqEnabled;
-  document.getElementById('mm-effects-toggle').checked=effectsEnabled;document.getElementById('mm-hq-toggle').checked=hqEnabled;
-  toggleEffects(effectsEnabled);toggleHQ(hqEnabled);
-  languageSelect.value=currentLanguage;document.getElementById('mm-language-select').value=currentLanguage;
-  difficultySelect.value=currentDifficulty;document.getElementById('mm-difficulty-select').value=currentDifficulty;
-  allSoundsToggle.checked=allSoundsEnabled;document.getElementById('mm-all-sounds').checked=allSoundsEnabled;
-  document.getElementById('mm-feat-double-jump').checked=doubleJumpEnabled;document.getElementById('mm-feat-show-height').checked=showHeightEnabled;document.getElementById('mm-feat-show-top').checked=showTopEnabled;document.getElementById('mm-feat-show-timer').checked=showTimerEnabled;
-  document.getElementById('p-feat-double-jump').checked=doubleJumpEnabled;document.getElementById('p-feat-show-height').checked=showHeightEnabled;document.getElementById('p-feat-show-top').checked=showTopEnabled;document.getElementById('p-feat-show-timer').checked=showTimerEnabled;
-  document.getElementById('mm-show-on-lb').checked=showOnLeaderboard;
-  applyColors();updateLanguage(currentLanguage);updateAudioRowHighlights();
+  syncUIToSettings();
+  applyColors();applyGfxSettings();syncGfxUI();updateLanguage(currentLanguage);updateAudioRowHighlights();
   document.getElementById('hud').style.display='none';document.getElementById('hp-display').style.display='none';document.getElementById('pause-hint').style.display='none';
   document.getElementById('main-menu-screen').style.display='flex';
+  showQualityPopup();
 }
 
 document.getElementById('mm-logout-btn').addEventListener('click',doLogout);
 document.getElementById('profile-logout-btn').addEventListener('click',doLogout);
 function doLogout(){
-  _loggedInUser=null;localStorage.removeItem('bj_remember_userid');
+  _loggedInUser=null;clearCredentials();
   document.getElementById('main-menu-screen').style.display='none';
   document.getElementById('mm-settings-screen').style.display='none';
   document.getElementById('auth-screen').style.display='flex';
-  document.getElementById('auth-login-userid').value='';document.getElementById('auth-login-password').value='';
+  document.getElementById('auth-login-username').value='';document.getElementById('auth-login-password').value='';
   document.getElementById('auth-login-error').textContent='';
   document.getElementById('auth-tab-login').classList.add('active');
   document.getElementById('auth-tab-signup').classList.remove('active');
@@ -1677,10 +1904,24 @@ function doLogout(){
 
 document.getElementById('profile-save-btn').addEventListener('click',async()=>{
   if(!_loggedInUser)return;
+  const newUsername=document.getElementById('profile-change-username').value.trim();
   const newPassword=document.getElementById('profile-change-password').value;
+  if(newUsername&&newUsername!==_loggedInUser.username){
+    await fetchAllUsers();
+    const exists=_allUsersCache.find(u=>!u.__meta&&u.username&&u.username.toLowerCase()===newUsername.toLowerCase()&&u.userid!==_loggedInUser.userid);
+    if(exists){showNotifyBanner('Username already taken.');return;}
+    _loggedInUser.username=newUsername;
+  }
   if(newPassword)_loggedInUser.password=btoa(newPassword);
+  if(_profileSelectedCountry)_loggedInUser.country=_profileSelectedCountry;
+  const storedCreds=loadCredentials();
+  if(storedCreds){storeCredentials(_loggedInUser.username,newPassword||atob(_loggedInUser.password));}
+  appendAudit('profile_updated',{userid:_loggedInUser.userid});
   await pushCurrentUserToGitHub();
   showNotifyBanner('Profile saved!');
+  document.getElementById('mm-user-display').textContent=(_loggedInUser.country&&_loggedInUser.country.flag?_loggedInUser.country.flag+' ':'')+_loggedInUser.username;
+  document.getElementById('profile-change-username').value='';
+  document.getElementById('profile-change-password').value='';
   document.getElementById('mm-settings-screen').style.display='none';document.getElementById('main-menu-screen').style.display='flex';
 });
 
@@ -1689,27 +1930,46 @@ document.getElementById('mm-forum-back-btn').addEventListener('click',()=>{docum
 
 let _newPostImages=[];
 
+const forumDropzone=document.getElementById('forum-img-dropzone');
+forumDropzone.addEventListener('dragover',e=>{e.preventDefault();forumDropzone.classList.add('drag-over');});
+forumDropzone.addEventListener('dragleave',e=>{if(!forumDropzone.contains(e.relatedTarget))forumDropzone.classList.remove('drag-over');});
+forumDropzone.addEventListener('drop',e=>{
+  e.preventDefault();forumDropzone.classList.remove('drag-over');
+  const files=Array.from(e.dataTransfer.files).filter(f=>f.type.startsWith('image/')).slice(0,5);
+  files.forEach((file,i)=>{
+    const nextSlot=_newPostImages.findIndex((v,idx)=>!v&&idx<5);
+    const slot=nextSlot===-1?i:nextSlot;
+    if(slot>=5)return;
+    const reader=new FileReader();
+    reader.onload=ev=>{_newPostImages[slot]=ev.target.result;const slotEl=document.getElementById('forum-img-slot-'+slot);if(slotEl){slotEl.style.backgroundImage='url('+ev.target.result+')';slotEl.style.backgroundSize='cover';slotEl.style.backgroundPosition='center';const sp=slotEl.querySelector('span');if(sp)sp.style.display='none';}};
+    reader.readAsDataURL(file);
+  });
+});
+
 document.getElementById('forum-new-post-btn').addEventListener('click',()=>{
   document.getElementById('forum-list-view').style.display='none';document.getElementById('forum-new-post-view').style.display='';
   document.getElementById('mm-forum-back-btn').style.display='none';
   document.getElementById('new-post-title').value='';document.getElementById('new-post-body').value='';document.getElementById('new-post-tag').value='';
   document.querySelectorAll('.forum-tag-btn').forEach(b=>b.classList.remove('active'));
   _newPostImages=[];
-  [0,1,2].forEach(i=>{const slot=document.getElementById('forum-img-slot-'+i);slot.style.backgroundImage='';slot.querySelector('span').style.display='';document.getElementById('forum-img-'+i).value='';});
+  [0,1,2,3,4].forEach(i=>{const slot=document.getElementById('forum-img-slot-'+i);if(slot){slot.style.backgroundImage='';const sp=slot.querySelector('span');if(sp)sp.style.display='';const inp=document.getElementById('forum-img-'+i);if(inp)inp.value='';}});
 });
 
 document.querySelectorAll('.forum-tag-btn').forEach(btn=>{
   btn.addEventListener('click',()=>{document.querySelectorAll('.forum-tag-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('new-post-tag').value=btn.dataset.tag;});
 });
 
-[0,1,2].forEach(i=>{
-  document.getElementById('forum-img-'+i).addEventListener('change',e=>{
+[0,1,2,3,4].forEach(i=>{
+  const input=document.getElementById('forum-img-'+i);
+  if(!input)return;
+  input.addEventListener('change',e=>{
     const file=e.target.files[0];if(!file)return;
     const reader=new FileReader();
-    reader.onload=ev=>{_newPostImages[i]=ev.target.result;const slot=document.getElementById('forum-img-slot-'+i);slot.style.backgroundImage='url('+ev.target.result+')';slot.style.backgroundSize='cover';slot.style.backgroundPosition='center';slot.querySelector('span').style.display='none';};
+    reader.onload=ev=>{_newPostImages[i]=ev.target.result;const slot=document.getElementById('forum-img-slot-'+i);if(slot){slot.style.backgroundImage='url('+ev.target.result+')';slot.style.backgroundSize='cover';slot.style.backgroundPosition='center';const sp=slot.querySelector('span');if(sp)sp.style.display='none';}};
     reader.readAsDataURL(file);
   });
-  document.getElementById('forum-img-slot-'+i).addEventListener('click',e=>{if(e.target.tagName==='INPUT')return;document.getElementById('forum-img-'+i).click();});
+  const slot=document.getElementById('forum-img-slot-'+i);
+  if(slot)slot.addEventListener('click',e=>{if(e.target.tagName==='INPUT')return;input.click();});
 });
 
 document.getElementById('forum-cancel-post-btn').addEventListener('click',()=>{document.getElementById('forum-new-post-view').style.display='none';document.getElementById('forum-list-view').style.display='';document.getElementById('mm-forum-back-btn').style.display='';});
@@ -1722,15 +1982,15 @@ document.getElementById('forum-submit-post-btn').addEventListener('click',async(
   if(!tag){showNotifyBanner('Please select a tag.');return;}
   if(isUserMuted(_loggedInUser)){showNotifyBanner('You are muted and cannot post.');return;}
   const forum=await fetchForum();
-  const post={id:'post_'+Date.now()+'_'+Math.random().toString(36).substr(2,6),title,body,tag,images:_newPostImages.filter(Boolean),createdBy:_loggedInUser.userid,createdByUsername:_loggedInUser.username,createdAt:new Date().toISOString(),replies:[],status:'open',statusMessage:'',pinned:false,deletedBy:null};
+  const post={id:'post_'+Date.now()+'_'+Math.random().toString(36).substr(2,6),title,body,tag,images:_newPostImages.filter(Boolean),createdBy:_loggedInUser.userid,createdByUsername:_loggedInUser.username,isAdmin:isAdmin(_loggedInUser),createdAt:new Date().toISOString(),replies:[],status:'open',statusMessage:'',pinned:false,deletedBy:null};
   forum.posts.unshift(post);
   const ok=await saveForum(forum);
-  if(ok){showNotifyBanner('Post created!');document.getElementById('forum-cancel-post-btn').click();}
+  if(ok){showNotifyBanner('Post created!');appendAudit('forum_post_created',{postId:post.id,title});document.getElementById('forum-cancel-post-btn').click();}
   else{showNotifyBanner('Failed to post. Try again.');}
 });
 
 async function showForumList(){
-  document.getElementById('forum-list-view').style.display='';document.getElementById('forum-new-post-view').style.display='none';document.getElementById('forum-thread-view').style.display='none';
+  document.getElementById('forum-list-view').style.display='';document.getElementById('forum-new-post-view').style.display='none';document.getElementById('forum-thread-view-wrap').style.display='none';
   document.getElementById('mm-forum-back-btn').style.display='';
   const forum=await fetchForum();renderForumList(forum);
   stopForumPoll();
@@ -1740,25 +2000,25 @@ async function showForumList(){
 let _ctxPostId=null;
 function showCtxMenu(e,post){
   e.preventDefault();e.stopPropagation();
-  const isAdmin=_loggedInUser&&_loggedInUser.e===1;
+  const isAdminUser=isAdmin(_loggedInUser);
   const isOwner=_loggedInUser&&post.createdBy===_loggedInUser.userid;
-  if(!isAdmin&&!isOwner)return;
+  if(!isAdminUser&&!isOwner)return;
   const menu=document.getElementById('ctx-menu');
   menu.innerHTML='';
   const items=[];
-  if(isOwner||isAdmin)items.push({label:'🗑 Delete Post',fn:async()=>{const ok=await customConfirm('Delete this post?');if(!ok)return;const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p){p.deletedBy=_loggedInUser.userid;p.deletedAt=new Date().toISOString();}await saveForum(f);appendAudit('delete_post',{postId:post.id,postTitle:post.title});showForumList();}});
-  if(isAdmin){
-    items.push({label:'✅ Set Status: Completed',fn:async()=>{const msg=await customTextPrompt('Completed message:');if(msg===null)return;const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p){p.status='completed';p.statusMessage=msg;}await saveForum(f);appendAudit('set_status_completed',{postId:post.id});showForumList();}});
-    items.push({label:'💬 Set Status: Thought About',fn:async()=>{const msg=await customTextPrompt('Thought-about message:');if(msg===null)return;const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p){p.status='thought';p.statusMessage=msg;}await saveForum(f);appendAudit('set_status_thought',{postId:post.id});showForumList();}});
-    items.push({label:'🔓 Set Status: Open',fn:async()=>{const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p){p.status='open';p.statusMessage='';}await saveForum(f);appendAudit('set_status_open',{postId:post.id});showForumList();}});
-    if(post.pinned){items.push({label:'📌 Unpin Post',fn:async()=>{const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p)p.pinned=false;await saveForum(f);appendAudit('unpin_post',{postId:post.id});showForumList();}});}
-    else{items.push({label:'📌 Pin Post',fn:async()=>{const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p)p.pinned=true;await saveForum(f);appendAudit('pin_post',{postId:post.id});showForumList();}});}
+  if(isOwner||isAdminUser)items.push({label:'🗑 Delete Post',fn:async()=>{const ok=await customConfirm('Delete this post?');if(!ok)return;const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p){p.deletedBy=_loggedInUser.userid;p.deletedAt=new Date().toISOString();}await saveForum(f);appendAudit('forum_post_deleted',{postId:post.id});showForumList();}});
+  if(isAdminUser){
+    items.push({label:'✅ Set Status: Completed',fn:async()=>{const msg=await customTextPrompt('Completed message:');if(msg===null)return;const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p){p.status='completed';p.statusMessage=msg;}await saveForum(f);appendAudit('forum_status_completed',{postId:post.id});showForumList();}});
+    items.push({label:'💬 Set Status: Thought About',fn:async()=>{const msg=await customTextPrompt('Thought-about message:');if(msg===null)return;const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p){p.status='thought';p.statusMessage=msg;}await saveForum(f);appendAudit('forum_status_thought',{postId:post.id});showForumList();}});
+    items.push({label:'🔓 Set Status: Open',fn:async()=>{const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p){p.status='open';p.statusMessage='';}await saveForum(f);appendAudit('forum_status_open',{postId:post.id});showForumList();}});
+    if(post.pinned){items.push({label:'📌 Unpin Post',fn:async()=>{const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p)p.pinned=false;await saveForum(f);appendAudit('forum_unpin',{postId:post.id});showForumList();}});}
+    else{items.push({label:'📌 Pin Post',fn:async()=>{const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p)p.pinned=true;await saveForum(f);appendAudit('forum_pin',{postId:post.id});showForumList();}});}
     items.push({label:'🔇 Mute User',fn:()=>openMutePopup(post.createdBy,post.createdByUsername)});
     items.push({label:'🚫 Ban User',fn:()=>openBanPopup(post.createdBy,post.createdByUsername)});
   }
   items.forEach(item=>{const btn=document.createElement('button');btn.className='ctx-menu-item';btn.textContent=item.label;btn.addEventListener('click',()=>{menu.style.display='none';item.fn();});menu.appendChild(btn);});
   menu.style.display='block';
-  const mx=Math.min(e.clientX,window.innerWidth-180);const my=Math.min(e.clientY,window.innerHeight-items.length*42-10);
+  const mx=Math.min(e.clientX,window.innerWidth-190);const my=Math.min(e.clientY,window.innerHeight-items.length*44-10);
   menu.style.left=mx+'px';menu.style.top=my+'px';
 }
 document.addEventListener('click',()=>{const m=document.getElementById('ctx-menu');if(m)m.style.display='none';});
@@ -1773,7 +2033,7 @@ function renderForumList(forum){
   if(search)posts=posts.filter(p=>(p.title||'').toLowerCase().includes(search)||(p.body||'').toLowerCase().includes(search));
   posts.sort((a,b)=>(b.pinned?1:0)-(a.pinned?1:0));
   const list=document.getElementById('forum-posts-list');
-  if(posts.length===0){list.innerHTML='<div class="forum-empty">No posts found.</div>';return;}
+  if(posts.length===0){list.innerHTML='<div class="forum-empty">No posts found. Be the first to post!</div>';return;}
   list.innerHTML='';
   posts.forEach(post=>{
     const tagColors={bug:'#ef4444',suggestion:'#22c55e',question:'#f59e0b'};
@@ -1781,7 +2041,8 @@ function renderForumList(forum){
     const statusColors={open:'rgba(255,255,255,0.3)',completed:'#22c55e',thought:'#f59e0b'};
     const statusLabels={open:'',completed:'✅ Completed',thought:'💬 Thought About'};
     const div=document.createElement('div');div.className='forum-post-card';
-    div.innerHTML=`<div class="forum-post-header">${post.pinned?'<span class="forum-pin-badge">📌 Pinned</span>':''}<span class="forum-tag-label" style="background:${tagColors[post.tag]||'#888'}">${tagLabels[post.tag]||post.tag}</span>${post.status!=='open'?`<span class="forum-status-label" style="color:${statusColors[post.status]}">${statusLabels[post.status]}</span>`:''}<span class="forum-post-meta">${post.createdByUsername||post.createdBy} · ${new Date(post.createdAt).toLocaleDateString()}</span></div><div class="forum-post-title">${escHtml(post.title)}</div><div class="forum-post-preview">${escHtml((post.body||'').substring(0,120))}${(post.body||'').length>120?'...':''}</div>${post.images&&post.images.length?'<div class="forum-post-imgs">'+post.images.map(img=>`<img src="${img}" class="forum-post-thumb">`).join('')+'</div>':''}<div class="forum-post-footer"><span>💬 ${(post.replies||[]).filter(r=>!r.deletedBy).length} replies</span>${post.status!=='open'&&post.statusMessage?`<span class="forum-status-msg">${escHtml(post.statusMessage)}</span>`:''}</div>`;
+    const adminBadge=post.isAdmin?'<span class="forum-admin-badge" style="margin-left:4px;">ADMIN</span>':'';
+    div.innerHTML=`<div class="forum-post-header">${post.pinned?'<span class="forum-pin-badge">📌 Pinned</span>':''}<span class="forum-tag-label" style="background:${tagColors[post.tag]||'#888'}">${tagLabels[post.tag]||post.tag}</span>${post.status!=='open'?`<span class="forum-status-label" style="color:${statusColors[post.status]}">${statusLabels[post.status]}</span>`:''}<span class="forum-post-meta">${escHtml(post.createdByUsername||post.createdBy)}${adminBadge} · ${new Date(post.createdAt).toLocaleDateString()}</span></div><div class="forum-post-title">${escHtml(post.title)}</div><div class="forum-post-preview">${escHtml((post.body||'').substring(0,120))}${(post.body||'').length>120?'...':''}</div>${post.images&&post.images.length?'<div class="forum-post-imgs">'+post.images.map(img=>`<img src="${img}" class="forum-post-thumb">`).join('')+'</div>':''}<div class="forum-post-footer"><span>💬 ${(post.replies||[]).filter(r=>!r.deletedBy).length} replies</span>${post.status!=='open'&&post.statusMessage?`<span class="forum-status-msg">${escHtml(post.statusMessage)}</span>`:''}</div>`;
     div.querySelector('.forum-post-title').addEventListener('click',()=>openForumThread(post.id));
     div.addEventListener('contextmenu',e=>showCtxMenu(e,post));
     list.appendChild(div);
@@ -1795,21 +2056,23 @@ document.getElementById('forum-status-filter').addEventListener('change',async()
 async function openForumThread(postId){
   _currentForumPostId=postId;
   stopForumPoll();
-  document.getElementById('forum-list-view').style.display='none';document.getElementById('forum-new-post-view').style.display='none';document.getElementById('forum-thread-view').style.display='';
+  document.getElementById('forum-list-view').style.display='none';document.getElementById('forum-new-post-view').style.display='none';document.getElementById('forum-thread-view-wrap').style.display='';
   document.getElementById('mm-forum-back-btn').style.display='none';
   await renderForumThread();
-  _forumPollInterval=setInterval(renderForumThread,1000);
+  _forumPollInterval=setInterval(renderForumThread,2000);
 }
 
 async function renderForumThread(){
   const forum=await fetchForum();
   const post=forum.posts.find(p=>p.id===_currentForumPostId);
   if(!post){document.getElementById('forum-thread-back-btn').click();return;}
+  const isClosed=post.status==='completed';
   const tagColors={bug:'#ef4444',suggestion:'#22c55e',question:'#f59e0b'};
   const tagLabels={bug:'🐛 Bug/Glitch',suggestion:'💡 Suggestion',question:'❓ Question'};
-  const isAdmin=_loggedInUser&&_loggedInUser.e===1;
+  const isAdminUser=isAdmin(_loggedInUser);
   const headerEl=document.getElementById('forum-thread-header');
-  headerEl.innerHTML=`<div class="forum-thread-title-row"><h3 class="forum-thread-title">${escHtml(post.title)}</h3><span class="forum-tag-label" style="background:${tagColors[post.tag]||'#888'}">${tagLabels[post.tag]||post.tag}</span></div><div class="forum-thread-meta">Posted by <b>${escHtml(post.createdByUsername||post.createdBy)}</b> on ${new Date(post.createdAt).toLocaleString()}</div><div class="forum-thread-body">${escHtml(post.body)}</div>${post.images&&post.images.length?'<div class="forum-post-imgs">'+post.images.map(img=>`<img src="${img}" class="forum-post-thumb">`).join('')+'</div>':''}${post.status!=='open'?`<div class="forum-status-banner" style="border-color:${post.status==='completed'?'#22c55e':'#f59e0b'};color:${post.status==='completed'?'#22c55e':'#f59e0b'}">${post.status==='completed'?'✅ Completed':'💬 Thought About'}${post.statusMessage?': '+escHtml(post.statusMessage):''}</div>`:''}`;
+  const adminBadge=post.isAdmin?'<span class="forum-admin-badge" style="margin-left:6px;">ADMIN</span>':'';
+  headerEl.innerHTML=`<div class="forum-thread-title-row"><h3 class="forum-thread-title">${escHtml(post.title)}</h3><span class="forum-tag-label" style="background:${tagColors[post.tag]||'#888'}">${tagLabels[post.tag]||post.tag}</span></div><div class="forum-thread-meta">Posted by <b>${escHtml(post.createdByUsername||post.createdBy)}</b>${adminBadge} on ${new Date(post.createdAt).toLocaleString()}</div><div class="forum-thread-body">${escHtml(post.body)}</div>${post.images&&post.images.length?'<div class="forum-post-imgs">'+post.images.map(img=>`<img src="${img}" class="forum-post-thumb">`).join('')+'</div>':''}${post.status!=='open'?`<div class="forum-status-banner" style="border-color:${post.status==='completed'?'#22c55e':'#f59e0b'};color:${post.status==='completed'?'#22c55e':'#f59e0b'}">${post.status==='completed'?'✅ Completed':'💬 Thought About'}${post.statusMessage?': '+escHtml(post.statusMessage):''}</div>`:''}`;
   const msgsEl=document.getElementById('forum-thread-messages');
   const replies=(post.replies||[]).filter(r=>!r.deletedBy);
   if(replies.length===0){msgsEl.innerHTML='<div class="forum-empty" style="padding:20px 0;">No replies yet. Be the first!</div>';}
@@ -1819,22 +2082,36 @@ async function renderForumThread(){
       const isMine=_loggedInUser&&reply.createdBy===_loggedInUser.userid;
       const div=document.createElement('div');div.className='forum-reply-item';
       let adminRow='';
-      if(isAdmin){adminRow=`<div class="forum-admin-row" style="margin-top:4px;"><button class="forum-admin-btn mute-user" data-uid="${reply.createdBy}" data-uname="${reply.createdByUsername}">🔇 Mute</button><button class="forum-admin-btn ban-user" data-uid="${reply.createdBy}" data-uname="${reply.createdByUsername}">🚫 Ban</button></div>`;}
-      let delBtn='';if(isMine||isAdmin)delBtn=`<button class="forum-delete-btn" data-rid="${reply.id}">🗑</button>`;
-      div.innerHTML=`<div class="forum-reply-header"><span class="forum-reply-user">${escHtml(reply.createdByUsername||reply.createdBy)}</span><span class="forum-reply-time">${new Date(reply.createdAt).toLocaleString()}</span>${delBtn}</div><div class="forum-reply-body">${escHtml(reply.body)}</div>${adminRow}`;
-      if(delBtn){div.querySelector('.forum-delete-btn').addEventListener('click',async()=>{const ok=await customConfirm('Delete this reply?');if(!ok)return;const f=await fetchForum();const p=f.posts.find(p=>p.id===_currentForumPostId);if(p){const r=p.replies.find(r=>r.id===reply.id);if(r){r.deletedBy=_loggedInUser.userid;r.deletedAt=new Date().toISOString();}}await saveForum(f);await renderForumThread();});}
-      if(isAdmin){
-        div.querySelector('.mute-user').addEventListener('click',()=>openMutePopup(reply.createdBy,reply.createdByUsername));
-        div.querySelector('.ban-user').addEventListener('click',()=>openBanPopup(reply.createdBy,reply.createdByUsername));
+      if(isAdminUser&&reply.createdBy!==_loggedInUser.userid){adminRow=`<div style="display:flex;gap:6px;margin-top:6px;"><button class="admin-action-btn mute" style="font-size:11px;padding:4px 8px;" data-uid="${reply.createdBy}" data-uname="${escHtml(reply.createdByUsername)}">🔇 Mute</button><button class="admin-action-btn ban" style="font-size:11px;padding:4px 8px;" data-uid="${reply.createdBy}" data-uname="${escHtml(reply.createdByUsername)}">🚫 Ban</button></div>`;}
+      const replyAdminBadge=reply.isAdmin?'<span class="forum-admin-badge" style="margin-left:4px;font-size:9px;">ADMIN</span>':'';
+      let delBtn='';if(isMine||isAdminUser)delBtn=`<button class="forum-delete-btn" data-rid="${reply.id}">🗑</button>`;
+      div.innerHTML=`<div class="forum-reply-header"><span class="forum-reply-user">${escHtml(reply.createdByUsername||reply.createdBy)}</span>${replyAdminBadge}<span class="forum-reply-time">${new Date(reply.createdAt).toLocaleString()}</span>${delBtn}</div><div class="forum-reply-body">${escHtml(reply.body)}</div>${adminRow}`;
+      if(delBtn){div.querySelector('.forum-delete-btn').addEventListener('click',async()=>{const ok=await customConfirm('Delete this reply?');if(!ok)return;const f=await fetchForum();const p=f.posts.find(p=>p.id===_currentForumPostId);if(p){const r=p.replies.find(r=>r.id===reply.id);if(r){r.deletedBy=_loggedInUser.userid;r.deletedAt=new Date().toISOString();}}await saveForum(f);appendAudit('forum_reply_deleted',{replyId:reply.id});await renderForumThread();});}
+      if(isAdminUser&&reply.createdBy!==_loggedInUser.userid){
+        const muteBtn=div.querySelector('.admin-action-btn.mute');const banBtn=div.querySelector('.admin-action-btn.ban');
+        if(muteBtn)muteBtn.addEventListener('click',()=>openMutePopup(reply.createdBy,reply.createdByUsername));
+        if(banBtn)banBtn.addEventListener('click',()=>openBanPopup(reply.createdBy,reply.createdByUsername));
       }
       msgsEl.appendChild(div);
     });
     msgsEl.scrollTop=msgsEl.scrollHeight;
   }
   const replyArea=document.getElementById('forum-thread-reply-area');
-  replyArea.style.display=isUserMuted(_loggedInUser)?'none':'';
-  const existingNotice=document.getElementById('mute-notice');if(existingNotice)existingNotice.remove();
-  if(isUserMuted(_loggedInUser)){const muteNotice=document.createElement('div');muteNotice.style.cssText='color:#ef4444;text-align:center;padding:12px;font-size:13px;';muteNotice.textContent='You are muted and cannot reply.';muteNotice.id='mute-notice';document.getElementById('forum-thread-view').appendChild(muteNotice);}
+  const closedNotice=document.getElementById('forum-closed-notice');
+  if(isClosed){
+    replyArea.style.display='none';
+    closedNotice.style.display='';
+  }else if(isUserMuted(_loggedInUser)){
+    replyArea.style.display='none';
+    closedNotice.style.display='none';
+    const muteNotice=document.getElementById('mute-notice-thread')||document.createElement('div');
+    muteNotice.id='mute-notice-thread';muteNotice.style.cssText='color:#ef4444;text-align:center;padding:12px;font-size:13px;';
+    muteNotice.textContent='You are muted and cannot reply.';
+    if(!document.getElementById('mute-notice-thread'))document.getElementById('forum-thread-view-wrap').appendChild(muteNotice);
+  }else{
+    replyArea.style.display='';
+    closedNotice.style.display='none';
+  }
 }
 
 document.getElementById('forum-send-reply-btn').addEventListener('click',async()=>{
@@ -1844,30 +2121,22 @@ document.getElementById('forum-send-reply-btn').addEventListener('click',async()
   const forum=await fetchForum();
   const post=forum.posts.find(p=>p.id===_currentForumPostId);
   if(!post){showNotifyBanner('Post not found.');return;}
+  if(post.status==='completed'){showNotifyBanner('This thread is closed.');return;}
   if(!post.replies)post.replies=[];
-  post.replies.push({id:'r_'+Date.now()+'_'+Math.random().toString(36).substr(2,6),body,createdBy:_loggedInUser.userid,createdByUsername:_loggedInUser.username,createdAt:new Date().toISOString(),deletedBy:null});
+  post.replies.push({id:'r_'+Date.now()+'_'+Math.random().toString(36).substr(2,6),body,createdBy:_loggedInUser.userid,createdByUsername:_loggedInUser.username,isAdmin:isAdmin(_loggedInUser),createdAt:new Date().toISOString(),deletedBy:null});
   const ok=await saveForum(forum);
-  if(ok){document.getElementById('forum-reply-input').value='';await renderForumThread();}
+  if(ok){document.getElementById('forum-reply-input').value='';appendAudit('forum_reply_sent',{postId:_currentForumPostId});await renderForumThread();}
   else showNotifyBanner('Failed to send reply.');
 });
 
-document.getElementById('forum-thread-back-btn').addEventListener('click',()=>{stopForumPoll();_currentForumPostId=null;document.getElementById('forum-thread-view').style.display='none';showForumList();});
+document.getElementById('forum-thread-back-btn').addEventListener('click',()=>{stopForumPoll();_currentForumPostId=null;document.getElementById('forum-thread-view-wrap').style.display='none';showForumList();});
 
 function stopForumPoll(){if(_forumPollInterval){clearInterval(_forumPollInterval);_forumPollInterval=null;}}
 
 let _muteTargetUid=null;
 let _banTargetUid=null;
-
-function openMutePopup(uid,uname){
-  _muteTargetUid=uid;
-  document.getElementById('mute-popup-title').textContent='Mute '+uname;
-  document.getElementById('mute-popup').style.display='flex';
-}
-function openBanPopup(uid,uname){
-  _banTargetUid=uid;
-  document.getElementById('ban-popup-title').textContent='Ban '+uname;
-  document.getElementById('ban-popup').style.display='flex';
-}
+function openMutePopup(uid,uname){_muteTargetUid=uid;document.getElementById('mute-popup-title').textContent='Mute '+uname;document.getElementById('mute-popup').style.display='flex';}
+function openBanPopup(uid,uname){_banTargetUid=uid;document.getElementById('ban-popup-title').textContent='Ban '+uname;document.getElementById('ban-popup').style.display='flex';}
 document.getElementById('mute-popup-cancel').addEventListener('click',()=>{document.getElementById('mute-popup').style.display='none';_muteTargetUid=null;});
 document.getElementById('ban-popup-cancel').addEventListener('click',()=>{document.getElementById('ban-popup').style.display='none';_banTargetUid=null;});
 
@@ -1877,9 +2146,9 @@ document.getElementById('mute-popup-ok').addEventListener('click',async()=>{
   const unit=document.getElementById('mute-duration-unit').value;
   const ms={seconds:1000,minutes:60000,hours:3600000,days:86400000,months:2592000000}[unit]||1000;
   const until=new Date(Date.now()+val*ms).toISOString();
-  const {data}=await fetchAllUsers();
-  const target=data.find(u=>u.userid===_muteTargetUid);
-  if(target){target.muted={until};_allUsersCache=data.concat(_allUsersCache.filter(u=>u.__meta));await saveAllUsers(_allUsersCache);appendAudit('mute_user',{targetId:_muteTargetUid,until});showNotifyBanner('User muted until '+new Date(until).toLocaleString());}
+  await fetchAllUsers();
+  const target=_allUsersCache.find(u=>!u.__meta&&u.userid===_muteTargetUid);
+  if(target){target.muted={until};await saveAllUsers(_allUsersCache);appendAudit('user_muted',{targetId:_muteTargetUid,until});showNotifyBanner('User muted until '+new Date(until).toLocaleString());}
   document.getElementById('mute-popup').style.display='none';_muteTargetUid=null;
 });
 
@@ -1890,26 +2159,35 @@ document.getElementById('ban-popup-ok').addEventListener('click',async()=>{
   let until;
   if(unit==='permanent'){until='permanent';}
   else{const val=parseInt(document.getElementById('ban-duration-val').value)||1;const ms={seconds:1000,minutes:60000,hours:3600000,days:86400000,months:2592000000}[unit]||1000;until=new Date(Date.now()+val*ms).toISOString();}
-  const {data}=await fetchAllUsers();
-  const target=data.find(u=>u.userid===_banTargetUid);
-  if(target){target.banned={until,reason};_allUsersCache=data.concat(_allUsersCache.filter(u=>u.__meta));await saveAllUsers(_allUsersCache);appendAudit('ban_user',{targetId:_banTargetUid,until,reason});showNotifyBanner('User banned.');}
+  await fetchAllUsers();
+  const target=_allUsersCache.find(u=>!u.__meta&&u.userid===_banTargetUid);
+  if(target){target.banned={until,reason};await saveAllUsers(_allUsersCache);appendAudit('user_banned',{targetId:_banTargetUid,until,reason});showNotifyBanner('User banned.');}
   document.getElementById('ban-popup').style.display='none';_banTargetUid=null;
 });
 
-function escHtml(str){if(!str)return '';return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function escHtml(str){if(!str)return '';return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+async function tryAutoLogin(){
+  const creds=loadCredentials();
+  if(!creds||!creds.username||!creds.password)return false;
+  const result=await login(creds.username,creds.password);
+  if(!result.ok){clearCredentials();return false;}
+  const user=result.user;
+  if(user.banned){const now=Date.now();if(user.banned.until==='permanent'||new Date(user.banned.until).getTime()>now){showBanScreen(user);return true;}else{user.banned=null;const idx=_allUsersCache.findIndex(u=>u.userid===user.userid);if(idx!==-1)_allUsersCache[idx]=user;await saveAllUsers(_allUsersCache);}}
+  _loggedInUser=user;
+  document.getElementById('auth-screen').style.display='none';
+  afterLogin();
+  return true;
+}
 
 async function init(){
-  applyColors();toggleEffects(effectsEnabled);toggleHQ(hqEnabled);
-  await showQualityPopup();
+  applyColors();toggleEffects(effectsEnabled);applyGfxSettings();
   const langData=await fetchLanguagesFromGitHub();
   if(langData&&typeof langData==='object'&&Object.keys(langData).length>0){_loadedLanguages=langData;}
   else{_loadedLanguages={en:{name:'English',nativeName:'English',flag:'🇬🇧'},da:{name:'Danish',nativeName:'Dansk',flag:'🇩🇰'},de:{name:'German',nativeName:'Deutsch',flag:'🇩🇪'}};}
   populateLanguageDropdowns();
-  const rememberedId=localStorage.getItem('bj_remember_userid');
-  if(rememberedId){
-    document.getElementById('auth-login-userid').value=rememberedId;
-    document.getElementById('auth-remember-me').checked=true;
-  }
+  const autoLoggedIn=await tryAutoLogin();
+  if(!autoLoggedIn){document.getElementById('auth-screen').style.display='flex';}
 }
 
 init();
