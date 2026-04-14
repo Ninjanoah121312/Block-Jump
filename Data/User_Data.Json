@@ -14,18 +14,18 @@
     },
     "e": 1,
     "joinDate": "2026-04-14T05:08:21.717Z",
-    "lastSeen": "2026-04-14T11:31:47.412Z",
-    "totalPlaytime": 39.63860000000149,
+    "lastSeen": "2026-04-14T11:33:48.482Z",
+    "totalPlaytime": 160.5385,
     "playthroughs": 0,
     "highScore": {
       "easy": 0,
-      "medium": 2941.280308593734,
+      "medium": 13784.735254161804,
       "hard": 0,
       "impossible": 0
     },
     "survivalTimes": {
       "easy": 0,
-      "medium": 28.8,
+      "medium": 120.89989999999851,
       "hard": 0,
       "impossible": 0
     },
@@ -33,10 +33,26 @@
       "medium_250": {
         "name": "Medium Climber I",
         "time": "14.4.2026, 08.29.35"
+      },
+      "medium_survive_30s": {
+        "name": "Medium 30 Seconds",
+        "time": "14.4.2026, 13.32.17"
+      },
+      "medium_500": {
+        "name": "Medium Climber II",
+        "time": "14.4.2026, 13.32.29"
+      },
+      "medium_survive_1m": {
+        "name": "Medium 1 Minute",
+        "time": "14.4.2026, 13.32.47"
+      },
+      "medium_1000": {
+        "name": "Medium Climber III",
+        "time": "14.4.2026, 13.33.19"
       }
     },
     "showOnLeaderboard": true,
-    "apiCalls": 6,
+    "apiCalls": 7,
     "apiLog": [
       {
         "action": "login",
@@ -61,6 +77,10 @@
       {
         "action": "pushCurrentUser",
         "time": "2026-04-14T11:31:47.413Z"
+      },
+      {
+        "action": "pushCurrentUser",
+        "time": "2026-04-14T11:33:48.482Z"
       }
     ],
     "muted": null,
@@ -96,7 +116,7 @@
         "achievement": 90
       }
     },
-    "deaths": 2
+    "deaths": 3
   },
   {
     "__meta": true,
