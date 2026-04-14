@@ -68,5 +68,15 @@
     "by": "unknown",
     "byUsername": "unknown",
     "at": "2026-04-14T15:45:19.012Z"
+  },
+  {
+    "action": "login",
+    "details": {
+      "userid": "1",
+      "username": "Ninja_thebest"
+    },
+    "by": "1",
+    "byUsername": "Ninja_thebest",
+    "at": "2026-04-14T16:20:23.474Z"
   }
 ]
