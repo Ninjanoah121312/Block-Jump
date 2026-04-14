@@ -318,5 +318,16 @@
     "by": "1",
     "byUsername": "Ninja_thebest",
     "at": "2026-04-14T20:34:34.547Z"
+  },
+  {
+    "action": "playthrough_ended",
+    "details": {
+      "difficulty": "medium",
+      "score": 363,
+      "time": 37
+    },
+    "by": "1",
+    "byUsername": "Ninja_thebest",
+    "at": "2026-04-14T20:34:42.013Z"
   }
 ]
