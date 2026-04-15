@@ -14,7 +14,7 @@
     },
     "e": 1,
     "joinDate": "2026-04-14T20:25:00.287Z",
-    "lastSeen": "2026-04-14T21:36:31.199Z",
+    "lastSeen": "2026-04-15T05:20:44.775Z",
     "totalPlaytime": 119.11110000000893,
     "playthroughs": 6,
     "highScore": {
@@ -44,7 +44,7 @@
       }
     },
     "showOnLeaderboard": true,
-    "apiCalls": 13,
+    "apiCalls": 14,
     "apiLog": [
       {
         "action": "account_created",
@@ -101,6 +101,10 @@
       {
         "action": "pushCurrentUser",
         "time": "2026-04-14T21:36:31.200Z"
+      },
+      {
+        "action": "login",
+        "time": "2026-04-15T05:20:44.775Z"
       }
     ],
     "muted": {
