@@ -413,5 +413,15 @@
     "by": "1",
     "byUsername": "Ninja_thebest",
     "at": "2026-04-15T05:20:50.100Z"
+  },
+  {
+    "action": "account_created",
+    "details": {
+      "userid": "2",
+      "username": "e"
+    },
+    "by": "2",
+    "byUsername": "e",
+    "at": "2026-04-15T07:12:49.783Z"
   }
 ]
