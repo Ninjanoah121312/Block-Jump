@@ -1,7 +1,7 @@
 [
   {
     "__meta": true,
-    "nextUserId": 2
+    "nextUserId": 3
   },
   {
     "userid": "1",
@@ -149,5 +149,44 @@
       }
     },
     "deaths": 6
+  },
+  {
+    "userid": "2",
+    "username": "e",
+    "password": "MQ==",
+    "country": {
+      "code": "DK",
+      "flag": "🇩🇰",
+      "en": "Denmark"
+    },
+    "e": 0,
+    "joinDate": "2026-04-15T07:12:44.902Z",
+    "lastSeen": "2026-04-15T07:12:44.902Z",
+    "totalPlaytime": 0,
+    "playthroughs": 0,
+    "highScore": {
+      "easy": 0,
+      "medium": 0,
+      "hard": 0,
+      "impossible": 0
+    },
+    "survivalTimes": {
+      "easy": 0,
+      "medium": 0,
+      "hard": 0,
+      "impossible": 0
+    },
+    "achievements": {},
+    "showOnLeaderboard": true,
+    "apiCalls": 0,
+    "apiLog": [
+      {
+        "action": "account_created",
+        "time": "2026-04-15T07:12:44.902Z"
+      }
+    ],
+    "muted": null,
+    "banned": null,
+    "settings": {}
   }
 ]
