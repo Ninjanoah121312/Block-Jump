@@ -53,32 +53,73 @@
     },
     "e": 0,
     "joinDate": "2026-04-16T21:37:00.740Z",
-    "lastSeen": "2026-04-16T21:37:00.741Z",
-    "totalPlaytime": 0,
-    "playthroughs": 0,
+    "lastSeen": "2026-04-16T21:37:21.041Z",
+    "totalPlaytime": 7.253000000000276,
+    "playthroughs": 1,
     "highScore": {
       "easy": 0,
-      "medium": 0,
+      "medium": 133.14168080000013,
       "hard": 0,
       "impossible": 0
     },
     "survivalTimes": {
       "easy": 0,
-      "medium": 0,
+      "medium": 7.253000000000276,
       "hard": 0,
       "impossible": 0
     },
     "achievements": {},
     "showOnLeaderboard": true,
-    "apiCalls": 0,
+    "apiCalls": 1,
     "apiLog": [
       {
         "action": "account_created",
         "time": "2026-04-16T21:37:00.741Z"
+      },
+      {
+        "action": "pushCurrentUser",
+        "time": "2026-04-16T21:37:21.041Z"
       }
     ],
     "muted": null,
     "banned": null,
-    "settings": {}
+    "settings": {
+      "effectsEnabled": true,
+      "gfxSettings": {
+        "bluePlatform": true,
+        "lava": true,
+        "player": true,
+        "platforms": true,
+        "hud": true
+      },
+      "language": "en",
+      "difficulty": "medium",
+      "allSounds": true,
+      "doubleJumpGameplay": true,
+      "showDoubleJumpHUD": true,
+      "featShowHeight": true,
+      "featShowTop": true,
+      "featShowTimer": true,
+      "showOnLeaderboard": true,
+      "audioSettings": {
+        "respawn": true,
+        "lava": true,
+        "jump": true,
+        "walking": true,
+        "brick": true,
+        "ambient": true,
+        "achievement": true
+      },
+      "soundVols": {
+        "respawn": 70,
+        "lava": 60,
+        "jump": 40,
+        "walking": 70,
+        "brick": 80,
+        "ambient": 40,
+        "achievement": 90
+      }
+    },
+    "deaths": 1
   }
 ]
