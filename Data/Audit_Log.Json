@@ -8,5 +8,15 @@
     "by": "1",
     "byUsername": "Ninja_thebest",
     "at": "2026-04-16T20:33:34.337Z"
+  },
+  {
+    "action": "account_created",
+    "details": {
+      "userid": "2",
+      "username": "Collect"
+    },
+    "by": "2",
+    "byUsername": "Collect",
+    "at": "2026-04-16T21:37:05.002Z"
   }
 ]
