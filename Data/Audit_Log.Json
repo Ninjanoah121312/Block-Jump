@@ -62,5 +62,15 @@
     "by": "2",
     "byUsername": "Collect",
     "at": "2026-04-16T21:37:35.538Z"
+  },
+  {
+    "action": "achievement_unlocked",
+    "details": {
+      "achievement": "playthrough_5",
+      "name": "First Blood"
+    },
+    "by": "2",
+    "byUsername": "Collect",
+    "at": "2026-04-16T21:37:41.695Z"
   }
 ]
