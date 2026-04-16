@@ -53,9 +53,9 @@
     },
     "e": 0,
     "joinDate": "2026-04-16T21:37:00.740Z",
-    "lastSeen": "2026-04-16T21:37:28.194Z",
-    "totalPlaytime": 14.26380000000009,
-    "playthroughs": 2,
+    "lastSeen": "2026-04-16T21:37:32.060Z",
+    "totalPlaytime": 17.972800000000092,
+    "playthroughs": 3,
     "highScore": {
       "easy": 0,
       "medium": 488.56048800000735,
@@ -70,7 +70,7 @@
     },
     "achievements": {},
     "showOnLeaderboard": true,
-    "apiCalls": 2,
+    "apiCalls": 3,
     "apiLog": [
       {
         "action": "account_created",
@@ -128,6 +128,6 @@
         "achievement": 90
       }
     },
-    "deaths": 2
+    "deaths": 3
   }
 ]
