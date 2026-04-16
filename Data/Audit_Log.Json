@@ -29,5 +29,16 @@
     "by": "2",
     "byUsername": "Collect",
     "at": "2026-04-16T21:37:21.251Z"
+  },
+  {
+    "action": "playthrough_ended",
+    "details": {
+      "difficulty": "medium",
+      "score": 48,
+      "time": 7
+    },
+    "by": "2",
+    "byUsername": "Collect",
+    "at": "2026-04-16T21:37:28.407Z"
   }
 ]
