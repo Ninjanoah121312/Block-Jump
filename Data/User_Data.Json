@@ -53,24 +53,29 @@
     },
     "e": 0,
     "joinDate": "2026-04-16T21:37:00.740Z",
-    "lastSeen": "2026-04-16T21:37:41.467Z",
-    "totalPlaytime": 26.340299999999623,
-    "playthroughs": 5,
+    "lastSeen": "2026-04-16T21:38:00.412Z",
+    "totalPlaytime": 45.16809999999944,
+    "playthroughs": 6,
     "highScore": {
       "easy": 0,
-      "medium": 488.56048800000735,
+      "medium": 1427.2224608000406,
       "hard": 0,
       "impossible": 0
     },
     "survivalTimes": {
       "easy": 0,
-      "medium": 7.253000000000276,
+      "medium": 18.827799999999815,
       "hard": 0,
       "impossible": 0
     },
-    "achievements": {},
+    "achievements": {
+      "playthrough_5": {
+        "name": "First Blood",
+        "time": "4/16/2026, 11:37:41 PM"
+      }
+    },
     "showOnLeaderboard": true,
-    "apiCalls": 5,
+    "apiCalls": 6,
     "apiLog": [
       {
         "action": "account_created",
@@ -95,6 +100,10 @@
       {
         "action": "pushCurrentUser",
         "time": "2026-04-16T21:37:41.470Z"
+      },
+      {
+        "action": "pushCurrentUser",
+        "time": "2026-04-16T21:38:00.412Z"
       }
     ],
     "muted": null,
@@ -136,6 +145,6 @@
         "achievement": 90
       }
     },
-    "deaths": 5
+    "deaths": 6
   }
 ]
