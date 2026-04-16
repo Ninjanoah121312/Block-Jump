@@ -53,9 +53,9 @@
     },
     "e": 0,
     "joinDate": "2026-04-16T21:37:00.740Z",
-    "lastSeen": "2026-04-16T21:37:32.060Z",
-    "totalPlaytime": 17.972800000000092,
-    "playthroughs": 3,
+    "lastSeen": "2026-04-16T21:37:35.147Z",
+    "totalPlaytime": 20.128099999999904,
+    "playthroughs": 4,
     "highScore": {
       "easy": 0,
       "medium": 488.56048800000735,
@@ -70,7 +70,7 @@
     },
     "achievements": {},
     "showOnLeaderboard": true,
-    "apiCalls": 3,
+    "apiCalls": 4,
     "apiLog": [
       {
         "action": "account_created",
@@ -87,6 +87,10 @@
       {
         "action": "pushCurrentUser",
         "time": "2026-04-16T21:37:32.060Z"
+      },
+      {
+        "action": "pushCurrentUser",
+        "time": "2026-04-16T21:37:35.147Z"
       }
     ],
     "muted": null,
@@ -128,6 +132,6 @@
         "achievement": 90
       }
     },
-    "deaths": 3
+    "deaths": 4
   }
 ]
