@@ -1,0 +1,2811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BLOCK JUMP</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div id="notify-banner"></div>
+<div id="ctx-menu" style="display:none;"></div>
+
+<div id="auth-screen">
+  <div class="auth-box">
+    <div class="auth-logo">BLOCK JUMP</div>
+    <div class="auth-sub">v1.6.0</div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="auth-tab-login">LOGIN</button>
+      <button class="auth-tab" id="auth-tab-signup">SIGN UP</button>
+    </div>
+    <div id="auth-login-panel">
+      <div class="auth-field"><label>USERNAME</label><input type="text" id="auth-login-username" class="auth-input" placeholder="Enter your username..."></div>
+      <div class="auth-field"><label>PASSWORD</label><input type="password" id="auth-login-password" class="auth-input" placeholder="Enter password..."></div>
+      <div class="auth-remember"><label><input type="checkbox" id="auth-remember-me"> Remember me</label></div>
+      <div class="auth-error" id="auth-login-error"></div>
+      <button class="mm-btn" id="auth-login-btn" style="margin-top:8px;">LOGIN</button>
+    </div>
+    <div id="auth-signup-panel" style="display:none;">
+      <div class="auth-field"><label>USERNAME</label><input type="text" id="auth-signup-username" class="auth-input" placeholder="Choose a username..." maxlength="20"></div>
+      <div class="auth-field"><label>PASSWORD</label><input type="password" id="auth-signup-password" class="auth-input" placeholder="Choose a password..."></div>
+      <div class="auth-remember"><label><input type="checkbox" id="auth-signup-remember-me"> Remember me</label></div>
+      <div class="auth-field" id="auth-signup-country-field">
+        <label>COUNTRY</label>
+        <div style="position:relative;">
+          <button class="mm-country-btn" id="auth-country-btn" style="width:100%;">
+            <span id="auth-country-flag">🌍</span>
+            <span id="auth-country-name">Select Country</span>
+            <span class="mm-country-arrow">▼</span>
+          </button>
+          <div class="mm-country-dropdown" id="auth-country-dropdown" style="display:none;">
+            <input type="text" class="mm-country-search" id="auth-country-search" placeholder="Search country...">
+            <div class="mm-country-list" id="auth-country-list"></div>
+          </div>
+        </div>
+      </div>
+      <div class="auth-error" id="auth-signup-error"></div>
+      <button class="mm-btn" id="auth-signup-btn" style="margin-top:8px;">SIGN UP</button>
+    </div>
+  </div>
+</div>
+
+<div id="ban-screen" style="display:none;">
+  <div class="auth-box" style="text-align:center;">
+    <div style="font-size:48px;margin-bottom:12px;">🚫</div>
+    <div style="color:#ef4444;font-size:22px;font-weight:900;letter-spacing:2px;margin-bottom:10px;">BANNED</div>
+    <div style="color:rgba(255,255,255,0.7);font-size:14px;margin-bottom:18px;" id="ban-reason-text">You are banned from Block Jump.</div>
+    <div style="color:rgba(255,255,255,0.5);font-size:13px;" id="ban-countdown-text"></div>
+    <button class="mm-btn" id="ban-refresh-btn" style="display:none;margin-top:16px;">REFRESH PAGE</button>
+  </div>
+</div>
+
+<div id="quality-popup" style="display:none;">
+  <div id="quality-box">
+    <h2>GRAPHICS</h2>
+    <p>Choose your graphics quality. This can be changed later in Settings.</p>
+    <div class="quality-btns">
+      <button class="mm-btn" id="quality-high-btn" style="flex:1;">HIGH QUALITY</button>
+      <button class="mm-btn" id="quality-low-btn" style="flex:1;">LOW QUALITY</button>
+    </div>
+  </div>
+</div>
+
+<div id="show-count-popup">
+  <div id="show-count-box">
+    <h3>HOW MANY PLAYERS?</h3>
+    <div class="show-count-options">
+      <div class="show-count-opt" data-val="10">10</div>
+      <div class="show-count-opt" data-val="25">25</div>
+      <div class="show-count-opt" data-val="50">50</div>
+      <div class="show-count-opt" data-val="75">75</div>
+      <div class="show-count-opt" data-val="100">100</div>
+      <div class="show-count-opt" data-val="custom">Custom</div>
+    </div>
+    <div id="show-count-custom-row" style="display:none;">
+      <input type="number" id="show-count-custom-input" min="1" max="9999" placeholder="Custom #">
+      <button class="show-count-opt" id="show-count-custom-confirm">OK</button>
+    </div>
+    <button class="show-count-cancel" id="show-count-cancel-btn">CANCEL</button>
+  </div>
+</div>
+
+<div id="countdown-overlay">
+  <div id="countdown-number">3</div>
+</div>
+
+<div id="custom-popup" style="display:none;">
+  <div class="custom-popup-overlay"></div>
+  <div class="custom-popup-box">
+    <div class="custom-popup-msg" id="custom-popup-msg"></div>
+    <div class="custom-popup-btns">
+      <button class="custom-popup-ok" id="custom-popup-ok">OK</button>
+      <button class="custom-popup-cancel" id="custom-popup-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="custom-input-popup" style="display:none;">
+  <div class="custom-popup-overlay"></div>
+  <div class="custom-popup-box">
+    <div class="custom-popup-msg" id="custom-input-msg"></div>
+    <input type="number" id="custom-input-field" class="custom-input-field" min="1" max="9999" placeholder="Enter number...">
+    <div class="custom-popup-btns">
+      <button class="custom-popup-ok" id="custom-input-ok">Confirm</button>
+      <button class="custom-popup-cancel" id="custom-input-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="custom-text-input-popup" style="display:none;">
+  <div class="custom-popup-overlay"></div>
+  <div class="custom-popup-box">
+    <div class="custom-popup-msg" id="custom-text-input-msg"></div>
+    <input type="text" id="custom-text-input-field" class="custom-input-field" placeholder="Enter text...">
+    <div class="custom-popup-btns">
+      <button class="custom-popup-ok" id="custom-text-input-ok">Confirm</button>
+      <button class="custom-popup-cancel" id="custom-text-input-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="coming-soon-popup" style="display:none;">
+  <div class="custom-popup-overlay"></div>
+  <div class="custom-popup-box">
+    <div class="custom-popup-msg">Coming Soon!</div>
+    <div class="custom-popup-btns">
+      <button class="custom-popup-ok" id="coming-soon-close">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="mute-popup" style="display:none;">
+  <div class="custom-popup-overlay"></div>
+  <div class="custom-popup-box" style="min-width:300px;">
+    <div class="custom-popup-msg" id="mute-popup-title">Mute User</div>
+    <div style="margin:12px 0;">
+      <input type="number" id="mute-duration-val" class="custom-input-field" min="1" placeholder="Duration..." style="width:100%;margin-bottom:8px;">
+      <select id="mute-duration-unit" class="difficulty-dropdown" style="width:100%;">
+        <option value="seconds">Seconds</option>
+        <option value="minutes">Minutes</option>
+        <option value="hours">Hours</option>
+        <option value="days">Days</option>
+        <option value="months">Months</option>
+      </select>
+    </div>
+    <div class="custom-popup-btns">
+      <button class="custom-popup-ok" id="mute-popup-ok">Mute</button>
+      <button class="custom-popup-cancel" id="mute-popup-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="ban-popup" style="display:none;">
+  <div class="custom-popup-overlay"></div>
+  <div class="custom-popup-box" style="min-width:300px;">
+    <div class="custom-popup-msg" id="ban-popup-title">Ban User</div>
+    <div style="margin:12px 0;">
+      <input type="number" id="ban-duration-val" class="custom-input-field" min="1" placeholder="Duration (0 = permanent)..." style="width:100%;margin-bottom:8px;">
+      <select id="ban-duration-unit" class="difficulty-dropdown" style="width:100%;margin-bottom:8px;">
+        <option value="seconds">Seconds</option>
+        <option value="minutes">Minutes</option>
+        <option value="hours">Hours</option>
+        <option value="days">Days</option>
+        <option value="months">Months</option>
+        <option value="permanent">Permanent</option>
+      </select>
+      <input type="text" id="ban-reason-input" class="custom-input-field" placeholder="Reason..." style="width:100%;">
+    </div>
+    <div class="custom-popup-btns">
+      <button class="custom-popup-ok" id="ban-popup-ok">Ban</button>
+      <button class="custom-popup-cancel" id="ban-popup-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="admin-panel-overlay" style="display:none;">
+  <div class="custom-popup-overlay"></div>
+  <div class="custom-popup-box" style="max-width:600px;width:95%;max-height:80vh;overflow-y:auto;">
+    <div style="color:rgb(var(--text-color));font-size:22px;font-weight:900;letter-spacing:2px;margin-bottom:16px;text-shadow:0 0 15px rgba(var(--text-color),0.8);">⚙️ ADMIN PANEL</div>
+    <input type="text" id="admin-user-search" class="custom-input-field" placeholder="Search users..." style="width:100%;margin-bottom:12px;">
+    <div id="admin-user-list" style="max-height:300px;overflow-y:auto;margin-bottom:12px;"></div>
+    <div id="admin-api-log-section" style="margin-bottom:12px;">
+      <div style="color:rgb(var(--text-color));font-size:15px;font-weight:bold;margin-bottom:8px;">API Call Log</div>
+      <div id="admin-api-log" style="max-height:150px;overflow-y:auto;background:rgba(0,0,0,0.3);border-radius:10px;padding:8px;"></div>
+    </div>
+    <button class="custom-popup-cancel" id="admin-panel-close" style="width:100%;margin-top:8px;">CLOSE</button>
+  </div>
+</div>
+
+<div id="main-menu-screen" style="display:none;">
+  <div class="mm-logo">BLOCK JUMP</div>
+  <div class="mm-version">v1.6.0</div>
+  <div id="mm-logged-in-bar">
+    <span id="mm-user-display"></span>
+    <button class="mm-btn" id="mm-logout-btn" style="padding:8px 16px;font-size:13px;width:auto;">LOGOUT</button>
+  </div>
+  <div class="mm-buttons">
+    <button class="mm-btn mm-play" id="mm-play-btn">PLAY</button>
+    <button class="mm-btn" id="mm-settings-btn">SETTINGS</button>
+    <button class="mm-btn" id="mm-extra-btn">EXTRA</button>
+    <button class="mm-btn" id="mm-achievements-btn">ACHIEVEMENTS</button>
+    <button class="mm-btn" id="mm-leaderboard-btn">LEADERBOARD</button>
+  </div>
+</div>
+
+<div id="mm-play-select-screen" class="mm-overlay" style="display:none;">
+  <div class="mm-overlay-content" style="text-align:center;max-width:560px;">
+    <div class="mm-overlay-title">SELECT MODE</div>
+    <div class="play-mode-row">
+      <button class="mm-btn play-mode-btn" id="mode-singleplayer-btn">SINGLEPLAYER</button>
+      <button class="mm-btn play-mode-btn" id="mode-challenge-btn">CHALLENGE</button>
+      <button class="mm-btn play-mode-btn" id="mode-multiplayer-btn">MULTIPLAYER</button>
+    </div>
+    <button class="mm-btn" id="mm-play-select-back-btn" style="margin-top:8px;">BACK</button>
+  </div>
+</div>
+
+<div id="mm-difficulty-select-screen" class="mm-overlay" style="display:none;">
+  <div class="mm-overlay-content" style="text-align:center;max-width:480px;">
+    <div class="mm-overlay-title">DIFFICULTY</div>
+    <div id="diff-select-mode-label" style="color:rgba(var(--text-color),0.5);font-size:15px;font-weight:bold;letter-spacing:2px;margin-bottom:24px;"></div>
+    <div style="display:flex;flex-direction:column;gap:12px;width:100%;">
+      <button class="mm-btn diff-pick-btn" data-diff="easy" style="border-color:rgba(34,197,94,0.7);color:#22c55e;">
+        <span style="font-size:20px;">EASY</span>
+        <span style="font-size:13px;opacity:0.6;display:block;margin-top:4px;">Slow lava, forgiving pace</span>
+      </button>
+      <button class="mm-btn diff-pick-btn" data-diff="medium" style="border-color:rgba(56,189,248,0.7);color:#38bdf8;">
+        <span style="font-size:20px;">MEDIUM</span>
+        <span style="font-size:13px;opacity:0.6;display:block;margin-top:4px;">Balanced challenge</span>
+      </button>
+      <button class="mm-btn diff-pick-btn" data-diff="hard" style="border-color:rgba(249,115,22,0.7);color:#f97316;">
+        <span style="font-size:20px;">HARD</span>
+        <span style="font-size:13px;opacity:0.6;display:block;margin-top:4px;">Fast lava, intense pressure</span>
+      </button>
+      <button class="mm-btn diff-pick-btn" data-diff="impossible" style="border-color:rgba(239,68,68,0.7);color:#ef4444;">
+        <span style="font-size:20px;">IMPOSSIBLE</span>
+        <span style="font-size:13px;opacity:0.6;display:block;margin-top:4px;">Maximum speed, good luck</span>
+      </button>
+    </div>
+    <button class="mm-btn" id="diff-select-cancel-btn" style="margin-top:16px;border-color:rgba(239,68,68,0.5);color:#ef4444;">CANCEL</button>
+  </div>
+</div>
+
+<div id="mm-challenge-select-screen" class="mm-overlay" style="display:none;">
+  <div class="mm-overlay-content" style="max-width:700px;">
+    <div class="mm-overlay-title">CHALLENGES</div>
+    <div style="color:rgba(var(--text-color),0.5);font-size:13px;text-align:center;margin-bottom:16px;">Toggle challenges on/off. Hover for description. Modifier shown as % bonus.</div>
+    <div id="challenge-list-grid" class="challenge-grid"></div>
+    <div id="challenge-total-modifier" class="challenge-modifier-display">Total Modifier: <span id="challenge-modifier-val">+0%</span></div>
+    <div style="display:flex;gap:12px;margin-top:16px;">
+      <button class="mm-btn" id="challenge-start-btn" style="flex:2;">START</button>
+      <button class="mm-btn" id="challenge-back-btn" style="flex:1;border-color:rgba(239,68,68,0.5);color:#ef4444;">BACK</button>
+    </div>
+  </div>
+</div>
+
+<div id="mm-settings-screen" class="mm-overlay" style="display:none;">
+  <div class="mm-overlay-content">
+    <div class="mm-overlay-title">SETTINGS</div>
+    <div class="settings-nav-btns">
+      <button class="settings-nav-btn active" id="snav-graphics">Graphics</button>
+      <button class="settings-nav-btn" id="snav-audio">Audio</button>
+      <button class="settings-nav-btn" id="snav-hud">HUD</button>
+      <button class="settings-nav-btn" id="snav-profile">Profile</button>
+    </div>
+
+    <div class="settings-panel" id="spanel-graphics">
+      <div class="mm-section">
+        <div class="mm-section-title">Menu Visual Effects</div>
+        <div class="setting-item"><span>Menu Logo Glow</span><label class="toggle"><input type="checkbox" id="mm-gfx-menu-logo-glow" checked><span class="slider"></span></label></div>
+        <div class="setting-item"><span>Button Glow &amp; Hover</span><label class="toggle"><input type="checkbox" id="mm-gfx-btn-glow" checked><span class="slider"></span></label></div>
+        <div class="setting-item"><span>Menu Background Particles</span><label class="toggle"><input type="checkbox" id="mm-gfx-menu-particles" checked><span class="slider"></span></label></div>
+      </div>
+      <div class="mm-section">
+        <div class="mm-section-title">Gameplay Visual Effects</div>
+        <div class="setting-item"><span>Player Glow</span><label class="toggle"><input type="checkbox" id="mm-gfx-player" checked><span class="slider"></span></label></div>
+        <div class="setting-item"><span>Lava Glow &amp; Shimmer</span><label class="toggle"><input type="checkbox" id="mm-gfx-lava" checked><span class="slider"></span></label></div>
+        <div class="setting-item"><span>Blue Platform Glow</span><label class="toggle"><input type="checkbox" id="mm-gfx-blue-platform" checked><span class="slider"></span></label></div>
+        <div class="setting-item"><span>Platform Shadows</span><label class="toggle"><input type="checkbox" id="mm-gfx-platforms" checked><span class="slider"></span></label></div>
+        <div class="setting-item"><span>HUD Blur &amp; Glow</span><label class="toggle"><input type="checkbox" id="mm-gfx-hud" checked><span class="slider"></span></label></div>
+      </div>
+    </div>
+
+    <div class="settings-panel" id="spanel-audio" style="display:none;">
+      <div class="mm-section">
+        <div class="mm-section-title">Audio</div>
+        <div class="setting-item"><span>All Sounds</span><label class="toggle"><input type="checkbox" id="mm-all-sounds" checked><span class="slider"></span></label></div>
+        <div class="audio-sound-row" id="asr-respawn">
+          <div class="audio-sound-header"><span>Respawn Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-respawn" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-dropdown" id="adrop-respawn" style="display:none;"><input type="range" class="volume-slider" id="vol-respawn" min="0" max="100" value="70"></div>
+        </div>
+        <div class="audio-sound-row" id="asr-lava">
+          <div class="audio-sound-header"><span>Lava Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-lava" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-dropdown" id="adrop-lava" style="display:none;"><input type="range" class="volume-slider" id="vol-lava" min="0" max="100" value="60"></div>
+        </div>
+        <div class="audio-sound-row" id="asr-jump">
+          <div class="audio-sound-header"><span>Jump Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-jump" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-dropdown" id="adrop-jump" style="display:none;"><input type="range" class="volume-slider" id="vol-jump" min="0" max="100" value="40"></div>
+        </div>
+        <div class="audio-sound-row" id="asr-walking">
+          <div class="audio-sound-header"><span>Walking Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-walking" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-dropdown" id="adrop-walking" style="display:none;"><input type="range" class="volume-slider" id="vol-walking" min="0" max="100" value="70"></div>
+        </div>
+        <div class="audio-sound-row" id="asr-brick">
+          <div class="audio-sound-header"><span>Kill Brick Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-brick" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-dropdown" id="adrop-brick" style="display:none;"><input type="range" class="volume-slider" id="vol-brick" min="0" max="100" value="80"></div>
+        </div>
+        <div class="audio-sound-row" id="asr-ambient">
+          <div class="audio-sound-header"><span>Lava Ambient</span><label class="toggle"><input type="checkbox" id="mm-audio-ambient" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-dropdown" id="adrop-ambient" style="display:none;"><input type="range" class="volume-slider" id="vol-ambient" min="0" max="100" value="40"></div>
+        </div>
+        <div class="audio-sound-row" id="asr-achievement">
+          <div class="audio-sound-header"><span>Achievement Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-achievement" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-dropdown" id="adrop-achievement" style="display:none;"><input type="range" class="volume-slider" id="vol-achievement" min="0" max="100" value="90"></div>
+        </div>
+        <div class="audio-sound-row" id="asr-ping">
+          <div class="audio-sound-header"><span>Ping Sound</span><label class="toggle"><input type="checkbox" id="mm-audio-ping" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-dropdown" id="adrop-ping" style="display:none;"><input type="range" class="volume-slider" id="vol-ping" min="0" max="100" value="80"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-panel" id="spanel-hud" style="display:none;">
+      <div class="mm-section">
+        <div class="mm-section-title">HUD Display</div>
+        <div class="setting-item"><span>Show Double Jump Status</span><label class="toggle"><input type="checkbox" id="mm-feat-double-jump" checked><span class="slider"></span></label></div>
+        <div class="setting-item"><span>Show Height</span><label class="toggle"><input type="checkbox" id="mm-feat-show-height" checked><span class="slider"></span></label></div>
+        <div class="setting-item"><span>Show Top Height</span><label class="toggle"><input type="checkbox" id="mm-feat-show-top" checked><span class="slider"></span></label></div>
+        <div class="setting-item"><span>Show Timer</span><label class="toggle"><input type="checkbox" id="mm-feat-show-timer" checked><span class="slider"></span></label></div>
+        <div class="setting-item"><span>Show Ping Notifications</span><label class="toggle"><input type="checkbox" id="mm-feat-ping-notif" checked><span class="slider"></span></label></div>
+      </div>
+      <div class="mm-section">
+        <div class="mm-section-title">Leaderboard</div>
+        <div class="setting-item"><span>Show score on leaderboard</span><label class="toggle"><input type="checkbox" id="mm-show-on-lb" checked><span class="slider"></span></label></div>
+      </div>
+      <div class="mm-section">
+        <div class="mm-section-title">Gameplay</div>
+        <div class="setting-item"><span>Double Jump Enabled</span><label class="toggle"><input type="checkbox" id="mm-gameplay-double-jump" checked><span class="slider"></span></label></div>
+      </div>
+      <div class="mm-section">
+        <div class="mm-section-title">Language</div>
+        <div class="setting-item"><span>Language</span><select id="mm-language-select" class="language-dropdown"><option value="en">🇬🇧 English</option></select></div>
+      </div>
+      <div class="mm-section">
+        <div class="mm-section-title">Data</div>
+        <button class="mm-btn danger-btn" id="mm-reset-data-btn">Reset All Data</button>
+      </div>
+      <div class="mm-section" id="mm-export-import-section">
+        <div class="mm-section-title">Settings Export / Import</div>
+        <textarea id="settings-export-text" placeholder="Click Export to get settings code..."></textarea>
+        <div class="exp-imp-btns">
+          <button class="exp-btn" id="settings-export-btn">EXPORT</button>
+          <button class="imp-btn" id="settings-import-btn">IMPORT</button>
+        </div>
+        <div style="color:rgba(var(--text-color),0.4);font-size:11px;margin-top:6px;text-align:center;">Paste a settings code above then click Import</div>
+      </div>
+    </div>
+
+    <div class="settings-panel" id="spanel-profile" style="display:none;">
+      <div class="mm-section">
+        <div class="mm-section-title">Profile Settings</div>
+        <div class="auth-field"><label>NEW USERNAME</label><input type="text" id="profile-change-username" class="auth-input" placeholder="New username (leave blank to keep)..." maxlength="20"></div>
+        <div class="auth-field"><label>NEW PASSWORD</label><input type="password" id="profile-change-password" class="auth-input" placeholder="New password (leave blank to keep)..."></div>
+        <div class="auth-field" id="profile-country-field">
+          <label>COUNTRY</label>
+          <div style="position:relative;">
+            <button class="mm-country-btn" id="profile-country-btn" style="width:100%;">
+              <span id="profile-country-flag">🌍</span>
+              <span id="profile-country-name">Select Country</span>
+              <span class="mm-country-arrow">▼</span>
+            </button>
+            <div class="mm-country-dropdown" id="profile-country-dropdown" style="display:none;position:relative;top:auto;left:auto;right:auto;margin-top:6px;">
+              <input type="text" class="mm-country-search" id="profile-country-search" placeholder="Search country...">
+              <div class="mm-country-list" id="profile-country-list"></div>
+            </div>
+          </div>
+        </div>
+        <button class="mm-btn" id="profile-save-btn" style="margin-top:10px;">SAVE CHANGES</button>
+        <button class="mm-btn danger-btn" id="profile-logout-btn" style="margin-top:8px;">LOGOUT</button>
+      </div>
+    </div>
+
+    <button class="mm-btn" id="mm-settings-back-btn">BACK</button>
+  </div>
+</div>
+
+<div id="mm-extra-screen" class="mm-overlay" style="display:none;">
+  <div class="mm-overlay-content">
+    <div class="mm-overlay-title">EXTRA</div>
+    <div class="mm-section">
+      <button class="mm-btn" id="mm-stats-btn" style="margin-bottom:10px;">STATS</button>
+      <button class="mm-btn" id="mm-changelog-btn" style="margin-bottom:10px;">CHANGELOG</button>
+      <button class="mm-btn" id="mm-help-btn" style="margin-bottom:10px;">HELP</button>
+      <button class="mm-btn" id="mm-community-btn" style="margin-bottom:10px;">COMMUNITY</button>
+      <button class="mm-btn" id="mm-forum-btn" style="position:relative;">
+        FEEDBACK FORUM
+        <span id="forum-notif-badge" class="notif-badge" style="display:none;">0</span>
+      </button>
+    </div>
+    <button class="mm-btn" id="mm-extra-back-btn">BACK</button>
+  </div>
+</div>
+
+<div id="mm-forum-screen" class="mm-overlay" style="display:none;">
+  <div class="mm-overlay-content forum-overlay-content">
+    <div class="mm-overlay-title">FEEDBACK FORUM</div>
+    <div id="forum-list-view">
+      <div class="forum-topbar">
+        <input type="text" id="forum-search" class="auth-input" placeholder="🔍 Search forums..." style="flex:1;min-width:0;">
+        <select id="forum-tag-filter" class="difficulty-dropdown">
+          <option value="all">All Tags</option>
+          <option value="bug">🐛 Bug</option>
+          <option value="suggestion">💡 Suggestion</option>
+          <option value="question">❓ Question</option>
+        </select>
+        <select id="forum-status-filter" class="difficulty-dropdown">
+          <option value="all">All Status</option>
+          <option value="open">Open</option>
+          <option value="completed">Completed</option>
+          <option value="thought">Thought About</option>
+        </select>
+        <button class="mm-btn forum-new-post-btn-styled" id="forum-new-post-btn">+ New Post</button>
+      </div>
+      <div id="forum-posts-list"></div>
+    </div>
+    <div id="forum-new-post-view" style="display:none;">
+      <div class="mm-section">
+        <div class="mm-section-title">✍️ New Forum Post</div>
+        <div class="auth-field"><label>TITLE</label><input type="text" id="new-post-title" class="auth-input" placeholder="Post title..." maxlength="80"></div>
+        <div class="auth-field"><label>MESSAGE</label><textarea id="new-post-body" class="auth-input" placeholder="Describe your feedback..." style="min-height:80px;resize:vertical;"></textarea></div>
+        <div class="auth-field">
+          <label>TAG (required)</label>
+          <div class="forum-tag-picker">
+            <button class="forum-tag-btn" data-tag="bug">🐛 Bug/Glitch</button>
+            <button class="forum-tag-btn" data-tag="suggestion">💡 Suggestion</button>
+            <button class="forum-tag-btn" data-tag="question">❓ Question</button>
+          </div>
+          <input type="hidden" id="new-post-tag" value="">
+        </div>
+        <div class="auth-field">
+          <label>IMAGES (optional, 5 max)</label>
+          <div id="forum-img-dropzone" class="forum-img-dropzone">
+            <div class="forum-dropzone-hint">📂 Drag &amp; drop images here or click slots below</div>
+            <div class="forum-img-row" id="forum-img-upload-row">
+              <label class="forum-img-slot" id="forum-img-slot-0"><span>+</span><input type="file" accept="image/*" id="forum-img-0" style="display:none;"></label>
+              <label class="forum-img-slot" id="forum-img-slot-1"><span>+</span><input type="file" accept="image/*" id="forum-img-1" style="display:none;"></label>
+              <label class="forum-img-slot" id="forum-img-slot-2"><span>+</span><input type="file" accept="image/*" id="forum-img-2" style="display:none;"></label>
+              <label class="forum-img-slot" id="forum-img-slot-3"><span>+</span><input type="file" accept="image/*" id="forum-img-3" style="display:none;"></label>
+              <label class="forum-img-slot" id="forum-img-slot-4"><span>+</span><input type="file" accept="image/*" id="forum-img-4" style="display:none;"></label>
+            </div>
+          </div>
+        </div>
+        <div class="exp-imp-btns">
+          <button class="exp-btn" id="forum-submit-post-btn">POST</button>
+          <button class="imp-btn" id="forum-cancel-post-btn">CANCEL</button>
+        </div>
+      </div>
+    </div>
+    <div id="forum-thread-view-wrap" style="display:none;">
+      <div id="forum-thread-header"></div>
+      <div id="forum-thread-messages"></div>
+      <div id="forum-thread-reply-area">
+        <div id="forum-mute-bar" style="display:none;" class="forum-mute-bar"></div>
+        <textarea id="forum-reply-input" class="auth-input" placeholder="Write a reply... Use @username to ping" style="min-height:60px;resize:vertical;width:100%;margin-bottom:8px;"></textarea>
+        <div style="display:flex;gap:8px;">
+          <button class="exp-btn" id="forum-send-reply-btn" style="flex:1;">SEND</button>
+          <button class="imp-btn" id="forum-thread-back-btn" style="flex:1;">BACK</button>
+        </div>
+      </div>
+      <div id="forum-closed-notice" style="display:none;" class="forum-closed-notice">
+        🔒 This thread is closed.
+        <button class="imp-btn" id="forum-thread-back-btn-closed" style="margin-top:10px;width:100%;">BACK</button>
+      </div>
+    </div>
+    <button class="mm-btn" id="mm-forum-back-btn">BACK TO EXTRA</button>
+  </div>
+</div>
+
+<div id="mm-stats-screen" class="mm-overlay" style="display:none;">
+  <div class="mm-overlay-content">
+    <div class="mm-overlay-title">STATS</div>
+    <div class="mm-section">
+      <div class="mm-section-title">Player Info</div>
+      <div id="extra-stats-container" class="extra-stats-grid">
+        <div class="extra-stat-item extra-stat-wide"><div class="extra-stat-label">Name</div><div class="extra-stat-value" id="stat-name">-</div></div>
+        <div class="extra-stat-item"><div class="extra-stat-label">User ID</div><div class="extra-stat-value" id="stat-userid">-</div></div>
+        <div class="extra-stat-item"><div class="extra-stat-label">Total Users</div><div class="extra-stat-value" id="stat-total-users">-</div></div>
+        <div class="extra-stat-item"><div class="extra-stat-label">Obby Playtime</div><div class="extra-stat-value" id="stat-playtime">0s</div></div>
+        <div class="extra-stat-item"><div class="extra-stat-label">Website Time</div><div class="extra-stat-value" id="stat-website-time">0s</div></div>
+        <div class="extra-stat-item"><div class="extra-stat-label">Playthroughs</div><div class="extra-stat-value" id="stat-deaths">0</div></div>
+        <div class="extra-stat-item"><div class="extra-stat-label">Join Date</div><div class="extra-stat-value" id="stat-joindate">-</div></div>
+        <div class="extra-stat-item"><div class="extra-stat-label">Achievements</div><div class="extra-stat-value" id="stat-achievements">0/0</div></div>
+      </div>
+    </div>
+    <div class="mm-section">
+      <div class="mm-section-title">Score &amp; Time by Difficulty</div>
+      <div class="lb-detail-scores-grid" id="stats-diff-grid"></div>
+    </div>
+    <div class="mm-section">
+      <div class="mm-section-title">Top 5 Runs</div>
+      <div style="display:flex;gap:8px;margin-bottom:12px;">
+        <select id="stats-top-diff" class="lb-select" style="flex:1;">
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+          <option value="impossible">Impossible</option>
+        </select>
+        <select id="stats-top-mode" class="lb-select" style="flex:1;">
+          <option value="singleplayer">Singleplayer</option>
+          <option value="challenge">Challenge</option>
+        </select>
+      </div>
+      <div id="stats-top5-list"></div>
+    </div>
+    <button class="mm-btn" id="mm-stats-back-btn">BACK</button>
+  </div>
+</div>
+
+<div id="mm-changelog-screen" class="mm-overlay" style="display:none;">
+  <div class="mm-overlay-content">
+    <div class="mm-overlay-title">CHANGELOG</div>
+    <div id="changelog-list" style="overflow-y:auto;max-height:60vh;padding-right:6px;"></div>
+    <button class="mm-btn" id="mm-changelog-back-btn">BACK</button>
+  </div>
+</div>
+
+<div id="mm-community-screen" class="mm-overlay" style="display:none;">
+  <div class="mm-overlay-content">
+    <div class="mm-overlay-title">COMMUNITY</div>
+    <div class="mm-section">
+      <button class="mm-btn community-link-btn" id="community-discord-btn">🎮 Discord — Coming Soon</button>
+      <button class="mm-btn community-link-btn" id="community-youtube-btn">▶ YouTube — Coming Soon</button>
+    </div>
+    <button class="mm-btn" id="mm-community-back-btn">BACK</button>
+  </div>
+</div>
+
+<div id="mm-help-screen" class="mm-overlay" style="display:none;">
+  <div class="mm-overlay-content">
+    <div class="mm-overlay-title">HELP</div>
+    <div class="help-list">
+      <p><strong style="color:#4ade80">🟢 Green:</strong> <span>Safe platform — land freely.</span></p>
+      <p><strong style="color:#ef4444">🔴 Red:</strong> <span>Kill brick — instant death!</span></p>
+      <p><strong style="color:#38bdf8">🔵 Blue:</strong> <span>Disappears after 1 second.</span></p>
+      <p><strong style="color:#f97316">🟠 Orange:</strong> <span>Moving platform.</span></p>
+      <p><strong style="color:#e2e8f0">⚪ White/Gray:</strong> <span>Pass-through platform.</span></p>
+      <p><strong style="color:rgb(56,189,248)">🎯 Goal:</strong> <span>Climb as high as possible!</span></p>
+      <p><strong style="color:rgb(56,189,248)">🎮 Controls:</strong> <span>W / A / D / SPACE / Arrow Keys</span></p>
+      <p><strong style="color:#ef4444">🌋 Avoid the Lava!</strong></p>
+      <p><strong style="color:rgba(255,255,255,0.6)">⏸ ESC to pause</strong></p>
+    </div>
+    <button class="mm-btn" id="mm-help-back-btn">BACK</button>
+  </div>
+</div>
+
+<div id="mm-achievements-screen" class="mm-overlay" style="display:none;">
+  <div class="mm-overlay-content">
+    <div class="mm-overlay-title">ACHIEVEMENTS</div>
+    <div id="ach-header-bar">
+      <div id="ach-count-display"></div>
+      <div id="ach-controls">
+        <input type="text" id="ach-search" placeholder="Search achievements...">
+        <select id="ach-filter"><option value="all">Show All</option><option value="completed">Completed</option><option value="uncompleted">Uncompleted</option></select>
+        <select id="ach-diff-filter"><option value="all">All Difficulties</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option><option value="impossible">Impossible</option><option value="general">General</option></select>
+      </div>
+    </div>
+    <div id="achievements-list"></div>
+    <button class="mm-btn" id="mm-achievements-back-btn">BACK</button>
+  </div>
+</div>
+
+<div id="mm-leaderboard-screen" class="mm-overlay" style="display:none;">
+  <div class="mm-overlay-content">
+    <div class="mm-overlay-title">LEADERBOARD</div>
+    <div class="lb-top-row">
+      <div class="leaderboard-score-switch">
+        <span id="lb-switch-score-label" class="active">SCORE</span>
+        <label class="lb-switch-toggle">
+          <input type="checkbox" id="lb-show-timer-toggle">
+          <span class="lb-switch-slider"></span>
+        </label>
+        <span id="lb-switch-timer-label">TIME</span>
+      </div>
+      <button class="lb-refresh-btn" id="lb-refresh-btn">
+        <span id="lb-refresh-label">🔄 Refresh</span>
+        <span id="lb-refresh-countdown" style="display:none;"></span>
+      </button>
+    </div>
+    <div class="lb-controls">
+      <select id="lb-gamemode-filter" class="lb-select">
+        <option value="singleplayer">Singleplayer</option>
+        <option value="challenge">Challenge</option>
+        <option value="all">All Modes</option>
+      </select>
+      <select id="lb-diff-filter" class="lb-select"><option value="all">All Difficulties</option><option value="easy">Easy</option><option value="medium">Medium</option><option value="hard">Hard</option><option value="impossible">Impossible</option></select>
+      <select id="lb-sort" class="lb-select"><option value="desc">Highest First</option><option value="asc">Lowest First</option></select>
+      <button class="mm-btn lb-count-btn" id="lb-count-btn">Show 10</button>
+    </div>
+    <div id="lb-list"></div>
+    <div id="lb-entry-detail" style="display:none;">
+      <div class="lb-detail-box">
+        <div id="lb-detail-content"></div>
+        <button class="mm-btn" id="lb-detail-close">CLOSE</button>
+      </div>
+    </div>
+    <button class="mm-btn" id="mm-leaderboard-back-btn">BACK</button>
+  </div>
+</div>
+
+<div id="hud">
+  <span id="current">HEIGHT: 0</span>
+  <span id="max">TOP: 0</span>
+  <span id="timer-display">TIME: 0s</span>
+  <span id="top-time-display">TOP TIME: 0s</span>
+  <span id="difficulty-display">DIFFICULTY: MEDIUM</span>
+  <span id="challenge-hud-display" style="display:none;"></span>
+</div>
+
+<div id="dj-cooldown-hud" style="display:none;">
+  <div class="dj-cd-slot" id="dj-cd-1">
+    <div class="dj-cd-label">J1</div>
+    <div class="dj-cd-bar-wrap"><div class="dj-cd-bar" id="dj-cd-bar-1"></div></div>
+  </div>
+  <div class="dj-cd-slot" id="dj-cd-2">
+    <div class="dj-cd-label">J2</div>
+    <div class="dj-cd-bar-wrap"><div class="dj-cd-bar" id="dj-cd-bar-2"></div></div>
+  </div>
+</div>
+
+<div id="hp-display">Double Jump = true</div>
+<div id="pause-hint">Press ESC to pause</div>
+<div id="lava"></div>
+<div id="player"></div>
+
+<div id="achievement-notification">
+  <div class="ach-icon">🏆</div>
+  <div class="ach-text">
+    <div class="ach-label">Achievement Unlocked!</div>
+    <div class="ach-name" id="ach-notif-name"></div>
+  </div>
+</div>
+
+<div id="ping-notification" style="display:none;">
+  <div class="ping-icon">🔔</div>
+  <div class="ping-text">
+    <div class="ping-label">You were pinged!</div>
+    <div class="ping-name" id="ping-notif-name"></div>
+  </div>
+</div>
+
+<div id="pause-menu">
+  <div class="menu-content">
+    <h2 id="pause-title">PAUSED</h2>
+    <div class="menu-buttons" id="main-menu">
+      <button class="menu-btn" id="continue-btn">CONTINUE</button>
+      <button class="menu-btn" id="extra-btn">EXTRA</button>
+      <button class="menu-btn restart" id="restart-btn">RESTART</button>
+      <button class="menu-btn danger-btn" id="pause-main-menu-btn">MAIN MENU</button>
+    </div>
+    <div class="help-section" id="extra-menu">
+      <h3>EXTRA</h3>
+      <button class="menu-btn secondary" id="settings-btn">SETTINGS</button>
+      <button class="menu-btn secondary" id="help-btn">HELP</button>
+      <button class="menu-btn secondary" id="achievements-btn">ACHIEVEMENTS</button>
+      <button class="menu-btn" id="extra-back-btn">BACK</button>
+    </div>
+    <div class="help-section" id="settings-menu">
+      <h3>SETTINGS</h3>
+      <div class="settings-nav-btns">
+        <button class="settings-nav-btn active" id="psnav-graphics">Graphics</button>
+        <button class="settings-nav-btn" id="psnav-audio">Audio</button>
+        <button class="settings-nav-btn" id="psnav-hud">HUD</button>
+      </div>
+      <div class="settings-panel" id="pspanel-graphics">
+        <div class="settings-section">
+          <h4>Menu Visual Effects</h4>
+          <div class="setting-item"><span>Menu Logo Glow</span><label class="toggle"><input type="checkbox" id="p-gfx-menu-logo-glow" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>Button Glow</span><label class="toggle"><input type="checkbox" id="p-gfx-btn-glow" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>Menu Particles</span><label class="toggle"><input type="checkbox" id="p-gfx-menu-particles" checked><span class="slider"></span></label></div>
+        </div>
+        <div class="settings-section">
+          <h4>Gameplay Visual Effects</h4>
+          <div class="setting-item"><span>Player Glow</span><label class="toggle"><input type="checkbox" id="p-gfx-player" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>Lava Glow</span><label class="toggle"><input type="checkbox" id="p-gfx-lava" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>Blue Platform Glow</span><label class="toggle"><input type="checkbox" id="p-gfx-blue-platform" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>Platform Shadows</span><label class="toggle"><input type="checkbox" id="p-gfx-platforms" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>HUD Blur</span><label class="toggle"><input type="checkbox" id="p-gfx-hud" checked><span class="slider"></span></label></div>
+        </div>
+      </div>
+      <div class="settings-panel" id="pspanel-audio" style="display:none;">
+        <div class="settings-section">
+          <h4>Audio</h4>
+          <div class="setting-item"><span>All Sounds</span><label class="toggle"><input type="checkbox" id="all-sounds-toggle" checked><span class="slider"></span></label></div>
+          <div class="audio-sound-row" id="pasr-respawn"><div class="audio-sound-header"><span>Respawn Sound</span><label class="toggle"><input type="checkbox" id="audio-respawn" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="padrop-respawn" style="display:none;"><input type="range" class="volume-slider" id="pvol-respawn" min="0" max="100" value="70"></div></div>
+          <div class="audio-sound-row" id="pasr-lava"><div class="audio-sound-header"><span>Lava Sound</span><label class="toggle"><input type="checkbox" id="audio-lava" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="padrop-lava" style="display:none;"><input type="range" class="volume-slider" id="pvol-lava" min="0" max="100" value="60"></div></div>
+          <div class="audio-sound-row" id="pasr-jump"><div class="audio-sound-header"><span>Jump Sound</span><label class="toggle"><input type="checkbox" id="audio-jump" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="padrop-jump" style="display:none;"><input type="range" class="volume-slider" id="pvol-jump" min="0" max="100" value="40"></div></div>
+          <div class="audio-sound-row" id="pasr-walking"><div class="audio-sound-header"><span>Walking Sound</span><label class="toggle"><input type="checkbox" id="audio-walking" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="padrop-walking" style="display:none;"><input type="range" class="volume-slider" id="pvol-walking" min="0" max="100" value="70"></div></div>
+          <div class="audio-sound-row" id="pasr-brick"><div class="audio-sound-header"><span>Kill Brick Sound</span><label class="toggle"><input type="checkbox" id="audio-brick" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="padrop-brick" style="display:none;"><input type="range" class="volume-slider" id="pvol-brick" min="0" max="100" value="80"></div></div>
+          <div class="audio-sound-row" id="pasr-ambient"><div class="audio-sound-header"><span>Lava Ambient</span><label class="toggle"><input type="checkbox" id="audio-ambient" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="padrop-ambient" style="display:none;"><input type="range" class="volume-slider" id="pvol-ambient" min="0" max="100" value="40"></div></div>
+          <div class="audio-sound-row" id="pasr-achievement"><div class="audio-sound-header"><span>Achievement Sound</span><label class="toggle"><input type="checkbox" id="audio-achievement" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="padrop-achievement" style="display:none;"><input type="range" class="volume-slider" id="pvol-achievement" min="0" max="100" value="90"></div></div>
+          <div class="audio-sound-row" id="pasr-ping"><div class="audio-sound-header"><span>Ping Sound</span><label class="toggle"><input type="checkbox" id="audio-ping" checked><span class="slider"></span></label></div><div class="audio-sound-dropdown" id="padrop-ping" style="display:none;"><input type="range" class="volume-slider" id="pvol-ping" min="0" max="100" value="80"></div></div>
+        </div>
+      </div>
+      <div class="settings-panel" id="pspanel-hud" style="display:none;">
+        <div class="settings-section">
+          <h4>HUD Display</h4>
+          <div class="setting-item"><span>Show Double Jump Status</span><label class="toggle"><input type="checkbox" id="p-feat-show-double-jump-hud" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>Show Height</span><label class="toggle"><input type="checkbox" id="p-feat-show-height" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>Show Top Height</span><label class="toggle"><input type="checkbox" id="p-feat-show-top" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>Show Timer</span><label class="toggle"><input type="checkbox" id="p-feat-show-timer" checked><span class="slider"></span></label></div>
+          <div class="setting-item"><span>Show Ping Notifications</span><label class="toggle"><input type="checkbox" id="p-feat-ping-notif" checked><span class="slider"></span></label></div>
+        </div>
+        <div class="settings-section">
+          <h4>Gameplay</h4>
+          <div class="setting-item"><span>Double Jump Enabled</span><label class="toggle"><input type="checkbox" id="p-gameplay-double-jump" checked><span class="slider"></span></label></div>
+        </div>
+        <div class="settings-section">
+          <h4>Language</h4>
+          <div class="setting-item"><span>Language</span><select id="language-select" class="language-dropdown"><option value="en">🇬🇧 English</option></select></div>
+        </div>
+        <div class="settings-section">
+          <h4>Data</h4>
+          <button class="menu-btn restart" id="pause-reset-data-btn">Reset All Data</button>
+        </div>
+      </div>
+      <button class="menu-btn" id="settings-back-btn">BACK</button>
+    </div>
+    <div class="help-section" id="help-menu">
+      <h3>HELP</h3>
+      <div class="help-list">
+        <p><strong style="color:#4ade80">🟢 Green:</strong> Safe platform</p>
+        <p><strong style="color:#ef4444">🔴 Red:</strong> Kill brick</p>
+        <p><strong style="color:#38bdf8">🔵 Blue:</strong> Disappears after 1s</p>
+        <p><strong style="color:#f97316">🟠 Orange:</strong> Moving platform</p>
+        <p><strong style="color:#e2e8f0">⚪ White:</strong> Pass-through</p>
+        <p>Controls: W/A/D/SPACE + Arrows</p>
+        <p>ESC to pause</p>
+      </div>
+      <button class="menu-btn" id="help-back-btn">BACK</button>
+    </div>
+    <div class="help-section" id="achievements-pause-menu">
+      <h3>ACHIEVEMENTS</h3>
+      <div id="achievements-pause-list"></div>
+      <button class="menu-btn" id="achievements-back-btn">BACK</button>
+    </div>
+  </div>
+</div>
+
+<div id="death-screen">
+  <div class="death-content">
+    <h1 id="death-title">PLAYTHROUGH OVER</h1>
+    <div class="death-stats">
+      <div class="death-stat-row" id="death-difficulty-row"></div>
+      <div class="death-stat-row" id="death-challenge-row" style="display:none;"></div>
+      <div class="death-stat-row" id="death-score-row"></div>
+      <div class="death-stat-row" id="death-time-row"></div>
+      <div class="death-stat-row" id="death-modifier-row" style="display:none;"></div>
+    </div>
+    <p id="death-subtitle">Click / Space to Respawn</p>
+  </div>
+</div>
+
+<div id="image-zoom-overlay" style="display:none;">
+  <div id="image-zoom-bg"></div>
+  <img id="image-zoom-img" src="" alt="">
+  <button id="image-zoom-close">✕</button>
+</div>
+
+<script>
+  document.addEventListener('contextmenu',e=>e.preventDefault());
+function ctrlShiftKey(e,k){return e.ctrlKey&&e.shiftKey&&e.keyCode===k.charCodeAt(0);}
+document.onkeydown=(e)=>{if(e.keyCode===123||ctrlShiftKey(e,'I')||ctrlShiftKey(e,'J')||ctrlShiftKey(e,'C')||(e.ctrlKey&&e.keyCode==='U'.charCodeAt(0)))return false;};
+
+const GITHUB_REPO='Ninjanoah121312/Block-Jump';
+const GITHUB_USER_FILE='Data/User_Data.Json';
+const GITHUB_FORUM_FILE='Data/Forum.json';
+const LANGUAGES_FILE='Data/languages.json';
+const GITHUB_AUDIT_FILE='Data/Audit_Log.Json';
+const _ENC_TOKEN='JSMrOiAsCzksMQBpensRAHFncBN6FCIdNxsdPwo6F3pqAGV/YwwOLzgnPSogJggyZiA7YytwdmF6MCwlAhEMYH19JxAVO3wrB3ZfDXUeGAtnBAMGFD0XLyxVOVxg';
+function _rt(){const k='BJ_RUNTIME_XK9_2024';const b=atob(_ENC_TOKEN);let r='';for(let i=0;i<b.length;i++)r+=String.fromCharCode(b.charCodeAt(i)^k.charCodeAt(i%k.length));return r;}
+const GITHUB_TOKEN=_rt();
+const GITHUB_USER_API=`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_USER_FILE}`;
+const GITHUB_FORUM_API=`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_FORUM_FILE}`;
+const GITHUB_AUDIT_API=`https://api.github.com/repos/${GITHUB_REPO}/contents/${GITHUB_AUDIT_FILE}`;
+const LANGUAGES_API=`https://api.github.com/repos/${GITHUB_REPO}/contents/${LANGUAGES_FILE}`;
+
+const _CRED_KEY='BJ_CRED_STORE_V2';
+function _encryptCred(obj){const s=JSON.stringify(obj);const k='BJ_LOCAL_ENC_9K';let r='';for(let i=0;i<s.length;i++)r+=String.fromCharCode(s.charCodeAt(i)^k.charCodeAt(i%k.length));return btoa(r);}
+function _decryptCred(enc){try{const b=atob(enc);const k='BJ_LOCAL_ENC_9K';let r='';for(let i=0;i<b.length;i++)r+=String.fromCharCode(b.charCodeAt(i)^k.charCodeAt(i%k.length));return JSON.parse(r);}catch(e){return null;}}
+function storeCredentials(username,password){localStorage.setItem(_CRED_KEY,_encryptCred({username,password}));}
+function loadCredentials(){const s=localStorage.getItem(_CRED_KEY);if(!s)return null;return _decryptCred(s);}
+function clearCredentials(){localStorage.removeItem(_CRED_KEY);}
+
+let _websiteStartTime=Date.now();
+let _websiteTime=parseInt(localStorage.getItem('bj_website_time')||'0');
+setInterval(()=>{_websiteTime+=5;localStorage.setItem('bj_website_time',_websiteTime);},5000);
+
+function b64EncodeUnicode(str){const bytes=new TextEncoder().encode(str);let bin='';for(let i=0;i<bytes.length;i++)bin+=String.fromCharCode(bytes[i]);return btoa(bin);}
+function b64DecodeUnicode(b64){const bin=atob(b64);const bytes=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)bytes[i]=bin.charCodeAt(i);return new TextDecoder().decode(bytes);}
+
+function dataEncrypt(obj){
+  const s=JSON.stringify(obj);
+  const k='BJ_DATA_ENC_2024_XK';
+  let r='';
+  for(let i=0;i<s.length;i++)r+=String.fromCharCode(s.charCodeAt(i)^k.charCodeAt(i%k.length));
+  return btoa(unescape(encodeURIComponent(r)));
+}
+function dataDecrypt(enc){
+  try{
+    const r=decodeURIComponent(escape(atob(enc)));
+    const k='BJ_DATA_ENC_2024_XK';
+    let s='';
+    for(let i=0;i<r.length;i++)s+=String.fromCharCode(r.charCodeAt(i)^k.charCodeAt(i%k.length));
+    return JSON.parse(s);
+  }catch(e){return null;}
+}
+
+let _loggedInUser=null;
+let _allUsersCache=null;
+let _allUsersSha=null;
+let _isSaving=false;
+let _saveQueue=[];
+
+async function fetchAllUsers(){
+  try{
+    const res=await fetch(GITHUB_USER_API,{headers:{'Authorization':`Bearer ${GITHUB_TOKEN}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}});
+    if(!res.ok)return{data:[],sha:null};
+    const json=await res.json();
+    const raw=b64DecodeUnicode(json.content.replace(/\n/g,''));
+    let parsed;
+    try{
+      const maybeEnc=raw.trim();
+      if(maybeEnc.startsWith('"')&&maybeEnc.endsWith('"')){
+        parsed=dataDecrypt(JSON.parse(maybeEnc));
+      } else {
+        parsed=JSON.parse(raw);
+      }
+    }catch(e){parsed=[];}
+    _allUsersSha=json.sha;
+    _allUsersCache=Array.isArray(parsed)?parsed:[];
+    return{data:_allUsersCache.filter(u=>!u.__meta),sha:_allUsersSha};
+  }catch(e){return{data:[],sha:null};}
+}
+
+async function saveAllUsersWithRetry(users,retries=3){
+  if(!_allUsersSha)return false;
+  for(let attempt=0;attempt<retries;attempt++){
+    try{
+      const encryptedStr=JSON.stringify(dataEncrypt(users));
+      const content=b64EncodeUnicode(encryptedStr);
+      const res=await fetch(GITHUB_USER_API,{method:'PUT',headers:{'Authorization':`Bearer ${GITHUB_TOKEN}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify({message:'Update user data',content,sha:_allUsersSha})});
+      if(res.ok){
+        const j=await res.json();_allUsersSha=j.content.sha;
+        await new Promise(r=>setTimeout(r,2000+Math.random()*1000));
+        const verifyRes=await fetch(GITHUB_USER_API,{headers:{'Authorization':`Bearer ${GITHUB_TOKEN}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}});
+        if(verifyRes.ok){const vj=await verifyRes.json();_allUsersSha=vj.sha;}
+        return true;
+      }
+      if(res.status===409){
+        await fetchAllUsers();
+        await new Promise(r=>setTimeout(r,2000+Math.random()*1000));
+        continue;
+      }
+      await new Promise(r=>setTimeout(r,2000+Math.random()*1000));
+    }catch(e){if(attempt<retries-1){await new Promise(r=>setTimeout(r,2000+Math.random()*1000));}}
+  }
+  return false;
+}
+
+async function saveAllUsers(users){
+  if(_isSaving){return new Promise(resolve=>{_saveQueue.push({users:JSON.parse(JSON.stringify(users)),resolve});});}
+  _isSaving=true;
+  const ok=await saveAllUsersWithRetry(users);
+  _isSaving=false;
+  if(_saveQueue.length>0){const next=_saveQueue.shift();saveAllUsers(next.users).then(next.resolve);}
+  return ok;
+}
+
+function trackApiCall(action){
+  if(!_loggedInUser)return;
+  if(!_loggedInUser.apiLog)_loggedInUser.apiLog=[];
+  _loggedInUser.apiLog.push({action,time:new Date().toISOString()});
+  if(typeof _loggedInUser.apiCalls!=='number')_loggedInUser.apiCalls=0;
+  _loggedInUser.apiCalls++;
+}
+
+async function appendAudit(action,details){
+  try{
+    let entries=[];let sha=null;
+    const res=await fetch(GITHUB_AUDIT_API,{headers:{'Authorization':`Bearer ${GITHUB_TOKEN}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}});
+    if(res.ok){
+      const j=await res.json();sha=j.sha;
+      try{
+        const raw=b64DecodeUnicode(j.content.replace(/\n/g,''));
+        const maybeEnc=raw.trim();
+        if(maybeEnc.startsWith('"')&&maybeEnc.endsWith('"')){
+          entries=dataDecrypt(JSON.parse(maybeEnc))||[];
+        } else {
+          entries=JSON.parse(raw);
+        }
+      }catch(e){entries=[];}
+    }
+    if(!Array.isArray(entries))entries=[];
+    entries.push({action,details,by:_loggedInUser?_loggedInUser.userid:'unknown',byUsername:_loggedInUser?_loggedInUser.username:'unknown',at:new Date().toISOString()});
+    if(entries.length>2000)entries=entries.slice(-2000);
+    const encryptedStr=JSON.stringify(dataEncrypt(entries));
+    const content=b64EncodeUnicode(encryptedStr);
+    const body={message:'Audit: '+action,content};
+    if(sha)body.sha=sha;
+    await fetch(GITHUB_AUDIT_API,{method:'PUT',headers:{'Authorization':`Bearer ${GITHUB_TOKEN}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify(body)});
+  }catch(e){}
+}
+
+async function signUp(username,password,country,rememberMe){
+  const {data}=await fetchAllUsers();
+  if(data.find(u=>u.username&&u.username.toLowerCase()===username.toLowerCase()))return{ok:false,error:'Username already taken.'};
+  let meta=_allUsersCache.find(u=>u.__meta);
+  const existingUsers=data.filter(u=>!u.__meta&&u.userid);
+  let maxId=0;
+  existingUsers.forEach(u=>{const n=parseInt(u.userid)||0;if(n>maxId)maxId=n;});
+  const userid=String(maxId+1);
+  if(!meta){meta={__meta:true,nextUserId:maxId+2};_allUsersCache.push(meta);}
+  else{meta.nextUserId=maxId+2;}
+  const newUser={
+    userid,username,password:btoa(password),country:country||null,
+    e:0,joinDate:new Date().toISOString(),lastSeen:new Date().toISOString(),
+    totalPlaytime:0,playthroughs:0,
+    highScore:{easy:0,medium:0,hard:0,impossible:0},
+    challengeHighScore:{easy:0,medium:0,hard:0,impossible:0},
+    survivalTimes:{easy:0,medium:0,hard:0,impossible:0},
+    challengeSurvivalTimes:{easy:0,medium:0,hard:0,impossible:0},
+    topRuns:{singleplayer:{easy:[],medium:[],hard:[],impossible:[]},challenge:{easy:[],medium:[],hard:[],impossible:[]}},
+    achievements:{},showOnLeaderboard:true,
+    apiCalls:0,apiLog:[{action:'account_created',time:new Date().toISOString()}],
+    muted:null,banned:null,settings:{},
+    pingHistory:[],followedForums:[]
+  };
+  _allUsersCache.push(newUser);
+  const ok=await saveAllUsers(_allUsersCache);
+  if(!ok)return{ok:false,error:'Failed to save. Try again.'};
+  if(rememberMe)storeCredentials(username,password);
+  appendAudit('account_created',{userid,username});
+  return{ok:true,user:newUser};
+}
+
+async function login(username,password){
+  await fetchAllUsers();
+  const user=_allUsersCache.find(u=>!u.__meta&&u.username&&u.username.toLowerCase()===username.toLowerCase());
+  if(!user)return{ok:false,error:'Username not found.'};
+  if(user.password!==btoa(password))return{ok:false,error:'Wrong password.'};
+  user.lastSeen=new Date().toISOString();
+  if(!user.apiLog)user.apiLog=[];
+  user.apiLog.push({action:'login',time:new Date().toISOString()});
+  if(!user.apiCalls)user.apiCalls=0;
+  user.apiCalls++;
+  if(!user.topRuns)user.topRuns={singleplayer:{easy:[],medium:[],hard:[],impossible:[]},challenge:{easy:[],medium:[],hard:[],impossible:[]}};
+  if(!user.challengeHighScore)user.challengeHighScore={easy:0,medium:0,hard:0,impossible:0};
+  if(!user.challengeSurvivalTimes)user.challengeSurvivalTimes={easy:0,medium:0,hard:0,impossible:0};
+  if(!user.pingHistory)user.pingHistory=[];
+  if(!user.followedForums)user.followedForums=[];
+  await saveAllUsers(_allUsersCache);
+  appendAudit('login',{userid:user.userid,username:user.username});
+  return{ok:true,user};
+}
+
+async function pushCurrentUserToGitHub(){
+  if(!_loggedInUser||!_allUsersCache)return;
+  trackApiCall('pushCurrentUser');
+  saveSettingsToUser();
+  await fetchAllUsers();
+  const idx=_allUsersCache.findIndex(u=>!u.__meta&&u.userid===_loggedInUser.userid);
+  if(idx!==-1)_allUsersCache[idx]=Object.assign({},_loggedInUser);
+  await saveAllUsers(_allUsersCache);
+}
+
+let _forumCache=null;
+let _forumSha=null;
+let _forumPollInterval=null;
+let _currentForumPostId=null;
+
+async function fetchForum(){
+  try{
+    const res=await fetch(GITHUB_FORUM_API,{headers:{'Authorization':`Bearer ${GITHUB_TOKEN}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}});
+    if(!res.ok){if(!_forumCache)_forumCache={posts:[]};return _forumCache;}
+    const json=await res.json();
+    _forumSha=json.sha;
+    let parsed;
+    try{
+      const raw=b64DecodeUnicode(json.content.replace(/\n/g,''));
+      const maybeEnc=raw.trim();
+      if(maybeEnc.startsWith('"')&&maybeEnc.endsWith('"')){
+        parsed=dataDecrypt(JSON.parse(maybeEnc));
+      } else {
+        parsed=JSON.parse(raw);
+      }
+    }catch(e){parsed={posts:[]};}
+    if(!parsed||!parsed.posts)parsed={posts:[]};
+    _forumCache=parsed;
+    return parsed;
+  }catch(e){if(!_forumCache)_forumCache={posts:[]};return _forumCache;}
+}
+
+async function saveForum(data){
+  if(!_forumSha)return false;
+  try{
+    const encryptedStr=JSON.stringify(dataEncrypt(data));
+    const content=b64EncodeUnicode(encryptedStr);
+    const res=await fetch(GITHUB_FORUM_API,{method:'PUT',headers:{'Authorization':`Bearer ${GITHUB_TOKEN}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28','Content-Type':'application/json'},body:JSON.stringify({message:'Forum update',content,sha:_forumSha})});
+    if(res.ok){const j=await res.json();_forumSha=j.content.sha;return true;}
+    return false;
+  }catch(e){return false;}
+}
+
+async function fetchLanguagesFromGitHub(){
+  try{
+    const res=await fetch(LANGUAGES_API,{headers:{'Authorization':`Bearer ${GITHUB_TOKEN}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}});
+    if(!res.ok)return null;
+    const json=await res.json();
+    return JSON.parse(b64DecodeUnicode(json.content.replace(/\n/g,'')));
+  }catch(e){return null;}
+}
+
+let _loadedLanguages={};
+
+const ALL_COUNTRIES=[
+  {code:'AF',flag:'🇦🇫',en:'Afghanistan'},{code:'AL',flag:'🇦🇱',en:'Albania'},{code:'DZ',flag:'🇩🇿',en:'Algeria'},{code:'AD',flag:'🇦🇩',en:'Andorra'},{code:'AO',flag:'🇦🇴',en:'Angola'},{code:'AR',flag:'🇦🇷',en:'Argentina'},{code:'AM',flag:'🇦🇲',en:'Armenia'},{code:'AU',flag:'🇦🇺',en:'Australia'},{code:'AT',flag:'🇦🇹',en:'Austria'},{code:'AZ',flag:'🇦🇿',en:'Azerbaijan'},{code:'BS',flag:'🇧🇸',en:'Bahamas'},{code:'BH',flag:'🇧🇭',en:'Bahrain'},{code:'BD',flag:'🇧🇩',en:'Bangladesh'},{code:'BY',flag:'🇧🇾',en:'Belarus'},{code:'BE',flag:'🇧🇪',en:'Belgium'},{code:'BZ',flag:'🇧🇿',en:'Belize'},{code:'BJ',flag:'🇧🇯',en:'Benin'},{code:'BT',flag:'🇧🇹',en:'Bhutan'},{code:'BO',flag:'🇧🇴',en:'Bolivia'},{code:'BA',flag:'🇧🇦',en:'Bosnia'},{code:'BW',flag:'🇧🇼',en:'Botswana'},{code:'BR',flag:'🇧🇷',en:'Brazil'},{code:'BN',flag:'🇧🇳',en:'Brunei'},{code:'BG',flag:'🇧🇬',en:'Bulgaria'},{code:'BF',flag:'🇧🇫',en:'Burkina Faso'},{code:'BI',flag:'🇧🇮',en:'Burundi'},{code:'CV',flag:'🇨🇻',en:'Cape Verde'},{code:'KH',flag:'🇰🇭',en:'Cambodia'},{code:'CM',flag:'🇨🇲',en:'Cameroon'},{code:'CA',flag:'🇨🇦',en:'Canada'},{code:'CF',flag:'🇨🇫',en:'Central African Republic'},{code:'TD',flag:'🇹🇩',en:'Chad'},{code:'CL',flag:'🇨🇱',en:'Chile'},{code:'CN',flag:'🇨🇳',en:'China'},{code:'CO',flag:'🇨🇴',en:'Colombia'},{code:'CR',flag:'🇨🇷',en:'Costa Rica'},{code:'HR',flag:'🇭🇷',en:'Croatia'},{code:'CU',flag:'🇨🇺',en:'Cuba'},{code:'CY',flag:'🇨🇾',en:'Cyprus'},{code:'CZ',flag:'🇨🇿',en:'Czech Republic'},{code:'DK',flag:'🇩🇰',en:'Denmark'},{code:'DJ',flag:'🇩🇯',en:'Djibouti'},{code:'DO',flag:'🇩🇴',en:'Dominican Republic'},{code:'EC',flag:'🇪🇨',en:'Ecuador'},{code:'EG',flag:'🇪🇬',en:'Egypt'},{code:'SV',flag:'🇸🇻',en:'El Salvador'},{code:'EE',flag:'🇪🇪',en:'Estonia'},{code:'ET',flag:'🇪🇹',en:'Ethiopia'},{code:'FJ',flag:'🇫🇯',en:'Fiji'},{code:'FI',flag:'🇫🇮',en:'Finland'},{code:'FR',flag:'🇫🇷',en:'France'},{code:'GA',flag:'🇬🇦',en:'Gabon'},{code:'GM',flag:'🇬🇲',en:'Gambia'},{code:'GE',flag:'🇬🇪',en:'Georgia'},{code:'DE',flag:'🇩🇪',en:'Germany'},{code:'GH',flag:'🇬🇭',en:'Ghana'},{code:'GR',flag:'🇬🇷',en:'Greece'},{code:'GT',flag:'🇬🇹',en:'Guatemala'},{code:'GN',flag:'🇬🇳',en:'Guinea'},{code:'GY',flag:'🇬🇾',en:'Guyana'},{code:'HT',flag:'🇭🇹',en:'Haiti'},{code:'HN',flag:'🇭🇳',en:'Honduras'},{code:'HU',flag:'🇭🇺',en:'Hungary'},{code:'IS',flag:'🇮🇸',en:'Iceland'},{code:'IN',flag:'🇮🇳',en:'India'},{code:'ID',flag:'🇮🇩',en:'Indonesia'},{code:'IR',flag:'🇮🇷',en:'Iran'},{code:'IQ',flag:'🇮🇶',en:'Iraq'},{code:'IE',flag:'🇮🇪',en:'Ireland'},{code:'IL',flag:'🇮🇱',en:'Israel'},{code:'IT',flag:'🇮🇹',en:'Italy'},{code:'JM',flag:'🇯🇲',en:'Jamaica'},{code:'JP',flag:'🇯🇵',en:'Japan'},{code:'JO',flag:'🇯🇴',en:'Jordan'},{code:'KZ',flag:'🇰🇿',en:'Kazakhstan'},{code:'KE',flag:'🇰🇪',en:'Kenya'},{code:'KW',flag:'🇰🇼',en:'Kuwait'},{code:'LA',flag:'🇱🇦',en:'Laos'},{code:'LV',flag:'🇱🇻',en:'Latvia'},{code:'LB',flag:'🇱🇧',en:'Lebanon'},{code:'LT',flag:'🇱🇹',en:'Lithuania'},{code:'LU',flag:'🇱🇺',en:'Luxembourg'},{code:'MG',flag:'🇲🇬',en:'Madagascar'},{code:'MW',flag:'🇲🇼',en:'Malawi'},{code:'MY',flag:'🇲🇾',en:'Malaysia'},{code:'MV',flag:'🇲🇻',en:'Maldives'},{code:'ML',flag:'🇲🇱',en:'Mali'},{code:'MT',flag:'🇲🇹',en:'Malta'},{code:'MR',flag:'🇲🇷',en:'Mauritania'},{code:'MX',flag:'🇲🇽',en:'Mexico'},{code:'MD',flag:'🇲🇩',en:'Moldova'},{code:'MC',flag:'🇲🇨',en:'Monaco'},{code:'MN',flag:'🇲🇳',en:'Mongolia'},{code:'ME',flag:'🇲🇪',en:'Montenegro'},{code:'MA',flag:'🇲🇦',en:'Morocco'},{code:'MZ',flag:'🇲🇿',en:'Mozambique'},{code:'MM',flag:'🇲🇲',en:'Myanmar'},{code:'NA',flag:'🇳🇦',en:'Namibia'},{code:'NP',flag:'🇳🇵',en:'Nepal'},{code:'NL',flag:'🇳🇱',en:'Netherlands'},{code:'NZ',flag:'🇳🇿',en:'New Zealand'},{code:'NI',flag:'🇳🇮',en:'Nicaragua'},{code:'NE',flag:'🇳🇪',en:'Niger'},{code:'NG',flag:'🇳🇬',en:'Nigeria'},{code:'NO',flag:'🇳🇴',en:'Norway'},{code:'OM',flag:'🇴🇲',en:'Oman'},{code:'PK',flag:'🇵🇰',en:'Pakistan'},{code:'PA',flag:'🇵🇦',en:'Panama'},{code:'PY',flag:'🇵🇾',en:'Paraguay'},{code:'PE',flag:'🇵🇪',en:'Peru'},{code:'PH',flag:'🇵🇭',en:'Philippines'},{code:'PL',flag:'🇵🇱',en:'Poland'},{code:'PT',flag:'🇵🇹',en:'Portugal'},{code:'QA',flag:'🇶🇦',en:'Qatar'},{code:'RO',flag:'🇷🇴',en:'Romania'},{code:'RU',flag:'🇷🇺',en:'Russia'},{code:'RW',flag:'🇷🇼',en:'Rwanda'},{code:'SA',flag:'🇸🇦',en:'Saudi Arabia'},{code:'SN',flag:'🇸🇳',en:'Senegal'},{code:'RS',flag:'🇷🇸',en:'Serbia'},{code:'SG',flag:'🇸🇬',en:'Singapore'},{code:'SK',flag:'🇸🇰',en:'Slovakia'},{code:'SI',flag:'🇸🇮',en:'Slovenia'},{code:'SO',flag:'🇸🇴',en:'Somalia'},{code:'ZA',flag:'🇿🇦',en:'South Africa'},{code:'SS',flag:'🇸🇸',en:'South Sudan'},{code:'ES',flag:'🇪🇸',en:'Spain'},{code:'LK',flag:'🇱🇰',en:'Sri Lanka'},{code:'SD',flag:'🇸🇩',en:'Sudan'},{code:'SE',flag:'🇸🇪',en:'Sweden'},{code:'CH',flag:'🇨🇭',en:'Switzerland'},{code:'SY',flag:'🇸🇾',en:'Syria'},{code:'TW',flag:'🇹🇼',en:'Taiwan'},{code:'TZ',flag:'🇹🇿',en:'Tanzania'},{code:'TH',flag:'🇹🇭',en:'Thailand'},{code:'TG',flag:'🇹🇬',en:'Togo'},{code:'TO',flag:'🇹🇴',en:'Tonga'},{code:'TT',flag:'🇹🇹',en:'Trinidad and Tobago'},{code:'TN',flag:'🇹🇳',en:'Tunisia'},{code:'TR',flag:'🇹🇷',en:'Turkey'},{code:'TM',flag:'🇹🇲',en:'Turkmenistan'},{code:'UG',flag:'🇺🇬',en:'Uganda'},{code:'UA',flag:'🇺🇦',en:'Ukraine'},{code:'AE',flag:'🇦🇪',en:'United Arab Emirates'},{code:'GB',flag:'🇬🇧',en:'United Kingdom'},{code:'US',flag:'🇺🇸',en:'United States'},{code:'UY',flag:'🇺🇾',en:'Uruguay'},{code:'UZ',flag:'🇺🇿',en:'Uzbekistan'},{code:'VU',flag:'🇻🇺',en:'Vanuatu'},{code:'VE',flag:'🇻🇪',en:'Venezuela'},{code:'VN',flag:'🇻🇳',en:'Vietnam'},{code:'YE',flag:'🇾🇪',en:'Yemen'},{code:'ZM',flag:'🇿🇲',en:'Zambia'},{code:'ZW',flag:'🇿🇼',en:'Zimbabwe'}
+];
+
+let _authSelectedCountry=null;
+let _profileSelectedCountry=null;
+
+function renderCountryDropdown(listId,searchId,ddId,btnFlagId,btnNameId,onSelect){
+  const listEl=document.getElementById(listId);
+  const searchTerm=(document.getElementById(searchId)||{}).value||'';
+  const filtered=ALL_COUNTRIES.filter(c=>c.en.toLowerCase().includes(searchTerm.toLowerCase()));
+  listEl.innerHTML='';
+  filtered.forEach(c=>{
+    const div=document.createElement('div');div.className='mm-country-option';div.textContent=c.flag+' '+c.en;
+    div.addEventListener('click',()=>{
+      document.getElementById(ddId).style.display='none';
+      if(btnFlagId)document.getElementById(btnFlagId).textContent=c.flag;
+      if(btnNameId)document.getElementById(btnNameId).textContent=c.en;
+      onSelect(c);
+    });
+    listEl.appendChild(div);
+  });
+}
+
+function setupCountryDropdown(btnId,ddId,searchId,listId,flagId,nameId,onSelect){
+  const btn=document.getElementById(btnId);const dd=document.getElementById(ddId);const search=document.getElementById(searchId);
+  if(!btn||!dd)return;
+  btn.addEventListener('click',e=>{e.stopPropagation();const open=dd.style.display!=='none';dd.style.display=open?'none':'block';if(!open){search.value='';renderCountryDropdown(listId,searchId,ddId,flagId,nameId,onSelect);setTimeout(()=>search.focus(),50);}});
+  search.addEventListener('input',()=>renderCountryDropdown(listId,searchId,ddId,flagId,nameId,onSelect));
+  document.addEventListener('click',e=>{if(dd.style.display!=='none'&&!e.target.closest('#'+btnId)&&!e.target.closest('#'+ddId))dd.style.display='none';});
+}
+
+setupCountryDropdown('auth-country-btn','auth-country-dropdown','auth-country-search','auth-country-list','auth-country-flag','auth-country-name',c=>{_authSelectedCountry=c;});
+setupCountryDropdown('profile-country-btn','profile-country-dropdown','profile-country-search','profile-country-list','profile-country-flag','profile-country-name',c=>{_profileSelectedCountry=c;});
+
+document.getElementById('auth-tab-login').addEventListener('click',()=>{document.getElementById('auth-tab-login').classList.add('active');document.getElementById('auth-tab-signup').classList.remove('active');document.getElementById('auth-login-panel').style.display='';document.getElementById('auth-signup-panel').style.display='none';});
+document.getElementById('auth-tab-signup').addEventListener('click',()=>{document.getElementById('auth-tab-signup').classList.add('active');document.getElementById('auth-tab-login').classList.remove('active');document.getElementById('auth-signup-panel').style.display='';document.getElementById('auth-login-panel').style.display='none';});
+
+document.getElementById('auth-login-btn').addEventListener('click',async()=>{
+  const username=document.getElementById('auth-login-username').value.trim();
+  const pw=document.getElementById('auth-login-password').value;
+  const errEl=document.getElementById('auth-login-error');
+  if(!username||!pw){errEl.textContent='Please fill all fields.';return;}
+  errEl.textContent='Logging in...';
+  document.getElementById('auth-login-btn').disabled=true;
+  const result=await login(username,pw);
+  document.getElementById('auth-login-btn').disabled=false;
+  if(!result.ok){errEl.textContent=result.error;return;}
+  const user=result.user;
+  if(user.banned){
+    const now=Date.now();
+    if(user.banned.until==='permanent'||new Date(user.banned.until).getTime()>now){showBanScreen(user);return;}
+    else{user.banned=null;const idx=_allUsersCache.findIndex(u=>u.userid===user.userid);if(idx!==-1)_allUsersCache[idx]=user;await saveAllUsers(_allUsersCache);}
+  }
+  if(document.getElementById('auth-remember-me').checked)storeCredentials(username,pw);
+  else clearCredentials();
+  _loggedInUser=user;errEl.textContent='';afterLogin();
+});
+
+document.getElementById('auth-signup-btn').addEventListener('click',async()=>{
+  const username=document.getElementById('auth-signup-username').value.trim();
+  const password=document.getElementById('auth-signup-password').value;
+  const rememberMe=document.getElementById('auth-signup-remember-me').checked;
+  const errEl=document.getElementById('auth-signup-error');
+  if(!username||!password){errEl.textContent='Please fill all fields.';return;}
+  if(!_authSelectedCountry){errEl.textContent='Please select a country.';return;}
+  errEl.textContent='Creating account...';
+  document.getElementById('auth-signup-btn').disabled=true;
+  const result=await signUp(username,password,_authSelectedCountry,rememberMe);
+  document.getElementById('auth-signup-btn').disabled=false;
+  if(!result.ok){errEl.textContent=result.error;return;}
+  _loggedInUser=result.user;errEl.textContent='';afterLogin();
+});
+
+function showBanScreen(user){
+  document.getElementById('auth-screen').style.display='none';
+  const bs=document.getElementById('ban-screen');bs.style.display='flex';
+  document.getElementById('ban-reason-text').textContent='Reason: '+(user.banned&&user.banned.reason?user.banned.reason:'No reason given.');
+  const cd=document.getElementById('ban-countdown-text');
+  const refreshBtn=document.getElementById('ban-refresh-btn');
+  if(user.banned&&user.banned.until==='permanent'){
+    cd.textContent='This ban is permanent.';
+  } else if(user.banned){
+    function updateCd(){
+      const ms=new Date(user.banned.until).getTime()-Date.now();
+      if(ms<=0){
+        cd.textContent='Your ban has expired.';
+        refreshBtn.style.display='block';
+        refreshBtn.addEventListener('click',()=>location.reload());
+        return;
+      }
+      const s=Math.floor(ms/1000);const m=Math.floor(s/60);const h=Math.floor(m/60);const d=Math.floor(h/24);
+      cd.textContent='Unban in: '+(d>0?d+'d ':'')+(h%24>0?h%24+'h ':'')+(m%60>0?m%60+'m ':'')+(s%60)+'s';
+      setTimeout(updateCd,1000);
+    }
+    updateCd();
+  }
+}
+
+function afterLogin(){
+  document.getElementById('auth-screen').style.display='none';
+  initMainMenu();
+}
+
+function isUserMuted(user){if(!user||!user.muted)return false;if(user.muted.until==='permanent')return true;return new Date(user.muted.until).getTime()>Date.now();}
+function isUserBanned(user){if(!user||!user.banned)return false;if(user.banned.until==='permanent')return true;return new Date(user.banned.until).getTime()>Date.now();}
+function isAdmin(user){return user&&user.e===1;}
+function isValidAdmin(user){return user&&user.e===1;}
+
+function getMuteTimeLeft(user){
+  if(!user||!user.muted)return 0;
+  if(user.muted.until==='permanent')return Infinity;
+  return Math.max(0,new Date(user.muted.until).getTime()-Date.now());
+}
+
+const SOUND_KEYS=['respawn','lava','jump','walking','brick','ambient','achievement','ping'];
+let soundVols={};
+SOUND_KEYS.forEach(k=>{soundVols[k]=parseInt(localStorage.getItem('soundVol_'+k)||{respawn:70,lava:60,jump:40,walking:70,brick:80,ambient:40,achievement:90,ping:80}[k]);});
+function saveSoundVol(k,v){soundVols[k]=v;localStorage.setItem('soundVol_'+k,v);}
+
+let gfxSettings={
+  menuLogoGlow:localStorage.getItem('gfx_menuLogoGlow')!=='false',
+  btnGlow:localStorage.getItem('gfx_btnGlow')!=='false',
+  menuParticles:localStorage.getItem('gfx_menuParticles')!=='false',
+  player:localStorage.getItem('gfx_player')!=='false',
+  lava:localStorage.getItem('gfx_lava')!=='false',
+  bluePlatform:localStorage.getItem('gfx_bluePlatform')!=='false',
+  platforms:localStorage.getItem('gfx_platforms')!=='false',
+  hud:localStorage.getItem('gfx_hud')!=='false'
+};
+
+let currentLanguage=localStorage.getItem('language')||'en';
+let currentDifficulty=localStorage.getItem('difficulty')||'medium';
+let allSoundsEnabled=localStorage.getItem('allSounds')!=='false';
+let doubleJumpGameplay=localStorage.getItem('gameplayDoubleJump')!=='false';
+let showDoubleJumpHUD=localStorage.getItem('featShowDoubleJump')!=='false';
+let showHeightEnabled=localStorage.getItem('featShowHeight')!=='false';
+let showTopEnabled=localStorage.getItem('featShowTop')!=='false';
+let showTimerEnabled=localStorage.getItem('featShowTimer')!=='false';
+let showOnLeaderboard=localStorage.getItem('bj_showOnLb')!=='false';
+let pingNotifsEnabled=localStorage.getItem('featPingNotif')!=='false';
+
+let audioSettings={};
+['respawn','lava','jump','walking','brick','ambient','achievement','ping'].forEach(k=>{
+  audioSettings[k]=localStorage.getItem('audio'+k.charAt(0).toUpperCase()+k.slice(1))!=='false';
+});
+
+const PING_SOUND=new Audio('sounds/discord_ping_sound_effect.mp3');
+function playPingSound(){
+  if(!allSoundsEnabled||!audioSettings.ping)return;
+  try{PING_SOUND.currentTime=0;PING_SOUND.volume=soundVols.ping/100;PING_SOUND.play().catch(()=>{});}catch(e){}
+}
+
+const ACHIEVEMENT_DEFS=[
+  {id:'easy_250',mode:'easy',type:'height',threshold:2500,name:'Easy Climber I',desc:'Reach 250 on Easy.'},{id:'easy_500',mode:'easy',type:'height',threshold:5000,name:'Easy Climber II',desc:'Reach 500 on Easy.'},{id:'easy_1000',mode:'easy',type:'height',threshold:10000,name:'Easy Climber III',desc:'Reach 1000 on Easy.'},{id:'easy_2500',mode:'easy',type:'height',threshold:25000,name:'Easy Expert',desc:'Reach 2500 on Easy.'},{id:'easy_5000',mode:'easy',type:'height',threshold:50000,name:'Easy Master',desc:'Reach 5000 on Easy.'},{id:'easy_10000',mode:'easy',type:'height',threshold:100000,name:'Easy Legend',desc:'Reach 10000 on Easy.'},{id:'easy_survive_30s',mode:'easy',type:'time',threshold:30,name:'Easy 30s',desc:'Survive 30s on Easy.'},{id:'easy_survive_1m',mode:'easy',type:'time',threshold:60,name:'Easy 1m',desc:'Survive 1m on Easy.'},{id:'easy_survive_3m',mode:'easy',type:'time',threshold:180,name:'Easy 3m',desc:'Survive 3m on Easy.'},{id:'easy_survive_5m',mode:'easy',type:'time',threshold:300,name:'Easy 5m',desc:'Survive 5m on Easy.'},{id:'easy_survive_10m',mode:'easy',type:'time',threshold:600,name:'Easy 10m',desc:'Survive 10m on Easy.'},{id:'easy_survive_15m',mode:'easy',type:'time',threshold:900,name:'Easy 15m',desc:'Survive 15m on Easy.'},
+  {id:'medium_250',mode:'medium',type:'height',threshold:2500,name:'Medium Climber I',desc:'Reach 250 on Medium.'},{id:'medium_500',mode:'medium',type:'height',threshold:5000,name:'Medium Climber II',desc:'Reach 500 on Medium.'},{id:'medium_1000',mode:'medium',type:'height',threshold:10000,name:'Medium Climber III',desc:'Reach 1000 on Medium.'},{id:'medium_2500',mode:'medium',type:'height',threshold:25000,name:'Medium Expert',desc:'Reach 2500 on Medium.'},{id:'medium_5000',mode:'medium',type:'height',threshold:50000,name:'Medium Master',desc:'Reach 5000 on Medium.'},{id:'medium_10000',mode:'medium',type:'height',threshold:100000,name:'Medium Legend',desc:'Reach 10000 on Medium.'},{id:'medium_survive_30s',mode:'medium',type:'time',threshold:30,name:'Medium 30s',desc:'Survive 30s on Medium.'},{id:'medium_survive_1m',mode:'medium',type:'time',threshold:60,name:'Medium 1m',desc:'Survive 1m on Medium.'},{id:'medium_survive_3m',mode:'medium',type:'time',threshold:180,name:'Medium 3m',desc:'Survive 3m on Medium.'},{id:'medium_survive_5m',mode:'medium',type:'time',threshold:300,name:'Medium 5m',desc:'Survive 5m on Medium.'},{id:'medium_survive_10m',mode:'medium',type:'time',threshold:600,name:'Medium 10m',desc:'Survive 10m on Medium.'},{id:'medium_survive_15m',mode:'medium',type:'time',threshold:900,name:'Medium 15m',desc:'Survive 15m on Medium.'},
+  {id:'hard_250',mode:'hard',type:'height',threshold:2500,name:'Hard Climber I',desc:'Reach 250 on Hard.'},{id:'hard_500',mode:'hard',type:'height',threshold:5000,name:'Hard Climber II',desc:'Reach 500 on Hard.'},{id:'hard_1000',mode:'hard',type:'height',threshold:10000,name:'Hard Climber III',desc:'Reach 1000 on Hard.'},{id:'hard_2500',mode:'hard',type:'height',threshold:25000,name:'Hard Expert',desc:'Reach 2500 on Hard.'},{id:'hard_5000',mode:'hard',type:'height',threshold:50000,name:'Hard Master',desc:'Reach 5000 on Hard.'},{id:'hard_10000',mode:'hard',type:'height',threshold:100000,name:'Hard Legend',desc:'Reach 10000 on Hard.'},{id:'hard_survive_30s',mode:'hard',type:'time',threshold:30,name:'Hard 30s',desc:'Survive 30s on Hard.'},{id:'hard_survive_1m',mode:'hard',type:'time',threshold:60,name:'Hard 1m',desc:'Survive 1m on Hard.'},{id:'hard_survive_3m',mode:'hard',type:'time',threshold:180,name:'Hard 3m',desc:'Survive 3m on Hard.'},{id:'hard_survive_5m',mode:'hard',type:'time',threshold:300,name:'Hard 5m',desc:'Survive 5m on Hard.'},{id:'hard_survive_10m',mode:'hard',type:'time',threshold:600,name:'Hard 10m',desc:'Survive 10m on Hard.'},{id:'hard_survive_15m',mode:'hard',type:'time',threshold:900,name:'Hard 15m',desc:'Survive 15m on Hard.'},
+  {id:'impossible_250',mode:'impossible',type:'height',threshold:2500,name:'Impossible Climber I',desc:'Reach 250 on Impossible.'},{id:'impossible_500',mode:'impossible',type:'height',threshold:5000,name:'Impossible Climber II',desc:'Reach 500 on Impossible.'},{id:'impossible_1000',mode:'impossible',type:'height',threshold:10000,name:'Impossible Climber III',desc:'Reach 1000 on Impossible.'},{id:'impossible_2500',mode:'impossible',type:'height',threshold:25000,name:'Impossible Expert',desc:'Reach 2500 on Impossible.'},{id:'impossible_5000',mode:'impossible',type:'height',threshold:50000,name:'Impossible Master',desc:'Reach 5000 on Impossible.'},{id:'impossible_10000',mode:'impossible',type:'height',threshold:100000,name:'Impossible Legend',desc:'Reach 10000 on Impossible.'},{id:'impossible_survive_30s',mode:'impossible',type:'time',threshold:30,name:'Impossible 30s',desc:'Survive 30s on Impossible.'},{id:'impossible_survive_1m',mode:'impossible',type:'time',threshold:60,name:'Impossible 1m',desc:'Survive 1m on Impossible.'},{id:'impossible_survive_3m',mode:'impossible',type:'time',threshold:180,name:'Impossible 3m',desc:'Survive 3m on Impossible.'},{id:'impossible_survive_5m',mode:'impossible',type:'time',threshold:300,name:'Impossible 5m',desc:'Survive 5m on Impossible.'},{id:'impossible_survive_10m',mode:'impossible',type:'time',threshold:600,name:'Impossible 10m',desc:'Survive 10m on Impossible.'},{id:'impossible_survive_15m',mode:'impossible',type:'time',threshold:900,name:'Impossible 15m',desc:'Survive 15m on Impossible.'},
+  {id:'playthrough_5',mode:'general',type:'death',threshold:5,name:'First Blood',desc:'5 playthroughs total.'},{id:'playthrough_10',mode:'general',type:'death',threshold:10,name:'Frequent Flier',desc:'10 playthroughs.'},{id:'playthrough_25',mode:'general',type:'death',threshold:25,name:'Veteran',desc:'25 playthroughs.'},{id:'playthrough_50',mode:'general',type:'death',threshold:50,name:'Hardcore Repeater',desc:'50 playthroughs.'},{id:'playthrough_100',mode:'general',type:'death',threshold:100,name:'Century',desc:'100 playthroughs.'},{id:'playthrough_250',mode:'general',type:'death',threshold:250,name:'Lava Enthusiast',desc:'250 playthroughs.'},{id:'playthrough_500',mode:'general',type:'death',threshold:500,name:'Playthrough Addict',desc:'500 playthroughs.'},{id:'playthrough_1000',mode:'general',type:'death',threshold:1000,name:'One Thousand',desc:'1000 playthroughs.'}
+];
+
+const CHALLENGE_DEFS=[
+  {id:'angel_wings',name:'Angel Wings',desc:'You have 2 double jumps instead of 1.',modifier:+15,icon:'🪽',apply:(state)=>{state.maxJumps=3;}},
+  {id:'angel_cd_1',name:'Angel Wing Cooldown I',desc:'1.5s cooldown per double jump.',modifier:-10,icon:'⏱',apply:(state)=>{state.djCooldown=1500;}},
+  {id:'angel_cd_2',name:'Angel Wing Cooldown II',desc:'3s cooldown per double jump.',modifier:-20,icon:'⏱',apply:(state)=>{state.djCooldown=3000;}},
+  {id:'angel_cd_3',name:'Angel Wing Cooldown III',desc:'5s cooldown per double jump.',modifier:-35,icon:'⏱',apply:(state)=>{state.djCooldown=5000;}},
+  {id:'anti_grav_1',name:'Anti-Gravity I',desc:'Jump 5% higher.',modifier:+5,icon:'⬆️',apply:(state)=>{state.jumpMultiplier*=1.05;}},
+  {id:'anti_grav_2',name:'Anti-Gravity II',desc:'Jump 10% higher.',modifier:+10,icon:'⬆️',apply:(state)=>{state.jumpMultiplier*=1.10;}},
+  {id:'anti_grav_3',name:'Anti-Gravity III',desc:'Jump 15% higher.',modifier:+15,icon:'⬆️',apply:(state)=>{state.jumpMultiplier*=1.15;}},
+  {id:'caseoh',name:'CaseOh',desc:'Weigh 20% more — jump 20% less, fall 20% faster.',modifier:-20,icon:'🍔',apply:(state)=>{state.jumpMultiplier*=0.80;state.gravityMultiplier*=1.20;}},
+  {id:'light_fog',name:'Light Fog',desc:'See 10% less zoom.',modifier:-5,icon:'🌫️',apply:(state)=>{state.fogLevel=0.10;}},
+  {id:'medium_fog',name:'Medium Fog',desc:'See 15% less zoom.',modifier:-10,icon:'🌫️',apply:(state)=>{state.fogLevel=0.15;}},
+  {id:'heavy_fog',name:'Heavy Fog',desc:'See 20% less zoom.',modifier:-18,icon:'🌫️',apply:(state)=>{state.fogLevel=0.20;}},
+  {id:'dense_fog',name:'Dense Fog',desc:'See 35% less zoom.',modifier:-30,icon:'🌫️',apply:(state)=>{state.fogLevel=0.35;}},
+  {id:'speed_1',name:'Speed Boost I',desc:'Move 5% faster.',modifier:+5,icon:'💨',apply:(state)=>{state.speedMultiplier*=1.05;}},
+  {id:'speed_2',name:'Speed Boost II',desc:'Move 10% faster.',modifier:+10,icon:'💨',apply:(state)=>{state.speedMultiplier*=1.10;}},
+  {id:'speed_3',name:'Speed Boost III',desc:'Move 15% faster.',modifier:+15,icon:'💨',apply:(state)=>{state.speedMultiplier*=1.15;}},
+  {id:'slow_1',name:'Slowness I',desc:'Move 10% slower.',modifier:-10,icon:'🐢',apply:(state)=>{state.speedMultiplier*=0.90;}},
+  {id:'slow_2',name:'Slowness II',desc:'Move 15% slower.',modifier:-15,icon:'🐢',apply:(state)=>{state.speedMultiplier*=0.85;}},
+  {id:'slow_3',name:'Slowness III',desc:'Move 25% slower.',modifier:-25,icon:'🐢',apply:(state)=>{state.speedMultiplier*=0.75;}},
+  {id:'lava_rise_1',name:'Lava Rise I',desc:'Lava rises 5% faster.',modifier:-5,icon:'🌋',apply:(state)=>{state.lavaSpeedMultiplier*=1.05;}},
+  {id:'lava_rise_2',name:'Lava Rise II',desc:'Lava rises 10% faster.',modifier:-10,icon:'🌋',apply:(state)=>{state.lavaSpeedMultiplier*=1.10;}},
+  {id:'lava_rise_3',name:'Lava Rise III',desc:'Lava rises 15% faster.',modifier:-15,icon:'🌋',apply:(state)=>{state.lavaSpeedMultiplier*=1.15;}},
+  {id:'lava_drop_1',name:'Lava Drop I',desc:'Lava rises 5% slower.',modifier:+5,icon:'🧊',apply:(state)=>{state.lavaSpeedMultiplier*=0.95;}},
+  {id:'lava_drop_2',name:'Lava Drop II',desc:'Lava rises 10% slower.',modifier:+10,icon:'🧊',apply:(state)=>{state.lavaSpeedMultiplier*=0.90;}},
+  {id:'lava_drop_3',name:'Lava Drop III',desc:'Lava rises 15% slower.',modifier:+15,icon:'🧊',apply:(state)=>{state.lavaSpeedMultiplier*=0.85;}}
+];
+
+let activeChallenges=new Set();
+let currentGameMode='singleplayer';
+let pendingGameMode='singleplayer';
+
+function getChallengeModifier(){
+  let total=0;
+  activeChallenges.forEach(id=>{
+    const def=CHALLENGE_DEFS.find(c=>c.id===id);
+    if(def)total+=def.modifier;
+  });
+  return total;
+}
+
+function buildChallengeState(){
+  const state={
+    maxJumps:doubleJumpGameplay?2:1,
+    jumpMultiplier:1.0,
+    gravityMultiplier:1.0,
+    speedMultiplier:1.0,
+    lavaSpeedMultiplier:1.0,
+    djCooldown:0,
+    fogLevel:0
+  };
+  activeChallenges.forEach(id=>{
+    const def=CHALLENGE_DEFS.find(c=>c.id===id);
+    if(def)def.apply(state);
+  });
+  return state;
+}
+
+let challengeState=null;
+
+function renderChallengeGrid(){
+  const grid=document.getElementById('challenge-list-grid');
+  if(!grid)return;
+  grid.innerHTML='';
+  CHALLENGE_DEFS.forEach(def=>{
+    const active=activeChallenges.has(def.id);
+    const isPos=def.modifier>=0;
+    const card=document.createElement('div');
+    card.className='challenge-card'+(active?' challenge-active':'');
+    card.title=def.desc;
+    const modStr=(isPos?'+':'')+def.modifier+'%';
+    card.innerHTML=`<div class="challenge-card-icon">${def.icon}</div><div class="challenge-card-name">${def.name}</div><div class="challenge-card-mod" style="color:${isPos?'#22c55e':'#ef4444'}">${modStr}</div>`;
+    card.addEventListener('click',()=>{
+      if(activeChallenges.has(def.id))activeChallenges.delete(def.id);
+      else activeChallenges.add(def.id);
+      renderChallengeGrid();
+      updateChallengeModifierDisplay();
+    });
+    grid.appendChild(card);
+  });
+  updateChallengeModifierDisplay();
+}
+
+function updateChallengeModifierDisplay(){
+  const total=getChallengeModifier();
+  const el=document.getElementById('challenge-modifier-val');
+  if(!el)return;
+  const isPos=total>=0;
+  el.textContent=(isPos?'+':'')+total+'%';
+  el.style.color=isPos?'#22c55e':'#ef4444';
+}
+
+let maxHeights={easy:0,medium:0,hard:0,impossible:0};
+let challengeMaxHeights={easy:0,medium:0,hard:0,impossible:0};
+let survivalTimes={easy:0,medium:0,hard:0,impossible:0};
+let challengeSurvivalTimes={easy:0,medium:0,hard:0,impossible:0};
+let unlockedAchievements={};
+let _totalDeaths=0;
+let _totalPlaytime=0;
+let topRuns={singleplayer:{easy:[],medium:[],hard:[],impossible:[]},challenge:{easy:[],medium:[],hard:[],impossible:[]}};
+
+function loadPlayerData(){
+  if(!_loggedInUser)return;
+  maxHeights=Object.assign({easy:0,medium:0,hard:0,impossible:0},_loggedInUser.highScore||{});
+  challengeMaxHeights=Object.assign({easy:0,medium:0,hard:0,impossible:0},_loggedInUser.challengeHighScore||{});
+  survivalTimes=Object.assign({easy:0,medium:0,hard:0,impossible:0},_loggedInUser.survivalTimes||{});
+  challengeSurvivalTimes=Object.assign({easy:0,medium:0,hard:0,impossible:0},_loggedInUser.challengeSurvivalTimes||{});
+  unlockedAchievements=Object.assign({},_loggedInUser.achievements||{});
+  _totalDeaths=_loggedInUser.playthroughs||_loggedInUser.deaths||0;
+  _totalPlaytime=_loggedInUser.totalPlaytime||0;
+  topRuns=_loggedInUser.topRuns||{singleplayer:{easy:[],medium:[],hard:[],impossible:[]},challenge:{easy:[],medium:[],hard:[],impossible:[]}};
+  ['singleplayer','challenge'].forEach(m=>{
+    if(!topRuns[m])topRuns[m]={easy:[],medium:[],hard:[],impossible:[]};
+    ['easy','medium','hard','impossible'].forEach(d=>{if(!topRuns[m][d])topRuns[m][d]=[];});
+  });
+}
+
+function savePlayerData(){
+  if(!_loggedInUser)return;
+  _loggedInUser.highScore=Object.assign({},maxHeights);
+  _loggedInUser.challengeHighScore=Object.assign({},challengeMaxHeights);
+  _loggedInUser.survivalTimes=Object.assign({},survivalTimes);
+  _loggedInUser.challengeSurvivalTimes=Object.assign({},challengeSurvivalTimes);
+  _loggedInUser.achievements=Object.assign({},unlockedAchievements);
+  _loggedInUser.playthroughs=_totalDeaths;
+  _loggedInUser.deaths=_totalDeaths;
+  _loggedInUser.totalPlaytime=_totalPlaytime;
+  _loggedInUser.topRuns=JSON.parse(JSON.stringify(topRuns));
+  _loggedInUser.lastSeen=new Date().toISOString();
+}
+
+function addTopRun(mode,diff,score,time,challenges){
+  if(!topRuns[mode])topRuns[mode]={easy:[],medium:[],hard:[],impossible:[]};
+  if(!topRuns[mode][diff])topRuns[mode][diff]=[];
+  topRuns[mode][diff].push({score:Math.floor(score/10),time:parseFloat(time.toFixed(1)),date:new Date().toISOString(),challenges:challenges?Array.from(challenges):[]});
+  topRuns[mode][diff].sort((a,b)=>b.score-a.score);
+  topRuns[mode][diff]=topRuns[mode][diff].slice(0,5);
+}
+
+function applyGfxSettings(){
+  document.body.classList.toggle('no-menu-logo-glow',!gfxSettings.menuLogoGlow);
+  document.body.classList.toggle('no-btn-glow',!gfxSettings.btnGlow);
+  document.body.classList.toggle('no-menu-particles',!gfxSettings.menuParticles);
+  document.body.classList.toggle('no-player-glow',!gfxSettings.player);
+  document.body.classList.toggle('no-lava-glow',!gfxSettings.lava);
+  document.body.classList.toggle('no-blue-platform-glow',!gfxSettings.bluePlatform);
+  document.body.classList.toggle('no-platform-shadows',!gfxSettings.platforms);
+  document.body.classList.toggle('no-hud-glow',!gfxSettings.hud);
+}
+
+function saveGfxSettings(){
+  Object.keys(gfxSettings).forEach(k=>localStorage.setItem('gfx_'+k,gfxSettings[k]));
+  applyGfxSettings();
+}
+
+function syncGfxUI(){
+  const map={
+    'mm-gfx-menu-logo-glow':'menuLogoGlow','p-gfx-menu-logo-glow':'menuLogoGlow',
+    'mm-gfx-btn-glow':'btnGlow','p-gfx-btn-glow':'btnGlow',
+    'mm-gfx-menu-particles':'menuParticles','p-gfx-menu-particles':'menuParticles',
+    'mm-gfx-player':'player','p-gfx-player':'player',
+    'mm-gfx-lava':'lava','p-gfx-lava':'lava',
+    'mm-gfx-blue-platform':'bluePlatform','p-gfx-blue-platform':'bluePlatform',
+    'mm-gfx-platforms':'platforms','p-gfx-platforms':'platforms',
+    'mm-gfx-hud':'hud','p-gfx-hud':'hud'
+  };
+  Object.entries(map).forEach(([elId,key])=>{const el=document.getElementById(elId);if(el)el.checked=!!gfxSettings[key];});
+}
+
+[
+  ['mm-gfx-menu-logo-glow','p-gfx-menu-logo-glow','menuLogoGlow'],
+  ['mm-gfx-btn-glow','p-gfx-btn-glow','btnGlow'],
+  ['mm-gfx-menu-particles','p-gfx-menu-particles','menuParticles'],
+  ['mm-gfx-player','p-gfx-player','player'],
+  ['mm-gfx-lava','p-gfx-lava','lava'],
+  ['mm-gfx-blue-platform','p-gfx-blue-platform','bluePlatform'],
+  ['mm-gfx-platforms','p-gfx-platforms','platforms'],
+  ['mm-gfx-hud','p-gfx-hud','hud']
+].forEach(([mmId,pId,key])=>{
+  const mmEl=document.getElementById(mmId);const pEl=document.getElementById(pId);
+  if(mmEl)mmEl.addEventListener('change',e=>{gfxSettings[key]=e.target.checked;if(pEl)pEl.checked=e.target.checked;saveGfxSettings();onSettingChanged();});
+  if(pEl)pEl.addEventListener('change',e=>{gfxSettings[key]=e.target.checked;if(mmEl)mmEl.checked=e.target.checked;saveGfxSettings();onSettingChanged();});
+});
+
+function syncAllAudioUI(){
+  const allT=document.getElementById('all-sounds-toggle');if(allT)allT.checked=allSoundsEnabled;
+  const mmAll=document.getElementById('mm-all-sounds');if(mmAll)mmAll.checked=allSoundsEnabled;
+  SOUND_KEYS.forEach(k=>{
+    [k,k].forEach((_,i)=>{
+      const id=i===0?'audio-'+k:'mm-audio-'+k;
+      const el=document.getElementById(id);if(el)el.checked=!!audioSettings[k];
+    });
+    const v=soundVols[k];
+    ['vol-'+k,'pvol-'+k].forEach(id=>{const el=document.getElementById(id);if(el)el.value=v;});
+  });
+  updateAudioRowHighlights();
+}
+
+function updateAudioRowHighlights(){
+  SOUND_KEYS.forEach(k=>{
+    ['asr-'+k,'pasr-'+k].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.toggle('audio-row-on',!!audioSettings[k]);});
+  });
+}
+
+SOUND_KEYS.forEach(key=>{
+  const mmEl=document.getElementById('mm-audio-'+key);
+  const pEl=document.getElementById('audio-'+key);
+  if(mmEl)mmEl.addEventListener('change',e=>{audioSettings[key]=e.target.checked;if(pEl)pEl.checked=e.target.checked;localStorage.setItem('audio'+key.charAt(0).toUpperCase()+key.slice(1),e.target.checked);updateAudioRowHighlights();onSettingChanged();});
+  if(pEl)pEl.addEventListener('change',e=>{audioSettings[key]=e.target.checked;if(mmEl)mmEl.checked=e.target.checked;localStorage.setItem('audio'+key.charAt(0).toUpperCase()+key.slice(1),e.target.checked);updateAudioRowHighlights();onSettingChanged();});
+});
+
+function setupAudioDropdowns(){
+  SOUND_KEYS.forEach(k=>{
+    [[`asr-${k}`,`adrop-${k}`],[`pasr-${k}`,`padrop-${k}`]].forEach(([rowId,dropId])=>{
+      const row=document.getElementById(rowId);const drop=document.getElementById(dropId);
+      if(row&&drop){const h=row.querySelector('.audio-sound-header');if(h)h.addEventListener('click',e=>{if(e.target.closest('.toggle'))return;drop.style.display=drop.style.display==='block'?'none':'block';});}
+    });
+    ['vol-'+k,'pvol-'+k].forEach(volId=>{
+      const el=document.getElementById(volId);
+      if(el){el.addEventListener('input',()=>{saveSoundVol(k,parseInt(el.value,10));const otherId=volId.startsWith('p')?'vol-'+k:'pvol-'+k;const other=document.getElementById(otherId);if(other)other.value=el.value;});}
+    });
+  });
+}
+setupAudioDropdowns();
+
+const allSoundsToggle=document.getElementById('all-sounds-toggle');
+if(allSoundsToggle)allSoundsToggle.addEventListener('change',e=>{allSoundsEnabled=e.target.checked;localStorage.setItem('allSounds',allSoundsEnabled);const mm=document.getElementById('mm-all-sounds');if(mm)mm.checked=e.target.checked;onSettingChanged();});
+document.getElementById('mm-all-sounds').addEventListener('change',e=>{allSoundsEnabled=e.target.checked;localStorage.setItem('allSounds',allSoundsEnabled);if(allSoundsToggle)allSoundsToggle.checked=e.target.checked;onSettingChanged();});
+
+function formatTime(seconds){const s=Math.floor(seconds);if(s<60)return s+'s';const m=Math.floor(s/60);const rs=s%60;if(m<60)return m+'m '+rs+'s';const h=Math.floor(m/60);const rm=m%60;return h+'h '+rm+'m';}
+
+function updateHUDVisibility(){
+  document.getElementById('current').style.display=showHeightEnabled?'':'none';
+  document.getElementById('max').style.display=showTopEnabled?'':'none';
+  document.getElementById('top-time-display').style.display=showTopEnabled?'':'none';
+  document.getElementById('timer-display').style.display=showTimerEnabled?'':'none';
+  document.getElementById('difficulty-display').style.display='';
+  document.getElementById('hp-display').style.display=showDoubleJumpHUD?'':'none';
+}
+
+const translations={
+  en:{height:'HEIGHT',topHeight:'TOP',topTime:'TOP TIME',difficulty:'DIFFICULTY',timer:'TIME',doubleJump:'Double Jump = true',pauseHint:'Press ESC to pause',paused:'PAUSED',continue:'CONTINUE',extra:'EXTRA',settings:'SETTINGS',help:'HELP',restart:'RESTART',back:'BACK',youDied:'PLAYTHROUGH OVER',respawn:'Click / Space to Respawn'},
+  da:{height:'HØJDE',topHeight:'TOP',topTime:'TOP TID',difficulty:'SVÆRHEDSGRAD',timer:'TID',doubleJump:'Dobbelt Hop = sand',pauseHint:'Tryk ESC for pause',paused:'PAUSE',continue:'FORTSÆT',extra:'EKSTRA',settings:'INDSTILLINGER',help:'HJÆLP',restart:'GENSTART',back:'TILBAGE',youDied:'GENNEMSPILNING SLUT',respawn:'Klik / Mellemrum'},
+  de:{height:'HÖHE',topHeight:'TOP',topTime:'BEST ZEIT',difficulty:'SCHWIERIGKEIT',timer:'ZEIT',doubleJump:'Doppelsprung = wahr',pauseHint:'ESC drücken',paused:'PAUSIERT',continue:'FORTSETZEN',extra:'EXTRA',settings:'EINSTELLUNGEN',help:'HILFE',restart:'NEUSTART',back:'ZURÜCK',youDied:'DURCHSPIELUNG VORBEI',respawn:'Klick / Leertaste'}
+};
+
+function updateLanguage(lang){
+  currentLanguage=lang;localStorage.setItem('language',lang);
+  const t=translations[lang]||translations['en'];
+  updateHUDVisibility();
+  const curEl=document.getElementById('current');const maxEl=document.getElementById('max');
+  const timerEl=document.getElementById('timer-display');const topTimeEl=document.getElementById('top-time-display');
+  const diffEl=document.getElementById('difficulty-display');
+  if(showHeightEnabled&&curEl)curEl.textContent=t.height+': '+Math.floor(currentHeight/10);
+  if(showTopEnabled&&maxEl){
+    const hs=currentGameMode==='challenge'?challengeMaxHeights:maxHeights;
+    const st=currentGameMode==='challenge'?challengeSurvivalTimes:survivalTimes;
+    maxEl.textContent=t.topHeight+': '+Math.floor((hs[currentDifficulty]||0)/10);
+    topTimeEl.textContent=t.topTime+': '+formatTime(st[currentDifficulty]||0);
+  }
+  if(showTimerEnabled&&timerEl)timerEl.textContent=t.timer+': '+formatTime(survivalSeconds);
+  if(diffEl)diffEl.textContent=t.difficulty+': '+DIFFICULTY_SETTINGS[currentDifficulty].name.toUpperCase();
+  const hpEl=document.getElementById('hp-display');if(hpEl)hpEl.textContent=doubleJumpGameplay?t.doubleJump:'Double Jump = false';
+  const phEl=document.getElementById('pause-hint');if(phEl)phEl.textContent=t.pauseHint;
+}
+
+function populateLanguageDropdowns(){
+  const opts=Object.entries(_loadedLanguages).map(([code,data])=>`<option value="${code}">${data.flag||''} ${data.nativeName||data.name||code}</option>`).join('');
+  ['language-select','mm-language-select'].forEach(id=>{const sel=document.getElementById(id);if(sel){sel.innerHTML=opts;sel.value=currentLanguage;}});
+}
+
+const PLAYER_SIZE=40;
+let x,y,velY,jumpsLeft,lowestPlatformY;
+let currentHeight=0,lavaY,lavaSpeed;
+let startingY=0;
+let paused=false;
+let isDead=false;
+let animationId=null;
+let wasOnBluePlatform=false;
+let isWalking=false;
+let diedFromLava=false;
+let lavaInView=false;
+let gameStarted=false;
+let gameStartTime=0;
+let survivalSeconds=0;
+let _runHeight=0;
+let _runTimeSeconds=0;
+let lastFrameTime=0;
+const TARGET_FPS=60;
+const FRAME_TIME=1000/TARGET_FPS;
+let globalDifficulty=0;
+
+const gravity=0.9;
+const jumpPower=16;
+const speed=6;
+const keys={};
+let platforms=[];
+let platformPool=[];
+const LEFT_WALL=0;
+const RIGHT_WALL=window.innerWidth;
+const maxJumpHeight=(jumpPower*jumpPower)/(2*gravity);
+
+const LAVA_START_SPEED=0.10;
+const LAVA_SPEED_INCREASE_RATE=0.02;
+const LAVA_HEIGHT_BOOST_FACTOR=0.5;
+const LAVA_HITBOX_OFFSET=10;
+const PLATFORM_WIDTH=180;
+const PLATFORM_MOVE_SPEED=1.5;
+const PLATFORM_MOVE_RANGE=80;
+const PLATFORM_DISTANCE_X_MIN=300;
+const PLATFORM_DISTANCE_X_MAX=350;
+const PLATFORM_DISTANCE_Y_MIN=100;
+const PLATFORM_DISTANCE_Y_MAX=160;
+
+const DIFFICULTY_SETTINGS={easy:{maxSpeed:1.25,name:'Easy'},medium:{maxSpeed:1.75,name:'Medium'},hard:{maxSpeed:2.25,name:'Hard'},impossible:{maxSpeed:3,name:'Impossible'}};
+
+let djCooldowns=[0,0];
+let djCooldownMax=0;
+
+function updateDJCooldownHUD(){
+  const hudEl=document.getElementById('dj-cooldown-hud');
+  if(!hudEl)return;
+  if(djCooldownMax<=0||!activeChallenges.has('angel_cd_1')&&!activeChallenges.has('angel_cd_2')&&!activeChallenges.has('angel_cd_3')){
+    hudEl.style.display='none';return;
+  }
+  hudEl.style.display='flex';
+  const now=Date.now();
+  [0,1].forEach(i=>{
+    const remaining=Math.max(0,djCooldowns[i]-now);
+    const pct=djCooldownMax>0?100-(remaining/djCooldownMax*100):100;
+    const bar=document.getElementById('dj-cd-bar-'+(i+1));
+    const slot=document.getElementById('dj-cd-'+(i+1));
+    if(bar)bar.style.width=pct+'%';
+    if(slot)slot.classList.toggle('dj-cd-ready',remaining===0);
+  });
+}
+
+let _visibilityHidden=false;
+let _hiddenAt=0;
+document.addEventListener('visibilitychange',()=>{
+  if(document.hidden){_visibilityHidden=true;_hiddenAt=performance.now();if(!paused&&gameStarted&&!isDead){if(animationId)cancelAnimationFrame(animationId);}}
+  else{_visibilityHidden=false;if(!paused&&gameStarted&&!isDead){const hd=performance.now()-_hiddenAt;if(gameStartTime>0)gameStartTime+=hd;lastFrameTime=0;update();}}
+});
+
+const player=document.getElementById('player');
+const curEl=document.getElementById('current');
+const maxEl=document.getElementById('max');
+const timerEl=document.getElementById('timer-display');
+const topTimeEl=document.getElementById('top-time-display');
+const difficultyEl=document.getElementById('difficulty-display');
+const lavaEl=document.getElementById('lava');
+const pauseMenu=document.getElementById('pause-menu');
+const deathScreen=document.getElementById('death-screen');
+const mainMenuDiv=document.getElementById('main-menu');
+const extraMenu=document.getElementById('extra-menu');
+const helpMenu=document.getElementById('help-menu');
+const settingsMenu=document.getElementById('settings-menu');
+const pauseTitle=document.getElementById('pause-title');
+const achievementsPauseMenu=document.getElementById('achievements-pause-menu');
+
+let achNotifQueue=[];
+let achNotifShowing=false;
+
+function checkAchievements(){
+  ACHIEVEMENT_DEFS.forEach(def=>{
+    if(unlockedAchievements[def.id])return;
+    let val=0;
+    if(def.type==='height')val=maxHeights[def.mode]||0;
+    else if(def.type==='time')val=survivalTimes[def.mode]||0;
+    else if(def.type==='death')val=_totalDeaths;
+    if(val>=def.threshold){
+      const now=new Date();
+      unlockedAchievements[def.id]={name:def.name,time:now.toLocaleString()};
+      achNotifQueue.push(def.name);
+      processAchievementQueue();
+      appendAudit('achievement_unlocked',{achievement:def.id,name:def.name});
+    }
+  });
+}
+
+function processAchievementQueue(){if(achNotifShowing||achNotifQueue.length===0)return;const name=achNotifQueue.shift();showAchievementNotification(name);}
+function showAchievementNotification(name){
+  achNotifShowing=true;
+  const notif=document.getElementById('achievement-notification');
+  document.getElementById('ach-notif-name').textContent=name;
+  notif.classList.add('show');
+  setTimeout(()=>{notif.classList.remove('show');setTimeout(()=>{achNotifShowing=false;processAchievementQueue();},600);},3500);
+}
+
+function renderAchievementsList(containerId,searchTerm,filterMode,diffFilter){
+  const container=document.getElementById(containerId);if(!container)return;container.innerHTML='';
+  const total=ACHIEVEMENT_DEFS.length;const completed=ACHIEVEMENT_DEFS.filter(d=>unlockedAchievements[d.id]).length;
+  const countEl=document.getElementById('ach-count-display');if(countEl&&containerId==='achievements-list')countEl.textContent=completed+' / '+total+' Achievements';
+  let defs=ACHIEVEMENT_DEFS;
+  if(diffFilter&&diffFilter!=='all')defs=defs.filter(d=>d.mode===diffFilter);
+  if(searchTerm){const s=searchTerm.toLowerCase();defs=defs.filter(d=>d.name.toLowerCase().includes(s)||d.desc.toLowerCase().includes(s));}
+  if(filterMode==='completed')defs=defs.filter(d=>unlockedAchievements[d.id]);
+  else if(filterMode==='uncompleted')defs=defs.filter(d=>!unlockedAchievements[d.id]);
+  defs.forEach(def=>{
+    const unlocked=unlockedAchievements[def.id];
+    const div=document.createElement('div');div.className='ach-item'+(unlocked?' ach-unlocked':' ach-locked');
+    div.innerHTML='<div class="ach-item-header"><div class="ach-item-icon">'+(unlocked?'🏆':'🔒')+'</div><div class="ach-item-info"><div class="ach-item-name">'+def.name+'</div><div class="ach-item-status">'+(unlocked?'Unlocked: '+unlocked.time:'Locked')+'</div></div></div><div class="ach-item-dropdown" style="display:none;"><div class="ach-item-desc">'+def.desc+'</div>'+(unlocked?'<div class="ach-item-got">✅ Unlocked: '+unlocked.time+'</div>':'')+'</div>';
+    div.querySelector('.ach-item-header').addEventListener('click',()=>{const drop=div.querySelector('.ach-item-dropdown');drop.style.display=drop.style.display==='none'?'block':'none';});
+    container.appendChild(div);
+  });
+}
+
+function togglePause(){
+  paused=!paused;
+  if(paused){pauseMenu.classList.add('active');showPauseMain();if(animationId)cancelAnimationFrame(animationId);}
+  else{pauseMenu.classList.remove('active');lastFrameTime=0;if(gameStartTime>0)gameStartTime=performance.now()-survivalSeconds*1000;update();}
+}
+
+function updateExtraStats(){
+  document.getElementById('stat-name').textContent=_loggedInUser?_loggedInUser.username:'Anonymous';
+  document.getElementById('stat-userid').textContent=_loggedInUser?('#'+_loggedInUser.userid):'#?';
+  const totalUsers=_allUsersCache?_allUsersCache.filter(u=>!u.__meta).length:0;
+  document.getElementById('stat-total-users').textContent=totalUsers||'?';
+  document.getElementById('stat-playtime').textContent=formatTime(_totalPlaytime);
+  document.getElementById('stat-website-time').textContent=formatTime(_websiteTime);
+  document.getElementById('stat-deaths').textContent=_totalDeaths;
+  document.getElementById('stat-joindate').textContent=_loggedInUser&&_loggedInUser.joinDate?new Date(_loggedInUser.joinDate).toLocaleDateString():'-';
+  const completed=ACHIEVEMENT_DEFS.filter(d=>unlockedAchievements[d.id]).length;
+  document.getElementById('stat-achievements').textContent=completed+' / '+ACHIEVEMENT_DEFS.length;
+  const diffColors={easy:'#22c55e',medium:'#38bdf8',hard:'#f97316',impossible:'#ef4444'};
+  const grid=document.getElementById('stats-diff-grid');
+  if(grid){grid.innerHTML=['easy','medium','hard','impossible'].map(d=>`<div class="lb-detail-diff-row"><span style="color:${diffColors[d]};font-weight:bold;text-transform:capitalize;">${d}</span><span>Score: <b>${Math.floor((maxHeights[d]||0)/10)}</b></span><span>Time: <b>${formatTime(survivalTimes[d]||0)}</b></span></div>`).join('');}
+  renderTop5();
+}
+
+function renderTop5(){
+  const diff=document.getElementById('stats-top-diff').value;
+  const mode=document.getElementById('stats-top-mode').value;
+  const list=document.getElementById('stats-top5-list');if(!list)return;
+  const runs=(topRuns[mode]&&topRuns[mode][diff])||[];
+  if(runs.length===0){list.innerHTML='<div style="color:rgba(255,255,255,0.3);text-align:center;padding:12px;">No runs yet.</div>';return;}
+  list.innerHTML=runs.map((r,i)=>`<div class="lb-entry" style="cursor:default;"><div class="lb-rank">#${i+1}</div><div class="lb-name">${new Date(r.date).toLocaleDateString()}</div><div class="lb-score">${r.score}</div><div class="lb-diff">${formatTime(r.time)}</div>${r.challenges&&r.challenges.length?`<div style="font-size:11px;color:rgba(255,255,255,0.4);">${r.challenges.length} challenges</div>`:''}</div>`).join('');
+}
+
+document.getElementById('stats-top-diff').addEventListener('change',renderTop5);
+document.getElementById('stats-top-mode').addEventListener('change',renderTop5);
+
+async function die(fromLava){
+  if(isDead)return;isDead=true;diedFromLava=fromLava;
+  _totalDeaths++;
+  const elapsed=gameStartTime>0?(performance.now()-gameStartTime)/1000:0;
+  _runTimeSeconds=elapsed;
+  const isChallengeMode=currentGameMode==='challenge';
+  if(isChallengeMode){
+    if(elapsed>(challengeSurvivalTimes[currentDifficulty]||0))challengeSurvivalTimes[currentDifficulty]=elapsed;
+    if(_runHeight>(challengeMaxHeights[currentDifficulty]||0))challengeMaxHeights[currentDifficulty]=_runHeight;
+  } else {
+    if(elapsed>(survivalTimes[currentDifficulty]||0))survivalTimes[currentDifficulty]=elapsed;
+    if(_runHeight>(maxHeights[currentDifficulty]||0))maxHeights[currentDifficulty]=_runHeight;
+  }
+  survivalSeconds=elapsed;
+  _totalPlaytime+=elapsed;
+  addTopRun(currentGameMode,currentDifficulty,_runHeight,elapsed,currentGameMode==='challenge'?activeChallenges:null);
+  savePlayerData();
+  checkAchievements();
+  if(animationId)cancelAnimationFrame(animationId);
+  deathScreen.classList.add('active');
+  const diffName=DIFFICULTY_SETTINGS[currentDifficulty].name;
+  const hs=isChallengeMode?challengeMaxHeights:maxHeights;
+  const st=isChallengeMode?challengeSurvivalTimes:survivalTimes;
+  document.getElementById('death-difficulty-row').innerHTML='🎮 <b>'+diffName+'</b>'+(isChallengeMode?' — Challenge Mode':'');
+  const challengeRow=document.getElementById('death-challenge-row');
+  if(isChallengeMode&&activeChallenges.size>0){
+    const mod=getChallengeModifier();
+    challengeRow.innerHTML='⚡ Challenges: '+activeChallenges.size+' active | Modifier: '+(mod>=0?'+':'')+mod+'%';
+    challengeRow.style.display='';
+  } else {challengeRow.style.display='none';}
+  document.getElementById('death-score-row').innerHTML='📏 Score: <b>'+Math.floor(_runHeight/10)+'</b> / Best: <b>'+Math.floor((hs[currentDifficulty]||0)/10)+'</b>';
+  document.getElementById('death-time-row').innerHTML='⏱ Time: <b>'+formatTime(_runTimeSeconds)+'</b> / Best: <b>'+formatTime(st[currentDifficulty]||0)+'</b>';
+  appendAudit('playthrough_ended',{difficulty:currentDifficulty,mode:currentGameMode,score:Math.floor(_runHeight/10),time:Math.floor(_runTimeSeconds)});
+  pushCurrentUserToGitHub();
+}
+
+function resetGame(){
+  if(animationId)cancelAnimationFrame(animationId);
+  platforms.forEach(p=>{p.style.display='none';platformPool.push(p);});platforms=[];
+  const centerY=(window.innerHeight-PLAYER_SIZE)/2;
+  x=(window.innerWidth-PLAYER_SIZE)/2;y=centerY;startingY=centerY;
+  velY=0;
+  challengeState=currentGameMode==='challenge'?buildChallengeState():{maxJumps:doubleJumpGameplay?2:1,jumpMultiplier:1,gravityMultiplier:1,speedMultiplier:1,lavaSpeedMultiplier:1,djCooldown:0,fogLevel:0};
+  jumpsLeft=challengeState.maxJumps;
+  djCooldowns=[0,0];djCooldownMax=challengeState.djCooldown;
+  currentHeight=0;_runHeight=0;_runTimeSeconds=0;
+  globalDifficulty=0;lavaY=window.innerHeight+200;lavaSpeed=LAVA_START_SPEED;
+  isDead=false;paused=false;wasOnBluePlatform=false;isWalking=false;diedFromLava=false;lavaInView=false;lastFrameTime=0;gameStartTime=0;survivalSeconds=0;
+  document.body.style.background='#020617';
+  Object.keys(keys).forEach(k=>delete keys[k]);
+  player.style.left=x+'px';player.style.top=y+'px';lavaEl.style.top=lavaY+'px';
+  applyFogIfNeeded();
+  const t=translations[currentLanguage]||translations['en'];
+  updateHUDVisibility();
+  if(showHeightEnabled)curEl.textContent=t.height+': 0';
+  const hs=currentGameMode==='challenge'?challengeMaxHeights:maxHeights;
+  const st=currentGameMode==='challenge'?challengeSurvivalTimes:survivalTimes;
+  if(showTopEnabled){maxEl.textContent=t.topHeight+': '+Math.floor((hs[currentDifficulty]||0)/10);topTimeEl.textContent=t.topTime+': '+formatTime(st[currentDifficulty]||0);}
+  if(showTimerEnabled)timerEl.textContent=t.timer+': 0s';
+  difficultyEl.textContent=t.difficulty+': '+DIFFICULTY_SETTINGS[currentDifficulty].name.toUpperCase();
+  const challengeHUD=document.getElementById('challenge-hud-display');
+  if(currentGameMode==='challenge'&&activeChallenges.size>0){
+    const mod=getChallengeModifier();
+    challengeHUD.textContent='⚡ CHALLENGE MODE | '+(mod>=0?'+':'')+mod+'%';
+    challengeHUD.style.display='';
+    challengeHUD.style.color=mod>=0?'#22c55e':'#ef4444';
+  } else {challengeHUD.style.display='none';}
+  const startPlatformY=centerY+PLAYER_SIZE+1;
+  createPlatform(window.innerWidth/2-200,startPlatformY,400,'green');
+  lowestPlatformY=startPlatformY;
+  generatePlatforms();update();
+}
+
+function applyFogIfNeeded(){
+  const fogLevel=challengeState?challengeState.fogLevel:0;
+  const gameEl=document.getElementById('player');
+  if(fogLevel>0){
+    const opacity=fogLevel;
+    let existing=document.getElementById('fog-overlay');
+    if(!existing){existing=document.createElement('div');existing.id='fog-overlay';existing.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:200;';document.body.appendChild(existing);}
+    existing.style.background=`rgba(180,180,200,${opacity})`;
+    existing.style.display='block';
+  } else {
+    const existing=document.getElementById('fog-overlay');
+    if(existing)existing.style.display='none';
+  }
+}
+
+function createPlatform(px,py,width,type){
+  if(!type)type='green';
+  let p;
+  if(platformPool.length>0){p=platformPool.pop();p.style.display='block';}
+  else{p=document.createElement('div');p.className='platform';document.body.appendChild(p);}
+  p.className='platform '+type;p.dataset.type=type;
+  p.style.left=px+'px';p.style.top=py+'px';p.style.width=width+'px';p.style.opacity='1';
+  p.dataset.moving='false';p.dataset.moveDir='1';p.dataset.moveSpeed='0';p.dataset.blueTimer='0';p.dataset.disappearing='false';p.dataset.respawnTime='0';
+  platforms.push(p);
+  if(type==='orange'){p.dataset.moving='true';p.dataset.moveSpeed=String(PLATFORM_MOVE_SPEED);p.dataset.moveDir=String(Math.random()>0.5?1:-1);p.dataset.originalLeft=String(px);p.dataset.moveRange=String(PLATFORM_MOVE_RANGE);}
+  return p;
+}
+
+function generatePlatforms(){
+  const targetCount=40;if(platforms.length>=targetCount)return;
+  while(platforms.length<targetCount){
+    const last=platforms[platforms.length-1];if(!last)break;
+    const lastY=parseFloat(last.style.top);const lastX=parseFloat(last.style.left)+last.offsetWidth/2;
+    globalDifficulty+=0.05;
+    const wasLastRed=last.dataset.type==='red';
+    let gapY,safeGapY,horizontalDist;
+    if(wasLastRed){gapY=PLATFORM_DISTANCE_Y_MIN*0.5;safeGapY=Math.min(maxJumpHeight*0.35,gapY);horizontalDist=PLATFORM_DISTANCE_X_MIN*0.4;}
+    else{gapY=PLATFORM_DISTANCE_Y_MIN+Math.random()*(PLATFORM_DISTANCE_Y_MAX-PLATFORM_DISTANCE_Y_MIN);safeGapY=Math.min(maxJumpHeight*0.55,gapY);horizontalDist=PLATFORM_DISTANCE_X_MIN+Math.random()*(PLATFORM_DISTANCE_X_MAX-PLATFORM_DISTANCE_X_MIN);}
+    const offsetX=(Math.random()*2-1)*horizontalDist;const width=PLATFORM_WIDTH;
+    let px=lastX+offsetX-width/2;px=Math.max(LEFT_WALL+20,Math.min(px,RIGHT_WALL-width-20));
+    const py=lastY-safeGapY;
+    let type='green';const rand=Math.random();let redChance,blueChance,orangeChance,whiteChance;
+    if(currentHeight>8000){redChance=0.08;blueChance=0.70;orangeChance=0.10;whiteChance=0.05;}
+    else if(currentHeight>5000){redChance=0.06;blueChance=0.55;orangeChance=0.15;whiteChance=0.12;}
+    else if(currentHeight>2500){redChance=0.08;blueChance=0.45;orangeChance=0.20;whiteChance=0.15;}
+    else{redChance=Math.min(0.03+globalDifficulty*0.003,0.12);blueChance=Math.min(0.10+globalDifficulty*0.010,0.40);orangeChance=Math.min(0.15+globalDifficulty*0.006,0.25);whiteChance=Math.min(0.08+globalDifficulty*0.004,0.15);}
+    if(wasLastRed){const ar=rand/(1-redChance);if(ar<blueChance/(1-redChance))type='blue';else if(ar<(blueChance+orangeChance)/(1-redChance))type='orange';else if(ar<(blueChance+orangeChance+whiteChance)/(1-redChance))type='white';else type='green';}
+    else{if(rand<redChance)type='red';else if(rand<redChance+blueChance)type='blue';else if(rand<redChance+blueChance+orangeChance)type='orange';else if(rand<redChance+blueChance+orangeChance+whiteChance)type='white';else type='green';}
+    createPlatform(px,py,width,type);
+  }
+}
+
+function recyclePlatforms(){
+  const renderDistance=window.innerHeight*1.2;const topBound=y-renderDistance;const bottomBound=y+renderDistance;
+  for(let i=platforms.length-1;i>=0;i--){const p=platforms[i];const py=parseFloat(p.style.top);if(py>lavaY||py<topBound||py>bottomBound){p.style.display='none';platformPool.push(p);platforms.splice(i,1);}}
+}
+
+function update(currentTime){
+  if(currentTime===undefined)currentTime=performance.now();
+  if(paused||isDead)return;if(_visibilityHidden)return;
+  if(!lastFrameTime)lastFrameTime=currentTime;
+  const deltaTime=currentTime-lastFrameTime;const deltaMultiplier=deltaTime/FRAME_TIME;lastFrameTime=currentTime;
+  const cappedDelta=Math.min(deltaMultiplier,3);
+  if(gameStartTime===0&&currentTime>0)gameStartTime=currentTime;
+  const currentSurvivalSecs=gameStartTime>0?(currentTime-gameStartTime)/1000:0;
+  const isChallengeMode=currentGameMode==='challenge';
+  if(isChallengeMode){if(currentSurvivalSecs>(challengeSurvivalTimes[currentDifficulty]||0))challengeSurvivalTimes[currentDifficulty]=currentSurvivalSecs;}
+  else{if(currentSurvivalSecs>(survivalTimes[currentDifficulty]||0))survivalTimes[currentDifficulty]=currentSurvivalSecs;}
+  survivalSeconds=currentSurvivalSecs;
+  const cs=challengeState||{maxJumps:doubleJumpGameplay?2:1,jumpMultiplier:1,gravityMultiplier:1,speedMultiplier:1,lavaSpeedMultiplier:1,djCooldown:0,fogLevel:0};
+  const effectiveSpeed=speed*cs.speedMultiplier*cappedDelta;
+  const effectiveGravity=gravity*cs.gravityMultiplier*cappedDelta;
+  const effectiveJumpPower=jumpPower*cs.jumpMultiplier;
+  if(keys['a']||keys['A']||keys['ArrowLeft'])x-=effectiveSpeed;
+  if(keys['d']||keys['D']||keys['ArrowRight'])x+=effectiveSpeed;
+  x=Math.max(LEFT_WALL,Math.min(x,RIGHT_WALL-PLAYER_SIZE));
+  const now=Date.now();
+  const jumpPressed=keys[' ']||keys['w']||keys['W']||keys['ArrowUp'];
+  if(jumpPressed&&jumpsLeft>0&&!keys._jumpHeld){
+    const jumpIndex=cs.maxJumps-jumpsLeft;
+    const cdReady=cs.djCooldown<=0||(jumpIndex===0)||now>=djCooldowns[jumpIndex];
+    if(cdReady){
+      velY=-effectiveJumpPower;
+      if(cs.djCooldown>0&&jumpIndex>0){djCooldowns[jumpIndex]=now+cs.djCooldown;}
+      jumpsLeft--;keys._jumpHeld=true;
+    }
+  }
+  if(!jumpPressed)keys._jumpHeld=false;
+  velY+=effectiveGravity;y+=velY*cappedDelta;
+  updateDJCooldownHUD();
+  let grounded=false;let onBluePlatform=false;
+  if(platforms.length>0)lowestPlatformY=Math.max(...platforms.map(p=>parseFloat(p.style.top)));
+  platforms.forEach(p=>{
+    if(p.dataset.moving==='true'){const pms=parseFloat(p.dataset.moveSpeed)*cappedDelta;let dir=parseFloat(p.dataset.moveDir);let px=parseFloat(p.style.left)+pms*dir;const origLeft=parseFloat(p.dataset.originalLeft);const moveRange=parseFloat(p.dataset.moveRange);if(px<origLeft-moveRange||px>origLeft+moveRange){dir*=-1;p.dataset.moveDir=String(dir);px=Math.max(origLeft-moveRange,Math.min(px,origLeft+moveRange));}if(px<=LEFT_WALL||px+p.offsetWidth>=RIGHT_WALL){dir*=-1;p.dataset.moveDir=String(dir);}p.style.left=px+'px';}
+    if(p.dataset.type==='blue'){if(p.dataset.disappearing==='true'){const rt=parseFloat(p.dataset.respawnTime);if(now>=rt){p.style.opacity='1';p.dataset.disappearing='false';p.dataset.blueTimer='0';}}else if(p.dataset.blueTimer!=='0'){const elapsed=(now-parseFloat(p.dataset.blueTimer))/1000;if(elapsed>=1.0){p.dataset.disappearing='true';p.dataset.respawnTime=String(now+5000);p.style.opacity='0';}else{p.style.opacity=String(Math.max(0.2,1-elapsed));}}}
+  });
+  const oldY=y-velY*cappedDelta;
+  for(let i=0;i<platforms.length;i++){
+    const p=platforms[i];const px=parseFloat(p.style.left);const py=parseFloat(p.style.top);const pw=p.offsetWidth;const type=p.dataset.type;
+    if(type==='blue'&&p.dataset.disappearing==='true')continue;
+    if(x+PLAYER_SIZE>px&&x<px+pw){
+      if(type==='white'){if(oldY+PLAYER_SIZE<=py&&y+PLAYER_SIZE>=py){velY=0;y=py-PLAYER_SIZE;grounded=true;jumpsLeft=cs.maxJumps;keys._jumpHeld=false;}continue;}
+      if(oldY+PLAYER_SIZE<=py&&y+PLAYER_SIZE>=py){
+        if(type==='red'){die(false);return;}
+        else if(type==='blue'){onBluePlatform=true;if(p.dataset.blueTimer==='0')p.dataset.blueTimer=String(now);const elapsed=(now-parseFloat(p.dataset.blueTimer))/1000;if(elapsed>=1.0){p.dataset.disappearing='true';p.dataset.respawnTime=String(now+5000);p.style.opacity='0';wasOnBluePlatform=true;}else{p.style.opacity=String(Math.max(0.2,1-elapsed));velY=0;y=py-PLAYER_SIZE;grounded=true;jumpsLeft=cs.maxJumps;keys._jumpHeld=false;}}
+        else{velY=0;y=py-PLAYER_SIZE;grounded=true;jumpsLeft=cs.maxJumps;keys._jumpHeld=false;}
+      }else if(oldY>=py+18&&y<py+18&&velY<0){if(type!=='white'){velY=0;y=py+18;}}
+    }
+  }
+  if(wasOnBluePlatform&&!onBluePlatform&&!grounded)wasOnBluePlatform=false;
+  if((y>lowestPlatformY+400&&y>lavaY)||y>window.innerHeight+500){die(true);return;}
+  const targetY=(window.innerHeight-PLAYER_SIZE)/2;const offset=targetY-y;
+  platforms.forEach(p=>{p.style.top=(parseFloat(p.style.top)+offset)+'px';});
+  lavaY+=offset;lavaEl.style.top=lavaY+'px';lowestPlatformY+=offset;startingY+=offset;y=targetY;
+  currentHeight=Math.max(0,startingY-y);_runHeight=Math.max(_runHeight,currentHeight);
+  if(isChallengeMode){challengeMaxHeights[currentDifficulty]=Math.max(challengeMaxHeights[currentDifficulty]||0,currentHeight);}
+  else{maxHeights[currentDifficulty]=Math.max(maxHeights[currentDifficulty]||0,currentHeight);}
+  const heightBoost=Math.min(currentHeight/100000,1.5);
+  const LAVA_MAX_SPEED=DIFFICULTY_SETTINGS[currentDifficulty].maxSpeed*(cs.lavaSpeedMultiplier||1);
+  lavaSpeed=Math.min(LAVA_START_SPEED+globalDifficulty*LAVA_SPEED_INCREASE_RATE+heightBoost*LAVA_HEIGHT_BOOST_FACTOR,LAVA_MAX_SPEED);
+  lavaY-=lavaSpeed*cappedDelta*(cs.lavaSpeedMultiplier||1);lavaEl.style.top=lavaY+'px';
+  const heightProgress=Math.min(currentHeight/15000,1);
+  const r=Math.floor(2+heightProgress*18);const g=Math.floor(6+heightProgress*4);const b=Math.floor(23+heightProgress*27);
+  document.body.style.background='rgb('+r+', '+g+', '+b+')';
+  if(y+PLAYER_SIZE>=lavaY+LAVA_HITBOX_OFFSET){die(true);return;}
+  const t=translations[currentLanguage]||translations['en'];
+  const hs=isChallengeMode?challengeMaxHeights:maxHeights;
+  const st=isChallengeMode?challengeSurvivalTimes:survivalTimes;
+  if(showHeightEnabled)curEl.textContent=t.height+': '+Math.floor(currentHeight/10);
+  if(showTopEnabled){maxEl.textContent=t.topHeight+': '+Math.floor((hs[currentDifficulty]||0)/10);topTimeEl.textContent=t.topTime+': '+formatTime(st[currentDifficulty]||0);}
+  if(showTimerEnabled)timerEl.textContent=t.timer+': '+formatTime(currentSurvivalSecs);
+  checkAchievements();recyclePlatforms();generatePlatforms();
+  player.style.left=x+'px';player.style.top=y+'px';
+  animationId=requestAnimationFrame(update);
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&gameStarted&&!isDead){togglePause();return;}
+  if(isDead)return;
+  keys[e.key]=true;
+});
+document.addEventListener('keyup',e=>{keys[e.key]=false;});
+
+document.getElementById('continue-btn').addEventListener('click',togglePause);
+document.getElementById('extra-btn').addEventListener('click',()=>{mainMenuDiv.style.display='none';extraMenu.style.display='block';pauseTitle.textContent='EXTRA';});
+document.getElementById('extra-back-btn').addEventListener('click',()=>{extraMenu.style.display='none';mainMenuDiv.style.display='block';pauseTitle.textContent=translations[currentLanguage]?translations[currentLanguage].paused:'PAUSED';});
+document.getElementById('settings-btn').addEventListener('click',()=>{extraMenu.style.display='none';settingsMenu.style.display='block';pauseTitle.textContent='SETTINGS';});
+document.getElementById('settings-back-btn').addEventListener('click',()=>{settingsMenu.style.display='none';extraMenu.style.display='block';pauseTitle.textContent='EXTRA';});
+document.getElementById('help-btn').addEventListener('click',()=>{extraMenu.style.display='none';helpMenu.style.display='block';pauseTitle.textContent='HELP';});
+document.getElementById('help-back-btn').addEventListener('click',()=>{helpMenu.style.display='none';extraMenu.style.display='block';pauseTitle.textContent='EXTRA';});
+document.getElementById('achievements-btn').addEventListener('click',()=>{extraMenu.style.display='none';achievementsPauseMenu.style.display='block';pauseTitle.textContent='ACHIEVEMENTS';renderAchievementsList('achievements-pause-list','','all','all');});
+document.getElementById('achievements-back-btn').addEventListener('click',()=>{achievementsPauseMenu.style.display='none';extraMenu.style.display='block';pauseTitle.textContent='EXTRA';});
+document.getElementById('restart-btn').addEventListener('click',()=>{showPauseMain();pauseMenu.classList.remove('active');paused=false;resetGame();});
+
+document.getElementById('pause-main-menu-btn').addEventListener('click',async()=>{
+  const ok=await customConfirm('Return to Main Menu? Your current run will be lost.');
+  if(!ok)return;
+  pauseMenu.classList.remove('active');paused=false;gameStarted=false;
+  if(animationId)cancelAnimationFrame(animationId);
+  platforms.forEach(p=>{p.style.display='none';platformPool.push(p);});platforms=[];
+  const fog=document.getElementById('fog-overlay');if(fog)fog.style.display='none';
+  document.getElementById('hud').style.display='none';document.getElementById('hp-display').style.display='none';document.getElementById('pause-hint').style.display='none';
+  document.getElementById('dj-cooldown-hud').style.display='none';
+  document.getElementById('main-menu-screen').style.display='flex';
+});
+
+function showPauseMain(){
+  helpMenu.style.display='none';settingsMenu.style.display='none';extraMenu.style.display='none';achievementsPauseMenu.style.display='none';mainMenuDiv.style.display='block';
+  pauseTitle.textContent=translations[currentLanguage]?translations[currentLanguage].paused:'PAUSED';
+}
+
+function setupSettingsNavTabs(navPrefix,panelPrefix,tabs){
+  tabs.forEach(tab=>{
+    document.getElementById(navPrefix+tab).addEventListener('click',()=>{
+      tabs.forEach(t=>{document.getElementById(navPrefix+t).classList.remove('active');document.getElementById(panelPrefix+t).style.display='none';});
+      document.getElementById(navPrefix+tab).classList.add('active');document.getElementById(panelPrefix+tab).style.display='';
+    });
+  });
+}
+setupSettingsNavTabs('psnav-','pspanel-',['graphics','audio','hud']);
+setupSettingsNavTabs('snav-','spanel-',['graphics','audio','hud','profile']);
+
+function setupHUDToggle(mmId,pId,varRef,localKey,callback){
+  const mmEl=document.getElementById(mmId);const pEl=document.getElementById(pId);
+  const handler=(e,src)=>{
+    window[varRef]=e.target.checked;
+    localStorage.setItem(localKey,window[varRef]);
+    if(src==='mm'&&pEl)pEl.checked=e.target.checked;
+    if(src==='p'&&mmEl)mmEl.checked=e.target.checked;
+    if(callback)callback();
+    onSettingChanged();
+  };
+  if(mmEl)mmEl.addEventListener('change',e=>handler(e,'mm'));
+  if(pEl)pEl.addEventListener('change',e=>handler(e,'p'));
+}
+
+document.getElementById('p-feat-show-double-jump-hud').addEventListener('change',e=>{showDoubleJumpHUD=e.target.checked;localStorage.setItem('featShowDoubleJump',showDoubleJumpHUD);document.getElementById('mm-feat-double-jump').checked=showDoubleJumpHUD;updateLanguage(currentLanguage);onSettingChanged();});
+document.getElementById('mm-feat-double-jump').addEventListener('change',e=>{showDoubleJumpHUD=e.target.checked;localStorage.setItem('featShowDoubleJump',showDoubleJumpHUD);document.getElementById('p-feat-show-double-jump-hud').checked=showDoubleJumpHUD;updateLanguage(currentLanguage);onSettingChanged();});
+document.getElementById('p-gameplay-double-jump').addEventListener('change',e=>{doubleJumpGameplay=e.target.checked;localStorage.setItem('gameplayDoubleJump',doubleJumpGameplay);document.getElementById('mm-gameplay-double-jump').checked=doubleJumpGameplay;updateLanguage(currentLanguage);onSettingChanged();});
+document.getElementById('mm-gameplay-double-jump').addEventListener('change',e=>{doubleJumpGameplay=e.target.checked;localStorage.setItem('gameplayDoubleJump',doubleJumpGameplay);document.getElementById('p-gameplay-double-jump').checked=doubleJumpGameplay;updateLanguage(currentLanguage);onSettingChanged();});
+document.getElementById('p-feat-show-height').addEventListener('change',e=>{showHeightEnabled=e.target.checked;localStorage.setItem('featShowHeight',showHeightEnabled);document.getElementById('mm-feat-show-height').checked=showHeightEnabled;updateLanguage(currentLanguage);onSettingChanged();});
+document.getElementById('mm-feat-show-height').addEventListener('change',e=>{showHeightEnabled=e.target.checked;localStorage.setItem('featShowHeight',showHeightEnabled);document.getElementById('p-feat-show-height').checked=showHeightEnabled;updateLanguage(currentLanguage);onSettingChanged();});
+document.getElementById('p-feat-show-top').addEventListener('change',e=>{showTopEnabled=e.target.checked;localStorage.setItem('featShowTop',showTopEnabled);document.getElementById('mm-feat-show-top').checked=showTopEnabled;updateLanguage(currentLanguage);onSettingChanged();});
+document.getElementById('mm-feat-show-top').addEventListener('change',e=>{showTopEnabled=e.target.checked;localStorage.setItem('featShowTop',showTopEnabled);document.getElementById('p-feat-show-top').checked=showTopEnabled;updateLanguage(currentLanguage);onSettingChanged();});
+document.getElementById('p-feat-show-timer').addEventListener('change',e=>{showTimerEnabled=e.target.checked;localStorage.setItem('featShowTimer',showTimerEnabled);document.getElementById('mm-feat-show-timer').checked=showTimerEnabled;updateLanguage(currentLanguage);onSettingChanged();});
+document.getElementById('mm-feat-show-timer').addEventListener('change',e=>{showTimerEnabled=e.target.checked;localStorage.setItem('featShowTimer',showTimerEnabled);document.getElementById('p-feat-show-timer').checked=showTimerEnabled;updateLanguage(currentLanguage);onSettingChanged();});
+document.getElementById('p-feat-ping-notif').addEventListener('change',e=>{pingNotifsEnabled=e.target.checked;localStorage.setItem('featPingNotif',pingNotifsEnabled);document.getElementById('mm-feat-ping-notif').checked=pingNotifsEnabled;onSettingChanged();});
+document.getElementById('mm-feat-ping-notif').addEventListener('change',e=>{pingNotifsEnabled=e.target.checked;localStorage.setItem('featPingNotif',pingNotifsEnabled);document.getElementById('p-feat-ping-notif').checked=pingNotifsEnabled;onSettingChanged();});
+
+document.getElementById('language-select').addEventListener('change',e=>{updateLanguage(e.target.value);const mm=document.getElementById('mm-language-select');if(mm)mm.value=e.target.value;onSettingChanged();});
+document.getElementById('mm-language-select').addEventListener('change',e=>{updateLanguage(e.target.value);document.getElementById('language-select').value=e.target.value;onSettingChanged();});
+document.getElementById('pause-reset-data-btn').addEventListener('click',resetAllData);
+document.getElementById('mm-reset-data-btn').addEventListener('click',resetAllData);
+
+deathScreen.addEventListener('click',()=>{if(!isDead)return;deathScreen.classList.remove('active');isDead=false;resetGame();});
+document.addEventListener('keydown',e=>{if(!isDead)return;if(e.key===' '||e.code==='Space'){deathScreen.classList.remove('active');isDead=false;resetGame();}});
+
+function showDifficultySelect(mode,onConfirm){
+  pendingGameMode=mode;
+  document.getElementById('diff-select-mode-label').textContent=mode.toUpperCase()+' MODE';
+  document.getElementById('mm-difficulty-select-screen').style.display='flex';
+  document.querySelectorAll('.diff-pick-btn').forEach(btn=>{
+    btn.onclick=()=>{
+      currentDifficulty=btn.dataset.diff;
+      localStorage.setItem('difficulty',currentDifficulty);
+      document.getElementById('mm-difficulty-select-screen').style.display='none';
+      if(onConfirm)onConfirm();
+    };
+  });
+}
+
+document.getElementById('diff-select-cancel-btn').addEventListener('click',()=>{
+  document.getElementById('mm-difficulty-select-screen').style.display='none';
+});
+
+function startCountdownThenGame(){
+  const overlay=document.getElementById('countdown-overlay');const numEl=document.getElementById('countdown-number');
+  overlay.style.display='flex';let count=3;numEl.textContent=count;
+  numEl.style.animation='none';void numEl.offsetWidth;numEl.style.animation='countPulse 1s ease-in-out';
+  const interval=setInterval(()=>{
+    count--;
+    if(count<=0){
+      clearInterval(interval);overlay.style.display='none';
+      document.getElementById('hud').style.display='';
+      document.getElementById('hp-display').style.display='';
+      document.getElementById('pause-hint').style.display='';
+      gameStarted=true;resetGame();
+    } else {
+      numEl.textContent=count;numEl.style.animation='none';void numEl.offsetWidth;numEl.style.animation='countPulse 1s ease-in-out';
+    }
+  },1000);
+}
+
+document.getElementById('mm-play-btn').addEventListener('click',()=>{
+  document.getElementById('main-menu-screen').style.display='none';
+  document.getElementById('mm-play-select-screen').style.display='flex';
+});
+document.getElementById('mm-play-select-back-btn').addEventListener('click',()=>{
+  document.getElementById('mm-play-select-screen').style.display='none';
+  document.getElementById('main-menu-screen').style.display='flex';
+});
+document.getElementById('mode-singleplayer-btn').addEventListener('click',()=>{
+  document.getElementById('mm-play-select-screen').style.display='none';
+  showDifficultySelect('singleplayer',()=>{
+    currentGameMode='singleplayer';
+    activeChallenges=new Set();
+    startCountdownThenGame();
+  });
+});
+document.getElementById('mode-challenge-btn').addEventListener('click',()=>{
+  document.getElementById('mm-play-select-screen').style.display='none';
+  showDifficultySelect('challenge',()=>{
+    currentGameMode='challenge';
+    document.getElementById('mm-challenge-select-screen').style.display='flex';
+    renderChallengeGrid();
+  });
+});
+document.getElementById('mode-multiplayer-btn').addEventListener('click',showComingSoon);
+
+document.getElementById('challenge-start-btn').addEventListener('click',()=>{
+  document.getElementById('mm-challenge-select-screen').style.display='none';
+  startCountdownThenGame();
+});
+document.getElementById('challenge-back-btn').addEventListener('click',()=>{
+  document.getElementById('mm-challenge-select-screen').style.display='none';
+  document.getElementById('main-menu-screen').style.display='flex';
+});
+
+document.getElementById('mm-settings-btn').addEventListener('click',()=>{document.getElementById('main-menu-screen').style.display='none';document.getElementById('mm-settings-screen').style.display='flex';});
+document.getElementById('mm-settings-back-btn').addEventListener('click',()=>{document.getElementById('mm-settings-screen').style.display='none';document.getElementById('main-menu-screen').style.display='flex';});
+document.getElementById('mm-extra-btn').addEventListener('click',()=>{document.getElementById('main-menu-screen').style.display='none';document.getElementById('mm-extra-screen').style.display='flex';});
+document.getElementById('mm-extra-back-btn').addEventListener('click',()=>{document.getElementById('mm-extra-screen').style.display='none';document.getElementById('main-menu-screen').style.display='flex';});
+document.getElementById('mm-stats-btn').addEventListener('click',()=>{document.getElementById('mm-extra-screen').style.display='none';document.getElementById('mm-stats-screen').style.display='flex';updateExtraStats();});
+document.getElementById('mm-stats-back-btn').addEventListener('click',()=>{document.getElementById('mm-stats-screen').style.display='none';document.getElementById('mm-extra-screen').style.display='flex';});
+document.getElementById('mm-changelog-btn').addEventListener('click',()=>{document.getElementById('mm-extra-screen').style.display='none';document.getElementById('mm-changelog-screen').style.display='flex';renderChangelogs();});
+document.getElementById('mm-changelog-back-btn').addEventListener('click',()=>{document.getElementById('mm-changelog-screen').style.display='none';document.getElementById('mm-extra-screen').style.display='flex';});
+document.getElementById('mm-help-btn').addEventListener('click',()=>{document.getElementById('mm-extra-screen').style.display='none';document.getElementById('mm-help-screen').style.display='flex';});
+document.getElementById('mm-help-back-btn').addEventListener('click',()=>{document.getElementById('mm-help-screen').style.display='none';document.getElementById('mm-extra-screen').style.display='flex';});
+document.getElementById('mm-community-btn').addEventListener('click',()=>{document.getElementById('mm-extra-screen').style.display='none';document.getElementById('mm-community-screen').style.display='flex';});
+document.getElementById('mm-community-back-btn').addEventListener('click',()=>{document.getElementById('mm-community-screen').style.display='none';document.getElementById('mm-extra-screen').style.display='flex';});
+document.getElementById('community-discord-btn').addEventListener('click',showComingSoon);
+document.getElementById('community-youtube-btn').addEventListener('click',showComingSoon);
+document.getElementById('mm-achievements-btn').addEventListener('click',()=>{
+  document.getElementById('main-menu-screen').style.display='none';
+  document.getElementById('mm-achievements-screen').style.display='flex';
+  renderAchievementsList('achievements-list',document.getElementById('ach-search').value,document.getElementById('ach-filter').value,document.getElementById('ach-diff-filter').value);
+});
+document.getElementById('mm-achievements-back-btn').addEventListener('click',()=>{document.getElementById('mm-achievements-screen').style.display='none';document.getElementById('main-menu-screen').style.display='flex';});
+document.getElementById('ach-search').addEventListener('input',()=>{renderAchievementsList('achievements-list',document.getElementById('ach-search').value,document.getElementById('ach-filter').value,document.getElementById('ach-diff-filter').value);});
+document.getElementById('ach-filter').addEventListener('change',()=>{renderAchievementsList('achievements-list',document.getElementById('ach-search').value,document.getElementById('ach-filter').value,document.getElementById('ach-diff-filter').value);});
+document.getElementById('ach-diff-filter').addEventListener('change',()=>{renderAchievementsList('achievements-list',document.getElementById('ach-search').value,document.getElementById('ach-filter').value,document.getElementById('ach-diff-filter').value);});
+
+document.getElementById('mm-show-on-lb').addEventListener('change',e=>{showOnLeaderboard=e.target.checked;localStorage.setItem('bj_showOnLb',showOnLeaderboard);onSettingChanged();});
+
+let lbDisplayCount=10;
+let lbShowTimer=false;
+let _lbRefreshCooldown=false;
+
+document.getElementById('lb-show-timer-toggle').addEventListener('change',e=>{lbShowTimer=e.target.checked;document.getElementById('lb-switch-score-label').classList.toggle('active',!lbShowTimer);document.getElementById('lb-switch-timer-label').classList.toggle('active',lbShowTimer);renderLeaderboard();});
+document.getElementById('mm-leaderboard-btn').addEventListener('click',()=>{document.getElementById('main-menu-screen').style.display='none';document.getElementById('mm-leaderboard-screen').style.display='flex';renderLeaderboard();});
+document.getElementById('mm-leaderboard-back-btn').addEventListener('click',()=>{document.getElementById('mm-leaderboard-screen').style.display='none';document.getElementById('main-menu-screen').style.display='flex';});
+document.getElementById('lb-refresh-btn').addEventListener('click',()=>{
+  if(_lbRefreshCooldown)return;
+  _lbRefreshCooldown=true;
+  const btn=document.getElementById('lb-refresh-btn');
+  const label=document.getElementById('lb-refresh-label');
+  const countdown=document.getElementById('lb-refresh-countdown');
+  label.style.display='none';countdown.style.display='';
+  let secs=3;countdown.textContent=secs+'s';
+  const iv=setInterval(()=>{secs--;if(secs<=0){clearInterval(iv);countdown.style.display='none';label.style.display='';_lbRefreshCooldown=false;}else{countdown.textContent=secs+'s';}},1000);
+  renderLeaderboard();
+});
+document.getElementById('lb-detail-close').addEventListener('click',()=>{document.getElementById('lb-entry-detail').style.display='none';});
+document.getElementById('lb-diff-filter').addEventListener('change',renderLeaderboard);
+document.getElementById('lb-sort').addEventListener('change',renderLeaderboard);
+document.getElementById('lb-gamemode-filter').addEventListener('change',renderLeaderboard);
+document.getElementById('lb-count-btn').addEventListener('click',()=>{document.getElementById('show-count-popup').style.display='flex';});
+document.getElementById('show-count-cancel-btn').addEventListener('click',()=>{document.getElementById('show-count-popup').style.display='none';});
+document.querySelectorAll('.show-count-opt[data-val]').forEach(btn=>{btn.addEventListener('click',()=>{const val=btn.dataset.val;if(val==='custom'){document.getElementById('show-count-custom-row').style.display='flex';}else{lbDisplayCount=parseInt(val);document.getElementById('lb-count-btn').textContent='Show '+lbDisplayCount;document.getElementById('show-count-popup').style.display='none';renderLeaderboard();}});});
+document.getElementById('show-count-custom-confirm').addEventListener('click',()=>{const v=parseInt(document.getElementById('show-count-custom-input').value)||10;lbDisplayCount=Math.max(1,Math.min(v,9999));document.getElementById('lb-count-btn').textContent='Show '+lbDisplayCount;document.getElementById('show-count-popup').style.display='none';document.getElementById('show-count-custom-row').style.display='none';renderLeaderboard();});
+
+async function renderLeaderboard(){
+  const lbList=document.getElementById('lb-list');lbList.innerHTML='<div class="lb-loading">Loading...</div>';
+  const diffFilter=document.getElementById('lb-diff-filter').value;
+  const sortOrder=document.getElementById('lb-sort').value;
+  const gamemodeFilter=document.getElementById('lb-gamemode-filter').value;
+  let ghData=null;try{ghData=await fetchAllUsers();}catch(e){}
+  if(!ghData||!Array.isArray(ghData.data)||ghData.data.length===0){lbList.innerHTML='<div class="lb-empty">No leaderboard data found.</div>';return;}
+  let records=ghData.data.filter(entry=>entry.showOnLeaderboard!==false).map(entry=>{
+    const spHS=entry.highScore||{easy:0,medium:0,hard:0,impossible:0};
+    const cHS=entry.challengeHighScore||{easy:0,medium:0,hard:0,impossible:0};
+    const spST=entry.survivalTimes||{easy:0,medium:0,hard:0,impossible:0};
+    const cST=entry.challengeSurvivalTimes||{easy:0,medium:0,hard:0,impossible:0};
+    let score=0,time=0;
+    const useHS=gamemodeFilter==='challenge'?cHS:gamemodeFilter==='all'?Object.fromEntries(['easy','medium','hard','impossible'].map(d=>[d,Math.max(Number(spHS[d]||0),Number(cHS[d]||0))])):spHS;
+    const useST=gamemodeFilter==='challenge'?cST:gamemodeFilter==='all'?Object.fromEntries(['easy','medium','hard','impossible'].map(d=>[d,Math.max(Number(spST[d]||0),Number(cST[d]||0))])):spST;
+    if(diffFilter==='all'){score=Math.max(...Object.values(useHS).map(v=>Number(v)||0));time=Math.max(...Object.values(useST).map(v=>Number(v)||0));}
+    else{score=Number(useHS[diffFilter]||0);time=Number(useST[diffFilter]||0);}
+    return{username:entry.username||'Anonymous',flag:(entry.country&&entry.country.flag)||'🌍',countryName:(entry.country&&entry.country.en)||'',score:Math.floor(score/10),time,difficulty:diffFilter,highScore:spHS,challengeHighScore:cHS,survivalTimes:spST,challengeSurvivalTimes:cST,topRuns:entry.topRuns||null,joinDate:entry.joinDate||'',playthroughs:entry.playthroughs||0,achievements:Object.keys(entry.achievements||{}).length,isAdmin:entry.e===1};
+  });
+  const sortVal=lbShowTimer?'time':'score';
+  records.sort((a,b)=>sortOrder==='desc'?b[sortVal]-a[sortVal]:a[sortVal]-b[sortVal]);
+  records=records.slice(0,lbDisplayCount);
+  lbList.innerHTML='';
+  if(records.length===0){lbList.innerHTML='<div class="lb-empty">No records found.</div>';return;}
+  records.forEach((r,i)=>{
+    const div=document.createElement('div');div.className='lb-entry';
+    const diffColor={easy:'#22c55e',medium:'#38bdf8',hard:'#f97316',impossible:'#ef4444',all:'#fcd34d'}[r.difficulty]||'#fff';
+    const displayVal=lbShowTimer?formatTime(r.time):r.score;
+    const adminBadge=r.isAdmin?'<span class="forum-admin-badge" style="margin-left:4px;">ADMIN</span>':'';
+    div.innerHTML='<div class="lb-rank">#'+(i+1)+'</div><div class="lb-flag">'+(r.flag||'🌍')+'</div><div class="lb-name">'+(r.username||'Anonymous')+adminBadge+'</div><div class="lb-diff" style="color:'+diffColor+'">'+r.difficulty+'</div><div class="lb-score">'+displayVal+'</div>';
+    div.addEventListener('click',()=>showLbDetail(r));
+    div.addEventListener('contextmenu',e=>{e.preventDefault();if(isAdmin(_loggedInUser))showAdminCtxMenu(e,{userid:null,username:r.username},true);});
+    lbList.appendChild(div);
+  });
+}
+
+function showLbDetail(r){
+  const detail=document.getElementById('lb-entry-detail');const content=document.getElementById('lb-detail-content');
+  const diffs=['easy','medium','hard','impossible'];const diffColors={easy:'#22c55e',medium:'#38bdf8',hard:'#f97316',impossible:'#ef4444'};
+  const adminTag=r.isAdmin?'<span style="background:rgba(239,68,68,0.2);border:1px solid rgba(239,68,68,0.5);color:#ef4444;font-size:11px;font-weight:bold;padding:2px 7px;border-radius:5px;display:inline-block;margin-bottom:10px;">⚙️ ADMIN</span><br>':'';
+  let scoresHtml=diffs.map(d=>`<div class="lb-detail-diff-row"><span style="color:${diffColors[d]};font-weight:bold;text-transform:capitalize;">${d}</span><span>Score: <b>${Math.floor((Number((r.highScore||{})[d])||0)/10)}</b></span><span>Time: <b>${formatTime(Number((r.survivalTimes||{})[d])||0)}</b></span></div>`).join('');
+  let top5Html='';
+  if(r.topRuns){
+    const diff=document.getElementById('lb-diff-filter').value==='all'?'medium':document.getElementById('lb-diff-filter').value;
+    const mode=document.getElementById('lb-gamemode-filter').value==='all'?'singleplayer':document.getElementById('lb-gamemode-filter').value;
+    const runs=(r.topRuns[mode]&&r.topRuns[mode][diff])||[];
+    if(runs.length>0){top5Html='<div style="margin-top:12px;font-size:13px;font-weight:bold;color:rgba(255,255,255,0.6);margin-bottom:6px;">TOP 5 RUNS ('+diff+')</div>'+runs.map((run,i)=>`<div class="lb-detail-diff-row"><span>#${i+1}</span><span>${run.score}</span><span>${formatTime(run.time)}</span><span style="font-size:11px;opacity:0.5;">${new Date(run.date).toLocaleDateString()}</span></div>`).join('');}
+  }
+  content.innerHTML='<div class="lb-detail-name">'+(r.flag||'')+' '+(r.username||'Anonymous')+'</div>'+adminTag+'<div class="lb-detail-country" style="margin-bottom:14px;">'+(r.countryName||'Unknown Country')+'</div><div class="lb-detail-scores-grid">'+scoresHtml+'</div>'+top5Html+(r.playthroughs!==undefined?'<div class="lb-detail-diff" style="margin-top:10px;">🔄 Playthroughs: '+r.playthroughs+'</div>':'')+(r.achievements!==undefined?'<div class="lb-detail-diff">🏆 Achievements: '+r.achievements+'/'+ACHIEVEMENT_DEFS.length+'</div>':'')+(r.joinDate?'<div class="lb-detail-diff">📅 Joined: '+new Date(r.joinDate).toLocaleDateString()+'</div>':'');
+  detail.style.display='flex';
+}
+
+function showNotifyBanner(msg,duration=3000){const b=document.getElementById('notify-banner');b.textContent=msg;b.style.display='block';clearTimeout(b._t);b._t=setTimeout(()=>{b.style.display='none';},duration);}
+
+function customConfirm(msg){
+  return new Promise(resolve=>{
+    const popup=document.getElementById('custom-popup');
+    document.getElementById('custom-popup-msg').textContent=msg;
+    const cancelBtn=document.getElementById('custom-popup-cancel');
+    cancelBtn.style.display='';
+    popup.style.display='flex';
+    function ok(){popup.style.display='none';cleanup();resolve(true);}
+    function cancel(){popup.style.display='none';cleanup();resolve(false);}
+    function cleanup(){document.getElementById('custom-popup-ok').removeEventListener('click',ok);cancelBtn.removeEventListener('click',cancel);}
+    document.getElementById('custom-popup-ok').addEventListener('click',ok);
+    cancelBtn.addEventListener('click',cancel);
+  });
+}
+function customInputPrompt(msg,defaultVal){
+  return new Promise(resolve=>{
+    const popup=document.getElementById('custom-input-popup');
+    document.getElementById('custom-input-msg').textContent=msg;
+    const field=document.getElementById('custom-input-field');field.value=defaultVal||'';
+    popup.style.display='flex';
+    function ok(){popup.style.display='none';cleanup();resolve(parseInt(field.value)||null);}
+    function cancel(){popup.style.display='none';cleanup();resolve(null);}
+    function cleanup(){document.getElementById('custom-input-ok').removeEventListener('click',ok);document.getElementById('custom-input-cancel').removeEventListener('click',cancel);}
+    document.getElementById('custom-input-ok').addEventListener('click',ok);
+    document.getElementById('custom-input-cancel').addEventListener('click',cancel);
+    setTimeout(()=>field.focus(),50);
+  });
+}
+function customTextPrompt(msg){
+  return new Promise(resolve=>{
+    const popup=document.getElementById('custom-text-input-popup');
+    document.getElementById('custom-text-input-msg').textContent=msg;
+    const field=document.getElementById('custom-text-input-field');field.value='';
+    popup.style.display='flex';
+    function ok(){popup.style.display='none';cleanup();resolve(field.value.trim()||null);}
+    function cancel(){popup.style.display='none';cleanup();resolve(null);}
+    function cleanup(){document.getElementById('custom-text-input-ok').removeEventListener('click',ok);document.getElementById('custom-text-input-cancel').removeEventListener('click',cancel);}
+    document.getElementById('custom-text-input-ok').addEventListener('click',ok);
+    document.getElementById('custom-text-input-cancel').addEventListener('click',cancel);
+    setTimeout(()=>field.focus(),50);
+  });
+}
+function showComingSoon(){
+  const popup=document.getElementById('coming-soon-popup');popup.style.display='flex';
+  const closeBtn=document.getElementById('coming-soon-close');
+  let timer=setTimeout(()=>{popup.style.display='none';},3000);
+  function close(){clearTimeout(timer);popup.style.display='none';closeBtn.removeEventListener('click',close);}
+  closeBtn.addEventListener('click',close);
+}
+
+document.getElementById('settings-export-btn').addEventListener('click',exportSettings);
+document.getElementById('settings-import-btn').addEventListener('click',importSettings);
+
+function exportSettings(){
+  const data={gfxSettings:Object.assign({},gfxSettings),language:currentLanguage,allSounds:allSoundsEnabled,doubleJumpGameplay,showDoubleJumpHUD,featShowHeight:showHeightEnabled,featShowTop:showTopEnabled,featShowTimer:showTimerEnabled,showOnLeaderboard,pingNotifsEnabled,audioSettings:Object.assign({},audioSettings),soundVols:Object.assign({},soundVols)};
+  const code=btoa(JSON.stringify(data));
+  document.getElementById('settings-export-text').value=code;
+  showNotifyBanner('Settings exported!');
+}
+
+function importSettings(){
+  const code=document.getElementById('settings-export-text').value.trim();
+  if(!code){showNotifyBanner('Paste a settings code first!');return;}
+  if(code==='Admin'){
+    if(isValidAdmin(_loggedInUser)){document.getElementById('settings-export-text').value='';openAdminPanel();}
+    else{showNotifyBanner('Wrong Settings Import.');}
+    return;
+  }
+  try{
+    const data=JSON.parse(atob(code));
+    if(data.gfxSettings){Object.assign(gfxSettings,data.gfxSettings);saveGfxSettings();}
+    if(data.language){currentLanguage=data.language;localStorage.setItem('language',currentLanguage);}
+    if(data.allSounds!==undefined){allSoundsEnabled=data.allSounds;localStorage.setItem('allSounds',allSoundsEnabled);}
+    if(data.doubleJumpGameplay!==undefined){doubleJumpGameplay=data.doubleJumpGameplay;localStorage.setItem('gameplayDoubleJump',doubleJumpGameplay);}
+    if(data.showDoubleJumpHUD!==undefined){showDoubleJumpHUD=data.showDoubleJumpHUD;localStorage.setItem('featShowDoubleJump',showDoubleJumpHUD);}
+    if(data.featShowHeight!==undefined){showHeightEnabled=data.featShowHeight;localStorage.setItem('featShowHeight',showHeightEnabled);}
+    if(data.featShowTop!==undefined){showTopEnabled=data.featShowTop;localStorage.setItem('featShowTop',showTopEnabled);}
+    if(data.featShowTimer!==undefined){showTimerEnabled=data.featShowTimer;localStorage.setItem('featShowTimer',showTimerEnabled);}
+    if(data.showOnLeaderboard!==undefined){showOnLeaderboard=data.showOnLeaderboard;localStorage.setItem('bj_showOnLb',showOnLeaderboard);}
+    if(data.pingNotifsEnabled!==undefined){pingNotifsEnabled=data.pingNotifsEnabled;localStorage.setItem('featPingNotif',pingNotifsEnabled);}
+    if(data.audioSettings)Object.assign(audioSettings,data.audioSettings);
+    if(data.soundVols)Object.assign(soundVols,data.soundVols);
+    syncUIToSettings();showNotifyBanner('Settings imported!');
+  }catch(e){showNotifyBanner('Invalid settings code!');}
+}
+
+async function openAdminPanel(){
+  if(!isValidAdmin(_loggedInUser))return;
+  const panel=document.getElementById('admin-panel-overlay');panel.style.display='flex';
+  await loadAdminPanel();
+}
+
+async function loadAdminPanel(){
+  const listEl=document.getElementById('admin-user-list');
+  const logEl=document.getElementById('admin-api-log');
+  listEl.innerHTML='<div style="color:rgba(255,255,255,0.4);padding:12px;text-align:center;">Loading users...</div>';
+  const {data}=await fetchAllUsers();
+  const searchTerm=(document.getElementById('admin-user-search').value||'').toLowerCase();
+  const users=data.filter(u=>!u.__meta&&(!searchTerm||u.username.toLowerCase().includes(searchTerm)));
+  listEl.innerHTML='';
+  if(users.length===0){listEl.innerHTML='<div style="color:rgba(255,255,255,0.4);padding:12px;text-align:center;">No users found.</div>';return;}
+  users.forEach(u=>{
+    const row=document.createElement('div');row.className='admin-user-row';
+    const adminBadge=u.e===1?'<span style="background:rgba(239,68,68,0.2);border:1px solid rgba(239,68,68,0.5);color:#ef4444;font-size:10px;font-weight:bold;padding:2px 5px;border-radius:4px;margin-left:4px;">ADMIN</span>':'';
+    row.innerHTML=`<div class="admin-user-name">${escHtml(u.username)}${adminBadge}</div><div class="admin-user-id">#${u.userid}</div><div class="admin-user-btns"><button class="admin-action-btn mute" data-uid="${u.userid}">🔇 Mute</button><button class="admin-action-btn ban" data-uid="${u.userid}">🚫 Ban</button></div>`;
+    row.querySelector('.admin-action-btn.mute').addEventListener('click',e=>{e.stopPropagation();openMutePopup(u.userid,u.username);});
+    row.querySelector('.admin-action-btn.ban').addEventListener('click',e=>{e.stopPropagation();openBanPopup(u.userid,u.username);});
+    listEl.appendChild(u.adminUserRow=row,row);
+    listEl.appendChild(row);
+  });
+  let allLogs=[];
+  data.forEach(u=>{if(u.apiLog&&Array.isArray(u.apiLog)){u.apiLog.forEach(entry=>{allLogs.push({...entry,username:u.username,userid:u.userid});});}});
+  allLogs.sort((a,b)=>new Date(b.time)-new Date(a.time));
+  const recentLogs=allLogs.slice(0,50);
+  logEl.innerHTML=recentLogs.length?recentLogs.map(entry=>`<div class="api-log-entry"><span class="api-log-action">[${escHtml(entry.username||'?')}] ${escHtml(entry.action)}</span><span class="api-log-time">${new Date(entry.time).toLocaleString()}</span></div>`).join(''):'<div style="color:rgba(255,255,255,0.3);text-align:center;padding:8px;">No logs.</div>';
+}
+
+document.getElementById('admin-user-search').addEventListener('input',()=>{if(document.getElementById('admin-panel-overlay').style.display!=='none')loadAdminPanel();});
+document.getElementById('admin-panel-close').addEventListener('click',()=>{document.getElementById('admin-panel-overlay').style.display='none';});
+
+function onSettingChanged(){
+  saveSettingsToUser();
+  clearTimeout(window._settingsSaveTimer);
+  window._settingsSaveTimer=setTimeout(pushCurrentUserToGitHub,2000);
+}
+
+function syncUIToSettings(){
+  syncGfxUI();
+  ['mm-language-select','language-select'].forEach(id=>{const el=document.getElementById(id);if(el)el.value=currentLanguage;});
+  const allT=document.getElementById('all-sounds-toggle');if(allT)allT.checked=allSoundsEnabled;
+  const mmAll=document.getElementById('mm-all-sounds');if(mmAll)mmAll.checked=allSoundsEnabled;
+  [['mm-feat-double-jump','p-feat-show-double-jump-hud',showDoubleJumpHUD],['mm-feat-show-height','p-feat-show-height',showHeightEnabled],['mm-feat-show-top','p-feat-show-top',showTopEnabled],['mm-feat-show-timer','p-feat-show-timer',showTimerEnabled],['mm-gameplay-double-jump','p-gameplay-double-jump',doubleJumpGameplay],['mm-feat-ping-notif','p-feat-ping-notif',pingNotifsEnabled],['mm-show-on-lb',null,showOnLeaderboard]].forEach(([mmId,pId,val])=>{const mm=document.getElementById(mmId);if(mm)mm.checked=val;if(pId){const p=document.getElementById(pId);if(p)p.checked=val;}});
+  syncAllAudioUI();
+  updateLanguage(currentLanguage);
+}
+
+const CHANGELOGS=[
+  {version:'v1.6.0',date:'16-04-2026',entries:[
+    {tag:'new',text:'Challenge mode with 24 unique challenges'},
+    {tag:'new',text:'Difficulty now chosen at game start, not in settings'},
+    {tag:'new',text:'Challenges: Angel Wings, CaseOh, Fog variants, Speed/Slow, Lava Rise/Drop, and more'},
+    {tag:'new',text:'Challenge modifier shown as +/- % bonus on leaderboard'},
+    {tag:'new',text:'Top 5 runs stored per difficulty per mode'},
+    {tag:'new',text:'Leaderboard split by Singleplayer / Challenge / All'},
+    {tag:'new',text:'Graphics settings split: Menu effects vs Gameplay effects'},
+    {tag:'new',text:'Ping system: @username mentions in forum, Discord-style notification'},
+    {tag:'new',text:'Ping sound: uses discord_ping_sound_effect.mp3'},
+    {tag:'new',text:'Forum back button fixed on closed threads'},
+    {tag:'new',text:'Admin can post in closed/completed threads'},
+    {tag:'new',text:'Right-click context menu works on forum cards and leaderboard entries'},
+    {tag:'new',text:'Leaderboard refresh has 3s countdown cooldown'},
+    {tag:'new',text:'Image zoom overlay on all forum images'},
+    {tag:'new',text:'DJ cooldown HUD for Angel Wing Cooldown challenges'},
+    {tag:'new',text:'Fog overlay effect for Fog challenges'},
+    {tag:'new',text:'All GitHub data now encrypted'},
+    {tag:'fix',text:'Forum: click anywhere on card opens thread'},
+    {tag:'fix',text:'Import button now required to trigger Admin panel (not auto)'},
+    {tag:'fix',text:'Ban screen shows refresh button when ban expires'},
+    {tag:'fix',text:'Muted users see countdown timer in chat input bar'}
+  ]},
+  {version:'v1.5.0',date:'14-04-2026',entries:[
+    {tag:'new',text:'Login now uses username'},
+    {tag:'new',text:'Remember me with encrypted credentials'},
+    {tag:'new',text:'Profile settings: change username, password, country'},
+    {tag:'new',text:'Admin panel via Import field'},
+    {tag:'fix',text:'Playthrough height and time now correctly save'}
+  ]}
+];
+
+function renderChangelogs(){
+  const list=document.getElementById('changelog-list');
+  list.innerHTML=CHANGELOGS.map(cl=>`<div class="mm-section" style="margin-bottom:14px;"><div class="mm-section-title">Changelog - ${cl.version} <span style="color:rgba(255,255,255,0.4);font-size:12px;font-weight:400;margin-left:8px;">${cl.date}</span></div><div class="changelog-box">${cl.entries.map(e=>`<div class="changelog-entry"><span class="cl-tag ${e.tag}">${e.tag.toUpperCase()}</span> ${e.text}</div>`).join('')}</div></div>`).join('');
+}
+
+async function resetAllData(){
+  const ok=await customConfirm('Reset ALL local data? This cannot be undone.');
+  if(!ok)return;
+  localStorage.clear();
+  location.reload();
+}
+
+function showQualityPopup(){
+  return new Promise(resolve=>{
+    const asked=localStorage.getItem('bj_qualityAsked');if(asked){resolve();return;}
+    const popup=document.getElementById('quality-popup');popup.style.display='flex';
+    document.getElementById('quality-high-btn').addEventListener('click',()=>{Object.keys(gfxSettings).forEach(k=>gfxSettings[k]=true);saveGfxSettings();localStorage.setItem('bj_qualityAsked','1');popup.style.display='none';resolve();},{once:true});
+    document.getElementById('quality-low-btn').addEventListener('click',()=>{Object.keys(gfxSettings).forEach(k=>gfxSettings[k]=false);saveGfxSettings();localStorage.setItem('bj_qualityAsked','1');popup.style.display='none';resolve();},{once:true});
+  });
+}
+
+function loadSettingsFromUser(){
+  if(!_loggedInUser||!_loggedInUser.settings)return;
+  const s=_loggedInUser.settings;
+  if(s.gfxSettings){Object.assign(gfxSettings,s.gfxSettings);saveGfxSettings();}
+  if(s.language){currentLanguage=s.language;localStorage.setItem('language',currentLanguage);}
+  if(s.allSounds!==undefined){allSoundsEnabled=s.allSounds;localStorage.setItem('allSounds',allSoundsEnabled);}
+  if(s.doubleJumpGameplay!==undefined){doubleJumpGameplay=s.doubleJumpGameplay;localStorage.setItem('gameplayDoubleJump',doubleJumpGameplay);}
+  if(s.showDoubleJumpHUD!==undefined){showDoubleJumpHUD=s.showDoubleJumpHUD;localStorage.setItem('featShowDoubleJump',showDoubleJumpHUD);}
+  if(s.featShowHeight!==undefined){showHeightEnabled=s.featShowHeight;localStorage.setItem('featShowHeight',showHeightEnabled);}
+  if(s.featShowTop!==undefined){showTopEnabled=s.featShowTop;localStorage.setItem('featShowTop',showTopEnabled);}
+  if(s.featShowTimer!==undefined){showTimerEnabled=s.featShowTimer;localStorage.setItem('featShowTimer',showTimerEnabled);}
+  if(s.showOnLeaderboard!==undefined){showOnLeaderboard=s.showOnLeaderboard;localStorage.setItem('bj_showOnLb',showOnLeaderboard);}
+  if(s.pingNotifsEnabled!==undefined){pingNotifsEnabled=s.pingNotifsEnabled;localStorage.setItem('featPingNotif',pingNotifsEnabled);}
+  if(s.audioSettings)Object.assign(audioSettings,s.audioSettings);
+  if(s.soundVols)Object.assign(soundVols,s.soundVols);
+}
+
+function saveSettingsToUser(){
+  if(!_loggedInUser)return;
+  _loggedInUser.settings={gfxSettings:Object.assign({},gfxSettings),language:currentLanguage,allSounds:allSoundsEnabled,doubleJumpGameplay,showDoubleJumpHUD,featShowHeight:showHeightEnabled,featShowTop:showTopEnabled,featShowTimer:showTimerEnabled,showOnLeaderboard,pingNotifsEnabled,audioSettings:Object.assign({},audioSettings),soundVols:Object.assign({},soundVols)};
+}
+
+function initMainMenu(){
+  loadPlayerData();
+  loadSettingsFromUser();
+  const flag=_loggedInUser&&_loggedInUser.country&&_loggedInUser.country.flag?_loggedInUser.country.flag+' ':'';
+  const adminTag=isAdmin(_loggedInUser)?'<span style="background:rgba(239,68,68,0.2);border:1px solid rgba(239,68,68,0.5);color:#ef4444;font-size:10px;font-weight:bold;padding:2px 6px;border-radius:4px;margin-left:6px;vertical-align:middle;">ADMIN</span>':'';
+  document.getElementById('mm-user-display').innerHTML=flag+escHtml(_loggedInUser?_loggedInUser.username:'')+adminTag;
+  if(_loggedInUser&&_loggedInUser.country){
+    document.getElementById('profile-country-flag').textContent=_loggedInUser.country.flag||'🌍';
+    document.getElementById('profile-country-name').textContent=_loggedInUser.country.en||'Select Country';
+    _profileSelectedCountry=_loggedInUser.country;
+  }
+  syncUIToSettings();applyGfxSettings();syncGfxUI();syncAllAudioUI();updateLanguage(currentLanguage);
+  document.getElementById('hud').style.display='none';document.getElementById('hp-display').style.display='none';document.getElementById('pause-hint').style.display='none';document.getElementById('dj-cooldown-hud').style.display='none';
+  document.getElementById('main-menu-screen').style.display='flex';
+  checkUnreadPings();
+  showQualityPopup();
+}
+
+document.getElementById('mm-logout-btn').addEventListener('click',doLogout);
+document.getElementById('profile-logout-btn').addEventListener('click',doLogout);
+function doLogout(){
+  _loggedInUser=null;clearCredentials();
+  ['main-menu-screen','mm-settings-screen','mm-extra-screen','mm-forum-screen','mm-leaderboard-screen','mm-achievements-screen','mm-stats-screen','mm-changelog-screen','mm-help-screen','mm-community-screen'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='none';});
+  document.getElementById('auth-screen').style.display='flex';
+  document.getElementById('auth-login-username').value='';document.getElementById('auth-login-password').value='';
+  document.getElementById('auth-login-error').textContent='';
+  document.getElementById('auth-tab-login').classList.add('active');
+  document.getElementById('auth-tab-signup').classList.remove('active');
+  document.getElementById('auth-login-panel').style.display='';
+  document.getElementById('auth-signup-panel').style.display='none';
+}
+
+document.getElementById('profile-save-btn').addEventListener('click',async()=>{
+  if(!_loggedInUser)return;
+  const newUsername=document.getElementById('profile-change-username').value.trim();
+  const newPassword=document.getElementById('profile-change-password').value;
+  if(newUsername&&newUsername!==_loggedInUser.username){
+    await fetchAllUsers();
+    const exists=_allUsersCache.find(u=>!u.__meta&&u.username&&u.username.toLowerCase()===newUsername.toLowerCase()&&u.userid!==_loggedInUser.userid);
+    if(exists){showNotifyBanner('Username already taken.');return;}
+    _loggedInUser.username=newUsername;
+  }
+  if(newPassword)_loggedInUser.password=btoa(newPassword);
+  if(_profileSelectedCountry)_loggedInUser.country=_profileSelectedCountry;
+  const storedCreds=loadCredentials();
+  if(storedCreds)storeCredentials(_loggedInUser.username,newPassword||atob(_loggedInUser.password));
+  appendAudit('profile_updated',{userid:_loggedInUser.userid});
+  await pushCurrentUserToGitHub();
+  showNotifyBanner('Profile saved!');
+  const flag=_loggedInUser.country&&_loggedInUser.country.flag?_loggedInUser.country.flag+' ':'';
+  document.getElementById('mm-user-display').textContent=flag+_loggedInUser.username;
+  document.getElementById('profile-change-username').value='';
+  document.getElementById('profile-change-password').value='';
+  document.getElementById('mm-settings-screen').style.display='none';
+  document.getElementById('main-menu-screen').style.display='flex';
+});
+
+let _newPostImages=[];
+
+const forumDropzone=document.getElementById('forum-img-dropzone');
+forumDropzone.addEventListener('dragover',e=>{e.preventDefault();forumDropzone.classList.add('drag-over');});
+forumDropzone.addEventListener('dragleave',e=>{if(!forumDropzone.contains(e.relatedTarget))forumDropzone.classList.remove('drag-over');});
+forumDropzone.addEventListener('drop',e=>{
+  e.preventDefault();forumDropzone.classList.remove('drag-over');
+  const files=Array.from(e.dataTransfer.files).filter(f=>f.type.startsWith('image/')).slice(0,5);
+  files.forEach((file,i)=>{
+    const nextSlot=_newPostImages.findIndex((v,idx)=>!v&&idx<5);
+    const slot=nextSlot===-1?i:nextSlot;if(slot>=5)return;
+    const reader=new FileReader();
+    reader.onload=ev=>{_newPostImages[slot]=ev.target.result;const slotEl=document.getElementById('forum-img-slot-'+slot);if(slotEl){slotEl.style.backgroundImage='url('+ev.target.result+')';slotEl.style.backgroundSize='cover';slotEl.style.backgroundPosition='center';const sp=slotEl.querySelector('span');if(sp)sp.style.display='none';}};
+    reader.readAsDataURL(file);
+  });
+});
+
+document.getElementById('forum-new-post-btn').addEventListener('click',()=>{
+  document.getElementById('forum-list-view').style.display='none';
+  document.getElementById('forum-new-post-view').style.display='';
+  document.getElementById('mm-forum-back-btn').style.display='none';
+  document.getElementById('new-post-title').value='';document.getElementById('new-post-body').value='';document.getElementById('new-post-tag').value='';
+  document.querySelectorAll('.forum-tag-btn').forEach(b=>b.classList.remove('active'));
+  _newPostImages=[];
+  [0,1,2,3,4].forEach(i=>{const slot=document.getElementById('forum-img-slot-'+i);if(slot){slot.style.backgroundImage='';const sp=slot.querySelector('span');if(sp)sp.style.display='';const inp=document.getElementById('forum-img-'+i);if(inp)inp.value='';}});
+});
+
+document.querySelectorAll('.forum-tag-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.forum-tag-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.getElementById('new-post-tag').value=btn.dataset.tag;});});
+
+[0,1,2,3,4].forEach(i=>{
+  const input=document.getElementById('forum-img-'+i);if(!input)return;
+  input.addEventListener('change',e=>{
+    const file=e.target.files[0];if(!file)return;
+    const reader=new FileReader();
+    reader.onload=ev=>{_newPostImages[i]=ev.target.result;const slot=document.getElementById('forum-img-slot-'+i);if(slot){slot.style.backgroundImage='url('+ev.target.result+')';slot.style.backgroundSize='cover';slot.style.backgroundPosition='center';const sp=slot.querySelector('span');if(sp)sp.style.display='none';}};
+    reader.readAsDataURL(file);
+  });
+  const slot=document.getElementById('forum-img-slot-'+i);
+  if(slot)slot.addEventListener('click',e=>{if(e.target.tagName==='INPUT')return;input.click();});
+});
+
+document.getElementById('forum-cancel-post-btn').addEventListener('click',()=>{
+  document.getElementById('forum-new-post-view').style.display='none';
+  document.getElementById('forum-list-view').style.display='';
+  document.getElementById('mm-forum-back-btn').style.display='';
+});
+
+document.getElementById('forum-submit-post-btn').addEventListener('click',async()=>{
+  const title=document.getElementById('new-post-title').value.trim();
+  const body=document.getElementById('new-post-body').value.trim();
+  const tag=document.getElementById('new-post-tag').value;
+  if(!title||!body){showNotifyBanner('Title and message are required.');return;}
+  if(!tag){showNotifyBanner('Please select a tag.');return;}
+  if(isUserMuted(_loggedInUser)){showNotifyBanner('You are muted and cannot post.');return;}
+  const forum=await fetchForum();
+  const post={id:'post_'+Date.now()+'_'+Math.random().toString(36).substr(2,6),title,body,tag,images:_newPostImages.filter(Boolean),createdBy:_loggedInUser.userid,createdByUsername:_loggedInUser.username,isAdmin:isAdmin(_loggedInUser),createdAt:new Date().toISOString(),replies:[],status:'open',statusMessage:'',pinned:false,deletedBy:null};
+  forum.posts.unshift(post);
+  const ok=await saveForum(forum);
+  if(ok){showNotifyBanner('Post created!');appendAudit('forum_post_created',{postId:post.id,title});document.getElementById('forum-cancel-post-btn').click();}
+  else{showNotifyBanner('Failed to post. Try again.');}
+});
+
+async function showForumList(){
+  document.getElementById('forum-list-view').style.display='';
+  document.getElementById('forum-new-post-view').style.display='none';
+  document.getElementById('forum-thread-view-wrap').style.display='none';
+  document.getElementById('mm-forum-back-btn').style.display='';
+  const forum=await fetchForum();renderForumList(forum);
+  stopForumPoll();
+  _forumPollInterval=setInterval(async()=>{
+    if(document.getElementById('forum-list-view').style.display==='none')return;
+    const f=await fetchForum();renderForumList(f);
+  },5000);
+}
+
+function showAdminCtxMenu(e,target,fromLeaderboard=false){
+  e.preventDefault();e.stopPropagation();
+  if(!isAdmin(_loggedInUser))return;
+  const menu=document.getElementById('ctx-menu');menu.innerHTML='';
+  const items=[];
+  if(!fromLeaderboard){
+    items.push({label:'🔇 Mute User',fn:()=>openMutePopup(target.userid,target.username)});
+    items.push({label:'🚫 Ban User',fn:()=>openBanPopup(target.userid,target.username)});
+  }
+  items.forEach(item=>{
+    const btn=document.createElement('button');btn.className='ctx-menu-item';btn.textContent=item.label;
+    btn.addEventListener('click',()=>{menu.style.display='none';item.fn();});
+    menu.appendChild(btn);
+  });
+  menu.style.display='block';
+  const mx=Math.min(e.clientX,window.innerWidth-190);const my=Math.min(e.clientY,window.innerHeight-items.length*44-10);
+  menu.style.left=mx+'px';menu.style.top=my+'px';
+}
+
+let _ctxPostId=null;
+function showPostCtxMenu(e,post){
+  e.preventDefault();e.stopPropagation();
+  const isAdminUser=isAdmin(_loggedInUser);
+  const isOwner=_loggedInUser&&post.createdBy===_loggedInUser.userid;
+  if(!isAdminUser&&!isOwner)return;
+  const menu=document.getElementById('ctx-menu');menu.innerHTML='';
+  const items=[];
+  if(isOwner||isAdminUser)items.push({label:'🗑 Delete Post',fn:async()=>{const ok=await customConfirm('Delete this post?');if(!ok)return;const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p){p.deletedBy=_loggedInUser.userid;p.deletedAt=new Date().toISOString();}await saveForum(f);appendAudit('forum_post_deleted',{postId:post.id});showForumList();}});
+  if(isAdminUser){
+    items.push({label:'✅ Set: Completed',fn:async()=>{const msg=await customTextPrompt('Completed message:');if(msg===null)return;const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p){p.status='completed';p.statusMessage=msg;}await saveForum(f);appendAudit('forum_status_completed',{postId:post.id});showForumList();}});
+    items.push({label:'💬 Set: Thought About',fn:async()=>{const msg=await customTextPrompt('Message:');if(msg===null)return;const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p){p.status='thought';p.statusMessage=msg;}await saveForum(f);showForumList();}});
+    items.push({label:'🔓 Set: Open',fn:async()=>{const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p){p.status='open';p.statusMessage='';}await saveForum(f);showForumList();}});
+    items.push({label:post.pinned?'📌 Unpin':'📌 Pin',fn:async()=>{const f=await fetchForum();const p=f.posts.find(p=>p.id===post.id);if(p)p.pinned=!p.pinned;await saveForum(f);showForumList();}});
+    items.push({label:'🔇 Mute User',fn:()=>openMutePopup(post.createdBy,post.createdByUsername)});
+    items.push({label:'🚫 Ban User',fn:()=>openBanPopup(post.createdBy,post.createdByUsername)});
+  }
+  items.forEach(item=>{
+    const btn=document.createElement('button');btn.className='ctx-menu-item';btn.textContent=item.label;
+    btn.addEventListener('click',()=>{menu.style.display='none';item.fn();});
+    menu.appendChild(btn);
+  });
+  menu.style.display='block';
+  const mx=Math.min(e.clientX,window.innerWidth-190);const my=Math.min(e.clientY,window.innerHeight-items.length*44-10);
+  menu.style.left=mx+'px';menu.style.top=my+'px';
+}
+
+document.addEventListener('click',()=>{const m=document.getElementById('ctx-menu');if(m)m.style.display='none';});
+
+function renderForumList(forum){
+  const search=(document.getElementById('forum-search').value||'').toLowerCase();
+  const tagFilter=document.getElementById('forum-tag-filter').value;
+  const statusFilter=document.getElementById('forum-status-filter').value;
+  let posts=(forum.posts||[]).filter(p=>!p.deletedBy);
+  if(tagFilter!=='all')posts=posts.filter(p=>p.tag===tagFilter);
+  if(statusFilter!=='all')posts=posts.filter(p=>p.status===statusFilter);
+  if(search)posts=posts.filter(p=>(p.title||'').toLowerCase().includes(search)||(p.body||'').toLowerCase().includes(search));
+  posts.sort((a,b)=>{
+    const aFollowed=_loggedInUser&&_loggedInUser.followedForums&&_loggedInUser.followedForums.includes(a.id);
+    const bFollowed=_loggedInUser&&_loggedInUser.followedForums&&_loggedInUser.followedForums.includes(b.id);
+    if(b.pinned!==a.pinned)return (b.pinned?1:0)-(a.pinned?1:0);
+    if(aFollowed!==bFollowed)return aFollowed?-1:1;
+    return 0;
+  });
+  const list=document.getElementById('forum-posts-list');
+  if(posts.length===0){list.innerHTML='<div class="forum-empty">No posts found.</div>';return;}
+  list.innerHTML='';
+  posts.forEach(post=>{
+    const tagColors={bug:'#ef4444',suggestion:'#22c55e',question:'#f59e0b'};
+    const tagLabels={bug:'🐛 Bug/Glitch',suggestion:'💡 Suggestion',question:'❓ Question'};
+    const statusColors={open:'rgba(255,255,255,0.3)',completed:'#22c55e',thought:'#f59e0b'};
+    const statusLabels={open:'',completed:'✅ Completed',thought:'💬 Thought About'};
+    const isFollowed=_loggedInUser&&_loggedInUser.followedForums&&_loggedInUser.followedForums.includes(post.id);
+    const div=document.createElement('div');div.className='forum-post-card';
+    const adminBadge=post.isAdmin?'<span class="forum-admin-badge" style="margin-left:4px;">ADMIN</span>':'';
+    const followBadge=isFollowed?'<span style="font-size:11px;color:#38bdf8;margin-left:6px;">👁 Following</span>':'';
+    div.innerHTML=`<div class="forum-post-header">${post.pinned?'<span class="forum-pin-badge">📌 Pinned</span>':''}<span class="forum-tag-label" style="background:${tagColors[post.tag]||'#888'}">${tagLabels[post.tag]||post.tag}</span>${post.status!=='open'?`<span class="forum-status-label" style="color:${statusColors[post.status]}">${statusLabels[post.status]}</span>`:''}<span class="forum-post-meta">${escHtml(post.createdByUsername||post.createdBy)}${adminBadge}${followBadge} · ${new Date(post.createdAt).toLocaleDateString()}</span></div><div class="forum-post-title">${escHtml(post.title)}</div><div class="forum-post-preview">${escHtml((post.body||'').substring(0,120))}${(post.body||'').length>120?'...':''}</div>${post.images&&post.images.length?'<div class="forum-post-imgs">'+post.images.map(img=>`<img src="${img}" class="forum-post-thumb" data-fullsrc="${img}">`).join('')+'</div>':''}<div class="forum-post-footer"><span>💬 ${(post.replies||[]).filter(r=>!r.deletedBy).length} replies</span>${post.status!=='open'&&post.statusMessage?`<span class="forum-status-msg">${escHtml(post.statusMessage)}</span>`:''}</div>`;
+    div.addEventListener('click',(e)=>{
+      if(e.target.classList.contains('forum-post-thumb'))return;
+      openForumThread(post.id);
+    });
+    div.querySelectorAll('.forum-post-thumb').forEach(img=>{img.addEventListener('click',e=>{e.stopPropagation();openImageZoom(img.dataset.fullsrc);});});
+    div.addEventListener('contextmenu',e=>{showPostCtxMenu(e,post);});
+    div.addEventListener('contextmenu',e=>{
+      if(!isAdmin(_loggedInUser)&&_loggedInUser&&post.createdBy!==_loggedInUser.userid)return;
+      e.preventDefault();
+      const menu=document.getElementById('ctx-menu');
+      let extraItems=[];
+      if(_loggedInUser){
+        const isFollowedNow=_loggedInUser.followedForums&&_loggedInUser.followedForums.includes(post.id);
+        extraItems.push({label:isFollowedNow?'👁 Unfollow Forum':'👁 Follow Forum',fn:async()=>{if(!_loggedInUser.followedForums)_loggedInUser.followedForums=[];if(isFollowedNow){_loggedInUser.followedForums=_loggedInUser.followedForums.filter(id=>id!==post.id);}else{_loggedInUser.followedForums.push(post.id);}await pushCurrentUserToGitHub();showForumList();}});
+      }
+    });
+    list.appendChild(div);
+  });
+}
+
+function addFollowUnfollowToCtx(post){
+  const isFollowed=_loggedInUser&&_loggedInUser.followedForums&&_loggedInUser.followedForums.includes(post.id);
+  return {label:isFollowed?'👁 Unfollow Forum':'👁 Follow Forum',fn:async()=>{if(!_loggedInUser.followedForums)_loggedInUser.followedForums=[];if(isFollowed){_loggedInUser.followedForums=_loggedInUser.followedForums.filter(id=>id!==post.id);}else{_loggedInUser.followedForums.push(post.id);}await pushCurrentUserToGitHub();showForumList();}};
+}
+
+document.getElementById('forum-search').addEventListener('input',async()=>{const f=await fetchForum();renderForumList(f);});
+document.getElementById('forum-tag-filter').addEventListener('change',async()=>{const f=await fetchForum();renderForumList(f);});
+document.getElementById('forum-status-filter').addEventListener('change',async()=>{const f=await fetchForum();renderForumList(f);});
+
+async function openForumThread(postId){
+  _currentForumPostId=postId;
+  stopForumPoll();
+  document.getElementById('forum-list-view').style.display='none';
+  document.getElementById('forum-new-post-view').style.display='none';
+  document.getElementById('forum-thread-view-wrap').style.display='';
+  document.getElementById('mm-forum-back-btn').style.display='none';
+  if(_loggedInUser&&_loggedInUser.followedForums&&!_loggedInUser.followedForums.includes(postId)){
+    _loggedInUser.followedForums.push(postId);
+    pushCurrentUserToGitHub();
+  }
+  await renderForumThread();
+  _forumPollInterval=setInterval(renderForumThread,2000);
+}
+
+function parsePings(body,currentUsername){
+  const pingRegex=/@(\w+)/g;const idRegex=/<@(\d+)>/g;
+  const usernames=new Set();const userids=new Set();
+  let m;
+  while((m=pingRegex.exec(body))!==null){if(m[1].toLowerCase()!==currentUsername.toLowerCase())usernames.add(m[1].toLowerCase());}
+  while((m=idRegex.exec(body))!==null){userids.add(m[1]);}
+  return{usernames:Array.from(usernames),userids:Array.from(userids)};
+}
+
+async function processPings(body,postId,replyId){
+  if(!_allUsersCache)return;
+  const{usernames,userids}=parsePings(body,_loggedInUser.username);
+  const targets=new Set();
+  _allUsersCache.filter(u=>!u.__meta).forEach(u=>{
+    if(usernames.includes((u.username||'').toLowerCase()))targets.add(u.userid);
+    if(userids.includes(u.userid))targets.add(u.userid);
+  });
+  for(const uid of targets){
+    if(uid===_loggedInUser.userid)continue;
+    const idx=_allUsersCache.findIndex(u=>!u.__meta&&u.userid===uid);
+    if(idx===-1)continue;
+    if(!_allUsersCache[idx].pingHistory)_allUsersCache[idx].pingHistory=[];
+    _allUsersCache[idx].pingHistory.push({from:_loggedInUser.username,postId,replyId,body:body.substring(0,100),at:new Date().toISOString(),read:false});
+  }
+  if(targets.size>0){await saveAllUsers(_allUsersCache);}
+}
+
+function checkUnreadPings(){
+  if(!_loggedInUser||!_loggedInUser.pingHistory)return;
+  const unread=(_loggedInUser.pingHistory||[]).filter(p=>!p.read);
+  const badge=document.getElementById('forum-notif-badge');
+  if(badge){badge.textContent=unread.length;badge.style.display=unread.length>0?'flex':'none';}
+  if(unread.length>0&&pingNotifsEnabled){
+    unread.slice(-1).forEach(ping=>{showPingNotification(ping.from,ping.body);});
+  }
+}
+
+let _pingNotifShowing=false;
+function showPingNotification(from,preview){
+  if(!pingNotifsEnabled)return;
+  _pingNotifShowing=true;
+  const notif=document.getElementById('ping-notification');
+  document.getElementById('ping-notif-name').textContent='From '+from+': '+preview.substring(0,60);
+  notif.style.display='flex';
+  setTimeout(()=>notif.classList.add('show'),10);
+  playPingSound();
+  setTimeout(()=>{notif.classList.remove('show');setTimeout(()=>{notif.style.display='none';_pingNotifShowing=false;},500);},4000);
+}
+
+function renderPingedBody(body){
+  return escHtml(body).replace(/@(\w+)/g,'<span class="ping-highlight">@$1</span>').replace(/&lt;@(\d+)&gt;/g,'<span class="ping-highlight">&lt;@$1&gt;</span>');
+}
+
+async function renderForumThread(){
+  const forum=await fetchForum();
+  const post=forum.posts.find(p=>p.id===_currentForumPostId);
+  if(!post){document.getElementById('forum-thread-back-btn').click();return;}
+  const isClosed=post.status==='completed';
+  const isAdminUser=isAdmin(_loggedInUser);
+  const canReply=isAdminUser||((!isClosed)&&!isUserMuted(_loggedInUser));
+  const tagColors={bug:'#ef4444',suggestion:'#22c55e',question:'#f59e0b'};
+  const tagLabels={bug:'🐛 Bug/Glitch',suggestion:'💡 Suggestion',question:'❓ Question'};
+  const headerEl=document.getElementById('forum-thread-header');
+  const adminBadge=post.isAdmin?'<span class="forum-admin-badge" style="margin-left:6px;">ADMIN</span>':'';
+  headerEl.innerHTML=`<div class="forum-thread-title-row"><h3 class="forum-thread-title">${escHtml(post.title)}</h3><span class="forum-tag-label" style="background:${tagColors[post.tag]||'#888'}">${tagLabels[post.tag]||post.tag}</span></div><div class="forum-thread-meta">By <b>${escHtml(post.createdByUsername||post.createdBy)}</b>${adminBadge} · ${new Date(post.createdAt).toLocaleString()}</div><div class="forum-thread-body">${renderPingedBody(post.body)}</div>${post.images&&post.images.length?'<div class="forum-post-imgs">'+post.images.map(img=>`<img src="${img}" class="forum-post-thumb" data-fullsrc="${img}">`).join('')+'</div>':''}${post.status!=='open'?`<div class="forum-status-banner" style="border-color:${post.status==='completed'?'#22c55e':'#f59e0b'};color:${post.status==='completed'?'#22c55e':'#f59e0b'}">${post.status==='completed'?'✅ Completed':'💬 Thought About'}${post.statusMessage?': '+escHtml(post.statusMessage):''}</div>`:''}`;
+  headerEl.querySelectorAll('.forum-post-thumb').forEach(img=>{img.addEventListener('click',()=>openImageZoom(img.dataset.fullsrc));});
+  const msgsEl=document.getElementById('forum-thread-messages');
+  const replies=(post.replies||[]).filter(r=>!r.deletedBy);
+  if(replies.length===0){msgsEl.innerHTML='<div class="forum-empty" style="padding:20px 0;">No replies yet.</div>';}
+  else{
+    msgsEl.innerHTML='';
+    replies.forEach(reply=>{
+      const isMine=_loggedInUser&&reply.createdBy===_loggedInUser.userid;
+      const div=document.createElement('div');div.className='forum-reply-item';
+      const replyAdminBadge=reply.isAdmin?'<span class="forum-admin-badge" style="margin-left:4px;font-size:9px;">ADMIN</span>':'';
+      let delBtn='';if(isMine||isAdminUser)delBtn=`<button class="forum-delete-btn" data-rid="${reply.id}">🗑</button>`;
+      let adminRow='';
+      if(isAdminUser&&reply.createdBy!==_loggedInUser.userid){adminRow=`<div style="display:flex;gap:6px;margin-top:6px;"><button class="admin-action-btn mute" style="font-size:11px;padding:4px 8px;" data-uid="${reply.createdBy}">🔇</button><button class="admin-action-btn ban" style="font-size:11px;padding:4px 8px;" data-uid="${reply.createdBy}">🚫</button></div>`;}
+      div.innerHTML=`<div class="forum-reply-header"><span class="forum-reply-user">${escHtml(reply.createdByUsername||reply.createdBy)}</span>${replyAdminBadge}<span class="forum-reply-time">${new Date(reply.createdAt).toLocaleString()}</span>${delBtn}</div><div class="forum-reply-body">${renderPingedBody(reply.body)}</div>${adminRow}`;
+      if(delBtn){div.querySelector('.forum-delete-btn').addEventListener('click',async()=>{const ok=await customConfirm('Delete reply?');if(!ok)return;const f=await fetchForum();const p=f.posts.find(p=>p.id===_currentForumPostId);if(p){const r=p.replies.find(r=>r.id===reply.id);if(r){r.deletedBy=_loggedInUser.userid;r.deletedAt=new Date().toISOString();}}await saveForum(f);await renderForumThread();});}
+      if(isAdminUser){
+        div.querySelectorAll('.admin-action-btn.mute').forEach(btn=>btn.addEventListener('click',()=>openMutePopup(reply.createdBy,reply.createdByUsername)));
+        div.querySelectorAll('.admin-action-btn.ban').forEach(btn=>btn.addEventListener('click',()=>openBanPopup(reply.createdBy,reply.createdByUsername)));
+      }
+      div.addEventListener('contextmenu',e=>{
+        if(!isAdminUser&&!(isMine))return;
+        e.preventDefault();
+        const menu=document.getElementById('ctx-menu');menu.innerHTML='';
+        const items=[];
+        if(isMine||isAdminUser)items.push({label:'🗑 Delete Reply',fn:async()=>{const ok=await customConfirm('Delete reply?');if(!ok)return;const f=await fetchForum();const p=f.posts.find(p=>p.id===_currentForumPostId);if(p){const r=p.replies.find(r=>r.id===reply.id);if(r){r.deletedBy=_loggedInUser.userid;}}await saveForum(f);await renderForumThread();}});
+        if(isAdminUser&&reply.createdBy!==_loggedInUser.userid){items.push({label:'🔇 Mute',fn:()=>openMutePopup(reply.createdBy,reply.createdByUsername)});items.push({label:'🚫 Ban',fn:()=>openBanPopup(reply.createdBy,reply.createdByUsername)});}
+        items.forEach(item=>{const btn=document.createElement('button');btn.className='ctx-menu-item';btn.textContent=item.label;btn.addEventListener('click',()=>{menu.style.display='none';item.fn();});menu.appendChild(btn);});
+        menu.style.display='block';menu.style.left=Math.min(e.clientX,window.innerWidth-190)+'px';menu.style.top=Math.min(e.clientY,window.innerHeight-items.length*44-10)+'px';
+      });
+      msgsEl.appendChild(div);
+    });
+    msgsEl.scrollTop=msgsEl.scrollHeight;
+  }
+  const replyArea=document.getElementById('forum-thread-reply-area');
+  const closedNotice=document.getElementById('forum-closed-notice');
+  const muteBar=document.getElementById('forum-mute-bar');
+  if(isClosed&&!isAdminUser){
+    replyArea.style.display='none';closedNotice.style.display='';muteBar.style.display='none';
+  } else {
+    replyArea.style.display='';closedNotice.style.display='none';
+    if(isUserMuted(_loggedInUser)&&!isAdminUser){
+      const ms=getMuteTimeLeft(_loggedInUser);
+      muteBar.style.display='';
+      const updateMuteBar=()=>{const r=getMuteTimeLeft(_loggedInUser);if(r<=0){muteBar.style.display='none';return;}const s=Math.floor(r/1000);const m=Math.floor(s/60);muteBar.textContent='🔇 Muted — '+Math.floor(s/3600)+'h '+(Math.floor(s/60)%60)+'m '+(s%60)+'s remaining';setTimeout(updateMuteBar,1000);};
+      updateMuteBar();
+      document.getElementById('forum-reply-input').disabled=true;
+      document.getElementById('forum-send-reply-btn').disabled=true;
+    } else {
+      muteBar.style.display='none';
+      document.getElementById('forum-reply-input').disabled=false;
+      document.getElementById('forum-send-reply-btn').disabled=false;
+    }
+  }
+}
+
+document.getElementById('forum-send-reply-btn').addEventListener('click',async()=>{
+  const body=document.getElementById('forum-reply-input').value.trim();
+  if(!body){showNotifyBanner('Reply cannot be empty.');return;}
+  if(isUserMuted(_loggedInUser)&&!isAdmin(_loggedInUser)){showNotifyBanner('You are muted.');return;}
+  const forum=await fetchForum();
+  const post=forum.posts.find(p=>p.id===_currentForumPostId);
+  if(!post){showNotifyBanner('Post not found.');return;}
+  if(post.status==='completed'&&!isAdmin(_loggedInUser)){showNotifyBanner('This thread is closed.');return;}
+  if(!post.replies)post.replies=[];
+  const replyId='r_'+Date.now()+'_'+Math.random().toString(36).substr(2,6);
+  post.replies.push({id:replyId,body,createdBy:_loggedInUser.userid,createdByUsername:_loggedInUser.username,isAdmin:isAdmin(_loggedInUser),createdAt:new Date().toISOString(),deletedBy:null});
+  const ok=await saveForum(forum);
+  if(ok){
+    document.getElementById('forum-reply-input').value='';
+    appendAudit('forum_reply_sent',{postId:_currentForumPostId});
+    await processPings(body,_currentForumPostId,replyId);
+    await renderForumThread();
+  }else{showNotifyBanner('Failed to send reply.');}
+});
+
+const forumThreadBackBtn=document.getElementById('forum-thread-back-btn');
+const forumThreadBackBtnClosed=document.getElementById('forum-thread-back-btn-closed');
+function forumThreadBack(){stopForumPoll();_currentForumPostId=null;document.getElementById('forum-thread-view-wrap').style.display='none';showForumList();}
+if(forumThreadBackBtn)forumThreadBackBtn.addEventListener('click',forumThreadBack);
+if(forumThreadBackBtnClosed)forumThreadBackBtnClosed.addEventListener('click',forumThreadBack);
+
+function stopForumPoll(){if(_forumPollInterval){clearInterval(_forumPollInterval);_forumPollInterval=null;}}
+
+document.getElementById('mm-forum-btn').addEventListener('click',()=>{
+  document.getElementById('mm-extra-screen').style.display='none';
+  document.getElementById('mm-forum-screen').style.display='flex';
+  if(_loggedInUser&&_loggedInUser.pingHistory){
+    _loggedInUser.pingHistory.forEach(p=>p.read=true);
+    const badge=document.getElementById('forum-notif-badge');if(badge)badge.style.display='none';
+    pushCurrentUserToGitHub();
+  }
+  showForumList();
+});
+document.getElementById('mm-forum-back-btn').addEventListener('click',()=>{
+  document.getElementById('mm-forum-screen').style.display='none';
+  document.getElementById('mm-extra-screen').style.display='flex';
+  stopForumPoll();
+});
+
+let _muteTargetUid=null;
+let _banTargetUid=null;
+function openMutePopup(uid,uname){_muteTargetUid=uid;document.getElementById('mute-popup-title').textContent='Mute '+uname;document.getElementById('mute-popup').style.display='flex';}
+function openBanPopup(uid,uname){_banTargetUid=uid;document.getElementById('ban-popup-title').textContent='Ban '+uname;document.getElementById('ban-popup').style.display='flex';}
+document.getElementById('mute-popup-cancel').addEventListener('click',()=>{document.getElementById('mute-popup').style.display='none';_muteTargetUid=null;});
+document.getElementById('ban-popup-cancel').addEventListener('click',()=>{document.getElementById('ban-popup').style.display='none';_banTargetUid=null;});
+
+document.getElementById('mute-popup-ok').addEventListener('click',async()=>{
+  if(!_muteTargetUid)return;
+  const val=parseInt(document.getElementById('mute-duration-val').value)||1;
+  const unit=document.getElementById('mute-duration-unit').value;
+  const ms={seconds:1000,minutes:60000,hours:3600000,days:86400000,months:2592000000}[unit]||1000;
+  const until=new Date(Date.now()+val*ms).toISOString();
+  await fetchAllUsers();
+  const target=_allUsersCache.find(u=>!u.__meta&&u.userid===_muteTargetUid);
+  if(target){target.muted={until};await saveAllUsers(_allUsersCache);appendAudit('user_muted',{targetId:_muteTargetUid,until});showNotifyBanner('User muted.');}
+  document.getElementById('mute-popup').style.display='none';_muteTargetUid=null;
+});
+
+document.getElementById('ban-popup-ok').addEventListener('click',async()=>{
+  if(!_banTargetUid)return;
+  const unit=document.getElementById('ban-duration-unit').value;
+  const reason=document.getElementById('ban-reason-input').value.trim()||'No reason given.';
+  let until;
+  if(unit==='permanent'){until='permanent';}
+  else{const val=parseInt(document.getElementById('ban-duration-val').value)||1;const ms={seconds:1000,minutes:60000,hours:3600000,days:86400000,months:2592000000}[unit]||1000;until=new Date(Date.now()+val*ms).toISOString();}
+  await fetchAllUsers();
+  const target=_allUsersCache.find(u=>!u.__meta&&u.userid===_banTargetUid);
+  if(target){target.banned={until,reason};await saveAllUsers(_allUsersCache);appendAudit('user_banned',{targetId:_banTargetUid,until,reason});showNotifyBanner('User banned.');}
+  document.getElementById('ban-popup').style.display='none';_banTargetUid=null;
+});
+
+function openImageZoom(src){
+  const overlay=document.getElementById('image-zoom-overlay');
+  const img=document.getElementById('image-zoom-img');
+  img.src=src;overlay.style.display='flex';
+  setTimeout(()=>overlay.classList.add('zoom-active'),10);
+}
+document.getElementById('image-zoom-bg').addEventListener('click',closeImageZoom);
+document.getElementById('image-zoom-close').addEventListener('click',closeImageZoom);
+function closeImageZoom(){
+  const overlay=document.getElementById('image-zoom-overlay');
+  overlay.classList.remove('zoom-active');
+  setTimeout(()=>{overlay.style.display='none';},300);
+}
+
+function escHtml(str){if(!str)return '';return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+async function tryAutoLogin(){
+  const creds=loadCredentials();
+  if(!creds||!creds.username||!creds.password)return false;
+  document.getElementById('auth-login-error').textContent='Logging in...';
+  const result=await login(creds.username,creds.password);
+  if(!result.ok){clearCredentials();document.getElementById('auth-login-error').textContent='';return false;}
+  const user=result.user;
+  if(user.banned){
+    const now=Date.now();
+    if(user.banned.until==='permanent'||new Date(user.banned.until).getTime()>now){showBanScreen(user);return true;}
+    else{user.banned=null;const idx=_allUsersCache.findIndex(u=>u.userid===user.userid);if(idx!==-1)_allUsersCache[idx]=user;await saveAllUsers(_allUsersCache);}
+  }
+  _loggedInUser=user;
+  document.getElementById('auth-screen').style.display='none';
+  afterLogin();
+  return true;
+}
+
+async function init(){
+  applyGfxSettings();
+  const langData=await fetchLanguagesFromGitHub();
+  if(langData&&typeof langData==='object'&&Object.keys(langData).length>0){_loadedLanguages=langData;}
+  else{_loadedLanguages={en:{name:'English',nativeName:'English',flag:'🇬🇧'},da:{name:'Danish',nativeName:'Dansk',flag:'🇩🇰'},de:{name:'German',nativeName:'Deutsch',flag:'🇩🇪'}};}
+  populateLanguageDropdowns();
+  const autoLoggedIn=await tryAutoLogin();
+  if(!autoLoggedIn){document.getElementById('auth-screen').style.display='flex';}
+}
+
+init();
+</script>
+</body>
+</html>
