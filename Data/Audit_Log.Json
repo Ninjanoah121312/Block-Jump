@@ -83,5 +83,15 @@
     "by": "2",
     "byUsername": "Collect",
     "at": "2026-04-16T21:38:00.601Z"
+  },
+  {
+    "action": "login",
+    "details": {
+      "userid": "1",
+      "username": "Ninja_thebest"
+    },
+    "by": "1",
+    "byUsername": "Ninja_thebest",
+    "at": "2026-04-17T05:27:10.675Z"
   }
 ]
